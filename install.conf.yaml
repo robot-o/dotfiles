@@ -1,0 +1,10 @@
+- clean: ['~']
+
+- link:
+    ~/.bash_profile: bash_profile
+    ~/.bashrc: bashrc
+    ~/.bash_logout: bash_logout
+    ~/.tmux.conf: tmux.conf
+    ~/.vimrc: vimrc
+
+
