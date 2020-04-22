@@ -7,28 +7,28 @@
         stdout: true
         stderr: true
 
-# - shell:
-#     -
-#         description: "BOOTSTRAP::installing yay.."
-#         command: [sudo pacman -S yay]
-#     -
-#         description: "BOOTSTRAP::upgrading system.."
-#         command: [yay -Syu]
-#     -
-#         description: "BOOTSTRAP::installing essentials.."
-#         command: [yay -S vim tmux direnv oh-my-bash-git firefox chromium visual-studio-code-bin nerd-fonts-complete]
-#     -
-#         description: "BOOTSTRAP::running oh-my-bash installer.."
-#         command: [bash -c /usr/share/oh-my-bash/tools/install.sh]
-#     -
-#         description: "BOOTSTRAP::installing devstuff.."
-#         command: [yay -S docker docker-compose docker-machine terraform ansible hcloud azure-cli]
-#     -
-#         description: "BOOTSTRAP::configuring devstuff.."
-#         command: [sudo groupmod -aG docker $USER && sudo systemctl enable --now docker]
-#     -
-#         description: "BOOTSTRAP::installing comms/entertainment.."
-#         command: [yay -S discord teams telegram-desktop spotify rambox-bin weechat nerd-fonts-complete vlc ffmpeg obs-studio]
+- shell:
+    -
+        description: "BOOTSTRAP::installing yay.."
+        command: [sudo pacman -S yay]
+    -
+        description: "BOOTSTRAP::upgrading system.."
+        command: [yay -Syu]
+    -
+        description: "BOOTSTRAP::installing essentials.."
+        command: [yay -S vim tmux direnv oh-my-bash-git firefox chromium visual-studio-code-bin nerd-fonts-complete]
+    -
+        description: "BOOTSTRAP::running oh-my-bash installer.."
+        command: [bash -c /usr/share/oh-my-bash/tools/install.sh]
+    -
+        description: "BOOTSTRAP::installing devstuff.."
+        command: [yay -S docker docker-compose docker-machine terraform ansible hcloud azure-cli]
+    -
+        description: "BOOTSTRAP::configuring devstuff.."
+        command: [sudo groupmod -aG docker $USER && sudo systemctl enable --now docker]
+    -
+        description: "BOOTSTRAP::installing comms/entertainment.."
+        command: [yay -S discord teams telegram-desktop spotify rambox-bin weechat nerd-fonts-complete vlc ffmpeg obs-studio]
 
 - link:
     ~/.bash_profile: bash_profile
