@@ -40,9 +40,17 @@
     ~/.oh-my-bash/custom: oh-my-bash-custom
     ~/.config/yakuakerc: yakuakerc
     ~/.pam_environment: pam_environment
-    ~/.config/i3: i3
-    ~/.config/sway: sway
-    ~/.config/rofi: rofi
+    ~/.config/i3:
+        create: true
+        path: i3
+    ~/.config/sway:
+        create: true
+        path: sway
+    ~/.config/rofi:
+        create: true
+        path: rofi
+    /usr/share/xsessions/plasma-i3.desktop: plasma-i3.desktop
+    /usr/local/bin/plasma-i3.sh: plasma-i3.sh
     ~/.config/systemd/user/ssh-agent.service:
         create: true
         path: ssh-agent.service

@@ -88,11 +88,6 @@ bindsym $mod+p exec --no-startup-id arandr
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
-# Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
-# assign [class="Pale moon"] $ws2
-# assign [class="Pcmanfm"] $ws3
-# assign [class="Skype"] $ws5
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -272,52 +267,52 @@ mode "$mode_mobility" {
 bindsym $mod+Shift+p mode "$mode_mobility"
 ############################# AUTOSTART
 # Autostart applications
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
-exec --no-startup-id nitrogen --restore
-exec --no-startup-id twmnd
-exec --no-startup-id compton -b
-exec --no-startup-id killall pulseaudio;
-exec --no-startup-id pulseaudio -D
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
-exec --no-startup-id usbguard-applet-qt
-#exec --no-startup-id nextcloud
-exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
-#exec --no-startup-id start_conky_custom
-exec --no-startup-id xautolock -time 5 -locker "i3exit lock"
-exec --no-startup-id caffeine
-exec --no-startup-id bluetooth off
-# set keyboard layouts
-exec --no-startup-id setxkbmap -layout us,de -option grp:alt_shift_toggle
-exec --no-startup-id guake -e "tmux a || tmux"
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+# exec --no-startup-id nitrogen --restore
+# exec --no-startup-id twmnd
+# exec --no-startup-id compton -b
+# exec --no-startup-id killall pulseaudio;
+# exec --no-startup-id pulseaudio -D
+# exec --no-startup-id nm-applet
+# exec --no-startup-id xfce4-power-manager
+# exec --no-startup-id pamac-tray
+# exec --no-startup-id clipit
+# exec --no-startup-id usbguard-applet-qt
+# #exec --no-startup-id nextcloud
+# exec --no-startup-id blueman-applet
+# # exec_always --no-startup-id sbxkb
+# #exec --no-startup-id start_conky_custom
+# exec --no-startup-id xautolock -time 5 -locker "i3exit lock"
+# exec --no-startup-id caffeine
+# exec --no-startup-id bluetooth off
+# # set keyboard layouts
+# exec --no-startup-id setxkbmap -layout us,de -option grp:alt_shift_toggle
+# exec --no-startup-id guake -e "tmux a || tmux"
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
-bar {
-    status_command py3status -c ~/.config/i3/status
-    tray_output primary
-    position top
-    #font xft:xos4 Terminus 9
-    font pango:UbuntuMono Nerd Font 12
-	strip_workspace_numbers yes
+# bar {
+#     status_command py3status -c ~/.config/i3/status
+#     tray_output primary
+#     position top
+#     #font xft:xos4 Terminus 9
+#     font pango:UbuntuMono Nerd Font 12
+# 	strip_workspace_numbers yes
 
-    colors {
-        background         #000000
-        statusline         #ffffff
-        separator          #666666
-        #class             border  backgr  text
-        focused_workspace  #333333 #333333 #ffffff
-        active_workspace   #5f676a #5f676a #ffffff
+#     colors {
+#         background         #000000
+#         statusline         #ffffff
+#         separator          #666666
+#         #class             border  backgr  text
+#         focused_workspace  #333333 #333333 #ffffff
+#         active_workspace   #5f676a #5f676a #ffffff
 
-        inactive_workspace #222222 #222222 #888888
-        urgent_workspace   #900000 #900000 #ffffff
-        binding_mode       #2f343a #900000 #ffffff
+#         inactive_workspace #222222 #222222 #888888
+#         urgent_workspace   #900000 #900000 #ffffff
+#         binding_mode       #2f343a #900000 #ffffff
 
-    }
-}
+#     }
+# }
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
@@ -351,6 +346,20 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+
+# KDE PLASMA SPECIFIC TWEAKS 
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+for_window [class="plasmashell"] floating enable;
+for_window [class="Plasma"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px
+no_focus [class="plasmashell" window_type="notification"] 
 
 # window border colors  border  backgr. text    indicator
 client.focused          #000000 #333333 #ffffff #000000   

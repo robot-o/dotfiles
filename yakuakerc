@@ -24,5 +24,5 @@ view-full-screen=F11; Ctrl+~
 [Window]
 DynamicTabTitles=true
 KeepAbove=false
-KeepOpen=true
+KeepOpen=false
 Width=50
