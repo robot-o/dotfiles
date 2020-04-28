@@ -1,0 +1,4 @@
+rofi.theme: ~/.config/rofi/theme_material.rasi
+rofi.font: Ubuntu Regular 12
+rofi.width: 30
+rofi.bw: 0

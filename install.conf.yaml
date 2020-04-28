@@ -40,6 +40,9 @@
     ~/.oh-my-bash/custom: oh-my-bash-custom
     ~/.config/yakuakerc: yakuakerc
     ~/.pam_environment: pam_environment
+    ~/.config/i3: i3
+    ~/.config/sway: sway
+    ~/.config/rofi: rofi
     ~/.config/systemd/user/ssh-agent.service:
         create: true
         path: ssh-agent.service
