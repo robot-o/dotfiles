@@ -83,3 +83,4 @@ alias startcapture='gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvi
 alias aq='alias | grep'
 alias ae='vim ~/.oh-my-bash/custom/aliases/custom.aliases.sh'
 alias ffw='firefox -P "work" > /dev/null 2>&1 & disown'
+alias i3e='vim ~/.config/i3/config'

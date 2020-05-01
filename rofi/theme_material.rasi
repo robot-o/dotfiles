@@ -30,7 +30,7 @@
     spacing: 0;
     background-color: transparent;
 
-    font: "Ubuntu Mono 13";
+    font: "Inconsolata 10";
 }
 
 window {

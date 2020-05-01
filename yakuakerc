@@ -1,5 +1,6 @@
 [Animation]
-Frames=15
+Frames=0
+UseWMAssist=false
 
 [Appearance]
 Skin=breath2_dark
@@ -11,7 +12,6 @@ Favorites=
 ShowPasteUnprintableWarning=true
 
 [Shortcuts]
-keep-open=~
 new-session=Ctrl+Shift+N
 next-session=Ctrl+Tab
 next-terminal=none
@@ -24,5 +24,5 @@ view-full-screen=F11; Ctrl+~
 [Window]
 DynamicTabTitles=true
 KeepAbove=false
-KeepOpen=false
+KeepOpen=true
 Width=50
