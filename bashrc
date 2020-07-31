@@ -62,3 +62,5 @@ source <(hcloud completion bash)
 # load bash env environment variables
 source $HOME/.bash_env
 
+# swap escape and capslock keys
+setxkbmap -option caps:swapescape

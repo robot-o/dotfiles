@@ -1,0 +1,135 @@
+---
+- name: Dotfiles management playbook
+  hosts: localhost
+  become: no
+
+  tasks:
+    - name: refresh index'
+      become: yes
+      pacman:
+        update_cache: yes
+        upgrade: no
+      tags:
+        - install
+        - upgrade
+      
+    - name: 'full system upgrade'
+      become: yes
+      pacman:
+        update_cache: no
+        upgrade: yes
+      tags:
+        - upgrade
+    
+    - name: 'ensure yay is present'
+      become: yes
+      pacman:
+        name: 'yay'
+        state: latest
+      tags:
+        - install
+
+    - name: 'install software: essentials'
+      yay:
+        state: present
+        name:
+          - 'vim'
+          - 'tmux'
+          - 'direnv'
+          - 'rofi'
+          - 'i3-gaps'
+          - 'picom'
+          - 'rofi'
+          - 'oh-my-bash-git'
+          - 'firefox'
+          - 'chromium'
+          - 'visual-studio-code-bin'
+          - 'nerd-fonts-complete'
+          - 'syncthing'
+          - 'syncthingtray'
+          - 'scrcpy'
+      tags:
+        - install
+        - essentials
+
+    - name: 'install software: development'
+      yay:
+        state: present
+        name:
+          - 'docker'
+          - 'docker-compose'
+          - 'docker-machine'
+          - 'terraform'
+          - 'ansible'
+          - 'hcloud'
+          - 'azure-cli'
+          - 'direnv'
+          - 'kubectl'
+          - 'kubectx'
+          - 'jq'
+      tags:
+        - install
+        - development
+
+    - name: 'install software: social'
+      yay:
+        state: present
+        name:
+          - 'discord'
+          - 'teams'
+          - 'telegram-desktop'
+          - 'rambox-bin'
+          - 'weechat'
+      tags:
+        - install
+        - social
+
+    - name: 'install software: media'
+      yay:
+        state: present
+        name:
+          - 'spotify'
+          - 'vlc'
+          - 'ffmpeg'
+          - 'obs-studio'
+      tags:
+        - install
+        - media
+
+    - name: symlink user dotfiles 
+      file:
+        src: '{{ playbook_dir }}/{{ item.src }}'
+        dest: '{{ item.dest }}'
+        state: link
+      loop:
+        - { src: 'bash_profile',                                dest: '~/.bash_profile' }
+        - { src: 'bash_logout',                                 dest: '~/.bash_logout' }
+        - { src: 'bash_env',                                    dest: '~/.bash_env' }
+        - { src: 'bashrc',                                      dest: '~/.bashrc' }
+        - { src: 'oh-my-bash-custom/aliases/custom.aliases.sh', dest: '~/.aliases' }
+        - { src: 'tmux.conf',                                   dest: '~/.tmux.conf' }
+        - { src: 'vimrc',                                       dest: '~/.vimrc' }
+        - { src: 'oh-my-bash-custom',                           dest: '~/.oh-my-bash/custom' }
+        - { src: 'yakuakerc',                                   dest: '~/.config/yakuakerc' }
+        - { src: 'pam_environment',                             dest: '~/.pam_environment' }
+        - { src: 'i3',                                          dest: '~/.config/i3' }
+        - { src: 'sway',                                        dest: '~/.config/sway' }
+        - { src: 'rofi',                                        dest: '~/.config/rofi' }
+        - { src: 'ssh-agent.service',                           dest: '~/.config/systemd/user/ssh-agent.service' }
+      tags:
+        - link
+        - user_dotfiles
+
+    - name: symlink system dotfiles 
+      become: yes
+      become_method: sudo
+      file:
+        src: '{{ playbook_dir }}/{{ item.src }}'
+        dest: '{{ item.dest }}'
+        state: link
+      loop:
+        - { src: 'plasma-i3.desktop',                           dest: '/usr/share/xsessions/plasma-i3.desktop' }
+        - { src: 'plasma-i3.sh',                                dest: '/usr/local/bin/plasma-i3.sh' }
+      tags:
+        - link
+        - system_dotfiles

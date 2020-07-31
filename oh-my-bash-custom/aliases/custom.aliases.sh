@@ -67,6 +67,11 @@ alias dkms='docker-machine ssh $DOCKER_MACHINE_NAME'
 alias dkma='docker-machine active'
 alias dkml='docker-machine ls'
 
+# kubectl
+alias kc='kubectl'
+alias kca='kubectl apply -f'
+alias kcgn='kubectl get nodes'
+alias kcgp='kubectl get pods --all-namespaces'
 # yay
 alias yays='yay -S'
 alias yayr='yay -Rs'
@@ -84,3 +89,11 @@ alias aq='alias | grep'
 alias ae='vim ~/.oh-my-bash/custom/aliases/custom.aliases.sh'
 alias ffw='firefox -P "work" > /dev/null 2>&1 & disown'
 alias i3e='vim ~/.config/i3/config'
+alias brce='vim ~/.bashrc'
+
+# directories
+alias cdp='cd ~/projects/personal'
+alias cdw='cd ~/projects/work'
+
+alias cdpinfra='cdp && cd infra'
+
