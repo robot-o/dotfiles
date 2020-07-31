@@ -29,7 +29,8 @@ completions=(
   pip3
   terraform
   tmux
-  python-argcomplete	
+  python-argcomplete
+  kubectl
 )
 
 # Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
@@ -53,7 +54,7 @@ source $OSH/oh-my-bash.sh
 
 ## my customizations
 
-# hook direnv completion                                                                                                                                
+# hook direnv completion
 eval "$(direnv hook bash)"
 
 # hook hcloud completion

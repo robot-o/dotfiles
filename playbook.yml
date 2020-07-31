@@ -1,26 +1,18 @@
 ---
-- name: Dotfiles management playbook
+- name: robot's dotfiles/workstation management playbook
   hosts: localhost
   become: no
 
   tasks:
-    - name: refresh index'
+    - name: 'refresh pacman'
       become: yes
       pacman:
         update_cache: yes
         upgrade: no
       tags:
         - install
-        - upgrade
+        - update
       
-    - name: 'full system upgrade'
-      become: yes
-      pacman:
-        update_cache: no
-        upgrade: yes
-      tags:
-        - upgrade
-    
     - name: 'ensure yay is present'
       become: yes
       pacman:
@@ -28,45 +20,76 @@
         state: latest
       tags:
         - install
+        - update
+
+    - name: 'full system update'
+      become: yes
+      yay:
+        update_cache: no
+        upgrade: yes
+      tags:
+        - update
 
     - name: 'install software: essentials'
-      yay:
-        state: present
-        name:
-          - 'vim'
-          - 'tmux'
-          - 'direnv'
-          - 'rofi'
-          - 'i3-gaps'
-          - 'picom'
-          - 'rofi'
-          - 'oh-my-bash-git'
-          - 'firefox'
-          - 'chromium'
-          - 'visual-studio-code-bin'
-          - 'nerd-fonts-complete'
-          - 'syncthing'
-          - 'syncthingtray'
-          - 'scrcpy'
+      block:
+        - name: get packages using yay
+          yay:
+            state: present
+            name:
+              - 'vim'
+              - 'tmux'
+              - 'rofi'
+              - 'i3-gaps'
+              - 'picom'
+              - 'oh-my-bash-git'
+              - 'firefox'
+              - 'chromium'
+              - 'visual-studio-code-bin'
+              - 'nerd-fonts-complete'
+              - 'syncthing'
+              - 'syncthingtray'
+              - 'scrcpy'
+        - name: run oh-my-bash install script
+          shell: /usr/share/oh-my-bash/tools/install.sh
+          args:
+            creates: '~/.oh-my-bash'
       tags:
         - install
         - essentials
 
     - name: 'install software: development'
-      yay:
-        state: present
-        name:
-          - 'docker'
-          - 'docker-compose'
-          - 'docker-machine'
-          - 'terraform'
-          - 'ansible'
-          - 'hcloud'
-          - 'azure-cli'
-          - 'direnv'
-          - 'kubectl'
-          - 'kubectx'
-          - 'jq'
+      block:
+        - name: install packages using yay
+          yay:
+            state: present
+            name:
+              - 'docker'
+              - 'docker-compose'
+              - 'docker-machine'
+              - 'terraform'
+              - 'ansible'
+              - 'hcloud'
+              - 'azure-cli'
+              - 'direnv'
+              - 'kubectl'
+              - 'kubectx'
+              - 'minikube'
+              - 'packer'
+              - 'virtualbox'
+              - 'vagrant'
+              - 'jq'
+        - name: add user to docker group
+          user:
+            name: "{{ ansible_user }}"
+            append: yes
+            groups: 'docker'
+        - name: ensure docker service is enabled and started
+          become: yes
+          systemd:
+            name: docker
+            state: started
+            enabled: yes
+            scope: system
       tags:
         - install
         - development
@@ -102,25 +125,34 @@
         dest: '{{ item.dest }}'
         state: link
       loop:
-        - { src: 'bash_profile',                                dest: '~/.bash_profile' }
-        - { src: 'bash_logout',                                 dest: '~/.bash_logout' }
-        - { src: 'bash_env',                                    dest: '~/.bash_env' }
-        - { src: 'bashrc',                                      dest: '~/.bashrc' }
-        - { src: 'oh-my-bash-custom/aliases/custom.aliases.sh', dest: '~/.aliases' }
-        - { src: 'tmux.conf',                                   dest: '~/.tmux.conf' }
-        - { src: 'vimrc',                                       dest: '~/.vimrc' }
-        - { src: 'oh-my-bash-custom',                           dest: '~/.oh-my-bash/custom' }
-        - { src: 'yakuakerc',                                   dest: '~/.config/yakuakerc' }
-        - { src: 'pam_environment',                             dest: '~/.pam_environment' }
-        - { src: 'i3',                                          dest: '~/.config/i3' }
-        - { src: 'sway',                                        dest: '~/.config/sway' }
-        - { src: 'rofi',                                        dest: '~/.config/rofi' }
-        - { src: 'ssh-agent.service',                           dest: '~/.config/systemd/user/ssh-agent.service' }
+        - { src: 'files/bash_profile',                                dest: '~/.bash_profile' }
+        - { src: 'files/bash_logout',                                 dest: '~/.bash_logout' }
+        - { src: 'files/bash_env',                                    dest: '~/.bash_env' }
+        - { src: 'files/bashrc',                                      dest: '~/.bashrc' }
+        - { src: 'files/oh-my-bash-custom/aliases/custom.aliases.sh', dest: '~/.aliases' }
+        - { src: 'files/tmux.conf',                                   dest: '~/.tmux.conf' }
+        - { src: 'files/vimrc',                                       dest: '~/.vimrc' }
+        - { src: 'files/oh-my-bash-custom',                           dest: '~/.oh-my-bash/custom' }
+        - { src: 'files/yakuakerc',                                   dest: '~/.config/yakuakerc' }
+        - { src: 'files/pam_environment',                             dest: '~/.pam_environment' }
+        - { src: 'files/i3',                                          dest: '~/.config/i3' }
+        - { src: 'files/sway',                                        dest: '~/.config/sway' }
+        - { src: 'files/rofi',                                        dest: '~/.config/rofi' }
+        - { src: 'files/ssh-agent.service',                           dest: '~/.config/systemd/user/ssh-agent.service' }
       tags:
         - link
-        - user_dotfiles
+        - dotfiles
 
-    - name: symlink system dotfiles 
+    - name: ensure ssh agent is enabled and running
+      systemd:
+        name: ssh-agent
+        state: started
+        enabled: yes
+        scope: user
+      tags:
+        - dotfiles
+
+    - name: symlink system configuration files 
       become: yes
       become_method: sudo
       file:
@@ -128,8 +160,8 @@
         dest: '{{ item.dest }}'
         state: link
       loop:
-        - { src: 'plasma-i3.desktop',                           dest: '/usr/share/xsessions/plasma-i3.desktop' }
-        - { src: 'plasma-i3.sh',                                dest: '/usr/local/bin/plasma-i3.sh' }
+        - { src: 'files/plasma-i3.desktop',                           dest: '/usr/share/xsessions/plasma-i3.desktop' }
+        - { src: 'files/plasma-i3.sh',                                dest: '/usr/local/bin/plasma-i3.sh' }
       tags:
         - link
-        - system_dotfiles
+        - sysconfig
