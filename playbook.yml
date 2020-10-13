@@ -139,19 +139,10 @@
         - { src: 'files/sway',                                        dest: '~/.config/sway' }
         - { src: 'files/rofi',                                        dest: '~/.config/rofi' }
         - { src: 'files/fusuma',                                      dest: '~/.config/fusuma' }
-        - { src: 'files/ssh-agent.service',                           dest: '~/.config/systemd/user/ssh-agent.service' }
       tags:
         - link
         - dotfiles
 
-    - name: ensure ssh agent is enabled and running
-      systemd:
-        name: ssh-agent
-        state: started
-        enabled: yes
-        scope: user
-      tags:
-        - dotfiles
 
     - name: symlink system configuration files 
       become: yes
