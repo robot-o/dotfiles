@@ -138,6 +138,7 @@
         - { src: 'files/i3',                                          dest: '~/.config/i3' }
         - { src: 'files/sway',                                        dest: '~/.config/sway' }
         - { src: 'files/rofi',                                        dest: '~/.config/rofi' }
+        - { src: 'files/fusuma',                                      dest: '~/.config/fusuma' }
         - { src: 'files/ssh-agent.service',                           dest: '~/.config/systemd/user/ssh-agent.service' }
       tags:
         - link

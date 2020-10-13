@@ -90,6 +90,8 @@ alias ae='vim ~/.oh-my-bash/custom/aliases/custom.aliases.sh'
 alias ffw='firefox -P "work" > /dev/null 2>&1 & disown'
 alias i3e='vim ~/.config/i3/config'
 alias brce='vim ~/.bashrc'
+alias mode_audio_docked='pacmd unload-module module-suspend-on-idle'
+alias mode_audio_portable='pacmd load-module module-suspend-on-idle'
 
 # directories
 alias cdp='cd ~/projects/personal'

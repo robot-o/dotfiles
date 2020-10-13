@@ -33,5 +33,6 @@ DynamicTabTitles=true
 Height=40
 KeepAbove=false
 KeepOpen=true
+ShowSystrayIcon=false
 ToggleToFocus=true
 Width=50

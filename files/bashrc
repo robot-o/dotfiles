@@ -53,15 +53,8 @@ source $OSH/oh-my-bash.sh
 
 
 ## my customizations
-
-# hook direnv completion
-eval "$(direnv hook bash)"
-
-# hook hcloud completion
-source <(hcloud completion bash)
+# swap escape and capslock keys
+setxkbmap -option caps:swapescape
 
 # load bash env environment variables
 source $HOME/.bash_env
-
-# swap escape and capslock keys
-setxkbmap -option caps:swapescape
