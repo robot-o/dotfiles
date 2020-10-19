@@ -1,3 +1,4 @@
+# set vim to be the default editor
 export EDITOR="vim"
 
 # hook direnv completion
@@ -11,3 +12,6 @@ source /home/user/.bash_completions/typer.sh
 
 # ssh agent manager
 eval $(keychain --eval --quiet id_ed25519 id_rsa)
+
+# add user scripts to path
+export PATH=$PATH:/home/user/.local/bin
