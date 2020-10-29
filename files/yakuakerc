@@ -16,6 +16,11 @@ Width 1920=700
 [Favorite Profiles]
 Favorites=
 
+[KFileDialog Settings]
+Recent Files[$e]=file:$HOME/Desktop/yakuakehoykeys.pdf,file:$HOME/Desktop/yakuakehoykeys.pdf
+Recent URLs[$e]=file:$HOME/Desktop/
+iconViewIconSize=43
+
 [Notification Messages]
 ShowPasteUnprintableWarning=true
 
@@ -35,4 +40,4 @@ KeepAbove=false
 KeepOpen=true
 ShowSystrayIcon=false
 ToggleToFocus=true
-Width=50
+Width=60

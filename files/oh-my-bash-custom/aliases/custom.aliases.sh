@@ -83,6 +83,12 @@ alias av='ansible-vault'
 alias ag='ansible-galaxy'
 alias ap='ansible-playbook'
 
+# directories
+alias cdp='cd ~/projects/personal'
+alias cdw='cd ~/projects/work'
+
+alias cdpinfra='cdp && cd infra'
+
 # misc
 alias startcapture='gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0'
 alias aq='alias | grep'
@@ -92,10 +98,5 @@ alias i3e='vim ~/.config/i3/config'
 alias brce='vim ~/.bashrc'
 alias mode_audio_docked='pacmd unload-module module-suspend-on-idle'
 alias mode_audio_portable='pacmd load-module module-suspend-on-idle'
-
-# directories
-alias cdp='cd ~/projects/personal'
-alias cdw='cd ~/projects/work'
-
-alias cdpinfra='cdp && cd infra'
+alias showlogs='sudo journalctl -p 3 -xb'
 
