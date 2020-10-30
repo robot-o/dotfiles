@@ -2,9 +2,8 @@
 - name: robot's dotfiles/workstation management playbook
   hosts: localhost
   become: no
-
   tasks:
-    - name: 'refresh pacman'
+    - name: "refresh pacman"
       become: yes
       pacman:
         update_cache: yes
@@ -12,17 +11,17 @@
       tags:
         - install
         - update
-      
-    - name: 'ensure yay is present'
+
+    - name: "ensure yay is present"
       become: yes
       pacman:
-        name: 'yay'
+        name: "yay"
         state: latest
       tags:
         - install
         - update
 
-    - name: 'full system update'
+    - name: "full system update"
       become: yes
       yay:
         update_cache: no
@@ -30,59 +29,52 @@
       tags:
         - update
 
-    - name: 'install software: essentials'
-      block:
-        - name: get packages using yay
-          yay:
-            state: present
-            name:
-              - 'vim'
-              - 'tmux'
-              - 'rofi'
-              - 'i3-gaps'
-              - 'picom'
-              - 'oh-my-bash-git'
-              - 'firefox'
-              - 'chromium'
-              - 'visual-studio-code-bin'
-              - 'nerd-fonts-complete'
-              - 'syncthing'
-              - 'syncthingtray'
-              - 'scrcpy'
-        - name: run oh-my-bash install script
-          shell: /usr/share/oh-my-bash/tools/install.sh
-          args:
-            creates: '~/.oh-my-bash'
-      tags:
-        - install
-        - essentials
+    - name: "get packages using yay"
+      yay:
+        state: present
+        name:
+          - "vim"
+          - "tmux"
+          - "rofi"
+          - "i3-gaps"
+          - "picom"
+          - "firefox"
+          - "chromium"
+          - "visual-studio-code-bin"
+          - "nerd-fonts-complete"
+          - "syncthing"
+          - "syncthingtray"
+          - "scrcpy"
+  tags:
+    - install
+    - essentials
 
-    - name: 'install software: development'
+    - name: "install software: development"
       block:
         - name: install packages using yay
           yay:
             state: present
             name:
-              - 'docker'
-              - 'docker-compose'
-              - 'docker-machine'
-              - 'terraform'
-              - 'ansible'
-              - 'hcloud'
-              - 'azure-cli'
-              - 'direnv'
-              - 'kubectl'
-              - 'kubectx'
-              - 'minikube'
-              - 'packer'
-              - 'virtualbox'
-              - 'vagrant'
-              - 'jq'
+              - "docker"
+              - "docker-compose"
+              - "docker-machine"
+              - "terraform"
+              - "ansible"
+              - "hcloud"
+              - "azure-cli"
+              - "direnv"
+              - "kubectl"
+              - "kubectx"
+              - "minikube"
+              - "packer"
+              - "virtualbox"
+              - "vagrant"
+              - "jq"
         - name: add user to docker group
           user:
             name: "{{ ansible_user }}"
             append: yes
-            groups: 'docker'
+            groups: "docker"
         - name: ensure docker service is enabled and started
           become: yes
           systemd:
@@ -94,67 +86,84 @@
         - install
         - development
 
-    - name: 'install software: social'
+    - name: "install software: social"
       yay:
         state: present
         name:
-          - 'discord'
-          - 'teams'
-          - 'telegram-desktop'
-          - 'rambox-bin'
-          - 'weechat'
+          - "discord"
+          - "teams"
+          - "telegram-desktop"
+          - "rambox-bin"
+          - "weechat"
       tags:
         - install
         - social
 
-    - name: 'install software: media'
+    - name: "install software: media"
       yay:
         state: present
         name:
-          - 'spotify'
-          - 'vlc'
-          - 'ffmpeg'
-          - 'obs-studio'
+          - "spotify"
+          - "vlc"
+          - "ffmpeg"
+          - "obs-studio"
       tags:
         - install
         - media
 
-    - name: symlink user dotfiles 
-      file:
-        src: '{{ playbook_dir }}/{{ item.src }}'
-        dest: '{{ item.dest }}'
-        state: link
-      loop:
-        - { src: 'files/bash_profile',                                dest: '~/.bash_profile' }
-        - { src: 'files/bash_logout',                                 dest: '~/.bash_logout' }
-        - { src: 'files/bash_env',                                    dest: '~/.bash_env' }
-        - { src: 'files/bashrc',                                      dest: '~/.bashrc' }
-        - { src: 'files/oh-my-bash-custom/aliases/custom.aliases.sh', dest: '~/.aliases' }
-        - { src: 'files/tmux.conf',                                   dest: '~/.tmux.conf' }
-        - { src: 'files/vimrc',                                       dest: '~/.vimrc' }
-        - { src: 'files/oh-my-bash-custom',                           dest: '~/.oh-my-bash/custom' }
-        - { src: 'files/yakuakerc',                                   dest: '~/.config/yakuakerc' }
-        - { src: 'files/i3',                                          dest: '~/.config/i3' }
-        - { src: 'files/sway',                                        dest: '~/.config/sway' }
-        - { src: 'files/rofi',                                        dest: '~/.config/rofi' }
-        - { src: 'files/fusuma',                                      dest: '~/.config/fusuma' }
-        - { src: 'files/picom.conf',                                  dest: '~/.config/picom.conf' }
+    - name: "dotfiles - install oh my bash"
+      shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+      tags:
+        - dotfiles
 
+    - name: "dotfiles - folder structure"
+      block:
+        - name: create .config dir
+          file:
+            dest: "~/.config"
+            state: directory
+        - name: empty oh my bash custom dir
+          file:
+            dest: "~/.oh-my-bash/custom"
+            state: absent
+      tags:
+        - dotfiles
+
+    - name: "symlink user dotfiles"
+      file:
+        src: "{{ playbook_dir }}/{{ item.src }}"
+        dest: "{{ item.dest }}"
+        state: link
+        force: yes
+      loop:
+        - { src: "files/bash_profile", dest: "~/.bash_profile" }
+        - { src: "files/bash_logout", dest: "~/.bash_logout" }
+        - { src: "files/bash_env", dest: "~/.bash_env" }
+        - { src: "files/bashrc", dest: "~/.bashrc" }
+        - { src: "files/oh-my-bash-custom/aliases/custom.aliases.sh", dest: "~/.aliases" }
+        - { src: "files/tmux.conf", dest: "~/.tmux.conf" }
+        - { src: "files/vimrc", dest: "~/.vimrc" }
+        - { src: "files/oh-my-bash-custom", dest: "~/.oh-my-bash/custom" }
+        - { src: "files/yakuakerc", dest: "~/.config/yakuakerc" }
+        - { src: "files/i3", dest: "~/.config/i3" }
+        - { src: "files/sway", dest: "~/.config/sway" }
+        - { src: "files/rofi", dest: "~/.config/rofi" }
+        - { src: "files/fusuma", dest: "~/.config/fusuma" }
+        - { src: "files/picom.conf", dest: "~/.config/picom.conf" }
       tags:
         - link
         - dotfiles
 
-
-    - name: symlink plasma-i3 config
+    - name: "symlink plasma-i3 config"
       become: yes
       become_method: sudo
       file:
-        src: '{{ playbook_dir }}/{{ item.src }}'
-        dest: '{{ item.dest }}'
+        src: "{{ playbook_dir }}/{{ item.src }}"
+        dest: "{{ item.dest }}"
         state: link
       loop:
-        - { src: 'files/plasma-i3.desktop',                           dest: '/usr/share/xsessions/plasma-i3.desktop' }
-        - { src: 'files/plasma-i3.sh',                                dest: '/usr/local/bin/plasma-i3.sh' }
+        - { src: "files/plasma-i3.desktop", dest: "/usr/share/xsessions/plasma-i3.desktop" }
+        - { src: "files/plasma-i3.sh", dest: "/usr/local/bin/plasma-i3.sh" }
       tags:
         - link
         - sysconfig

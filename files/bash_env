@@ -8,13 +8,13 @@ eval "$(direnv hook bash)"
 source <(hcloud completion bash)
 
 # typer completion (python package cli for writing cli applications, trippy)
-source /home/user/.bash_completions/typer.sh
+source ~/.bash_completions/typer.sh
 
 # ssh agent manager
 eval $(keychain --eval --quiet id_ed25519 id_rsa)
 
 # add user scripts to path
-export PATH=$PATH:/home/user/.local/bin
+export PATH=$PATH:~/.local/bin
 
 # gpg key
 export GPG_TTY=$(tty)
