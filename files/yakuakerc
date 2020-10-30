@@ -26,18 +26,17 @@ ShowPasteUnprintableWarning=true
 
 [Shortcuts]
 next-session=Ctrl+Tab
-next-terminal=none
+next-terminal=Alt+Right; Alt+L
 previous-session=Ctrl+Shift+Tab
-previous-terminal=none
+previous-terminal=Alt+Left; Alt+H
 split-left-right=Ctrl+;
 split-top-bottom=Ctrl+'
 view-full-screen=F11; Ctrl+~
 
 [Window]
 DynamicTabTitles=true
-Height=40
 KeepAbove=false
 KeepOpen=true
 ShowSystrayIcon=false
 ToggleToFocus=true
-Width=60
+Width=50

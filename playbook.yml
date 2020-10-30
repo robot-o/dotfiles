@@ -134,17 +134,18 @@
         - { src: 'files/vimrc',                                       dest: '~/.vimrc' }
         - { src: 'files/oh-my-bash-custom',                           dest: '~/.oh-my-bash/custom' }
         - { src: 'files/yakuakerc',                                   dest: '~/.config/yakuakerc' }
-        - { src: 'files/pam_environment',                             dest: '~/.pam_environment' }
         - { src: 'files/i3',                                          dest: '~/.config/i3' }
         - { src: 'files/sway',                                        dest: '~/.config/sway' }
         - { src: 'files/rofi',                                        dest: '~/.config/rofi' }
         - { src: 'files/fusuma',                                      dest: '~/.config/fusuma' }
+        - { src: 'files/picom.conf',                                  dest: '~/.config/picom.conf' }
+
       tags:
         - link
         - dotfiles
 
 
-    - name: symlink system configuration files 
+    - name: symlink plasma-i3 config
       become: yes
       become_method: sudo
       file:

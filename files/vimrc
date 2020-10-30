@@ -4,6 +4,7 @@ syntax enable
 set tabstop=4
 set softtabstop=4
 set expandtab
+set smartindent
 " UI Config
 set number
 set showcmd
@@ -11,6 +12,8 @@ set cursorline
 set wildmenu
 set lazyredraw
 set showmatch
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
 " Searching
 set incsearch
 set hlsearch
@@ -19,3 +22,15 @@ nnoremap j gj
 nnoremap k gk
 " pasting
 set paste
+" misc
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+
+" PLUGINS
+call plug#begin('~/.vim/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+call plug#end()
