@@ -94,6 +94,7 @@ alias startcapture='gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvi
 alias aq='alias | grep'
 alias ae='vim ~/.oh-my-bash/custom/aliases/custom.aliases.sh'
 alias ffw='firefox -P "work" > /dev/null 2>&1 & disown'
+alias ffww='/mnt/c/Program\ Files/Mozilla\ Firefox/firefox.exe -P "work" > /dev/null 2>&1 & disown'
 alias i3e='vim ~/.config/i3/config'
 alias brce='vim ~/.bashrc'
 alias mode_audio_docked='pacmd unload-module module-suspend-on-idle'
