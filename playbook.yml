@@ -3,118 +3,119 @@
   hosts: localhost
   become: no
   tasks:
-    - name: "refresh pacman"
-      become: yes
-      pacman:
-        update_cache: yes
-        upgrade: no
-      tags:
-        - install
-        - update
-
-    - name: "ensure yay is present"
-      become: yes
-      pacman:
-        name: "yay"
-        state: latest
-      tags:
-        - install
-        - update
-
-    - name: "full system update"
-      become: yes
-      yay:
-        update_cache: no
-        upgrade: yes
-      tags:
-        - update
-
-    - name: "get packages using yay"
-      yay:
-        state: present
-        name:
-          - "vim"
-          - "tmux"
-          - "rofi"
-          - "i3-gaps"
-          - "picom"
-          - "firefox"
-          - "chromium"
-          - "visual-studio-code-bin"
-          - "nerd-fonts-complete"
-          - "syncthing"
-          - "syncthingtray"
-          - "scrcpy"
-  tags:
-    - install
-    - essentials
-
-    - name: "install software: development"
-      block:
-        - name: install packages using yay
-          yay:
-            state: present
-            name:
-              - "docker"
-              - "docker-compose"
-              - "docker-machine"
-              - "terraform"
-              - "ansible"
-              - "hcloud"
-              - "azure-cli"
-              - "direnv"
-              - "kubectl"
-              - "kubectx"
-              - "minikube"
-              - "packer"
-              - "virtualbox"
-              - "vagrant"
-              - "jq"
-        - name: add user to docker group
-          user:
-            name: "{{ ansible_user }}"
-            append: yes
-            groups: "docker"
-        - name: ensure docker service is enabled and started
-          become: yes
-          systemd:
-            name: docker
-            state: started
-            enabled: yes
-            scope: system
-      tags:
-        - install
-        - development
-
-    - name: "install software: social"
-      yay:
-        state: present
-        name:
-          - "discord"
-          - "teams"
-          - "telegram-desktop"
-          - "rambox-bin"
-          - "weechat"
-      tags:
-        - install
-        - social
-
-    - name: "install software: media"
-      yay:
-        state: present
-        name:
-          - "spotify"
-          - "vlc"
-          - "ffmpeg"
-          - "obs-studio"
-      tags:
-        - install
-        - media
+#    - name: "refresh pacman"
+#      become: yes
+#      pacman:
+#        update_cache: yes
+#        upgrade: no
+#      tags:
+#        - install
+#        - update
+#
+#    - name: "ensure yay is present"
+#      become: yes
+#      pacman:
+#        name: "yay"
+#        state: latest
+#      tags:
+#        - install
+#        - update
+#
+#    - name: "full system update"
+#      become: yes
+#      yay:
+#        update_cache: no
+#        upgrade: yes
+#      tags:
+#        - update
+#
+#    - name: "get packages using yay"
+#      yay:
+#        state: present
+#        name:
+#          - "vim"
+#          - "tmux"
+#          - "rofi"
+#          - "i3-gaps"
+#          - "picom"
+#          - "firefox"
+#          - "chromium"
+#          - "visual-studio-code-bin"
+#          - "nerd-fonts-complete"
+#          - "syncthing"
+#          - "syncthingtray"
+#          - "scrcpy"
+#  tags:
+#    - install
+#    - essentials
+#
+#    - name: "install software: development"
+#      block:
+#        - name: install packages using yay
+#          yay:
+#            state: present
+#            name:
+#              - "docker"
+#              - "docker-compose"
+#              - "docker-machine"
+#              - "terraform"
+#              - "ansible"
+#              - "hcloud"
+#              - "azure-cli"
+#              - "direnv"
+#              - "kubectl"
+#              - "kubectx"
+#              - "minikube"
+#              - "packer"
+#              - "virtualbox"
+#              - "vagrant"
+#              - "jq"
+#        - name: add user to docker group
+#          user:
+#            name: "{{ ansible_user }}"
+#            append: yes
+#            groups: "docker"
+#        - name: ensure docker service is enabled and started
+#          become: yes
+#          systemd:
+#            name: docker
+#            state: started
+#            enabled: yes
+#            scope: system
+#      tags:
+#        - install
+#        - development
+#
+#    - name: "install software: social"
+#      yay:
+#        state: present
+#        name:
+#          - "discord"
+#          - "teams"
+#          - "telegram-desktop"
+#          - "rambox-bin"
+#          - "weechat"
+#      tags:
+#        - install
+#        - social
+#
+#    - name: "install software: media"
+#      yay:
+#        state: present
+#        name:
+#          - "spotify"
+#          - "vlc"
+#          - "ffmpeg"
+#          - "obs-studio"
+#      tags:
+#        - install
+#        - media
 
     - name: "dotfiles - install oh my bash"
       shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
       tags:
         - dotfiles
+        - install
 
     - name: "dotfiles - folder structure"
       block:
@@ -128,42 +129,49 @@
             state: absent
       tags:
         - dotfiles
+        - folders
 
-    - name: "symlink user dotfiles"
+    - name: "symlink / install user dotfiles"
       file:
         src: "{{ playbook_dir }}/{{ item.src }}"
         dest: "{{ item.dest }}"
-        state: link
+        state: "{{ item.state }}"
         force: yes
       loop:
-        - { src: "files/bash_profile", dest: "~/.bash_profile" }
-        - { src: "files/bash_logout", dest: "~/.bash_logout" }
-        - { src: "files/bash_env", dest: "~/.bash_env" }
-        - { src: "files/bashrc", dest: "~/.bashrc" }
-        - { src: "files/oh-my-bash-custom/aliases/custom.aliases.sh", dest: "~/.aliases" }
-        - { src: "files/tmux.conf", dest: "~/.tmux.conf" }
-        - { src: "files/vimrc", dest: "~/.vimrc" }
-        - { src: "files/oh-my-bash-custom", dest: "~/.oh-my-bash/custom" }
-        - { src: "files/yakuakerc", dest: "~/.config/yakuakerc" }
-        - { src: "files/i3", dest: "~/.config/i3" }
-        - { src: "files/sway", dest: "~/.config/sway" }
-        - { src: "files/rofi", dest: "~/.config/rofi" }
-        - { src: "files/fusuma", dest: "~/.config/fusuma" }
-        - { src: "files/picom.conf", dest: "~/.config/picom.conf" }
+        - { state: "link", src: "files/bash_profile", dest: "~/.bash_profile" }
+        - { state: "link", src: "files/bash_logout", dest: "~/.bash_logout" }
+        - { state: "link", src: "files/bash_env", dest: "~/.bash_env" }
+        - { state: "link", src: "files/bashrc", dest: "~/.bashrc" }
+        - { state: "link", src: "files/oh-my-bash-custom/aliases/custom.aliases.sh", dest: "~/.aliases" }
+        - { state: "link", src: "files/tmux.conf", dest: "~/.tmux.conf" }
+        - { state: "link", src: "files/vimrc", dest: "~/.vimrc" }
+        - { state: "link", src: "files/oh-my-bash-custom", dest: "~/.oh-my-bash/custom" }
+        - { state: "link", src: "files/yakuakerc", dest: "~/.config/yakuakerc" }
+        - { state: "link", src: "files/i3", dest: "~/.config/i3" }
+        - { state: "link", src: "files/sway", dest: "~/.config/sway" }
+        - { state: "link", src: "files/rofi", dest: "~/.config/rofi" }
+        - { state: "link", src: "files/fusuma", dest: "~/.config/fusuma" }
+        - { state: "link", src: "files/picom.conf", dest: "~/.config/picom.conf" }
       tags:
-        - link
         - dotfiles
+        - link
+        - user
 
-    - name: "symlink plasma-i3 config"
-      become: yes
-      become_method: sudo
+
+    - name: "symlink / install system dotfiles"
+      become: True
       file:
         src: "{{ playbook_dir }}/{{ item.src }}"
         dest: "{{ item.dest }}"
-        state: link
+        state: "{{ item.state }}"
+        force: yes
       loop:
-        - { src: "files/plasma-i3.desktop", dest: "/usr/share/xsessions/plasma-i3.desktop" }
-        - { src: "files/plasma-i3.sh", dest: "/usr/local/bin/plasma-i3.sh" }
+        - { state: "link", src: "files/i3/i3exit", dest: "/usr/bin/i3exit" }
+        - { state: "link", src: "files/plasma-i3.sh", dest: "/usr/local/bin/plasma-i3.sh" }
+        - { state: "present", src: "files/plasma-i3.desktop", dest: "/usr/share/xsessions/plasma-i3.desktop" }
       tags:
+        - dotfiles
         - link
         - sysconfig
+
+
