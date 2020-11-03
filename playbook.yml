@@ -114,7 +114,7 @@
     - name: "dotfiles - install oh my bash"
       shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
       tags:
-        - dotfiles
+        - user
         - install
 
     - name: "dotfiles - folder structure"
@@ -128,10 +128,10 @@
             dest: "~/.oh-my-bash/custom"
             state: absent
       tags:
-        - dotfiles
+        - user
         - folders
 
-    - name: "symlink / install user dotfiles"
+    - name: "symlink user dotfiles"
       file:
         src: "{{ playbook_dir }}/{{ item.src }}"
         dest: "{{ item.dest }}"
@@ -157,8 +157,19 @@
         - link
         - user
 
+    # - name: "copy user config files"
+    #   copy:
+    #     src: "{{ playbook_dir }}/{{ item.src }}"
+    #     dest: "{{ item.dest }}"
+    #     mode: '0755'
+    #   loop:
+    #     - { src: "files/", dest: "~" }
+    #   tags:
+    #     - dotfiles
+    #     - cpy
+    #     - user
 
-    - name: "symlink / install system dotfiles"
+    - name: "symlink system dotfiles"
       become: True
       file:
         src: "{{ playbook_dir }}/{{ item.src }}"
@@ -168,10 +179,20 @@
       loop:
         - { state: "link", src: "files/i3/i3exit", dest: "/usr/bin/i3exit" }
         - { state: "link", src: "files/plasma-i3.sh", dest: "/usr/local/bin/plasma-i3.sh" }
-        - { state: "present", src: "files/plasma-i3.desktop", dest: "/usr/share/xsessions/plasma-i3.desktop" }
       tags:
         - dotfiles
         - link
         - sysconfig
 
-
+    - name: "copy system config files"
+      become: True
+      copy:
+        src: "{{ playbook_dir }}/{{ item.src }}"
+        dest: "{{ item.dest }}"
+        mode: '0755'
+      loop:
+        - { src: "files/plasma-i3.desktop", dest: "/usr/share/xsessions/plasma-i3.desktop" }
+      tags:
+        - dotfiles
+        - cpy
+        - sysconfig

@@ -35,6 +35,7 @@ view-full-screen=F11; Ctrl+~
 
 [Window]
 DynamicTabTitles=true
+Height=30
 KeepAbove=false
 KeepOpen=true
 ShowSystrayIcon=false
