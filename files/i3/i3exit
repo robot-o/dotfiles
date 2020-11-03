@@ -2,7 +2,7 @@
 # /usr/bin/i3exit
 
 # select the locking mechanism
-lock='qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock'
+lock='betterlockscreen --lock dim -t'
 
 # with openrc use loginctl
 [ "$(cat /proc/1/comm)" = "systemd" ] && logind=systemctl || logind=loginctl
