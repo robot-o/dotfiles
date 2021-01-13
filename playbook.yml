@@ -1,198 +1,197 @@
 ---
-- name: robot's dotfiles/workstation management playbook
+- name: "robotos dotfiles/workstation management playbook"
   hosts: localhost
-  become: no
+  become: false
   tasks:
-#    - name: "refresh pacman"
-#      become: yes
-#      pacman:
-#        update_cache: yes
-#        upgrade: no
-#      tags:
-#        - install
-#        - update
-#
-#    - name: "ensure yay is present"
-#      become: yes
-#      pacman:
-#        name: "yay"
-#        state: latest
-#      tags:
-#        - install
-#        - update
-#
-#    - name: "full system update"
-#      become: yes
-#      yay:
-#        update_cache: no
-#        upgrade: yes
-#      tags:
-#        - update
-#
-#    - name: "get packages using yay"
-#      yay:
-#        state: present
-#        name:
-#          - "vim"
-#          - "tmux"
-#          - "rofi"
-#          - "i3-gaps"
-#          - "picom"
-#          - "firefox"
-#          - "chromium"
-#          - "visual-studio-code-bin"
-#          - "nerd-fonts-complete"
-#          - "syncthing"
-#          - "syncthingtray"
-#          - "scrcpy"
-#  tags:
-#    - install
-#    - essentials
-#
-#    - name: "install software: development"
-#      block:
-#        - name: install packages using yay
-#          yay:
-#            state: present
-#            name:
-#              - "docker"
-#              - "docker-compose"
-#              - "docker-machine"
-#              - "terraform"
-#              - "ansible"
-#              - "hcloud"
-#              - "azure-cli"
-#              - "direnv"
-#              - "kubectl"
-#              - "kubectx"
-#              - "minikube"
-#              - "packer"
-#              - "virtualbox"
-#              - "vagrant"
-#              - "jq"
-#        - name: add user to docker group
-#          user:
-#            name: "{{ ansible_user }}"
-#            append: yes
-#            groups: "docker"
-#        - name: ensure docker service is enabled and started
-#          become: yes
-#          systemd:
-#            name: docker
-#            state: started
-#            enabled: yes
-#            scope: system
-#      tags:
-#        - install
-#        - development
-#
-#    - name: "install software: social"
-#      yay:
-#        state: present
-#        name:
-#          - "discord"
-#          - "teams"
-#          - "telegram-desktop"
-#          - "rambox-bin"
-#          - "weechat"
-#      tags:
-#        - install
-#        - social
-#
-#    - name: "install software: media"
-#      yay:
-#        state: present
-#        name:
-#          - "spotify"
-#          - "vlc"
-#          - "ffmpeg"
-#          - "obs-studio"
-#      tags:
-#        - install
-#        - media
+  - name: "refresh pacman"
+    become: true
+    pacman:
+      update_cache: true
+      upgrade: false
+    tags:
+      - install
+      - update
 
-    - name: "dotfiles - install oh my bash"
-      shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
-      tags:
-        - user
-        - install
+  - name: "ensure yay is present"
+    become: true
+    pacman:
+      name: "yay"
+      state: latest
+    tags:
+      - install
+      - update
 
-    - name: "dotfiles - folder structure"
-      block:
-        - name: create .config dir
-          file:
-            dest: "~/.config"
-            state: directory
-        - name: empty oh my bash custom dir
-          file:
-            dest: "~/.oh-my-bash/custom"
-            state: absent
-      tags:
-        - user
-        - folders
+  - name: "full system update"
+    become: true
+    yay:
+      update_cache: false
+      upgrade: true
+    tags:
+      - update
 
-    - name: "symlink user dotfiles"
-      file:
-        src: "{{ playbook_dir }}/{{ item.src }}"
-        dest: "{{ item.dest }}"
-        state: "{{ item.state }}"
-        force: yes
-      loop:
-        - { state: "link", src: "files/bash_profile", dest: "~/.bash_profile" }
-        - { state: "link", src: "files/bash_logout", dest: "~/.bash_logout" }
-        - { state: "link", src: "files/bash_env", dest: "~/.bash_env" }
-        - { state: "link", src: "files/bashrc", dest: "~/.bashrc" }
-        - { state: "link", src: "files/oh-my-bash-custom/aliases/custom.aliases.sh", dest: "~/.aliases" }
-        - { state: "link", src: "files/tmux.conf", dest: "~/.tmux.conf" }
-        - { state: "link", src: "files/vimrc", dest: "~/.vimrc" }
-        - { state: "link", src: "files/oh-my-bash-custom", dest: "~/.oh-my-bash/custom" }
-        - { state: "link", src: "files/yakuakerc", dest: "~/.config/yakuakerc" }
-        - { state: "link", src: "files/i3", dest: "~/.config/i3" }
-        - { state: "link", src: "files/sway", dest: "~/.config/sway" }
-        - { state: "link", src: "files/rofi", dest: "~/.config/rofi" }
-        - { state: "link", src: "files/fusuma", dest: "~/.config/fusuma" }
-        - { state: "link", src: "files/picom.conf", dest: "~/.config/picom.conf" }
-      tags:
-        - dotfiles
-        - link
-        - user
+  - name: "get packages using yay"
+    yay:
+      state: present
+      name:
+        - "vim"
+        - "tmux"
+        - "rofi"
+        - "i3-gaps"
+        - "picom"
+        - "firefox"
+        - "chromium"
+        - "visual-studio-code-bin"
+        - "nerd-fonts-complete"
+        - "syncthing"
+        - "syncthingtray"
+        - "scrcpy"
+    tags:
+      - install
+      - essentials
 
-    # - name: "copy user config files"
-    #   copy:
-    #     src: "{{ playbook_dir }}/{{ item.src }}"
-    #     dest: "{{ item.dest }}"
-    #     mode: '0755'
-    #   loop:
-    #     - { src: "files/", dest: "~" }
-    #   tags:
-    #     - dotfiles
-    #     - cpy
-    #     - user
+  - name: "install software: development"
+    block:
+      - name: install packages using yay
+        yay:
+          state: present
+          name:
+            - "docker"
+            - "docker-compose"
+            - "docker-machine"
+            - "terraform"
+            - "ansible"
+            - "hcloud"
+            - "azure-cli"
+            - "direnv"
+            - "kubectl"
+            - "kubectx"
+            - "minikube"
+            - "packer"
+            - "virtualbox"
+            - "vagrant"
+            - "jq"
+      - name: add user to docker group
+        user:
+          name: "{{ ansible_user }}"
+          append: true
+          groups: "docker"
+      - name: ensure docker service is enabled and started
+        become: true
+        systemd:
+          name: docker
+          state: started
+          enabled: true
+          scope: system
+    tags:
+      - install
+      - development
 
-    - name: "symlink system dotfiles"
-      become: True
-      file:
-        src: "{{ playbook_dir }}/{{ item.src }}"
-        dest: "{{ item.dest }}"
-        state: "{{ item.state }}"
-        force: yes
-      loop:
-        - { state: "link", src: "files/i3/i3exit", dest: "/usr/bin/i3exit" }
-        - { state: "link", src: "files/plasma-i3.sh", dest: "/usr/local/bin/plasma-i3.sh" }
-      tags:
-        - dotfiles
-        - link
-        - sysconfig
+  - name: "install software: social"
+    yay:
+      state: present
+      name:
+        - "discord"
+        - "teams"
+        - "weechat"
+        - "ferdi"
+    tags:
+      - install
+      - social
 
-    - name: "copy system config files"
-      become: True
-      copy:
-        src: "{{ playbook_dir }}/{{ item.src }}"
-        dest: "{{ item.dest }}"
-        mode: '0755'
-      loop:
-        - { src: "files/plasma-i3.desktop", dest: "/usr/share/xsessions/plasma-i3.desktop" }
-      tags:
-        - dotfiles
-        - cpy
-        - sysconfig
+  - name: "install software: media"
+    yay:
+      state: present
+      name:
+        - "spotify"
+        - "vlc"
+        - "ffmpeg"
+        - "obs-studio"
+    tags:
+      - install
+      - media
+
+  - name: "dotfiles - install oh my bash"
+    shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+    tags:
+      - user
+      - install
+
+  - name: "dotfiles - folder structure"
+    block:
+      - name: create .config dir
+        file:
+          dest: "~/.config"
+          state: directory
+      - name: empty oh my bash custom dir
+        file:
+          dest: "~/.oh-my-bash/custom"
+          state: absent
+    tags:
+      - user
+      - folders
+
+  - name: "symlink user dotfiles"
+    file:
+      src: "{{ playbook_dir }}/{{ item.src }}"
+      dest: "{{ item.dest }}"
+      state: "{{ item.state }}"
+      force: true
+    loop:
+      - { state: "link", src: "files/bash_profile", dest: "~/.bash_profile" }
+      - { state: "link", src: "files/bash_logout", dest: "~/.bash_logout" }
+      - { state: "link", src: "files/bash_env", dest: "~/.bash_env" }
+      - { state: "link", src: "files/bashrc", dest: "~/.bashrc" }
+      - { state: "link", src: "files/oh-my-bash-custom/aliases/custom.aliases.sh", dest: "~/.aliases" }
+      - { state: "link", src: "files/tmux.conf", dest: "~/.tmux.conf" }
+      - { state: "link", src: "files/vimrc", dest: "~/.vimrc" }
+      - { state: "link", src: "files/oh-my-bash-custom", dest: "~/.oh-my-bash/custom" }
+      - { state: "link", src: "files/yakuakerc", dest: "~/.config/yakuakerc" }
+      - { state: "link", src: "files/i3", dest: "~/.config/i3" }
+      - { state: "link", src: "files/sway", dest: "~/.config/sway" }
+      - { state: "link", src: "files/rofi", dest: "~/.config/rofi" }
+      - { state: "link", src: "files/fusuma", dest: "~/.config/fusuma" }
+      - { state: "link", src: "files/picom.conf", dest: "~/.config/picom.conf" }
+    tags:
+      - dotfiles
+      - link
+      - user
+
+  # - name: "copy user config files"
+  #   copy:
+  #     src: "{{ playbook_dir }}/{{ item.src }}"
+  #     dest: "{{ item.dest }}"
+  #     mode: '0755'
+  #   loop:
+  #     - { src: "files/", dest: "~" }
+  #   tags:
+  #     - dotfiles
+  #     - cpy
+  #     - user
+
+  - name: "symlink system dotfiles"
+    become: True
+    file:
+      src: "{{ playbook_dir }}/{{ item.src }}"
+      dest: "{{ item.dest }}"
+      state: "{{ item.state }}"
+      force: true
+    loop:
+      - { state: "link", src: "files/i3/i3exit", dest: "/usr/bin/i3exit" }
+      - { state: "link", src: "files/plasma-i3.sh", dest: "/usr/local/bin/plasma-i3.sh" }
+    tags:
+      - dotfiles
+      - link
+      - sysconfig
+
+  - name: "copy system config files"
+    become: True
+    copy:
+      src: "{{ playbook_dir }}/{{ item.src }}"
+      dest: "{{ item.dest }}"
+      mode: '0755'
+    loop:
+      - { src: "files/plasma-i3.desktop", dest: "/usr/share/xsessions/plasma-i3.desktop" }
+    tags:
+      - dotfiles
+      - cpy
+      - sysconfig
