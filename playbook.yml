@@ -45,6 +45,9 @@
         - "syncthing"
         - "syncthingtray"
         - "scrcpy"
+        - "keychain"
+        - "ufw"
+        - "gufw"
     tags:
       - install
       - essentials
@@ -70,6 +73,7 @@
             - "virtualbox"
             - "vagrant"
             - "jq"
+            - "python-pip"
       - name: add user to docker group
         user:
           name: "{{ ansible_user }}"
