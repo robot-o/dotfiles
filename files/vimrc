@@ -4,7 +4,7 @@ set softtabstop=4
 set expandtab
 set smartindent
 " UI Config
-set number
+set relativenumber
 set showcmd
 set cursorline
 set wildmenu
