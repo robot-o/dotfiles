@@ -54,7 +54,7 @@ source $OSH/oh-my-bash.sh
 
 ## my customizations
 # swap escape and capslock keys
-#setxkbmap -option caps:swapescape
+setxkbmap -option caps:swapescape
 
 # load bash env environment variables
 source $HOME/.bash_env

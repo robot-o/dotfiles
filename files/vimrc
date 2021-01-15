@@ -1,18 +1,32 @@
 " keybinds
 let mapleader = ' '
+" window movements
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
+" panels / tools
 nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <leader>b :NERDTreeToggle<CR>
 nnoremap <leader>p :Commands<CR>
-nnoremap <leader>P :!
+nnoremap <leader>o :!
 nnoremap <leader>d :Files<CR>
 nnoremap <leader>r :History:<CR>
 nnoremap <leader>e :Rg<Space>
-nnoremap <leader>gs :G<CR>
+" Git
+nnoremap <leader>g :G<CR>
+nnoremap <leader>gl :Glog<CR>
+nnoremap <leader>gd :Git diff<CR>
+nnoremap <leader>gds :Git diff --staged<CR>
+nnoremap <leader>gdw :Git diff --word-diff<CR>
+nnoremap <leader>gdsw :Git diff --staged --word-diff<CR>
+nnoremap <leader>gco :GCheckout<CR>
 nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gp :Gpull<CR>
+nnoremap <leader>gps :Gpush<CR>
+nnoremap <leader>gm :Git merge<Space>
+nnoremap <leader>gmh :diffget //2<CR>
+nnoremap <leader>gml :diffget //3<CR>
 
 " tabs & spaces
 set tabstop=4
@@ -67,6 +81,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -77,6 +92,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
+" plugin config
+let g:fzf_layout = {'window': { 'width': 0.6, 'height': 0.6 } }
+let $FZF_DEFAULT_OPTS='--reverse'
 " Run PlugInstall if there are missing plugins
 if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
