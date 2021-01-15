@@ -160,18 +160,6 @@
       - link
       - user
 
-  # - name: "copy user config files"
-  #   copy:
-  #     src: "{{ playbook_dir }}/{{ item.src }}"
-  #     dest: "{{ item.dest }}"
-  #     mode: '0755'
-  #   loop:
-  #     - { src: "files/", dest: "~" }
-  #   tags:
-  #     - dotfiles
-  #     - cpy
-  #     - user
-
   - name: "symlink system dotfiles"
     become: True
     file:
@@ -197,5 +185,5 @@
       - { src: "files/plasma-i3.desktop", dest: "/usr/share/xsessions/plasma-i3.desktop" }
     tags:
       - dotfiles
-      - cpy
+      - copy
       - sysconfig
