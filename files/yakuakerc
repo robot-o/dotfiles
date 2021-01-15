@@ -9,9 +9,14 @@ SkinInstalledWithKns=true
 [Behavior]
 RememberFullscreen=true
 
+[Desktop Entry]
+DefaultProfile=Shell.profile
+
 [DownloadDialog Settings]
 Height 1080=472
 Width 1920=700
+eDP-1 Height 1080=477
+eDP-1 Width 1920=700
 
 [Favorite Profiles]
 Favorites=

@@ -58,3 +58,5 @@ source $OSH/oh-my-bash.sh
 
 # load bash env environment variables
 source $HOME/.bash_env
+
+source /home/user/.bash_completions/typer.sh
