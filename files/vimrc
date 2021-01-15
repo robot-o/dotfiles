@@ -6,10 +6,13 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <leader>b :NERDTreeToggle<CR>
-nnoremap <leader>p :!
+nnoremap <leader>p :Commands<CR>
+nnoremap <leader>P :!
 nnoremap <leader>d :Files<CR>
 nnoremap <leader>r :History:<CR>
 nnoremap <leader>e :Rg<Space>
+nnoremap <leader>gs :G<CR>
+nnoremap <leader>gc :Gcommit<CR>
 
 " tabs & spaces
 set tabstop=4
@@ -19,19 +22,22 @@ set smartindent
 
 " UI Config
 set relativenumber
+set number
 set showcmd
 set cursorline
 set wildmenu
 set lazyredraw
 set showmatch
 set colorcolumn=80
+set signcolumn=yes
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 set splitbelow
 set splitright
+set scrolloff=8
 
 " Searching
 set incsearch
-set hlsearch
+set nohlsearch
 set smartcase
 
 " Movement
@@ -46,6 +52,9 @@ set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
 set undofile
+set hidden
+set ttymouse=xterm2
+set mouse=a
 
 " Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -63,8 +72,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'preservim/nerdtree'
 Plug 'jremmen/vim-ripgrep'
-Plug 'ryanoasis/vim-devicons'
 Plug 'mbbill/undotree'
+Plug 'tpope/vim-fugitive'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " Run PlugInstall if there are missing plugins
