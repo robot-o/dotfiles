@@ -69,6 +69,7 @@ if has('vim')
   set ttymouse=xterm2
 endif
 set mouse=a
+filetype plugin on
 
 " Install vim-plug if not found
 if has('nvim')
@@ -97,11 +98,15 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
 Plug 'ryanoasis/vim-devicons'
+Plug 'preservim/nerdcommenter'
+Plug 'pearofducks/ansible-vim'
 call plug#end()
 
 " plugin config
 let g:fzf_layout = {'window': { 'width': 0.6, 'height': 0.6 } }
 let $FZF_DEFAULT_OPTS='--reverse'
+let g:NERDDefaultAlign = 'left'
+
 " Run PlugInstall if there are missing plugins
 if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
