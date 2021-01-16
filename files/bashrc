@@ -56,6 +56,9 @@ source $OSH/oh-my-bash.sh
 # swap escape and capslock keys
 setxkbmap -option caps:swapescape
 
+# disable C-s hanging the terminal
+# see more: https://unix.stackexchange.com/questions/72086/ctrl-s-hangs-the-terminal-emulator
+stty -ixon
 # load bash env environment variables
 source $HOME/.bash_env
 
