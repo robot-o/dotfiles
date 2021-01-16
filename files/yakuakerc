@@ -40,8 +40,8 @@ view-full-screen=F11; Ctrl+~
 
 [Window]
 DynamicTabTitles=true
-Height=90
+Height=60
 KeepAbove=false
 KeepOpen=false
 ToggleToFocus=true
-Width=90
+Width=60

@@ -1,5 +1,6 @@
 # set vim to be the default editor
-export EDITOR="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # hook direnv completion
 eval "$(direnv hook bash)"

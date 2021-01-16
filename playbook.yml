@@ -130,6 +130,10 @@
         file:
           dest: "~/.oh-my-bash/custom"
           state: absent
+      - name: create nvim config dir
+        file:
+          dest: "~/.config/nvim"
+          state: directory
     tags:
       - user
       - folders
@@ -148,6 +152,7 @@
       - { state: "link", src: "files/oh-my-bash-custom/aliases/custom.aliases.sh", dest: "~/.aliases" }
       - { state: "link", src: "files/tmux.conf", dest: "~/.tmux.conf" }
       - { state: "link", src: "files/vimrc", dest: "~/.vimrc" }
+      - { state: "link", src: "files/vimrc", dest: "~/.config/nvim/init.vim" }
       - { state: "link", src: "files/oh-my-bash-custom", dest: "~/.oh-my-bash/custom" }
       - { state: "link", src: "files/yakuakerc", dest: "~/.config/yakuakerc" }
       - { state: "link", src: "files/i3", dest: "~/.config/i3" }

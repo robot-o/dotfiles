@@ -14,7 +14,7 @@ nnoremap <leader>d :Files<CR>
 nnoremap <leader>r :History:<CR>
 nnoremap <leader>e :Rg<Space>
 " Git
-nnoremap <leader>g :G<CR>
+nnoremap <leader>gs :vertical G<CR>
 nnoremap <leader>gl :Glog<CR>
 nnoremap <leader>gd :Git diff<CR>
 nnoremap <leader>gds :Git diff --staged<CR>
@@ -29,9 +29,10 @@ nnoremap <leader>gmh :diffget //2<CR>
 nnoremap <leader>gml :diffget //3<CR>
 
 " tabs & spaces
+set expandtab
 set tabstop=4
 set softtabstop=4
-set expandtab
+set shiftwidth=4
 set smartindent
 
 " UI Config
@@ -45,7 +46,7 @@ set showmatch
 set colorcolumn=80
 set signcolumn=yes
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-set splitbelow
+"set splitbelow
 set splitright
 set scrolloff=8
 
@@ -67,13 +68,22 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set hidden
-set ttymouse=xterm2
+if has('vim')
+  set ttymouse=xterm2
+endif
 set mouse=a
 
 " Install vim-plug if not found
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if has('nvim')
+	if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+		silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	endif
+else
+	if empty(glob('~/.vim/autoload/plug.vim'))
+		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	endif
 endif
 
 " actual plugins definitions
@@ -113,11 +123,13 @@ if (has("autocmd") && !has("gui_running"))
     autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
   augroup END
 endif
+
 if (has("termguicolors"))
   set termguicolors
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
+
 syntax on
 colorscheme onedark
 let g:airline_theme='deus'
