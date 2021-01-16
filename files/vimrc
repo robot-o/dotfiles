@@ -59,9 +59,6 @@ set smartcase
 nnoremap j gj
 nnoremap k gk
 
-" pasting
-set paste
-
 " misc
 set noswapfile
 set nobackup
