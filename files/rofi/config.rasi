@@ -1,0 +1,14 @@
+configuration {
+	width: 40;
+	font: "UbuntuMono Nerd Font 18";
+	bw: 0;
+	theme: "~/.config/rofi/theme.rasi";
+    show-icons: true;
+    modi: "drun,run,file-browser";
+    kb-row-tab: "";
+    kb-row-up: "Up,Control+p";
+    kb-mode-next: "Tab";
+    kb-mode-previous: "ISO_Left_Tab";
+    sort: true;
+    sorting-method: "fzf";
+}
