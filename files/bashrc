@@ -59,7 +59,12 @@ setxkbmap -option caps:swapescape
 # disable C-s hanging the terminal
 # see more: https://unix.stackexchange.com/questions/72086/ctrl-s-hangs-the-terminal-emulator
 stty -ixon
+
+source /home/user/.bash_completions/typer.sh
+
+# disable case sensitive compltion 
+bind 'set completion-ignore-case on'
+
 # load bash env environment variables
 source $HOME/.bash_env
 
-source /home/user/.bash_completions/typer.sh
