@@ -29,8 +29,6 @@ completions=(
   pip3
   terraform
   tmux
-  python-argcomplete
-  kubectl
 )
 
 # Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
@@ -51,7 +49,6 @@ plugins=()
 # actually load ohmybash
 source $OSH/oh-my-bash.sh
 
-
 ## my customizations
 # swap escape and capslock keys
 setxkbmap -option caps:swapescape
@@ -60,11 +57,8 @@ setxkbmap -option caps:swapescape
 # see more: https://unix.stackexchange.com/questions/72086/ctrl-s-hangs-the-terminal-emulator
 stty -ixon
 
-source /home/user/.bash_completions/typer.sh
-
 # disable case sensitive compltion 
 bind 'set completion-ignore-case on'
 
 # load bash env environment variables
 source $HOME/.bash_env
-

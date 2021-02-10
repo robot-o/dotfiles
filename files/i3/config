@@ -13,11 +13,11 @@ set $menu rofi -show drun
 ##### THEMING
 
 # window border colors  border  backgr. text    indicator
-client.focused          #000000 #333333 #ffffff #000000   
-client.focused_inactive #000000 #000000 #808080 #000000   
-client.unfocused        #000000 #000000 #808080 #000000   
-client.urgent           #000000 #000000 #000000 #000000   
-client.placeholder      #000000 #000000 #000000 #000000   
+client.focused          #000000 #7f7a7a #000000 #000000
+client.focused_inactive #000000 #000000 #808080 #000000
+client.unfocused        #000000 #000000 #808080 #000000
+client.urgent           #000000 #000000 #000000 #000000
+client.placeholder      #000000 #000000 #000000 #000000
 
 
 ##### KDE 

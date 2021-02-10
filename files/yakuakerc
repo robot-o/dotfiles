@@ -5,6 +5,7 @@ UseWMAssist=false
 [Appearance]
 Skin=tabsonly
 SkinInstalledWithKns=true
+Translucency=true
 
 [Behavior]
 RememberFullscreen=true
@@ -40,8 +41,8 @@ view-full-screen=F11; Ctrl+~
 
 [Window]
 DynamicTabTitles=true
-Height=60
+Height=90
 KeepAbove=false
 KeepOpen=false
 ToggleToFocus=true
-Width=60
+Width=90
