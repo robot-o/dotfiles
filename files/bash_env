@@ -11,6 +11,10 @@ source <(hcloud completion bash)
 # typer completion (python package cli for writing cli applications, trippy)
 source ~/.bash_completions/typer.sh
 
+# kubectl completion
+source <(kubectl completion bash)
+complete -F __start_kubectl kc
+
 # ssh agent manager
 eval $(keychain --eval --quiet id_ed25519 id_rsa)
 
