@@ -160,6 +160,7 @@
       - { state: "link", src: "files/rofi", dest: "~/.config/rofi" }
       - { state: "link", src: "files/fusuma", dest: "~/.config/fusuma" }
       - { state: "link", src: "files/picom.conf", dest: "~/.config/picom.conf" }
+      - { state: 'link', src: 'files/scripts', dest: '~/.scripts' }
     tags:
       - dotfiles
       - link

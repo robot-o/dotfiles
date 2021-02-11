@@ -19,7 +19,7 @@ complete -F __start_kubectl kc
 eval $(keychain --eval --quiet id_ed25519 id_rsa)
 
 # add user scripts to path
-export PATH=$PATH:~/.local/bin
+export PATH=~/.scripts:$PATH:~/.local/bin
 
 # gpg key
 export GPG_TTY=$(tty)

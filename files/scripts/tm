@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+while [ "$#" -gt 0 ]; do
+    curr=$1
+    shift
+    case "${curr}" in
+        "internal")
+            tmux new -s infra_internal  -c '~/Projects/revvis/internal/infra'
+            tmux neww -t infra_internal:0 -n tunnel  -d 'tunnel'
+            tmux neww -t infra_internal:9 -n bastion -d 'ssh wbastion'
+            tmux neww -t infra_internal:2 -n ansible -d -c 'ansible/' 
+            tmux neww -t infra_internal:3 -n terraform -d -c 'terraform/'
+            tmux neww -t infra_internal:1 -n shell 'gst'
+            ;;
+        "website")
+            tmux new -s infra_website  -c '~/Projects/revvis/website/infra'
+            tmux neww -t infra_website:2 -n 'source' -d -c 'src/'
+            tmux neww -t infra_website:3 -n ssh -d 
+            tmux neww -t infra_website:4 -n ansible -d -c 'ansible/' 
+            tmux neww -t infra_website:5 -n terraform -d -c 'terraform/'
+            tmux neww -t infra_website:1 -n shell 'gst'
+            ;;
+        *) echo "command not found: ${curr}"
+    esac
+done
