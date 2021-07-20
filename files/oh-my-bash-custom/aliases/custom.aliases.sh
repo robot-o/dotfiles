@@ -1,5 +1,13 @@
 # Add your own custom alias in the custom/aliases directory. Aliases placed
 # here will override ones with the same name in the main alias directory.
+
+# tmux
+alias tm='tmux'
+alias tml='tmuxp load -y'
+alias tmlw='tmuxp load -d work_website && tmuxp load -y work_internal' 
+alias tmlww='tmuxp load -y work_website '
+alias tmlwi='tmuxp load -y work_internal'
+
 # git
 alias gst='git status'
 alias glog='git log --oneline --color --graph'
@@ -23,6 +31,7 @@ alias gdsw='git diff --staged --word-diff'
 alias gsm='git commit -S -m'
 alias gus='git reset HEAD'
 alias gwc='git whatchanged'
+
 # docker
 alias dk='docker'
 alias dkps='docker ps'
@@ -69,6 +78,7 @@ alias kc='kubectl'
 alias kca='kubectl apply -f'
 alias kcgn='kubectl get nodes'
 alias kcgp='kubectl get pods --all-namespaces'
+
 # yay
 alias yays='yay -S'
 alias yayr='yay -Rs'
@@ -87,23 +97,27 @@ alias cdpinfra='cdp && cd infra'
 alias td='pushd $(mktemp -d)'
 alias pd='popd'
 
-# misc
-alias startcapture='gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0'
+# aliases
 alias aq='alias | grep'
 alias ae='vim ~/.oh-my-bash/custom/aliases/custom.aliases.sh'
-alias ffw='firefox -P "work" > /dev/null 2>&1 & disown'
-alias ffww='/mnt/c/Program\ Files/Mozilla\ Firefox/firefox.exe -P "work" > /dev/null 2>&1 & disown'
-alias i3e='vim ~/.config/i3/config'
 alias brce='vim ~/.bashrc'
-alias mode_audio_docked='pacmd unload-module module-suspend-on-idle'
-alias mode_audio_portable='pacmd load-module module-suspend-on-idle'
-alias showlogs='sudo journalctl -p 3 -xb'
-alias rf='rm -rf'
-alias fcheck='watch -n 1 grep \"cpu MHz\" /proc/cpuinfo'
-alias pcheck='cpupower frequency-info'
+alias i3e='vim ~/.config/i3/config'
+
+# tools
 alias c='code'
 alias ch='code .'
 alias tf='terraform'
 alias skpc='ssh-keygen -p -f'
 alias venva='source bin/activate'
 alias v='nvim'
+
+# misc
+alias startcapture='gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0'
+alias ffw='firefox -P "work" > /dev/null 2>&1 & disown'
+alias ffww='/mnt/c/Program\ Files/Mozilla\ Firefox/firefox.exe -P "work" > /dev/null 2>&1 & disown'
+alias mode_audio_docked='pacmd unload-module module-suspend-on-idle'
+alias mode_audio_portable='pacmd load-module module-suspend-on-idle'
+alias showlogs='sudo journalctl -p 3 -xb'
+alias rf='rm -rf'
+alias fcheck='watch -n 1 grep \"cpu MHz\" /proc/cpuinfo'
+alias pcheck='cpupower frequency-info'
