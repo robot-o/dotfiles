@@ -1,0 +1,26 @@
+---
+session_name: website
+start_directory: /home/user/Projects/revvis/website/infra
+windows:
+  - window_name: shell
+    focus: True
+    panes:
+      - gst
+
+  - window_name: ansible
+    start_directory: ansible/
+
+  - window_name: terraform
+    start_directory: terraform/
+
+  - window_name: 'ssh:staging'
+    panes:
+      - shell_command:
+        - ssh wsdev
+        - tmux a
+
+  - window_name: 'ssh:prod'
+    panes:
+      - shell_command:
+        - ssh wsprod
+        - tmux a

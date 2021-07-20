@@ -1,0 +1,25 @@
+---
+session_name: internal
+start_directory: /home/user/Projects/revvis/internal/infra
+windows:
+  - window_name: shell
+    focus: True
+    panes:
+      - gst
+
+  - window_name: ansible
+    start_directory: ansible/
+
+  - window_name: terraform
+    start_directory: terraform/
+
+  - window_name: 'ssh:bastion'
+    panes:
+      - shell_command:
+        - ssh bastion
+        - tmux a
+
+  - window_name: 'ssh:tunnel'
+    panes:
+      - shell_command:
+        - ops tun

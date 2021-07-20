@@ -51,7 +51,7 @@ source $OSH/oh-my-bash.sh
 
 ## my customizations
 # swap escape and capslock keys
-setxkbmap -option caps:swapescape
+# setxkbmap -option caps:swapescape
 
 # disable C-s hanging the terminal
 # see more: https://unix.stackexchange.com/questions/72086/ctrl-s-hangs-the-terminal-emulator

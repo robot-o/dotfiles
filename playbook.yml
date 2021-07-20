@@ -151,6 +151,7 @@
       - { state: "link", src: "files/bashrc", dest: "~/.bashrc" }
       - { state: "link", src: "files/oh-my-bash-custom/aliases/custom.aliases.sh", dest: "~/.aliases" }
       - { state: "link", src: "files/tmux.conf", dest: "~/.tmux.conf" }
+      - { state: "link", src: "files/tmuxp", dest: "~/.config/tmuxp" }
       - { state: "link", src: "files/vimrc", dest: "~/.vimrc" }
       - { state: "link", src: "files/vimrc", dest: "~/.config/nvim/init.vim" }
       - { state: "link", src: "files/oh-my-bash-custom", dest: "~/.oh-my-bash/custom" }

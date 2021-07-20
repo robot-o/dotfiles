@@ -2,8 +2,8 @@
 # here will override ones with the same name in the main alias directory.
 # git
 alias gst='git status'
-alias glog='git log --oneline --color'
-alias glogv='git log --pretty --color'
+alias glog='git log --oneline --color --graph'
+alias glogv='git log --pretty --color --graph'
 alias ga='git add'
 alias gaa='git add -A'
 alias gaacm='gaa && git commit -m'
