@@ -1,0 +1,306 @@
+# vim: ft=i3config
+
+##### wm 
+
+bar {
+    swaybar_command waybar
+}
+
+input "type:keyboard" {
+    xkb_layout de
+    xkb_variant us
+    xkb_options caps:swapescape
+}
+
+input "type:touchpad" {
+    tap enabled
+    natural_scroll disabled
+    click_method "button_areas"
+    drag enabled
+    dwt enabled
+}
+
+##### autostart
+
+exec --no-startup-id swayidle -w -C ~/.config/swayidle/config
+exec --no-startup-id mako 
+exec --no-startup-id nextcloud --background
+exec --no-startup-id avizo-service 
+exec --no-startup-id fusuma -d -c ~/.config/fusuma/config.yml
+exec --no-startup-id nm-applet --indicator
+exec --no-startup-id blueman-applet
+exec --no-startup-id usbguard-applet-qt
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec systemctl --user import-environment
+
+
+##### vars
+
+# Set mod key (Mod1=<Alt>, Mod4=<Super>)
+set $mod Mod4
+
+# tools
+set $term alacritty
+set $scrot 'grim -g "$(slurp -d)" - | wl-copy -t image/png'
+set $fm dolphin
+set $browser firefox
+set $musicplayer spotify
+set $menu rofi -show drun | xargs swaymsg exec --
+set $lock swaylock -C ~/.config/swaylock/config
+set $exitman /home/user/.scripts/swayexit menu
+set $settings gnome-control-center
+set $displaysettings wdisplays
+set $emojipicker rofimoji
+
+
+##### appearance
+
+# Font for window titles.
+font pango:Monospace 10
+default_border pixel 1
+
+# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+smart_borders on
+
+# cursor theme
+seat seat0 xcursor_theme breeze_cursor 24
+
+# wallpaper, taken from default sway config
+output * bg ~/.wallpaper fill
+
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+client.background       #F8F8F2
+
+# making gtk themes play nice
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Adwaita'
+    gsettings set $gnome-schema color-scheme prefer-dark
+    gsettings set $gnome-schema icon-theme 'Adwaita'
+    gsettings set $gnome-schema cursor-theme 'Breeze'
+}
+
+
+##### classifiers
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+# window classifiers
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_role="About"] floating enable 
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
+for_window [class="Nextcloud"] floating enable, move position cursor
+for_window [app_id="com.nextcloud.desktopclient.nextcloud"] floating enable, move position cursor
+for_window [app_id="pavucontrol"] floating enable, move position cursor
+
+##### keybinds
+
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# audio 
+# default bindings
+# bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
+# bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
+# bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+# bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# avizo support
+bindsym XF86AudioRaiseVolume exec volumectl -u up
+bindsym XF86AudioLowerVolume exec volumectl -u down
+bindsym XF86AudioMute exec volumectl toggle-mute
+bindsym XF86AudioMicMute exec volumectl -m toggle-mute
+#
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# brightness 
+# default brightnessctl
+# bindsym XF86MonBrightnessDown exec brightnessctl set 20%-
+# bindsym XF86MonBrightnessUp exec brightnessctl set +20%
+# bindsym Shift+XF86MonBrightnessDown exec brightnessctl set 10%-
+# bindsym Shift+XF86MonBrightnessUp exec brightnessctl set +10%
+# avizo support
+bindsym XF86MonBrightnessUp exec lightctl up
+bindsym XF86MonBrightnessDown exec lightctl down
+
+# scratchpad
+bindsym $mod+Mod1+grave move scratchpad
+bindsym $mod+grave scratchpad show
+
+# lock the session
+bindsym --release $mod+Escape exec --no-startup-id $lock 
+
+# end the session
+bindsym --release $mod+Mod1+Escape exec --no-startup-id $exitman
+bindsym XF86PowerOff exec --no-startup-id $exitman
+
+# reload the configuration file
+bindsym $mod+Shift+c reload; exec --no-startup-id notify-send 'reloaded config'
+
+# restart inplace
+bindsym $mod+Shift+r restart
+
+## launching
+# shortcut to selection widget (primary)
+#bindsym $mod+c exec clipster -sp
+
+# start a terminal
+bindsym $mod+Return exec --no-startup-id $term
+
+# start file manager
+bindsym $mod+e exec --no-startup-id $fm
+
+# start display settings
+bindsym $mod+p exec --no-startup-id $displaysettings
+
+# start system settings
+# bindsym $mod+i exec --no-startup-id $settings
+
+# start program launcher
+bindsym $mod+d exec --no-startup-id $menu
+
+# start emoji picker
+bindsym $mod+period exec --no-startup-id $emojipicker
+
+# screenshot tool
+bindsym Print exec --no-startup-id $scrot 
+bindsym Control+Print exec --no-startup-id $scrot screen
+bindsym Shift+Print exec --no-startup-id $scrot window
+
+## window management
+# change borders
+bindsym $mod+Shift+b border pixel 1
+bindsym $mod+b border normal
+
+# kill focused window
+bindsym $mod+q kill
+bindsym $mod+Shift+q --release exec --no-startup-id xkill
+
+# focus HJKL
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# window movement HJKL
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# focus ARROWS
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# window movement ARROWS
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation -> semicolon
+bindcode $mod+47 split h; exec --no-startup-id notify-send -u low -t 500 -a "tiling" "🪓 horizontal"
+# split in vertical orientation -> quote
+bindcode $mod+48 split v; exec --no-startup-id notify-send -u low -t 500 -a "tiling" "🪓 vertical"
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+x layout toggle split
+
+# toggle fullscreen mode for the focused container
+bindsym $mod+Mod1+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+f floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Mod1+1 move container to workspace 1
+bindsym $mod+Mod1+2 move container to workspace 2
+bindsym $mod+Mod1+3 move container to workspace 3
+bindsym $mod+Mod1+4 move container to workspace 4
+bindsym $mod+Mod1+5 move container to workspace 5
+bindsym $mod+Mod1+6 move container to workspace 6
+bindsym $mod+Mod1+7 move container to workspace 7
+bindsym $mod+Mod1+8 move container to workspace 8
+bindsym $mod+Mod1+9 move container to workspace 9
+bindsym $mod+Mod1+0 move container to workspace 10
+
+# rough resize window
+bindsym $mod+Mod1+Left    resize shrink width 10 px or 10 ppt
+bindsym $mod+Mod1+Down    resize grow height 10 px or 10 ppt
+bindsym $mod+Mod1+Up      resize shrink height 10 px or 10 ppt
+bindsym $mod+Mod1+Right   resize grow width 10 px or 10 ppt
+bindsym $mod+Mod1+h    resize shrink width 10 px or 10 ppt
+bindsym $mod+Mod1+j    resize grow height 10 px or 10 ppt
+bindsym $mod+Mod1+k      resize shrink height 10 px or 10 ppt
+bindsym $mod+Mod1+l   resize grow width 10 px or 10 ppt
+
+# granular resize window
+bindsym $mod+Mod1+Shift+Left  resize shrink width 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+Down  resize grow height 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+Up    resize shrink height 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+Right resize grow width 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+h  resize shrink width 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+j  resize grow height 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+k    resize shrink height 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+l resize grow width 1 px or 1 ppt
+
+# alt tabbing
+bindsym Mod1+Tab workspace back_and_forth
+bindsym $mod+Mod1+Tab move container to workspace back_and_forth; workspace back_and_forth
+
+# toggle sticky (always on top)
+bindsym $mod+Shift+s sticky toggle
+
+##### misc
+
+# workspace names
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+
+# autoswitch to urgent windows
+focus_on_window_activation urgent
+
+# workspace back and forth (with/without active container)
+workspace_auto_back_and_forth yes

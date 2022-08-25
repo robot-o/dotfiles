@@ -1,0 +1,16 @@
+---
+session_name: 'rustbook'
+
+start_directory: /home/user/Projects/personal/misc/rustbook
+
+windows:
+
+  - window_name: shell
+    focus: True
+    panes:
+      - gst
+
+  - window_name: nvim
+    panes:
+      - nvim .
+

@@ -1,0 +1,22 @@
+# bash specific environment settings for bash
+# os: arch 
+
+# import generic config (this does os level stuff)
+source ~/.shell_env
+
+# hook direnv completion
+eval "$(direnv hook bash)"
+
+# hook hcloud completion
+#source <(hcloud completion bash)
+
+# typer completion (python package cli for writing cli applications, trippy)
+source ~/.bash_completions/typer.sh
+
+# kubectl completion
+source <(kubectl completion bash)
+complete -F __start_kubectl kc
+
+# fzf bindings (for ^R fzf support for example)
+source /usr/share/fzf/key-bindings.bash
+

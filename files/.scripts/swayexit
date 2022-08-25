@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# select the locking mechanism
+#lock='betterlockscreen --lock dim -t'
+#lock='i3lock -i /home/user/.wallpaper'
+#lock='light-locker-command -l'
+lock='swaylock'
+
+# with openrc use loginctl
+logind='systemctl'
+
+if [ "$1" = "menu" ]; then
+    action=$(echo -e "lock,logout,switch_user,suspend,hibernate,reboot,shutdown,firmware" | rofi -dmenu -sep ',' -p '🏃')
+else
+    action="$1"
+fi
+
+case "$action" in
+    lock)
+        $lock
+        ;;
+    logout)
+        swaymsg exit
+        ;;
+    switch_user)
+        dm-tool switch-to-greeter
+        ;;
+    suspend)
+        $logind suspend
+        ;;
+    hibernate)
+        $logind hibernate
+        ;;
+    reboot)
+        $logind reboot
+        ;;
+    shutdown)
+        $logind poweroff
+        ;;
+    firmware)
+        $logind reboot --firmware-setup
+        ;;
+    *)
+        echo "== ! swayexit: missing or invalid argument ! =="
+        echo "Try again with: lock | logout | switch_user | suspend | hibernate | reboot | shutdown | firmware"
+        exit 2
+esac
+
+exit 0

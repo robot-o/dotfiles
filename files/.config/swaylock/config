@@ -1,0 +1,9 @@
+ignore-empty-password
+show-failed-attempts
+image=~/.lockscreen
+clock
+text-color=ffffff
+ring-color=ffffff
+ring-ver-color=82ebff
+fade-in=2
+daemonize

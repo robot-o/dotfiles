@@ -1,0 +1,37 @@
+# prompt
+add_newline = false
+right_format = """$time"""
+
+[character]
+success_symbol = "[\\$](bold green)"
+error_symbol = "[\\$](bold red)"
+vicmd_symbol = "[V](bold green)"
+
+[username]
+show_always = true
+format = "[$user]($style)[@](fg:245)"
+style_user = "bold fg:250"
+
+[hostname]
+ssh_only = false
+style = "bold fg:250"
+format = "[$hostname]($style) [in](fg:245) "
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+format = "[on](fg:245) [$symbol$branch]($style) "
+
+[git_metrics]
+disabled = false
+
+[time]
+disabled = false
+style = "bold fg:250"
+format = "[at](fg:245) [$time]($style) "
+
+
+# disabled modules
+[battery]
+disabled = true

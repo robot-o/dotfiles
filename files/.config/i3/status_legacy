@@ -1,0 +1,115 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        colors = true
+        color_good = "#A7EF19"
+	color_bad = "#E50F13"
+        color_degraded = "#F07C08"
+        #interval = 2
+}
+
+#order += "external_script" 
+#order += "mpris"
+#order += "spotify"
+#order += "backlight"
+#order += "volume master"
+#order += "wireless _first_"
+#order += "ethernet _first_"
+#order += "bluetooth"
+#order += "battery_level"
+#order += "disk /"
+#order += "sysdata"
+#order += "tztime local"
+order += "tztime time"
+
+external_script {
+        script_path = "echo yolo"
+        format = "{output}"
+        cache_timeout = 1
+}
+
+mpris {
+        format = "{state} [[{title} - {album} - {artist}]|[{title}]]" 
+        format_none = ""
+        player_priority = "[rhythmbox, spotify, vlc]"
+}
+
+spotify {
+        cache_timeout = 2        
+        format = "♫ {artist} - {title}"
+        color_playing = "#80d4ff"
+        color_paused = "#ffcccc"
+        format_down = ""
+}
+
+volume master {  
+	format = " %volume"
+	format_muted = "  %volume"
+	device = "default"
+	mixer = "Master"
+	mixer_idx = 0
+	on_click 1 = "exec pavucontrol"
+    on_click 2 = "exec pactl set-sink-mute 0 toggle"
+    on_click 4 = "exec pactl set-sink-volume 0 +5%"
+    on_click 5 = "exec pactl set-sink-volume 0 -5%"
+}
+
+backlight {
+        format = "☼ {level}%"
+        brightness_minimal = 5
+        button_up = 4
+        button_down = 5        
+}
+
+wireless _first_ {
+        format_up = " %quality"
+        format_down = ""
+        # on_click 1 = "exec --no-startup-id gnome-control-center network"
+}
+
+ethernet _first_ {
+        # if you use %speed, i3status requires root privileges
+        format_up = " %speed"
+        format_down = ""
+        # on_click 1 = "exec --no-startup-id gnome-control-center network"
+}
+
+bluetooth {
+        #format = " on | "
+        format = "bt:off|bt:on"
+        # on_click 1 = "exec --no-startup-id gnome-control-center bluetooth"
+}
+
+battery_level {
+        #format = "{icon} {percent}% {time_remaining}"
+        format = "bat:{percent}% {time_remaining}"
+        measurement_mode = "acpi"
+        hide_seconds = "true"
+        charging_character = ""
+        interval = 5
+        #blocks = ""
+}
+
+disk "/" {
+        format = " %free"
+        #on_click 1 = "exec --no-startup-id thunar"
+}
+
+sysdata {
+        format = " {cpu_usage}%  {cpu_temp}°C  {mem_used}GiB"
+        on_click 1 = "exec alacritty -- htop"
+}
+
+tztime local {
+        format = "%a, %d.%m"
+}
+
+tztime time {
+        format = "%H:%M"
+}

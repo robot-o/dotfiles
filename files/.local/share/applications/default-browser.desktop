@@ -1,0 +1,37 @@
+#[Desktop Entry]
+#Version=1.0
+#Name=Browser
+#GenericName=Browser
+#Comment=Browse ze intervebz
+#Exec=/home/user/.scripts/default-browser-profile.sh %U
+#StartupNotify=true
+#Terminal=false
+#Icon=firefox
+#Type=Application
+#Categories=Network;WebBrowser;
+#MimeType=text/html;text/xml;application/xhtml_xml;image/webp;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;
+
+[Desktop Entry]
+Version=1.0
+Name=Browser
+GenericName=Web Browser
+Comment=Browse the World Wide Web
+Keywords=Internet;WWW;Browser;Web;Explorer
+Exec=/home/user/.scripts/default-browser-profile.sh %U
+Icon=firefox
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;application/x-xpinstall;application/pdf;application/json;
+StartupNotify=true
+StartupWMClass=firefox
+Categories=Network;WebBrowser;
+Actions=new-window;new-private-window;
+
+[Desktop Action new-window]
+Name=New Window
+Exec=/home/user/.scripts/default-browser-profile.sh --new-window %U
+
+[Desktop Action new-private-window]
+Name=New Private Window
+Exec=/home/user/.scripts/default-browser-profile.sh --private-window %U

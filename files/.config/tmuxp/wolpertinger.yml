@@ -1,0 +1,22 @@
+---
+session_name: 'wolpertinger'
+
+start_directory: '/home/user/Projects/personal/hardware/keeb/wolpertinger'
+
+windows:
+
+  - window_name: shell
+    focus: True
+    panes:
+      - gst
+
+  - window_name: nvim
+    panes:
+      - nvim .
+
+  - window_name: ergogen
+    start_directory: ergogen/
+
+  - window_name: ergogen-gui
+    start_directory: ergogen-gui/
+

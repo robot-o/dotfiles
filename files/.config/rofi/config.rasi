@@ -1,0 +1,19 @@
+configuration {
+  terminal:             "alacritty";
+  show-icons:           true;
+  icon-theme:           "Adwaita";
+  modi:                 "drun,run,ssh";
+  kb-row-tab:           "";
+  kb-remove-to-eol:     "";
+  kb-accept-entry:      "Return";
+  kb-row-up:            "Up,Control+k";
+  kb-row-down:          "Down,Control+j";
+  kb-element-next:      "";
+  kb-element-prev:  "";
+  kb-mode-next:         "Tab";
+  kb-mode-previous:     "ISO_Left_Tab";
+  sort:                 true;
+  sorting-method:       "fzf";
+}
+/* @theme "~/.config/rofi/launchers/colorful/style_7.rasi" */
+@theme "~/.config/rofi/theme.rasi"

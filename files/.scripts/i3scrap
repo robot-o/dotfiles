@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -eo pipefail
+set -x
+
+folder="${HOME}/Pictures/Screenshots/$(date +%Y)/$(date +%m)" 
+file="$(date +%Y-%m-%d_%H-%M-%S-%-N).png"
+path="${folder}/${file}"
+
+if [[ ! -d ${folder} ]]; then
+    mkdir -p "${folder}"
+fi
+
+case "$1" in
+  selection)
+    maim_args='-D -s'
+    ;;
+  window)
+    maim_args="-i $(xdotool getactivewindow)"
+    ;;
+  "")
+    maim_args=''
+    ;;
+  *)
+    maim_args=''
+    ;;
+esac
+
+maim $maim_args "${path}" &&
+xclip -selection clipboard -t image/png -i "${path}" 
+notify-send -u low -t 1500 -i "${path}" -a 'i3scrap' "i3scrap" "${file}"

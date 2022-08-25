@@ -1,0 +1,69 @@
+---
+- name: 'manage dotfiles'
+  hosts: localhost
+  tasks:
+  # tasks file for dotfiles_user
+  - name: 'dotfiles - folder structure'
+    block:
+      - name: 'ensure ~/.config folder is present'
+        file:
+          dest: '~/.config'
+          state: directory
+    tags:
+      - dotfiles
+      - prereqs
+
+  - name: 'symlink user dotfiles'
+    file:
+      src: '{{ playbook_dir }}/files/{{ item.src }}'
+      dest: '{{ item.dest }}'
+      state: '{{ item.state }}'
+      force: true
+    loop:
+      - { state: 'link', src: '.shell_env', dest: '~/.shell_env' }
+      - { state: 'link', src: '.bash_profile', dest: '~/.bash_profile' }
+      - { state: 'link', src: '.bash_logout', dest: '~/.bash_logout' }
+      - { state: 'link', src: '.bash_env', dest: '~/.bash_env' }
+      - { state: 'link', src: '.bashrc', dest: '~/.bashrc' }
+      - { state: 'link', src: '.zshenv', dest: '~/.zshenv' }
+      - { state: 'link', src: '.zshrc', dest: '~/.zshrc' }
+      - { state: 'link', src: '.aliases', dest: '~/.aliases' }
+      - { state: 'link', src: '.tmux.conf', dest: '~/.tmux.conf' }
+      - { state: 'link', src: '.vimrc', dest: '~/.vimrc' }
+      - { state: 'link', src: '.config/starship.toml', dest: '~/.config/starship.toml' }
+      - { state: 'link', src: '.config/i3', dest: '~/.config/i3' }
+      - { state: 'link', src: '.config/avizo', dest: '~/.config/avizo' }
+      - { state: 'link', src: '.config/fontconfig', dest: '~/.config/fontconfig' }
+      - { state: 'link', src: '.config/sway', dest: '~/.config/sway' }
+      - { state: 'link', src: '.config/mako', dest: '~/.config/mako' }
+      - { state: 'link', src: '.config/swayidle', dest: '~/.config/swayidle' }
+      - { state: 'link', src: '.config/swaylock', dest: '~/.config/swaylock' }
+      - { state: 'link', src: '.config/waybar', dest: '~/.config/waybar' }
+      - { state: 'link', src: '.config/rofi', dest: '~/.config/rofi' }
+      - { state: 'link', src: '.config/fusuma', dest: '~/.config/fusuma' }
+      - { state: 'link', src: '.config/tmuxp', dest: '~/.config/tmuxp' }
+      - { state: 'link', src: '.config/nvchad', dest: '~/.config/nvim' }
+      - { state: 'link', src: '.config/nvchad-custom', dest: '~/.config/nvim/lua/custom' }
+      - { state: 'link', src: '.config/dunst', dest: '~/.config/dunst' }
+      - { state: 'link', src: '.config/conky', dest: '~/.config/conky' }
+      - { state: 'link', src: '.config/alacritty', dest: '~/.config/alacritty' }
+      - { state: 'link', src: '.config/picom.conf', dest: '~/.config/picom.conf' }
+      - { state: 'link', src: '.scripts', dest: '~/.scripts' }
+    tags:
+      - dotfiles
+      - link
+
+  - name: 'setup custom default browser override integration'
+    file:
+      src: '{{ playbook_dir }}/files/{{ item.src }}'
+      dest: '{{ item.dest }}'
+      state: '{{ item.state }}'
+      force: true
+    loop:
+      - { state: 'link', src: '.local/share/applications/default-browser.desktop', dest: '~/.local/share/applications/default-browser.desktop' }
+      - { state: 'link', src: '.local/share/applications/slack.desktop', dest: '~/.local/share/applications/slack.desktop' }
+      - { state: 'link', src: '.local/share/applications/firefox-work.desktop', dest: '~/.local/share/applications/firefox-work.desktop' }
+    tags:
+      - dotfiles
+      - link
+

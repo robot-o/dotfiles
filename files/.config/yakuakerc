@@ -1,0 +1,48 @@
+[Animation]
+Frames=0
+UseWMAssist=false
+
+[Appearance]
+Skin=tabsonly
+SkinInstalledWithKns=true
+Translucency=true
+
+[Behavior]
+RememberFullscreen=true
+
+[Desktop Entry]
+DefaultProfile=Shell.profile
+
+[DownloadDialog Settings]
+Height 1080=472
+Width 1920=700
+eDP-1 Height 1080=477
+eDP-1 Width 1920=700
+
+[Favorite Profiles]
+Favorites=
+
+[KFileDialog Settings]
+Recent Files[$e]=file:$HOME/Desktop/yakuakehoykeys.pdf,file:$HOME/Desktop/yakuakehoykeys.pdf
+Recent URLs[$e]=file:$HOME/Desktop/
+iconViewIconSize=43
+
+[Notification Messages]
+ShowPasteUnprintableWarning=true
+
+[Shortcuts]
+next-session=Ctrl+Tab
+next-terminal=Alt+Right; Alt+L
+previous-session=Ctrl+Shift+Tab
+previous-terminal=Alt+Left; Alt+H
+split-left-right=Ctrl+;
+split-top-bottom=Ctrl+'
+view-full-screen=F11; Ctrl+~
+
+[Window]
+DynamicTabTitles=true
+Height=90
+KeepAbove=false
+KeepOpen=false
+ToggleToFocus=true
+Width=90

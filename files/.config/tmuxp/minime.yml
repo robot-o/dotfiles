@@ -1,0 +1,16 @@
+---
+session_name: 'minime'
+
+start_directory: /home/user/Projects/personal/bots/mini-me
+
+windows:
+
+  - window_name: shell
+    focus: True
+    panes:
+      - gst
+
+  - window_name: nvim
+    panes:
+      - nvim .
+

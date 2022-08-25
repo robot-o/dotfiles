@@ -1,0 +1,33 @@
+swipe:
+  3:
+    left:
+      sendkey: 'LEFTALT+Left' # History back
+    right:
+      sendkey: 'LEFTALT+Right' # History forward
+    up:
+      sendkey: 'LEFTCTRL+Tab' # Next Tab
+    down:
+      sendkey: 'LEFTSHIFT+LEFTCTRL+Tab' # Previous Tab
+  4:
+    left:
+      sendkey: 'BRIGHTNESSDOWN'
+    right:
+      sendkey: 'BRIGHTNESSUP'
+    up:
+      sendkey: 'VOLUMEUP'
+    down:
+      sendkey: 'VOLUMEDOWN'
+
+pinch:
+  2:
+    in:
+      sendkey: 'LEFTCTRL+EQUAL' # Zoom in
+    out:
+      sendkey: 'LEFTCTRL+MINUS' # Zoom out
+
+plugin: 
+  inputs:
+    libinput_command_input: # options for lib/plugin/inputs/libinput_command_input
+      enable-tap: true # click to tap
+      enable-dwt: true # disable tap while typing
+      show-keycodes: true # https://github.com/iberianpig/fusuma-plugin-keypress#add-show-keycode-option

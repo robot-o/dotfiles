@@ -1,0 +1,279 @@
+# vim: ft=i3config
+### workarounds
+#
+# fix dpi weirdness introduced in latest xorg update
+#exec --no-startup-id xrandr --dpi 96
+
+#
+### wm 
+#
+# Set mod key (Mod1=<Alt>, Mod4=<Super>)
+set $mod Mod4
+# Configure border style <normal|1pixel|pixel xx|none|pixel>
+default_border pixel 1
+# new_window pixel 2
+# new_float normal
+# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+smart_borders on
+# Font for window titles.
+font pango:Terminus 8
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+# fix for kde shit: https://github.com/avivace/dotfiles/issues/13
+force_display_urgency_hint 0 ms
+focus_on_window_activation urgent
+# workspace back and forth (with/without active container)
+workspace_auto_back_and_forth yes
+# Workspace names
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+
+#
+### status
+#
+bar {
+    #mode              hide
+    status_command    i3status-rs ~/.config/i3/status_rs.toml
+    position          bottom
+    workspace_buttons yes
+    font pango:Terminus, Font Awesome 5 Free 9
+        colors {
+        separator #666666
+        background #000000
+        statusline #000000
+        focused_workspace   #4E4E4E #4E4E4E #ffffff
+        active_workspace    #252525 #252525 #ffffff
+        inactive_workspace  #252525 #252525 #888888
+        urgent_workspace    #2f343a #900000 #ffffff
+    }
+}
+
+#
+### variables
+#
+set $term alacritty
+set $fm dolphin
+set $browser firefox
+set $musicplayer spotify
+#set $menu ~/.config/rofi/bin/launcher_colorful
+set $menu rofi -show
+set $desktop_help "conky -c ~/.config/conky/conky.conf"
+
+#
+### theme
+#
+# class                 border  bground text    indicator child_border
+client.focused          #4E5456 #42474A #FFFFFF #484E50   #4E5456
+client.focused_inactive #333333 #222222 #888888 #292D2E   #222222
+client.unfocused        #333333 #222222 #888888 #292D2E   #222222
+client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+client.background       #FFFFFF
+
+#
+### autostart
+#
+# gui authentication daemon
+exec --no-startup-id /usr/bin/lxpolkit
+# wallpaper manager
+exec --no-startup-id nitrogen --restore
+# compositor (3d effects, transparency etc)
+exec --no-startup-id picom --config $HOME/.config/picom.conf -b
+# touchpad gestures
+exec --no-startup-id ~/.config/fusuma/fusuma.sh
+# networking icon for wifi etc
+exec --no-startup-id nm-applet --indicator
+# bluetooth icon
+exec --no-startup-id blueman-applet
+# file synchronization daemon
+exec --no-startup-id syncthingtray
+# package manager update daemon
+exec --no-startup-id pamac-tray
+# clipboard manager
+exec --no-startup-id clipster -d
+# screen locker
+exec --no-startup-id light-locker --lock-on-suspend --lock-on-lid
+# help widget
+# exec --no-startup-id $desktop_help
+# power manager
+exec --no-startup-id xfce4-power-manager --daemon
+
+#
+### keybinds
+#
+# scratchpad
+bindsym $mod+Shift+grave move scratchpad
+bindsym $mod+grave scratchpad show
+## system 
+# lock the session
+bindsym $mod+Delete exec --no-startup-id i3exit lock
+# compositor
+bindsym $mod+t exec --no-startup-id pkill picom
+bindsym $mod+Ctrl+t exec --no-startup-id picom -b
+# help on home screen
+bindsym $mod+F1 exec --no-startup-id $desktop_help
+# kill help 
+bindsym $mod+Mod1+F1 exec --no-startup-id pkill conky
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+Delete exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# audio 
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+# brightness 
+bindsym XF86MonBrightnessDown exec brightnessctl set 20%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +20%
+bindsym Shift+XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym Shift+XF86MonBrightnessUp exec brightnessctl set +10%
+
+## launching
+# shortcut to selection widget (primary)
+bindsym $mod+c exec clipster -sp
+# start a terminal
+bindsym $mod+Return exec $term
+# start file manager
+bindsym $mod+e exec $fm
+# start program launcher
+bindsym $mod+d exec --no-startup-id $menu
+# start emoji picker
+bindsym $mod+period exec --no-startup-id rofimoji
+# screenshot tool
+#bindsym $mod+Print exec --no-startup-id scrot -s -f -p -e 'xclip -selection clipboard -t image/png -i $f' ~/Pictures/Screenshots/$(date +%Y)/$(date +%m)/$(date +%Y-%m-%d_%H-%M-%S-%-N).jpg
+#bindsym Print exec --no-startup-id "scrot -s -f -p -e 'xclip -selection clipboard -t image/png -i $f && rm $f'"
+bindsym Print exec --no-startup-id maim -s -D | xclip -selection clipboard -t image/png
+
+## window management
+# change borders
+bindsym $mod+m border pixel 1
+bindsym $mod+n border normal
+# kill focused window
+bindsym $mod+q kill
+bindsym $mod+Shift+q --release exec --no-startup-id xkill
+bindsym $mod+Mod1+q exec --no-startup-id i3exit $(echo -e "lock\nlogout\nswitch_user\nsuspend\nhibernate\nreboot\nshutdown\nfirmware" | rofi -dmenu)
+# focus HJKL
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+# window movement HJKL
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+# focus ARROWS
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+# window movement ARROWS
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+# split in horizontal orientation -> semicolon
+bindcode $mod+47 split h; exec notify-send -u low -t 1000 -a "tiling" "horizontal"
+# split in vertical orientation -> quote
+bindcode $mod+48 split v; exec notify-send -u low -t 1000 -a "tiling" "vertical"
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+x layout toggle split
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+# focus the parent container
+bindsym $mod+a focus parent
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+# move focused container to workspace
+bindsym $mod+Mod1+1 move container to workspace 1
+bindsym $mod+Mod1+2 move container to workspace 2
+bindsym $mod+Mod1+3 move container to workspace 3
+bindsym $mod+Mod1+4 move container to workspace 4
+bindsym $mod+Mod1+5 move container to workspace 5
+bindsym $mod+Mod1+6 move container to workspace 6
+bindsym $mod+Mod1+7 move container to workspace 7
+bindsym $mod+Mod1+8 move container to workspace 8
+bindsym $mod+Mod1+9 move container to workspace 9
+bindsym $mod+Mod1+0 move container to workspace 10
+# rough resize window
+bindsym $mod+Mod1+Left    resize shrink width 10 px or 10 ppt
+bindsym $mod+Mod1+Down    resize grow height 10 px or 10 ppt
+bindsym $mod+Mod1+Up      resize shrink height 10 px or 10 ppt
+bindsym $mod+Mod1+Right   resize grow width 10 px or 10 ppt
+bindsym $mod+Mod1+h    resize shrink width 10 px or 10 ppt
+bindsym $mod+Mod1+j    resize grow height 10 px or 10 ppt
+bindsym $mod+Mod1+k      resize shrink height 10 px or 10 ppt
+bindsym $mod+Mod1+l   resize grow width 10 px or 10 ppt
+# granular resize window
+bindsym $mod+Mod1+Shift+Left  resize shrink width 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+Down  resize grow height 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+Up    resize shrink height 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+Right resize grow width 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+h  resize shrink width 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+j  resize grow height 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+k    resize shrink height 1 px or 1 ppt
+bindsym $mod+Mod1+Shift+l resize grow width 1 px or 1 ppt
+# alt tabbing
+bindsym Mod1+Tab workspace back_and_forth
+bindsym $mod+Mod1+Tab move container to workspace back_and_forth; workspace back_and_forth
+# toggle fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+# toggle sticky (always on top)
+bindsym $mod+Shift+s sticky toggle
+
+#
+### classifier
+#
+for_window [title="float_term"] floating enable; border none; move position mouse
+for_window [title="float_term"] move position mouse
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+for_window [class="yakuake"] floating enable
+for_window [class="plasmashell"] floating enable;
+for_window [class="Plasma"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="plasmashell" window_type="notification"] floating enable, border none
+no_focus [class="plasmashell" window_type="notification"] 
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_role="About"] floating enable 
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [title="Volume Control"] floating enable; border none
+for_window [title="Volume Control"] move position mouse

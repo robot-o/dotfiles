@@ -1,0 +1,30 @@
+{
+	"languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"]
+    },
+		"terraform": {
+			"command": "terraform-ls",
+			"args": ["serve"],
+			"filetypes": [
+				"terraform",
+				"tf"
+			],
+			"initializationOptions": {},
+			"settings": {}
+		}
+	},
+	"markdownlint.config": {
+	},
+  "diagnostic-languageserver.filetypes": {
+    "vim": "vint",
+    "sh": "shellcheck",
+    "systemd": "systemd-analyze"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "sh": "shfmt"
+  }
+}
+
