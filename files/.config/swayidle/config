@@ -1,5 +1,5 @@
 timeout 300 'swaylock'
-timeout 600 'brightnessctl set 10%' resume 'brightnessctl set 60%'
+timeout 600 'brightnessctl -s set 5%' resume 'brightnessctl -r'
 timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
 timeout 1800 'swayexit suspend'
 before-sleep 'playerctl pause'
