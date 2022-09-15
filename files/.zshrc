@@ -86,7 +86,7 @@ compdef kubecolor=kubectl
 compdef kc=kubecolor
 
 # fzf bindings (for ^R fzf support for example)
-source /usr/share/fzf/key-bindings.zsh
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 
 # setup prompt
 eval "$(starship init zsh)"

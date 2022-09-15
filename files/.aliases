@@ -4,11 +4,11 @@ alias se='sudo -E'
 alias wa='watch -c '
 alias sv='sudo nvim'
 alias b='bat -p'
-alias cat='bat -p'
+alias c='bat -pp'
 alias tree='exa --tree'
 alias ls='exa'
-alias l='ls -lh --color=auto'
-alias ll='ls -lah --color=auto'
+alias ll='ls -lh --color=auto'
+alias l='ls -lah --color=auto'
 alias yoink='xclip -selection clipboard -i'
 alias yoink='wl-copy <'
 
@@ -91,6 +91,7 @@ alias dkma='docker-machine active'
 alias dkml='docker-machine ls'
 
 # kubectl
+alias kn='k9s'
 alias kubectl='kubecolor'
 alias kc='kubectl'
 alias kcn='kubectl --all-namespaces'
@@ -105,6 +106,9 @@ alias yolo='yay -Syu --noconfirm'
 alias orphanage='yay -Qtdq | yay -Rns -'
 alias whatpackage='s pacman -Fy'
 
+# nixos
+alias rbs='sudo nixos-rebuild switch --flake "/home/user/.dotfiles#user"'
+
 # ansible
 alias a='ansible'
 alias av='ansible-vault'
@@ -113,10 +117,6 @@ alias ap='ansible-playbook'
 
 # directories
 alias cdd='cd ~/.dotfiles'
-alias cdc='cd ~/.config'
-alias ct='cd ~/.config/tmuxp'
-alias cdp='cd ~/projects/personal'
-alias cdw='cd ~/projects/work'
 alias td='pushd $(mktemp -d)'
 alias pd='popd'
 
@@ -126,24 +126,11 @@ function aq(){
 }
 
 # config editing
-alias ea='vim ~/.aliases'
-alias ebrc='vim ~/.bashrc'
-alias ebe='vim ~/.bash_env'
-alias eic='vim ~/.config/i3/config'
-alias eick='vim ~/.config/i3/config_arch_plasma-i3'
-alias eis='vim ~/.config/i3/status'
-alias esc='nvim ~/.config/sway/config'
-alias ess='nvim ~/.config/waybar/config'
-alias essc='vim ~/.ssh/config'
-alias edp='cdd && v playbook.yml'
-alias et='v ~/.config/alacritty/alacritty.yml'
-alias ev='vim ~/.vimrc'
-alias srcz='source ~/.zshrc'
-alias srcb='source ~/.bashrc'
+alias edf='cdd && nvim'
 
 # tools
-alias c='code'
-alias ch='code .'
+alias co='code'
+alias coh='code .'
 alias cr='cargo'
 alias crb='cargo b'
 alias crc='cargo c'
@@ -159,10 +146,6 @@ alias nsl='nslookup'
 
 # misc
 alias startcapture='gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0'
-alias ffw='firefox -P "work" > /dev/null 2>&1 & disown'
-alias ffww='/mnt/c/Program\ Files/Mozilla\ Firefox/firefox.exe -P "work" > /dev/null 2>&1 & disown'
-alias mode_audio_docked='pacmd unload-module module-suspend-on-idle'
-alias mode_audio_portable='pacmd load-module module-suspend-on-idle'
 alias showlogs='sudo journalctl -p 3 -xb'
 alias rf='rm -rf'
 alias fcheck='watch -n 1 grep \"cpu MHz\" /proc/cpuinfo'
