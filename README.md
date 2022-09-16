@@ -1,5 +1,4 @@
-# robot-o's dotfiles(wip)
+# robot-o's dotfiles
 
-documentation coming soon™
-
+now with 23,42% more nixos!
 
