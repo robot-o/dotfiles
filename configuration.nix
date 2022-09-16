@@ -59,8 +59,8 @@
       enable = true;
       layout = "de";
       xkbVariant = "us";
-      displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
+      displayManager.sddm.enable = false;
+      desktopManager.plasma5.enable = false;
     };
 
     pipewire = {
