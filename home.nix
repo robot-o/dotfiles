@@ -15,6 +15,7 @@
       bat
       direnv
       delta
+      tmux
       fzf
       alacritty
       # general
@@ -26,6 +27,7 @@
       vscode
       kubectl
       kubectx
+      bind
       kubecolor
       k9s
       azure-cli
