@@ -31,11 +31,25 @@
       azure-cli
       terraform
       ansible
+      # lang
+      python3
+      rustc
+      cargo
+      rustfmt
+      go
+      dotnet-sdk
+      nodejs
       # daemons
       nextcloud-client
       mullvad-vpn
       # media
       spotify
+      gimp
+      blender
+      inkscape
+      # fab
+      kicad
+      super-slicer
       # social
       slack
       teams
