@@ -109,6 +109,7 @@ alias whatpackage='s pacman -Fy'
 # nixos
 alias rbs='sudo nixos-rebuild switch --flake "/home/user/.dotfiles#user"'
 alias rbsu='sudo nix-channel --update && sudo nix flake update "/home/user/.dotfiles" && sudo nixos-rebuild switch --upgrade --flake "/home/user/.dotfiles#user"'
+alias gc='nix-collect-garbage -d && sudo nix-collect-garbage -d'
 
 # ansible
 alias a='ansible'

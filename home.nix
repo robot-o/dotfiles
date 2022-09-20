@@ -23,6 +23,7 @@
       google-chrome
       thunderbird
       logseq
+      appimage-run
       # dev
       vscode
       kubectl
@@ -50,7 +51,7 @@
       blender
       inkscape
       # fab
-      kicad
+      # kicad
       super-slicer
       # social
       slack
@@ -64,10 +65,6 @@
     ];
 
     file.".scripts".source = ./files/.scripts;
-#    file.".config/nvim" = {
- #     source = ./files/.config/nvim;
-  #    recursive = true;
-   # };
     file.".zshenv".source = ./files/.zshenv;
     file.".zshrc".source = ./files/.zshrc;
     file.".aliases".source = ./files/.aliases;
@@ -75,5 +72,9 @@
     file.".config/starship.toml".source = ./files/.config/starship.toml;
     file.".config/tmuxp".source = ./files/.config/tmuxp;
     file.".config/alacritty".source = ./files/.config/alacritty;
+    # file.".config/nvim" = {
+    #   source = ./files/.config/nvim;
+    #   recursive = true;
+    # };
   };
 }
