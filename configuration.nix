@@ -53,6 +53,8 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  # bluetooth
+  hardware.bluetooth.enable = true;
 
   services = {
     xserver = {
