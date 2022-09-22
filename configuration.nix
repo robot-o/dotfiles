@@ -121,7 +121,7 @@
       defaultFonts = {
         serif = [ "Ubuntu" "Noto Color Emoji" ];
         sansSerif = [ "Ubuntu" "Noto Color Emoji" ];
-        monospace = [ "Ubuntu" "Noto Color Emoji" ];
+        monospace = [ "UbuntuMono Nerd Font" "Noto Color Emoji" ];
       };
     };
   };

@@ -2,7 +2,6 @@
 
 {
   programs.home-manager.enable = true;
-
   home = {
     username = "user";
     homeDirectory = "/home/user";
@@ -51,7 +50,7 @@
       blender
       inkscape
       # fab
-      # kicad
+      # stable.kicad
       super-slicer
       # social
       slack
@@ -63,7 +62,6 @@
       # work
       super-productivity
     ];
-
     file.".scripts".source = ./files/.scripts;
     file.".zshenv".source = ./files/.zshenv;
     file.".zshrc".source = ./files/.zshrc;
@@ -72,9 +70,5 @@
     file.".config/starship.toml".source = ./files/.config/starship.toml;
     file.".config/tmuxp".source = ./files/.config/tmuxp;
     file.".config/alacritty".source = ./files/.config/alacritty;
-    # file.".config/nvim" = {
-    #   source = ./files/.config/nvim;
-    #   recursive = true;
-    # };
   };
 }
