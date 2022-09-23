@@ -50,7 +50,6 @@
       blender
       inkscape
       # fab
-      # stable.kicad
       super-slicer
       # social
       slack
