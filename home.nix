@@ -24,6 +24,7 @@
       logseq
       appimage-run
       # dev
+      gnumake
       vscode
       kubectl
       kubectx

@@ -88,8 +88,6 @@
       permitRootLogin = "no";
     };
 
-    flatpak.enable = true;
-
     mullvad-vpn.enable = true;
 
   };
