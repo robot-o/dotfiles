@@ -22,6 +22,7 @@
       firefox
       google-chrome
       thunderbird
+      kleopatra
       logseq
       appimage-run
       # dev
@@ -53,7 +54,8 @@
       blender
       inkscape
       # fab
-      super-slicer
+      prusa-slicer
+      freecad
       # social
       slack
       teams
