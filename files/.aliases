@@ -107,9 +107,13 @@ alias orphanage='yay -Qtdq | yay -Rns -'
 alias whatpackage='s pacman -Fy'
 
 # nixos
-alias rbs='sudo nixos-rebuild switch --flake "/home/user/.dotfiles#user"'
-alias rbsu='sudo nix-channel --update && sudo nix flake update "/home/user/.dotfiles" && sudo nixos-rebuild switch --upgrade --flake "/home/user/.dotfiles#user"'
-alias gc='nix-collect-garbage -d && sudo nix-collect-garbage -d'
+alias nrs='sudo nixos-rebuild switch --flake "/home/user/.dotfiles#user"'
+alias nrsu='sudo nix-channel --update && sudo nix flake update "/home/user/.dotfiles" && sudo nixos-rebuild switch --upgrade --flake "/home/user/.dotfiles#user"'
+alias ngc='nix-collect-garbage -d && sudo nix-collect-garbage -d'
+alias nsp='nix-shell -p'
+function nspc(){
+    nix-shell -p "$1" --command "$@"
+}
 
 # ansible
 alias a='ansible'
@@ -124,11 +128,12 @@ alias pd='popd'
 
 # aliases
 function aq(){
-    rg "$1" ~/.aliases -A5 -N --color never
+    rg "$1" ~/.aliases -A2 -N
 }
 
 # config editing
 alias edf='cdd && nvim'
+alias ea='nvim ~/.dotfiles/files/.aliases'
 
 # tools
 alias co='code'

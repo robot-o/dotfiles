@@ -18,6 +18,7 @@
       fzf
       alacritty
       # general
+      yt-dlp
       firefox
       google-chrome
       thunderbird
@@ -34,6 +35,7 @@
       azure-cli
       terraform
       ansible
+      hcloud
       # lang
       python3
       rustc
