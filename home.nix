@@ -1,7 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
+  };
   home = {
     username = "user";
     homeDirectory = "/home/user";
@@ -13,11 +15,14 @@
       exa
       bat
       direnv
-      delta
       tmux
+      tmuxp
       fzf
       alacritty
       # general
+      unrar
+      unzip
+      ark
       yt-dlp
       firefox
       google-chrome
@@ -25,10 +30,14 @@
       kleopatra
       logseq
       appimage-run
+      # games
+      steam-run
       # dev
+      delta
       gnumake
       vscode
       kubectl
+      kubernetes-helm
       kubectx
       bind
       kubecolor
