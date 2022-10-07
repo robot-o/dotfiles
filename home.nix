@@ -30,6 +30,7 @@
       kleopatra
       logseq
       appimage-run
+      gparted
       # games
       steam-run
       # dev
@@ -42,6 +43,8 @@
       bind
       kubecolor
       k9s
+      remmina
+      freerdp
       azure-cli
       terraform
       ansible
@@ -59,12 +62,14 @@
       mullvad-vpn
       # media
       spotify
+      audacity
       gimp
       blender
       inkscape
       # fab
       prusa-slicer
       freecad
+      kicad
       # social
       slack
       teams
