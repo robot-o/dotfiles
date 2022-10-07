@@ -135,6 +135,7 @@
       enableSSHSupport = true;
     };
     kdeconnect.enable = true;
+    dconf.enable = true;
   };
 
   users.users.user = {
