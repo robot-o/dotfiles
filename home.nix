@@ -17,6 +17,7 @@
       direnv
       tmux
       tmuxp
+      glow
       fzf
       alacritty
       # general
@@ -49,6 +50,7 @@
       terraform
       ansible
       hcloud
+      podman-compose
       # lang
       python3
       rustc

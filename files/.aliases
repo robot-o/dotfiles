@@ -76,6 +76,7 @@ alias dkilsa='docker image ls -a'
 alias dkilsaq='docker image ls -aq'
 alias dkirm='docker image rm'
 
+alias docker-compose='podman-compose'
 alias dkc='docker-compose'
 alias dkcp='docker-compose ps'
 alias dkcu='docker-compose up'

@@ -109,6 +109,7 @@
       ripgrep
       sddm-kcm
       libsForQt5.bismuth
+      libsForQt5.kde-gtk-config
       neovim
       rsync
   ];
@@ -136,6 +137,16 @@
     };
     kdeconnect.enable = true;
     dconf.enable = true;
+  };
+
+  virtualisation = {
+    podman = {
+      enable = true;
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.dnsname.enable = true;
+    };
   };
 
   users.users.user = {
