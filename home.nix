@@ -21,6 +21,7 @@
       fzf
       alacritty
       # general
+      bitwarden
       unrar
       unzip
       ark
@@ -68,6 +69,7 @@
       gimp
       blender
       inkscape
+      vlc
       # fab
       prusa-slicer
       freecad
