@@ -26,7 +26,7 @@
   networking = {
     networkmanager.enable = true;
     hostName = "neomuna"; # Define your hostname.
-	};
+  };
 
   time.timeZone = "Europe/Berlin";
 
