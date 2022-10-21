@@ -140,6 +140,12 @@
   };
 
   virtualisation = {
+    libvirtd = {
+      enable = true;
+      onBoot = "ignore";
+      onShutdown = "suspend";
+      qemu.runAsRoot = false;
+    };
     podman = {
       enable = true;
       # Create a `docker` alias for podman, to use it as a drop-in replacement

@@ -47,6 +47,7 @@
       k9s
       remmina
       freerdp
+      virt-manager
       azure-cli
       terraform
       ansible
