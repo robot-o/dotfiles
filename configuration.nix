@@ -158,7 +158,7 @@
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    extraGroups = [ "networkmanager" "wheel" "lp" "scanner" ];
+    extraGroups = [ "networkmanager" "wheel" "lp" "scanner" "libvirtd" ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlduC4EquKdtX0u4gxrjjiaBTUtLhgdwRD8HxZNbRgS user@ishtarsink-win"

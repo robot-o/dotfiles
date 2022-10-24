@@ -35,6 +35,7 @@
       gparted
       # games
       steam-run
+      retroarchFull
       # dev
       delta
       gnumake
