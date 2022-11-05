@@ -3,46 +3,6 @@
 {
   programs = {
     home-manager.enable = true;
-    programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
-      redhat.ansible
-      ms-dotnettools.csharp
-      ms-azuretools.vscode-docker
-      mikestead.dotenv
-      golang.go
-      GraphQL.vscode-graphql
-      GraphQL.vscode-graphql-syntax
-      GraphQL.vscode-graphql-execution
-      hashicorp.terraform
-      ms-vscode.hexeditor
-      oderwat.indent-rainbow
-      ms-toolsai.jupyter
-      ms-toolsai.vscode-jupyter-cell-tags
-      ms-toolsai.jupyter-keymap
-      ms-toolsai.jupyter-renderers
-      ms-toolsai.vscode-jupyter-slideshow
-      ms-kubernetes-tools.vscode-kubernetes-tools
-      ms-vscode.makefile-tools
-      yzhang.markdown-all-in-one
-      PKief.material-icon-theme
-      bbenoist.Nix
-      zhuangtongfa.material-theme
-      Antyos.openscad
-      christian-kohler.path-intellisense
-      ms-python.vscode-pylance
-      ms-python.python
-      ms-vscode-remote.remote-ssh
-      ms-vscode-remote.remote-ssh-edit
-      wayou.vscode-todo-highlight
-      vscodevim.vim
-      tomoki1207.pdf
-      ms-vscode.wordcount
-      redhat.vscode-yaml
-      DavidAnson.vscode-markdownlint
-    ];
-};
   };
   home = {
     username = "user";
@@ -77,6 +37,7 @@
       steam-run
       retroarchFull
       # dev
+      vscode
       delta
       gnumake
       kubectl
