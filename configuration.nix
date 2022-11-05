@@ -110,6 +110,7 @@
       sddm-kcm
       libsForQt5.bismuth
       libsForQt5.kde-gtk-config
+      libsForQt5.xdg-desktop-portal-kde
       neovim
       rsync
   ];
