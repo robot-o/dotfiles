@@ -19,6 +19,7 @@ alias tmf='tmuxp load -y $(fd -u -t f . ${HOME}/.config/tmuxp | fzf --multi --pr
 alias tmat='tmux a -t '
 
 # git
+alias gs='git show'
 alias gst='git status'
 alias gl='git log --oneline --color --graph'
 alias glv='git log --pretty --color --graph'
