@@ -51,10 +51,15 @@
 
   # Enable sound with pipewire.
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+
+  hardware = {
+    pulseaudio.enable = false;
+    bluetooth.enable = true;
+    sane.enable = true;
+    sane.extraBackends = [ pkgs.sane-airscan ];
+  };
+
   security.rtkit.enable = true;
-  # bluetooth
-  hardware.bluetooth.enable = true;
 
   services = {
     xserver = {
@@ -81,8 +86,11 @@
 
     # CUPS
     printing.enable = true;
+    printing.drivers = [ pkgs.cnijfilter2 ];
+
 
     avahi.enable = true;
+    avahi.nssmdns = true;
 
     openssh = {
       enable = true;
@@ -109,6 +117,7 @@
       ripgrep
       sddm-kcm
       libsForQt5.bismuth
+      libsForQt5.skanlite
       libsForQt5.kde-gtk-config
       libsForQt5.xdg-desktop-portal-kde
       neovim
