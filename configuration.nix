@@ -154,7 +154,7 @@
       enable = true;
       onBoot = "ignore";
       onShutdown = "suspend";
-      qemu.runAsRoot = false;
+      qemu.runAsRoot = true;
     };
     podman = {
       enable = true;
