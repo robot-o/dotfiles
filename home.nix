@@ -19,13 +19,13 @@
       tmuxp
       glow
       fzf
+      yt-dlp
       alacritty
       # general
       bitwarden
       unrar
       unzip
       ark
-      yt-dlp
       firefox
       google-chrome
       thunderbird
@@ -67,16 +67,16 @@
       mullvad-vpn
       # media
       spotify
-      audacity
-      gimp
-      blender
-      inkscape
       vlc
-      # fab
+      # arts and crafts
       prusa-slicer
       freecad
       kicad
       openscad
+      audacity
+      gimp
+      blender
+      inkscape
       # social
       slack
       teams
@@ -86,8 +86,6 @@
       element-desktop
       # work
       super-productivity
-      networkmanager-fortisslvpn
-      openfortivpn
     ];
     file.".scripts".source = ./files/.scripts;
     file.".zshenv".source = ./files/.zshenv;
@@ -97,5 +95,6 @@
     file.".config/starship.toml".source = ./files/.config/starship.toml;
     file.".config/tmuxp".source = ./files/.config/tmuxp;
     file.".config/alacritty".source = ./files/.config/alacritty;
+    file.".config/nvim/init.vim".source= ./files/.vimrc;
   };
 }

@@ -158,7 +158,6 @@
     };
     podman = {
       enable = true;
-      # Create a `docker` alias for podman, to use it as a drop-in replacement
       dockerCompat = true;
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.dnsname.enable = true;
@@ -168,7 +167,13 @@
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    extraGroups = [ "networkmanager" "wheel" "lp" "scanner" "libvirtd" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "lp"
+      "scanner"
+      "libvirtd"
+    ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlduC4EquKdtX0u4gxrjjiaBTUtLhgdwRD8HxZNbRgS user@ishtarsink-win"

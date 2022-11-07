@@ -1,4 +1,3 @@
-" vim: ft=vim
 " annyoing autohide bullshit
 set conceallevel=0
 
