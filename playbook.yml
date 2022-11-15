@@ -9,6 +9,10 @@
         file:
           dest: '~/.config'
           state: directory
+      - name: 'ensure ~/.config/nvim folder is present'
+        file:
+          dest: '~/.config/nvim'
+          state: directory
     tags:
       - dotfiles
       - prereqs
@@ -30,6 +34,7 @@
       - { state: 'link', src: '.aliases', dest: '~/.aliases' }
       - { state: 'link', src: '.tmux.conf', dest: '~/.tmux.conf' }
       - { state: 'link', src: '.vimrc', dest: '~/.vimrc' }
+      - { state: 'link', src: '.vimrc', dest: '~/.config/nvim/init.vim' }
       - { state: 'link', src: '.config/starship.toml', dest: '~/.config/starship.toml' }
       - { state: 'link', src: '.config/i3', dest: '~/.config/i3' }
       - { state: 'link', src: '.config/avizo', dest: '~/.config/avizo' }
@@ -42,27 +47,11 @@
       - { state: 'link', src: '.config/rofi', dest: '~/.config/rofi' }
       - { state: 'link', src: '.config/fusuma', dest: '~/.config/fusuma' }
       - { state: 'link', src: '.config/tmuxp', dest: '~/.config/tmuxp' }
-      - { state: 'link', src: '.config/nvchad', dest: '~/.config/nvim' }
-      - { state: 'link', src: '.config/nvchad-custom', dest: '~/.config/nvim/lua/custom' }
       - { state: 'link', src: '.config/dunst', dest: '~/.config/dunst' }
       - { state: 'link', src: '.config/conky', dest: '~/.config/conky' }
       - { state: 'link', src: '.config/alacritty', dest: '~/.config/alacritty' }
       - { state: 'link', src: '.config/picom.conf', dest: '~/.config/picom.conf' }
       - { state: 'link', src: '.scripts', dest: '~/.scripts' }
-    tags:
-      - dotfiles
-      - link
-
-  - name: 'setup custom default browser override integration'
-    file:
-      src: '{{ playbook_dir }}/files/{{ item.src }}'
-      dest: '{{ item.dest }}'
-      state: '{{ item.state }}'
-      force: true
-    loop:
-      - { state: 'link', src: '.local/share/applications/default-browser.desktop', dest: '~/.local/share/applications/default-browser.desktop' }
-      - { state: 'link', src: '.local/share/applications/slack.desktop', dest: '~/.local/share/applications/slack.desktop' }
-      - { state: 'link', src: '.local/share/applications/firefox-work.desktop', dest: '~/.local/share/applications/firefox-work.desktop' }
     tags:
       - dotfiles
       - link
