@@ -109,6 +109,10 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-17.4.1"
+  ];
+
 
   # packages installed in system profile
   environment.systemPackages = with pkgs; [
@@ -122,6 +126,7 @@
       libsForQt5.xdg-desktop-portal-kde
       neovim
       rsync
+      usbutils
   ];
 
   fonts = {
@@ -173,6 +178,8 @@
       "lp"
       "scanner"
       "libvirtd"
+      "dialout"
+      "uucp"
     ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [

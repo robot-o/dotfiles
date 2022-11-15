@@ -77,6 +77,7 @@
       gimp
       blender
       inkscape
+      qFlipper
       # social
       slack
       teams
