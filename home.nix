@@ -69,7 +69,7 @@
       spotify
       vlc
       # arts and crafts
-      prusa-slicer
+      super-slicer
       freecad
       kicad
       openscad
