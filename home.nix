@@ -80,7 +80,7 @@
       qFlipper
       # social
       slack
-      teams
+      # teams
       discord
       signal-desktop
       tdesktop #telegram
