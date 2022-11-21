@@ -88,6 +88,16 @@
     printing.enable = true;
     printing.drivers = [ pkgs.cnijfilter2 ];
 
+    # yarr
+    usbguard = {
+      enable = true;
+      presentDevicePolicy = "apply-policy";
+      presentControllerPolicy = "apply-policy";
+      insertedDevicePolicy = "apply-policy";
+      IPCAllowedUsers = [ "root" "user" ];
+    };
+
+
 
     avahi.enable = true;
     avahi.nssmdns = true;
