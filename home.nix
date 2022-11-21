@@ -87,6 +87,8 @@
       element-desktop
       # work
       super-productivity
+      networkmanager-fortisslvpn
+      openfortivpn
     ];
     file.".scripts".source = ./files/.scripts;
     file.".zshenv".source = ./files/.zshenv;
