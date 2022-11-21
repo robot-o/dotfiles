@@ -129,6 +129,16 @@
       usbutils
   ];
 
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    EDITOR = "nvim";
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-kde ];
+  };
+
   fonts = {
     fonts = with pkgs; [
         ubuntu_font_family
