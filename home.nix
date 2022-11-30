@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   programs = {
@@ -35,6 +35,7 @@
       gparted
       # games
       steam-run
+      steam
       retroarchFull
       # dev
       vscode
@@ -68,8 +69,9 @@
       # media
       spotify
       vlc
+      obs-studio
       # arts and crafts
-      super-slicer
+      super-slicer-latest
       freecad
       kicad
       openscad
