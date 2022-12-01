@@ -137,6 +137,7 @@
       neovim
       rsync
       usbutils
+      v4l-utils
   ];
 
   environment.sessionVariables = {
