@@ -80,6 +80,7 @@
       blender
       inkscape
       qFlipper
+      unityhub
       # social
       slack
       # teams
