@@ -71,10 +71,10 @@
       vlc
       obs-studio
       # arts and crafts
-      super-slicer-latest
-      freecad
-      kicad
-      openscad
+      #super-slicer-latest
+      #freecad
+      #kicad
+      #openscad
       audacity
       gimp
       blender

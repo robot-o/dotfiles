@@ -206,9 +206,8 @@
     ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlduC4EquKdtX0u4gxrjjiaBTUtLhgdwRD8HxZNbRgS user@ishtarsink-win"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMu5+cgjc/8A3FyFwqz6qNrToVJCLxGfZW2wuN13isQn user@luna"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEfY+Vkh0LwoRNBPHRFccUyzpQmjT+xpM7FrrOadqOg user@enceladus"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHE/vmPzEFQvQIA60B7x1l0OKgy09YBbmZj2uSkdQ1mk user@dreadnaught"
     ];
   };
 
