@@ -38,6 +38,8 @@
       steam
       retroarchFull
       # dev
+      gcc
+      tree-sitter
       vscode
       delta
       gnumake
@@ -101,6 +103,8 @@
     file.".config/starship.toml".source = ./files/.config/starship.toml;
     file.".config/tmuxp".source = ./files/.config/tmuxp;
     file.".config/alacritty".source = ./files/.config/alacritty;
-    file.".config/nvim/init.vim".source= ./files/.vimrc;
+    file.".config/nvim/init.lua".source= ./files/.config/nvim/init.lua;
+    file.".config/nvim/lua".source= ./files/.config/nvim/lua;
+    file.".config/nvim/after".source= ./files/.config/nvim/after;
   };
 }

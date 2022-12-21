@@ -1,11 +1,9 @@
 -- vim: ft=lua
 -- env vars
 HOME = os.getenv('HOME')
-FZF_DEFAULT_OPTS = '--reverse'
 
 -- globals
 vim.g.mapleader = ' '
-vim.g.NERDDefaultAlign = 'left'
 
 -- bools
 vim.opt.expandtab = true
@@ -38,6 +36,6 @@ vim.opt.colorcolumn = 80
 -- strs
 vim.opt.signcolumn = 'yes'
 vim.opt.mouse = 'a'
-vim.opt.undodir = '~/.config/nvim/undodir'
+vim.opt.undodir = '~/.cache/nvim_undodir'
 vim.opt.clipboard += 'unnamedplus'
 
