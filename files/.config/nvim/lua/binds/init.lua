@@ -27,10 +27,10 @@ vim.keymap.set("n", "<leader>k", ":m .-2<CR>==")
 
 
 -- keystroke reduction for saving quitting and savequitting
-vim.keymap.set("n", "<C-s>", ":w")
-vim.keymap.set("n", "<A-q>", ":q")
-vim.keymap.set("n", "<A-Q>", ":qa")
-vim.keymap.set("n", "<A-x>", ":x")
+vim.keymap.set("n", "<C-s>", ":w<CR>")
+vim.keymap.set("n", "<A-q>", ":q<CR>")
+vim.keymap.set("n", "<A-Q>", ":qa<CR>")
+vim.keymap.set("n", "<A-x>", ":x<CR>")
 
 -- splits
 vim.keymap.set("n", "<A-;>", ":vsp<CR>")

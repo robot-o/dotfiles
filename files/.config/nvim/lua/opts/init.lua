@@ -35,5 +35,5 @@ vim.opt.colorcolumn = "80"
 -- strs
 vim.opt.signcolumn = 'yes'
 vim.opt.mouse = 'a'
-vim.opt.undodir = '~/.cache/nvim_undodir'
+vim.opt.undodir = vim.fn.expand('~/.cache/nvim_undodir')
 
