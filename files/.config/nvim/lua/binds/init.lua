@@ -11,7 +11,7 @@ vim.keymap.set("n", "<CR>", "o<Esc>")
 vim.keymap.set("n", "<A-CR>", "O<Esc>")
 
 -- make Y behave like the rest of the capital letters
-vim.keymap.set("n", "y", "y$")
+vim.keymap.set("n", "Y", "y$")
 
 -- keep buffer centered on search result browsing
 vim.keymap.set("n", "n", "nzzzv")
