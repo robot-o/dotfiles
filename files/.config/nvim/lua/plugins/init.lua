@@ -33,8 +33,16 @@ return require('packer').startup(function(use)
       {'rafamadriz/friendly-snippets'},
     }
   }
+  use('nvim-tree/nvim-web-devicons')
   use {
   'nvim-lualine/lualine.nvim',
   requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    }
+  }
+  use {'romgrk/barbar.nvim', wants = 'nvim-web-devicons'}
 end)
