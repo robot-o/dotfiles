@@ -15,8 +15,16 @@ alias yoink='wl-copy <'
 # tmux
 alias tm='tmux'
 alias tma='tmux a'
-alias tmf='tmuxp load -y $(fd -u -t f . ${HOME}/.config/tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
+alias tmlf='tmuxp load -y $(fd -u -t f . ${HOME}/.config/tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
+alias tml'tmuxp load -y'
+alias tmlh'tmuxp load -y ./'
 alias tmat='tmux a -t '
+alias tmf='tmuxp freeze -f yaml -o'
+alias tmf='tmuxp freeze -f yaml -o ./.tmuxp.yaml'
+
+# usbguard
+ugl='usbguard list-devices | rg block'
+uga='usbguard allow-device --permanent'
 
 # git
 alias gs='git show'
