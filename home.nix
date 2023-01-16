@@ -36,6 +36,7 @@
       # games
       steam-run
       retroarchFull
+      parsec-bin
       # dev
       gcc
       tree-sitter
