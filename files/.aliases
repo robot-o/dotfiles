@@ -23,8 +23,8 @@ alias tmf='tmuxp freeze -f yaml -o'
 alias tmf='tmuxp freeze -f yaml -o ./.tmuxp.yaml'
 
 # usbguard
-ugl='usbguard list-devices | rg block'
-uga='usbguard allow-device --permanent'
+alias ugl='usbguard list-devices | rg block'
+alias uga='usbguard allow-device --permanent'
 
 # git
 alias gs='git show'

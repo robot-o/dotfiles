@@ -97,8 +97,6 @@
       IPCAllowedUsers = [ "root" "user" ];
     };
 
-
-
     avahi.enable = true;
     avahi.nssmdns = true;
 
@@ -110,6 +108,7 @@
 
     mullvad-vpn.enable = true;
 
+    flatpak.enable = true;
   };
 
   # enable flakes
@@ -175,6 +174,7 @@
     };
     kdeconnect.enable = true;
     dconf.enable = true;
+    steam.enable = true;
   };
 
   virtualisation = {

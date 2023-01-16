@@ -35,7 +35,6 @@
       gparted
       # games
       steam-run
-      steam
       retroarchFull
       # dev
       gcc
