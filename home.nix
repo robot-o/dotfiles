@@ -38,6 +38,7 @@
       retroarchFull
       parsec-bin
       # dev
+      jq
       gcc
       tree-sitter
       vscode
