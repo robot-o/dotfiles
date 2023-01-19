@@ -78,6 +78,10 @@
       #jack.enable = true;
     };
 
+    udev.extraRules = ''
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", TAG+="uaccess", TAG+="udev-acl", GROUP="realet"
+    '';
+
     # firmware updates
     fwupd.enable = true;
 
@@ -137,6 +141,7 @@
       rsync
       usbutils
       v4l-utils
+      vial
   ];
 
   environment.sessionVariables = {

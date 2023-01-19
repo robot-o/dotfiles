@@ -30,7 +30,7 @@
       google-chrome
       thunderbird
       kleopatra
-      logseq
+      trilium-desktop
       appimage-run
       gparted
       # games
