@@ -28,7 +28,6 @@
       ark
       firefox
       google-chrome
-      thunderbird
       kleopatra
       trilium-desktop
       appimage-run
