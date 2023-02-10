@@ -37,6 +37,7 @@
       retroarchFull
       parsec-bin
       # dev
+      drawio
       jq
       gcc
       tree-sitter
