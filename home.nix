@@ -70,7 +70,7 @@
       nextcloud-client
       mullvad-vpn
       # media
-      spotify
+      #spotify
       vlc
       obs-studio
       # arts and crafts
@@ -80,7 +80,7 @@
       #openscad
       audacity
       gimp
-      blender
+      #blender
       inkscape
       qFlipper
       unityhub
@@ -93,8 +93,6 @@
       element-desktop
       # work
       super-productivity
-      networkmanager-fortisslvpn
-      openfortivpn
     ];
     file.".scripts".source = ./files/.scripts;
     file.".zshenv".source = ./files/.zshenv;
