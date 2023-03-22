@@ -70,29 +70,30 @@
       nextcloud-client
       mullvad-vpn
       # media
-      #spotify
+      spotify
       vlc
+      mixxx
+      bitwig-studio
       obs-studio
       # arts and crafts
-      #super-slicer-latest
-      #freecad
-      #kicad
-      #openscad
+      super-slicer-latest
+      freecad
+      kicad
+      openscad
       audacity
       gimp
-      #blender
+      blender
       inkscape
       qFlipper
       unityhub
       # social
       slack
-      # teams
       discord
       signal-desktop
-      tdesktop #telegram
       element-desktop
       # work
       super-productivity
+      citrix_workspace
     ];
     file.".scripts".source = ./files/.scripts;
     file.".zshenv".source = ./files/.zshenv;

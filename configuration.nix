@@ -26,6 +26,8 @@
   networking = {
     networkmanager.enable = true;
     hostName = "neomuna"; # Define your hostname.
+    firewall.enable = true;
+    firewall.allowedTCPPorts = [ ];
   };
 
   time.timeZone = "Europe/Berlin";
