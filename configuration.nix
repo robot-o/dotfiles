@@ -10,6 +10,7 @@
   ];
 
   boot = {
+    supportedFilesystems = [ "ntfs" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -27,7 +28,6 @@
     networkmanager.enable = true;
     hostName = "neomuna"; # Define your hostname.
     firewall.enable = true;
-    firewall.allowedTCPPorts = [ ];
   };
 
   time.timeZone = "Europe/Berlin";
@@ -77,9 +77,9 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      #jack.enable = true;
     };
 
+    # workaround for K3 Pro Vial
     udev.extraRules = ''
       KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", TAG+="uaccess", TAG+="udev-acl", GROUP="realet"
     '';

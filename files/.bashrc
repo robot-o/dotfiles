@@ -1,5 +1,7 @@
 # Path to your oh-my-bash installation.
-export OSH=$HOME/.oh-my-bash
+if [ -e ~/.oh-my-bash ]; then
+  export OSH=$HOME/.oh-my-bash
+fi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -47,7 +49,9 @@ aliases=(
 plugins=()
 
 # actually load ohmybash
-source $OSH/oh-my-bash.sh
+if [ -e ~/.oh-my-bash ]; then
+  source $OSH/oh-my-bash.sh
+fi
 
 ## my customizations
 # swap escape and capslock keys
