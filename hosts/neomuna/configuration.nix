@@ -6,11 +6,10 @@
 
 {
   imports = [
-      ./hardware-configuration.nix
   ];
 
   boot = {
-    supportedFilesystems = [ "ntfs" ];
+    supportedFilesystems = [ "ntfs" "exfat" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -80,9 +79,14 @@
     };
 
     # workaround for K3 Pro Vial
-    udev.extraRules = ''
-      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", TAG+="uaccess", TAG+="udev-acl", GROUP="realet"
-    '';
+    udev = {
+      packages = [
+        pkgs.android-udev-rules
+      ];
+      extraRules = ''
+        KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", TAG+="uaccess", TAG+="udev-acl", GROUP="realet"
+      '';
+      };
 
     # firmware updates
     fwupd.enable = true;
@@ -146,6 +150,8 @@
       usbutils
       v4l-utils
       vial
+      android-udev-rules
+      android-tools
   ];
 
   environment.sessionVariables = {
@@ -184,6 +190,7 @@
     kdeconnect.enable = true;
     dconf.enable = true;
     steam.enable = true;
+    adb.enable = true;
   };
 
   virtualisation = {
@@ -212,11 +219,13 @@
       "libvirtd"
       "dialout"
       "uucp"
+      "adbusers"
     ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEfY+Vkh0LwoRNBPHRFccUyzpQmjT+xpM7FrrOadqOg user@enceladus"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHE/vmPzEFQvQIA60B7x1l0OKgy09YBbmZj2uSkdQ1mk user@dreadnaught"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK+13PfltwrTu7JYsKh+NeGcrnKsqnrvbnKwaDMbdZnw failsafe"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIgPKgxlniZdcNjUWfvKtVhGaxnC39PjfKzrOOiuvFt0 user@io"
     ];
   };
 

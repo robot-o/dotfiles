@@ -118,8 +118,8 @@ alias orphanage='yay -Qtdq | yay -Rns -'
 alias whatpackage='s pacman -Fy'
 
 # nixos
-alias nrs='sudo nixos-rebuild switch --flake "/home/user/.dotfiles#user"'
-alias nrsu='sudo nix-channel --update && sudo nix flake update "/home/user/.dotfiles" && sudo nixos-rebuild switch --upgrade --flake "/home/user/.dotfiles#user"'
+alias nrs='sudo nixos-rebuild switch --impure --flake "/home/user/.dotfiles#user"'
+alias nrsu='sudo nix-channel --update && sudo nix flake update "/home/user/.dotfiles" && sudo nixos-rebuild switch --impure --upgrade --flake "/home/user/.dotfiles#user"'
 alias ngc='nix-collect-garbage -d && sudo nix-collect-garbage -d'
 alias nsp='nix-shell -p'
 function nspc(){

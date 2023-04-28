@@ -1,5 +1,5 @@
 {
-  description = "roboto's personal flake for the framework laptop";
+  description = "roboto's flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -27,11 +27,12 @@
           inherit system;
           modules = [ 
             nixos-hardware.nixosModules.framework-12th-gen-intel
-            ./configuration.nix 
+            /etc/nixos/hardware-configuration.nix 
+            ./hosts/neomuna/configuration.nix 
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.user = import ./home.nix;
+              home-manager.users.user = import ./hosts/neomuna/home.nix;
             }
           ];
         };
@@ -40,67 +41,81 @@
         lab-1 = lib.nixosSystem {
           inherit system;
           modules = [
-            ./hosts/lab-1/hardware-configuration.nix
-            ./hosts/lab-1/configuration.nix
+            /etc/nixos/hardware-configuration.nix 
+            ./hosts/lab-fujitsu-p720-1/configuration.nix
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.user = import ./home.nix;
+              home-manager.users.user = import ./hosts/lab-fujitsu-p720-1/home.nix;
             }
           ];
         };
 
-        # lab-msi-ge60
+        # lab-fujitsu-p720-2
         lab-2 = lib.nixosSystem {
           inherit system;
           modules = [
-            ./hosts/lab-2/hardware-configuration.nix
-            ./hosts/lab-2/configuration.nix
+            /etc/nixos/hardware-configuration.nix 
+            ./hosts/lab-fujitsu-p720-2/configuration.nix
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.user = import ./home.nix;
+              home-manager.users.user = import ./hosts/lab-fujitsu-p720-2/home.nix;
             }
           ];
+        };
 
-        # lab-acer-aspirevnitro
+        # lab-dell-xps13-9380-1
         lab-3 = lib.nixosSystem {
           inherit system;
           modules = [
-            ./hosts/lab-3/hardware-configuration.nix
-            ./hosts/lab-3/configuration.nix
+            /etc/nixos/hardware-configuration.nix 
+            ./hosts/lab-dell-xps13-9380-1/configuration.nix
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.user = import ./home.nix;
+              home-manager.users.user = import ./hosts/lab-dell-xps13-9380-1/home.nix;
             }
           ];
         };
 
-        # lab-dell-xps15-9550
+        # lab-dell-xps15-9550-1
         lab-4 = lib.nixosSystem {
           inherit system;
           modules = [
-            ./hosts/lab-4/hardware-configuration.nix
-            ./hosts/lab-4/configuration.nix
+            /etc/nixos/hardware-configuration.nix 
+            ./hosts/lab-dell-xps15-9550-1/configuration.nix
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.user = import ./home.nix;
+              home-manager.users.user = import ./hosts/lab-dell-xps15-9550-1/home.nix;
             }
           ];
         };
 
-        # lab-dell-xps13-9380
+        # lab-msi-ge60-1
         lab-5 = lib.nixosSystem {
           inherit system;
           modules = [
-            ./hosts/lab-5/hardware-configuration.nix
-            ./hosts/lab-5/configuration.nix
+            /etc/nixos/hardware-configuration.nix 
+            ./hosts/lab-msi-ge60-1/configuration.nix
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.user = import ./home.nix;
+              home-manager.users.user = import ./hosts/lab-msi-ge60-1/home.nix;
+            }
+          ];
+
+        # lab-acer-aspirevnitro-1
+        lab-6 = lib.nixosSystem {
+          inherit system;
+          modules = [
+            /etc/nixos/hardware-configuration.nix 
+            ./hosts/lab-acer-aspirevnitro-1/configuration.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.user = import ./hosts/lab-acer-aspirevnitro-1/home.nix;
             }
           ];
         };
