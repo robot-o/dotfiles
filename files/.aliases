@@ -1,3 +1,4 @@
+# vim: ft=bash
 # generic
 alias s='sudo'
 alias se='sudo -E'
@@ -9,6 +10,7 @@ alias tree='exa --tree'
 alias ls='exa'
 alias ll='ls -lh --color=auto'
 alias l='ls -lah --color=auto'
+alias rf='rm -rf' # yolo
 alias yoink='xclip -selection clipboard -i'
 alias yoink='wl-copy <'
 
@@ -110,7 +112,7 @@ alias kca='kubectl apply -f'
 alias kcgn='kubectl get nodes'
 alias kcgp='kubectl get pods --all-namespaces'
 
-# yay / pacman
+# arch, btw
 alias yays='yay -S'
 alias yeet='yay -Rs'
 alias yolo='yay -Syu --noconfirm'
@@ -126,6 +128,11 @@ function nspc(){
     nix-shell -p "$1" --command "$@"
 }
 
+# fedora
+alias d='dnf'
+alias ds='dnf search'
+alias di='sudo dnf install'
+
 # ansible
 alias a='ansible'
 alias av='ansible-vault'
@@ -133,7 +140,6 @@ alias ag='ansible-galaxy'
 alias ap='ansible-playbook'
 
 # directories
-alias cdd='cd ~/.dotfiles'
 alias td='pushd $(mktemp -d)'
 alias pd='popd'
 
@@ -143,8 +149,10 @@ function aq(){
 }
 
 # config editing
+alias cdd='cd ~/.dotfiles'
 alias edf='cdd && nvim'
 alias ea='nvim ~/.dotfiles/files/.aliases'
+alias srca='source ~/.aliases'
 
 # tools
 alias co='code'
@@ -165,6 +173,5 @@ alias nsl='nslookup'
 # misc
 alias startcapture='gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0'
 alias showlogs='sudo journalctl -p 3 -xb'
-alias rf='rm -rf'
 alias fcheck='watch -n 1 grep \"cpu MHz\" /proc/cpuinfo'
 alias pcheck='cpupower frequency-info'

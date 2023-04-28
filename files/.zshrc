@@ -90,5 +90,6 @@ compdef kc=kubecolor
 
 # setup prompt
 eval "$(starship init zsh)"
+source <(starship completions zsh)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

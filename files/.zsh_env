@@ -1,5 +1,5 @@
+# vim: ft=bash
 # zsh specific environment settings for zsh 
-# os: arch 
 
 # import generic config (this does os level stuff)
 source ~/.shell_env

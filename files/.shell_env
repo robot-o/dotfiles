@@ -1,4 +1,20 @@
+# vim: ft=bash
 # common environment settings for posix compliant user shells
-# os: arch linux
+export GOPATH=$HOME/.go
+export PATH=~/.scripts:~/.go/bin:$PATH:~/.cargo/bin:$GOROOT/bin:$GOPATH/bin:~/.local/bin
 
+if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
+    # run firefox in wayland mode
+    export MOZ_ENABLE_WAYLAND=1
+    # export QT_QPA_PLATFORM=wayland
+fi
+
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+# use bat as a pager for man, enabling syntax highlighting
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# set bat theme
+export BAT_THEME="TwoDark"
 

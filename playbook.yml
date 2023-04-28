@@ -9,13 +9,63 @@
         file:
           dest: '~/.config'
           state: directory
-      - name: 'ensure ~/.config/nvim folder is present'
-        file:
-          dest: '~/.config/nvim'
-          state: directory
     tags:
       - dotfiles
       - prereqs
+  - name: 'dotfiles - nvim: ensure packer is present'
+    git:
+      repo: 'https://github.com/wbthomason/packer.nvim'
+      dest: '~/.local/share/nvim/site/pack/packer/start/packer.nvim'
+      clone: True
+      update: True
+      depth: 1
+
+  - name: 'symlink i3 configuration'
+    when: 
+      - dotfiles.using_i3 is defined
+      - dotfiles.using_i3 | bool
+    file:
+      src: '{{ playbook_dir }}/files/{{ item.src }}'
+      dest: '{{ item.dest }}'
+      state: '{{ item.state }}'
+      force: true
+    loop:
+      - { state: 'link', src: '.config/i3', dest: '~/.config/i3' }
+      - { state: 'link', src: '.config/avizo', dest: '~/.config/avizo' }
+      - { state: 'link', src: '.config/fontconfig', dest: '~/.config/fontconfig' }
+      - { state: 'link', src: '.config/rofi', dest: '~/.config/rofi' }
+      - { state: 'link', src: '.config/fusuma', dest: '~/.config/fusuma' }
+      - { state: 'link', src: '.config/tmuxp', dest: '~/.config/tmuxp' }
+      - { state: 'link', src: '.config/dunst', dest: '~/.config/dunst' }
+      - { state: 'link', src: '.config/conky', dest: '~/.config/conky' }
+      - { state: 'link', src: '.config/picom.conf', dest: '~/.config/picom.conf' }
+    tags:
+      - dotfiles
+      - link
+
+  - name: 'symlink sway configuration'
+    when: 
+      - dotfiles.sway is defined
+      - dotfiles.sway | bool
+    file:
+      src: '{{ playbook_dir }}/files/{{ item.src }}'
+      dest: '{{ item.dest }}'
+      state: '{{ item.state }}'
+      force: true
+    loop:
+      - { state: 'link', src: '.config/avizo', dest: '~/.config/avizo' }
+      - { state: 'link', src: '.config/fontconfig', dest: '~/.config/fontconfig' }
+      - { state: 'link', src: '.config/sway', dest: '~/.config/sway' }
+      - { state: 'link', src: '.config/mako', dest: '~/.config/mako' }
+      - { state: 'link', src: '.config/swayidle', dest: '~/.config/swayidle' }
+      - { state: 'link', src: '.config/swaylock', dest: '~/.config/swaylock' }
+      - { state: 'link', src: '.config/waybar', dest: '~/.config/waybar' }
+      - { state: 'link', src: '.config/rofi', dest: '~/.config/rofi' }
+      - { state: 'link', src: '.config/fusuma', dest: '~/.config/fusuma' }
+      - { state: 'link', src: '.config/conky', dest: '~/.config/conky' }
+    tags:
+      - dotfiles
+      - link
 
   - name: 'symlink user dotfiles'
     file:
@@ -26,7 +76,6 @@
     loop:
       - { state: 'link', src: '.shell_env', dest: '~/.shell_env' }
       - { state: 'link', src: '.bash_profile', dest: '~/.bash_profile' }
-      - { state: 'link', src: '.bash_logout', dest: '~/.bash_logout' }
       - { state: 'link', src: '.bash_env', dest: '~/.bash_env' }
       - { state: 'link', src: '.bashrc', dest: '~/.bashrc' }
       - { state: 'link', src: '.zshenv', dest: '~/.zshenv' }
@@ -34,24 +83,12 @@
       - { state: 'link', src: '.aliases', dest: '~/.aliases' }
       - { state: 'link', src: '.tmux.conf', dest: '~/.tmux.conf' }
       - { state: 'link', src: '.vimrc', dest: '~/.vimrc' }
-      - { state: 'link', src: '.vimrc', dest: '~/.config/nvim/init.vim' }
+      - { state: 'link', src: '.config/nvim', dest: '~/.config/nvim' }
       - { state: 'link', src: '.config/starship.toml', dest: '~/.config/starship.toml' }
-      - { state: 'link', src: '.config/i3', dest: '~/.config/i3' }
-      - { state: 'link', src: '.config/avizo', dest: '~/.config/avizo' }
-      - { state: 'link', src: '.config/fontconfig', dest: '~/.config/fontconfig' }
-      - { state: 'link', src: '.config/sway', dest: '~/.config/sway' }
-      - { state: 'link', src: '.config/mako', dest: '~/.config/mako' }
-      - { state: 'link', src: '.config/swayidle', dest: '~/.config/swayidle' }
-      - { state: 'link', src: '.config/swaylock', dest: '~/.config/swaylock' }
-      - { state: 'link', src: '.config/waybar', dest: '~/.config/waybar' }
-      - { state: 'link', src: '.config/rofi', dest: '~/.config/rofi' }
-      - { state: 'link', src: '.config/fusuma', dest: '~/.config/fusuma' }
       - { state: 'link', src: '.config/tmuxp', dest: '~/.config/tmuxp' }
-      - { state: 'link', src: '.config/dunst', dest: '~/.config/dunst' }
-      - { state: 'link', src: '.config/conky', dest: '~/.config/conky' }
       - { state: 'link', src: '.config/alacritty', dest: '~/.config/alacritty' }
-      - { state: 'link', src: '.config/picom.conf', dest: '~/.config/picom.conf' }
       - { state: 'link', src: '.scripts', dest: '~/.scripts' }
+      - { state: 'link', src: '.gitconfig', dest: '~/.gitconfig' }
     tags:
       - dotfiles
       - link

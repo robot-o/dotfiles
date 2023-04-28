@@ -1,16 +1,7 @@
 # session wide environment variables
 #
-# add user scripts to path
-export PATH=~/.scripts:~/.go/bin:$PATH:~/.cargo/bin:~/.local/bin
+source $HOME/.shell_env
 
-if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
-    # run firefox in wayland mode
-    export MOZ_ENABLE_WAYLAND=1
-    # export QT_QPA_PLATFORM=wayland
-fi
-
-# export EDITOR="nvim"
-# export VISUAL="nvim"
 
 # theming 
 # export GTK_THEME="Adwaita:dark"
@@ -26,10 +17,4 @@ fi
 # set alacritty to be the i3 terminal
 # export TERMINAL='alacritty'
 # export TERM='xterm-256color'
-
-# use bat as a pager for man, enabling syntax highlighting
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
-# set bat theme
-export BAT_THEME="TwoDark"
 

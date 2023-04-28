@@ -1,5 +1,5 @@
+# vim: ft=bash
 # bash specific environment settings for bash
-# os: arch 
 
 # import generic config (this does os level stuff)
 source ~/.shell_env
@@ -16,8 +16,10 @@ if [ -f ~/.bash_completions/typer.sh ]; then
 fi
 
 # kubectl completion
-source <(kubectl completion bash)
-complete -F __start_kubectl kc
+if [ -f $(which kubectl) ]; then
+	source <(kubectl completion bash)
+	complete -F __start_kubectl kc
+fi
 
 # fzf bindings (for ^R fzf support for example)
 if [ -f /usr/share/fzf/key-bindings.bash ]; then 
