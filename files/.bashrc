@@ -1,5 +1,5 @@
-## my customizations
-# swap escape and capslock keys
+#
+# swap escape and capslock keys on xorg based systems
 # setxkbmap -option caps:swapescape
 
 # disable C-s hanging the terminal
@@ -12,7 +12,6 @@ bind 'set completion-ignore-case on'
 # load bash env environment variables
 source $HOME/.bash_env
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -29,13 +28,6 @@ export PATH
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
-# User specific aliases and functions
-if [ -d ~/.bashrc.d ]; then
-	for rc in ~/.bashrc.d/*; do
-		if [ -f "$rc" ]; then
-			. "$rc"
-		fi
-	done
-fi
 
-unset rc
+# fzf binding injection, it's currently hardcoded to the dnf path TODO: add logic to detect based on OS
+[ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash

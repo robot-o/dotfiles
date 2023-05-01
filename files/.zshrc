@@ -91,5 +91,5 @@ compdef kc=kubecolor
 # setup prompt
 eval "$(starship init zsh)"
 source <(starship completions zsh)
-
+# fzf binding injection, it's currently hardcoded to the dnf path
 [ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
