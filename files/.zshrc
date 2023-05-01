@@ -92,4 +92,4 @@ compdef kc=kubecolor
 eval "$(starship init zsh)"
 source <(starship completions zsh)
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh

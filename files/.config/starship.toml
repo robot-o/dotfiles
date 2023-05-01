@@ -1,3 +1,6 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
 # prompt
 add_newline = false
 right_format = """$time"""
@@ -5,7 +8,7 @@ right_format = """$time"""
 [character]
 success_symbol = "[\\$](bold green)"
 error_symbol = "[\\$](bold red)"
-vicmd_symbol = "[V](bold green)"
+vicmd_symbol = "[\\$](bold blue)"
 
 [username]
 show_always = true
@@ -19,12 +22,19 @@ format = "[$hostname]($style) [in](fg:245) "
 
 [directory]
 format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 5
+truncation_symbol = '...'
+truncate_to_repo = false
 
 [git_branch]
 format = "[on](fg:245) [$symbol$branch]($style) "
 
 [git_metrics]
 disabled = false
+
+[kubernetes]
+disabled = true
+
 
 [time]
 disabled = false

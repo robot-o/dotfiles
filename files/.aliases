@@ -63,6 +63,7 @@ alias gco='git checkout'
 alias gcob='git checkout -b'
 
 # docker
+alias docker='podman'
 alias dk='docker'
 alias dkps='docker ps'
 alias dkpsa='docker ps -a'
@@ -169,8 +170,12 @@ alias v='nvim'
 alias tcompress='tar -czvf'
 alias tdecompress='tar -xvzf'
 alias nsl='nslookup'
+function vimify(){
+    scp ~/.dotfiles/files/.vimrc.server "$1":~/.vimrc
+}
 
 # misc
+alias psa='ps aux | rg'
 alias startcapture='gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0'
 alias showlogs='sudo journalctl -p 3 -xb'
 alias fcheck='watch -n 1 grep \"cpu MHz\" /proc/cpuinfo'
