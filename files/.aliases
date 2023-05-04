@@ -15,6 +15,8 @@ alias rg='rg -uu'
 alias rf='rm -rf' # yolo
 alias yoink='xclip -selection clipboard -i'
 alias yoink='wl-copy <'
+alias oh='xdg-open ./'
+alias o='xdg-open'
 
 # tmux
 alias tm='tmux'

@@ -23,7 +23,7 @@ if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
 fi
 
 # use bat as a pager for man, enabling syntax highlighting
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # set bat theme
 export BAT_THEME="TwoDark"
