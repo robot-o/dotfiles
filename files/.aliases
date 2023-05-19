@@ -10,6 +10,8 @@ alias tree='exa --tree'
 alias ls='exa'
 alias ll='ls -lh --color=auto'
 alias l='ls -lah --color=auto'
+alias fd='fdfind'
+alias rg='rg -uu'
 alias rf='rm -rf' # yolo
 alias yoink='xclip -selection clipboard -i'
 alias yoink='wl-copy <'

@@ -1,6 +1,19 @@
 # vim: ft=bash
 # common environment settings for posix compliant user shells
+
+
+# BLAZINGLY FAST COCONUT OIL INFUSED EDITING OF THE FUTURE
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+# go pls why is it ~/go by default?!??!?!?!?
 export GOPATH=$HOME/.go
+
+# i use rust, btw 
+if [ -f "$HOME/.cargo/env" ]; then 
+  source "$HOME/.cargo/env"
+fi
+
 export PATH=~/.scripts:~/.go/bin:$PATH:~/.cargo/bin:$GOROOT/bin:$GOPATH/bin:~/.local/bin
 
 if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
@@ -9,12 +22,24 @@ if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
     # export QT_QPA_PLATFORM=wayland
 fi
 
-export EDITOR="nvim"
-export VISUAL="nvim"
-
 # use bat as a pager for man, enabling syntax highlighting
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # set bat theme
 export BAT_THEME="TwoDark"
+
+# theming 
+# export GTK_THEME="Adwaita:dark"
+# export QT_STYLE_OVERRIDE="Adwaita-dark"
+# export QT_STYLE_OVERIDE="GTK+"
+# export QT_QPA_PLATFORMTHEME="qt5ct"
+
+# xdg configuration
+# export XDG_CONFIG_HOME="${HOME}/.config"
+# export XDG_DATA_HOME="${HOME}/.local/share"
+# export XDG_STATE_HOME="${HOME}/.local/state"
+
+# set alacritty to be the i3 terminal
+# export TERMINAL='alacritty'
+# export TERM='xterm-256color'
 

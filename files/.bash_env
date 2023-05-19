@@ -4,24 +4,3 @@
 # import generic config (this does os level stuff)
 source ~/.shell_env
 
-# hook direnv completion
-eval "$(direnv hook bash)"
-
-# hook hcloud completion
-#source <(hcloud completion bash)
-
-# typer completion (python package cli for writing cli applications, trippy)
-if [ -f ~/.bash_completions/typer.sh ]; then 
-  source ~/.bash_completions/typer.sh
-fi
-
-# kubectl completion
-if [ -f $(which kubectl) ]; then
-	source <(kubectl completion bash)
-	complete -F __start_kubectl kc
-fi
-
-# fzf bindings (for ^R fzf support for example)
-if [ -f /usr/share/fzf/key-bindings.bash ]; then 
-  source /usr/share/fzf/key-bindings.bash
-fi

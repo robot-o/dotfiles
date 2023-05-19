@@ -1,5 +1,5 @@
-#!/usr/bin/env zsh
-#
+# vim: ft=bash
+
 # set fpath to zsh specific thing
 #fpath=( "${ZDOTDIR:-$HOME}/.zfunctions" $fpath )
 
@@ -12,7 +12,7 @@ zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' menu select
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion::complete:*' gain-privileges 1 # allow completion on aliases
-zstyle :compinstall filename '/home/user/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 zmodload zsh/complist
 autoload -Uz compinit
 compinit
@@ -65,9 +65,6 @@ preexec() {
    echo -ne '\e[5 q'
 }
 
-# load aliases
-source ~/.aliases
-
 # fzf customisation
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
@@ -77,19 +74,34 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 # gpg key
 export GPG_TTY=$(tty)
 
+### COMPLETIONS & BINDINGS
+
 # hook direnv completion
-eval "$(direnv hook zsh)"
+if direnv --version &>/dev/null; then
+  eval "$(direnv hook zsh)"
+fi
 
 # kubectl
-source <(kubectl completion zsh)
-compdef kubecolor=kubectl
-compdef kc=kubecolor
+if kubectl --version &>/dev/null; then
+  source <(kubectl completion zsh)
+  compdef kubecolor=kubectl
+  compdef kc=kubecolor
+fi
 
 # fzf bindings (for ^R fzf support for example)
-[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+if fzf --version &>/dev/null; then
+  if [ -f /usr/share/fzf/key-bindings.zsh ]; then # defaults
+    source /usr/share/fzf/key-bindings.zsh
+  elif [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]; then # uuboontoo
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+  elif [ -f /usr/share/fzf/shell/key-bindings.zsh ]; then # fedora
+    source /usr/share/fzf/shell/key-bindings.zsh
+  fi
+fi
+
+# load aliases
+source ~/.aliases
 
 # setup prompt
 eval "$(starship init zsh)"
 source <(starship completions zsh)
-# fzf binding injection, it's currently hardcoded to the dnf path
-[ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
