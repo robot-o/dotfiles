@@ -103,5 +103,8 @@ fi
 source ~/.aliases
 
 # setup prompt
-eval "$(starship init zsh)"
-source <(starship completions zsh)
+if starship --version &>/dev/null; then
+  eval "$(starship init zsh)"
+  source <(starship completions zsh)
+fi
+
