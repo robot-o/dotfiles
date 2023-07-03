@@ -62,3 +62,4 @@ if kubectl --version &>/dev/null; then
 fi
 
 source ~/.aliases
+. "$HOME/.cargo/env"

@@ -1,4 +1,6 @@
 # vim: ft=bash
+# source machine-specific aliases
+source ~/.aliases-${HOSTNAME}
 # generic
 alias s='sudo'
 alias se='sudo -E'
@@ -10,7 +12,7 @@ alias tree='exa --tree'
 alias ls='exa'
 alias ll='ls -lh --color=auto'
 alias l='ls -lah --color=auto'
-alias fd='fdfind'
+#alias fd='fdfind'
 alias rg='rg -uu'
 alias rf='rm -rf' # yolo
 alias yoink='xclip -selection clipboard -i'
@@ -26,7 +28,7 @@ alias tml'tmuxp load -y'
 alias tmlh'tmuxp load -y ./'
 alias tmat='tmux a -t '
 alias tmf='tmuxp freeze -f yaml -o'
-alias tmf='tmuxp freeze -f yaml -o ./.tmuxp.yaml'
+alias tmfh='tmuxp freeze -f yaml -o ./.tmuxp.yaml'
 
 # usbguard
 alias ugl='usbguard list-devices | rg block'
