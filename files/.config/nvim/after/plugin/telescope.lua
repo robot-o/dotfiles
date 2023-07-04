@@ -1,16 +1,36 @@
-require('telescope').setup{
+local ts = require('telescope.builtin')
+local actions = require("telescope.actions")
+
+require('telescope').setup {
   pickers = {
     find_files = {
-      hidden = true
+      find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
     },
+
     live_grep = {
       additional_args = function(opts)
-        return {"--hidden"}
+        return { "--hidden" }
       end
+    }
+  },
+
+  defaults = {
+    mappings = {
+      i = {
+        ["<A-;>"] = actions.select_vertical,
+        ["<A-'>"] = actions.select_horizontal,
+        ["<A-t>"] = actions.select_tab
+      },
+
+      n = {
+        ["<A-;>"] = actions.select_vertical,
+        ["<A-'>"] = actions.select_horizontal,
+        ["<A-t>"] = actions.select_tab
+      }
     }
   }
 }
-local ts = require('telescope.builtin')
+
 vim.keymap.set('n', '<A-d>', ts.find_files, {})
 vim.keymap.set('n', '<A-f>', ts.live_grep, {})
 vim.keymap.set('n', '<A-b>', ts.buffers, {})

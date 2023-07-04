@@ -1,11 +1,11 @@
 vim.g.barbar_auto_setup = false
 -- Set barbar's options
-require'barbar'.setup {
+require 'barbar'.setup {
   -- Enable/disable animations
   animation = true,
 
   -- Enable/disable auto-hiding the tab bar when there is a single buffer
-  auto_hide = true,
+  auto_hide = false,
 
   -- Enable/disable current/total tabpages indicator (top right corner)
   tabpages = true,
@@ -21,28 +21,33 @@ require'barbar'.setup {
   -- Enables / disables diagnostic symbols
   icons = {
     diagnostics = {
-      [vim.diagnostic.severity.ERROR] = {enabled = true, icon = 'ﬀ'},
-      [vim.diagnostic.severity.WARN] = {enabled = false},
-      [vim.diagnostic.severity.INFO] = {enabled = false},
-      [vim.diagnostic.severity.HINT] = {enabled = true},
+      [vim.diagnostic.severity.ERROR] = { enabled = true, icon = 'ﬀ' },
+      [vim.diagnostic.severity.WARN] = { enabled = true },
+      [vim.diagnostic.severity.INFO] = { enabled = false },
+      [vim.diagnostic.severity.HINT] = { enabled = false },
+    },
+    gitsigns = {
+      added = { enabled = true, icon = '+' },
+      changed = { enabled = true, icon = '~' },
+      deleted = { enabled = true, icon = '-' },
     },
     filetype = {
       enabled = true,
       custom_colors = false,
     },
     button = '',
-    separator = { left = '▎', right = '',},
+    separator = { left = '▎', right = '', },
     inactive = { separator = { left = '▎', right = '', }, },
     modified = { button = '●', },
     pinned = { button = '車', },
   },
 
   -- Excludes buffers from the tabline
-  exclude_ft = {''},
-  exclude_name = {''},
+  exclude_ft = { '' },
+  exclude_name = { '' },
 
   -- Hide inactive buffers and file extensions. Other options are `alternate`, `current`, and `visible`.
-  hide = {extensions = true, inactive = true},
+  hide = { extensions = false, inactive = false },
 
   -- Disable highlighting alternate buffers
   highlight_alternate = false,

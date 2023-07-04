@@ -2,9 +2,6 @@
 -- env vars
 HOME = os.getenv('HOME')
 
--- globals
-vim.g.mapleader = ' '
-
 -- bools
 vim.opt.expandtab = true
 vim.opt.smartindent = true
