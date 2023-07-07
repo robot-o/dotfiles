@@ -1,6 +1,5 @@
 # vim: ft=bash
-# source machine-specific aliases
-source ~/.aliases-${HOSTNAME}
+
 # generic
 alias s='sudo'
 alias se='sudo -E'
@@ -185,3 +184,12 @@ alias startcapture='gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvi
 alias showlogs='sudo journalctl -p 3 -xb'
 alias fcheck='watch -n 1 grep \"cpu MHz\" /proc/cpuinfo'
 alias pcheck='cpupower frequency-info'
+
+# source machine-specific aliases
+# included at the end in order to override any generic aliases defined here
+function include() {
+  [[ -f "$1" ]] && source "$1"
+}
+
+include "$HOME/.aliases-$HOSTNAME"
+include "$HOME/.aliases-$HOST"
