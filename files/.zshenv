@@ -1,5 +1,6 @@
 # session wide environment variables
 # zsh specific
 #
-source $HOME/.shell_env
-. "$HOME/.cargo/env"
+
+include "$HOME/.shell_env"
+include "$HOME/.cargo/env"
