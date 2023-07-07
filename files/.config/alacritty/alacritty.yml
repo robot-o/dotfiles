@@ -4,6 +4,7 @@ window:
   title: terminal
   dynamic_title: true
   decorations_theme_variant: None
+  option_as_alt: OnlyLeft
 font:
   normal:
     family: UbuntuMono Nerd Font
