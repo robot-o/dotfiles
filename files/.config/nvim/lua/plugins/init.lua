@@ -37,6 +37,8 @@ return require('packer').startup(function(use)
       -- Snippets
       { 'L3MON4D3/LuaSnip' },
       { 'rafamadriz/friendly-snippets' },
+      -- custom LSPs
+      { 'jose-elias-alvarez/typescript.nvim'},
     }
   }
   use('nvim-tree/nvim-web-devicons')
