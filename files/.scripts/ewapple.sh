@@ -44,30 +44,38 @@ echo -e '\ninstalling homebrew\n'
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &&
 
 echo -e '\nbrew install\n'
-brew install \
-    easy-move-plus-resize \
-    spotify \
-    obsidian \
-    discord \
-    btop \
-    alt-tab \
-    rectangle \
-    alacritty \
-    discord \
-    firefox \
-    obsidian \
-    spotify \
-    firefox \
-    neovim \
-    fzf \
-    ripgrep \
-    exa \
-    fd \
-    bat \
-    tmux \
-    btop \
-    git-delta \
-    starship \
+appList=(
+  ansible
+  bat
+  btop
+  exa
+  fd
+  fzf
+  git-delta
+  neovim
+  node
+  ripgrep
+  starship
+  tmux
+  tmuxp
+  tree-sitter
+  alacritty
+  alt-tab
+  discord
+  easy-move-plus-resize
+  firefox
+  google-drive
+  maccy
+  microsoft-edge
+  mouse-fix
+  nextcloud
+  obsidian
+  rectangle
+  spotify
+  vial
+  visual-studio-code
+)
+brew install "${appList[@]}"
 
 echo -e '\n\n\nthink differently 🍎'
 
