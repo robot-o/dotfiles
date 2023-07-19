@@ -22,7 +22,8 @@ alias o='xdg-open'
 alias tm='tmux'
 alias tma='tmux a'
 alias tmlf='tmuxp load -y $(fd -u -t f . ${HOME}/.config/tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
-alias tml'tmuxp load -y'
+alias tmd='tmuxp load -y ${HOME}/.config/tmuxp/dotfiles.yml'
+alias tml='tmuxp load -y'
 alias tmlh'tmuxp load -y ./'
 alias tmat='tmux a -t '
 alias tmf='tmuxp freeze -f yaml -o'
@@ -191,5 +192,4 @@ function include() {
   [[ -f "$1" ]] && source "$1"
 }
 
-include "$HOME/.aliases-$HOSTNAME"
-include "$HOME/.aliases-$HOST"
+include "$HOME/.aliases-${HOST%.*}"

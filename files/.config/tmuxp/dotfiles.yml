@@ -1,18 +1,16 @@
 ---
 session_name: 'dotfiles'
 
-start_directory: /home/user/.dotfiles
+start_directory: ~/.dotfiles
 
 windows:
 
   - window_name: shell
     focus: True
     panes:
-      - gl && gst
+      - gl | head && gst
 
   - window_name: nvim
     panes:
       - nvim .
-
-  - window_name: ansible
 
