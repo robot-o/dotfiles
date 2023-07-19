@@ -15,7 +15,7 @@ require('typescript').setup({
   server = {
     settings = {
       diagnostics = {
-        ignoredCodes = { 80001 },
+        ignoredCodes = { 80001, 7016 },
       },
     },
     on_attach = function(client, bufnr)
