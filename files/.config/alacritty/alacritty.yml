@@ -1,6 +1,6 @@
 window:
   decorations: full
-  opacity: 0.8
+  opacity: 0.85
   title: alacritty
   dynamic_title: true
   decorations_theme_variant: None
@@ -8,7 +8,7 @@ window:
 font:
   normal:
     family: UbuntuMono Nerd Font
-  size: 15
+  size: 14
 colors:
   primary:
     background: '0x212121'

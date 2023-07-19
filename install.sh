@@ -6,7 +6,7 @@ echo "ensuring $HOME/.config exists.."
 
 echo "ensuring Packer is installed for nvim.."
 if [[ ! -d "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim" ]]; then
-  git clone 'https://github.com/wbthomason/packer.nvim' '~/.local/share/nvim/site/pack/packer/start/packer.nvim'
+  git clone 'https://github.com/wbthomason/packer.nvim' "${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim"
 fi
 
 echo "symlinking dotfiles.."
