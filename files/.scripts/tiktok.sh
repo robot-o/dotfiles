@@ -22,7 +22,7 @@ echo "output file $output_file"
 shift
 echo "args = $1"
 
-curl -X POST "https://api16-normal-useast5.us.tiktokv.com/media/api/text/speech/invoke/?text_speaker=en_us_002&req_text=${input_text}" | jq .data.v_str | base64 -di > "$output_file"
+curl -X POST "https://api16-normal-useast5.us.tiktokv.com/media/api/text/speech/invoke/?text_speaker=en_us_002&req_text=${input_text}" | jq .data.v_str | base64 -d -i - > "$output_file"
 
 if [ "$1" == "--play" ];then 
   vlc "$output_file"
