@@ -1,14 +1,14 @@
 window:
-  decorations: none
-  opacity: 0.95
-  title: terminal
+  decorations: full
+  opacity: 0.8
+  title: alacritty
   dynamic_title: true
   decorations_theme_variant: None
   option_as_alt: OnlyLeft
 font:
   normal:
     family: UbuntuMono Nerd Font
-  size: 12
+  size: 15
 colors:
   primary:
     background: '0x212121'

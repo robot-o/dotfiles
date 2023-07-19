@@ -51,6 +51,7 @@ appList=(
   exa
   fd
   fzf
+  jq
   git-delta
   neovim
   node
