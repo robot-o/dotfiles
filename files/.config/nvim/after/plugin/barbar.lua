@@ -21,7 +21,7 @@ require 'barbar'.setup {
   -- Enables / disables diagnostic symbols
   icons = {
     diagnostics = {
-      [vim.diagnostic.severity.ERROR] = { enabled = true, icon = 'ﬀ' },
+      [vim.diagnostic.severity.ERROR] = { enabled = true, icon = '🔺 ' },
       [vim.diagnostic.severity.WARN] = { enabled = true },
       [vim.diagnostic.severity.INFO] = { enabled = false },
       [vim.diagnostic.severity.HINT] = { enabled = false },
@@ -35,11 +35,11 @@ require 'barbar'.setup {
       enabled = true,
       custom_colors = false,
     },
-    button = '',
+    button = 'X',
     separator = { left = '▎', right = '', },
     inactive = { separator = { left = '▎', right = '', }, },
     modified = { button = '●', },
-    pinned = { button = '車', },
+    pinned = { button = '📌', },
   },
 
   -- Excludes buffers from the tabline
