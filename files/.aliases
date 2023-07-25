@@ -28,6 +28,11 @@ alias tmlh'tmuxp load -y ./'
 alias tmat='tmux a -t '
 alias tmf='tmuxp freeze -f yaml -o'
 alias tmfh='tmuxp freeze -f yaml -o ./.tmuxp.yaml'
+# tmux: work
+alias tmw='tmuxp load -y ${HOME}/Projects/work/.tmuxp/current.yml'
+alias tmlw='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
+alias tmsw='ln -sf $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'') ${HOME}/Projects/work/.tmuxp/current.yml'
+
 
 # usbguard
 alias ugl='usbguard list-devices | rg block'
@@ -118,6 +123,11 @@ alias kcn='kubectl --all-namespaces'
 alias kca='kubectl apply -f'
 alias kcgn='kubectl get nodes'
 alias kcgp='kubectl get pods --all-namespaces'
+
+# it just works 🍎
+alias bs='brew search'
+alias bi='brew install'
+alias bd='brew uninstall'
 
 # arch, btw
 alias yays='yay -S'
