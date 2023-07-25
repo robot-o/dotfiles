@@ -39,40 +39,7 @@ function install-brew() {
 
 function install-apps(){
   echo -e '\ninstalling the good 💩\n'
-  echo -e '\nbrew install\n'
-  appList=(
-    ansible
-    bat
-    btop
-    exa
-    fd
-    fzf
-    jq
-    git-delta
-    neovim
-    node
-    ripgrep
-    starship
-    tmux
-    tmuxp
-    tree-sitter
-    alacritty
-    alt-tab
-    discord
-    easy-move-plus-resize
-    firefox
-    google-drive
-    maccy
-    microsoft-edge
-    mouse-fix
-    nextcloud
-    obsidian
-    rectangle
-    spotify
-    vial
-    visual-studio-code
-  )
-  brew install "${appList[@]}"
+  cd ~/.dotfiles && brew bundle install 
 }
 
 all() {

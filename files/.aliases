@@ -193,4 +193,4 @@ function include() {
   [[ -f "$1" ]] && source "$1"
 }
 
-include "$HOME/.aliases-${HOST%.*}"
+include "$HOME/.aliases-${HOST%%.*}"

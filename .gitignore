@@ -5,3 +5,4 @@
 *.retry
 **/nvim/plugin
 
+**/Brewfile.lock.json
