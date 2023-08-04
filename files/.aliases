@@ -74,7 +74,6 @@ alias gco='git checkout'
 alias gcob='git checkout -b'
 
 # docker
-alias docker='podman'
 alias dk='docker'
 alias dkps='docker ps'
 alias dkpsa='docker ps -a'
@@ -100,7 +99,6 @@ alias dkilsa='docker image ls -a'
 alias dkilsaq='docker image ls -aq'
 alias dkirm='docker image rm'
 
-alias docker-compose='podman-compose'
 alias dkc='docker-compose'
 alias dkcp='docker-compose ps'
 alias dkcu='docker-compose up'

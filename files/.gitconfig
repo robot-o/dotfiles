@@ -1,5 +1,7 @@
 [user]
 	signingkey = BDBB771C6EE35DCA
+	name = robot-o
+	email = philp.dominik@gmail.com
 [include]
   path = /home/user/.dotfiles/files/.gitconfig_delta_themes
 [core]
