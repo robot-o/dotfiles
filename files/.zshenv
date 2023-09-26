@@ -6,4 +6,3 @@ function include() {
 }
 
 include "$HOME/.shell_env"
-include "$HOME/.cargo/env"

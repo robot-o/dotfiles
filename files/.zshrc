@@ -101,6 +101,10 @@ fi
 
 # load aliases
 source ~/.aliases
+# load shell env
+if [ -f "$HOME/.zshenv" ]; then
+  source ~/.zshenv
+fi
 
 # setup prompt
 if starship --version &>/dev/null; then
