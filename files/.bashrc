@@ -63,3 +63,5 @@ fi
 
 source ~/.aliases
 . "$HOME/.cargo/env"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

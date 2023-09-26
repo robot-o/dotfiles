@@ -90,7 +90,9 @@ fi
 
 # fzf bindings (for ^R fzf support for example)
 if fzf --version &>/dev/null; then
-  if [ -f /usr/share/fzf/key-bindings.zsh ]; then # defaults
+  if [ -f ~/.fzf.zsh ];then
+    source ~/.fzf.zsh
+  elif [ -f /usr/share/fzf/key-bindings.zsh ]; then # defaults
     source /usr/share/fzf/key-bindings.zsh
   elif [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]; then # uuboontoo
     source /usr/share/doc/fzf/examples/key-bindings.zsh
@@ -111,4 +113,5 @@ if starship --version &>/dev/null; then
   eval "$(starship init zsh)"
   source <(starship completions zsh)
 fi
+
 
