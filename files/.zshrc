@@ -1,10 +1,13 @@
 # vim: ft=bash
-
+#
 # set fpath to zsh specific thing
 #fpath=( "${ZDOTDIR:-$HOME}/.zfunctions" $fpath )
 
 # if not running interactively, don't do anythin
 [[ $- != *i* ]] && return
+
+# benchmarking
+#zmodload zsh/zprof
 
 # completion
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
@@ -69,7 +72,9 @@ preexec() {
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # ssh agent manager
-#eval $(keychain --eval --quiet id_ed25519 id_rsa)
+if keychain --version &>/dev/null; then
+  eval $(keychain --eval --quiet id_ed25519 id_rsa)
+fi
 
 # gpg key
 export GPG_TTY=$(tty)
@@ -101,12 +106,13 @@ if fzf --version &>/dev/null; then
   fi
 fi
 
-# load aliases
-source ~/.aliases
-# load shell env
-if [ -f "$HOME/.zshenv" ]; then
-  source ~/.zshenv
-fi
+function include() {
+  [[ -f "$1" ]] && source "$1"
+}
+
+include ~/.zshenv
+
+include ~/.aliases
 
 # setup prompt
 if starship --version &>/dev/null; then
@@ -114,4 +120,6 @@ if starship --version &>/dev/null; then
   source <(starship completions zsh)
 fi
 
+# profiling trigger
+#zprof
 
