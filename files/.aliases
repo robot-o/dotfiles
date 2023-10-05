@@ -170,6 +170,8 @@ alias ea='nvim ~/.dotfiles/files/.aliases'
 alias srca='source ~/.aliases'
 
 # tools
+alias enc='gpg -a -e'
+alias dec='gpg -d'
 alias co='code'
 alias coh='code .'
 alias cr='cargo'
