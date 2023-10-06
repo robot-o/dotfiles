@@ -86,6 +86,7 @@
       - { state: 'link', src: '.config/nvim', dest: '~/.config/nvim' }
       - { state: 'link', src: '.config/starship.toml', dest: '~/.config/starship.toml' }
       - { state: 'link', src: '.config/tmuxp', dest: '~/.config/tmuxp' }
+      - { state: 'link', src: '.config/k9s', dest: '~/.config/k9s' }
       - { state: 'link', src: '.config/alacritty', dest: '~/.config/alacritty' }
       - { state: 'link', src: '.scripts', dest: '~/.scripts' }
       - { state: 'link', src: '.gitconfig', dest: '~/.gitconfig' }
