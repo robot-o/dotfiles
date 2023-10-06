@@ -4,39 +4,60 @@
 alias s='sudo'
 alias se='sudo -E'
 alias wa='watch -c '
+command -v nvim &>/dev/null && alias vim='nvim'
+alias v='vim'
 alias sv='sudo nvim'
 alias b='bat -p'
 alias c='bat -pp'
-alias tree='exa --tree'
-alias ls='exa'
+if command -v exa &>/dev/null; then
+  alias tree='exa --tree'
+  alias ls='exa'
+fi
 alias ll='ls -lh --color=auto'
 alias l='ls -lah --color=auto'
 alias rg='rg -uu'
 alias rf='rm -rf' # yolo
-alias yoink='xclip -selection clipboard -i'
-alias yoink='wl-copy <'
-alias oh='xdg-open ./'
-alias o='xdg-open'
+
+if command -v pbcopy &>/dev/null; then # mac
+  alias yoink='pbcopy'
+elif command -v wl-copy &>/dev/null; then # wayland
+  alias yoink='wl-copy <'
+elif command -v xclip &>/dev/null; then # ew, x11
+  alias yoink='xclip -selection clipboard -i'
+fi
+
+if command -v open &>/dev/null; then # mac
+  alias oh='open ./'
+  alias o='open'
+elif command -v xdg-open &>/dev/null; then # linux
+  alias oh='xdg-open ./'
+  alias o='xdg-open'
+fi
 
 # tmux
 alias tm='tmux'
 alias tma='tmux a'
-alias tmlf='tmuxp load -y $(fd -u -t f . ${HOME}/.config/tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
-alias tmd='tmuxp load -y ${HOME}/.config/tmuxp/dotfiles.yml'
+alias tmat='tmux a -t '
+# tmuxp: general
 alias tml='tmuxp load -y'
 alias tmlh'tmuxp load -y ./'
-alias tmat='tmux a -t '
 alias tmf='tmuxp freeze -f yaml -o'
 alias tmfh='tmuxp freeze -f yaml -o ./.tmuxp.yaml'
-# tmux: work
+# tmuxp: personal
+alias tmd='tmuxp load -y ${HOME}/Projects/personal/.tmuxp/dotfiles.yml'
+alias tmp='tmuxp load -y ${HOME}/Projects/personal/.tmuxp/current.yml'
+alias tmlp='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/personal/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
+# tmuxp: work
 alias tmw='tmuxp load -y ${HOME}/Projects/work/.tmuxp/current.yml'
 alias tmlw='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
 alias tmsw='ln -sf $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'') ${HOME}/Projects/work/.tmuxp/current.yml'
 
 
 # usbguard
-alias ugl='usbguard list-devices | rg block'
-alias uga='usbguard allow-device --permanent'
+if command -v usbguard &>/dev/null; then # mac
+  alias ugl='usbguard list-devices | rg block'
+  alias uga='usbguard allow-device --permanent'
+fi
 
 # git
 alias gs='git show'
@@ -114,9 +135,9 @@ alias dkms='docker-machine ssh $DOCKER_MACHINE_NAME'
 alias dkma='docker-machine active'
 alias dkml='docker-machine ls'
 
-# kubectl
+# kubernetes
+command -v kubecolor &>/dev/null && alias kubectl='kubecolor'
 alias kn='k9s'
-alias kubectl='kubecolor'
 alias kc='kubectl'
 alias kcn='kubectl --all-namespaces'
 alias kca='kubectl apply -f'
@@ -124,30 +145,40 @@ alias kcgn='kubectl get nodes'
 alias kcgp='kubectl get pods --all-namespaces'
 
 # it just works 🍎
-alias bs='brew search'
-alias bi='brew install'
-alias bd='brew uninstall'
+if command -v brew &>/dev/null; then 
+  alias bs='brew search'
+  alias bi='brew install'
+  alias bd='brew uninstall'
+fi
 
 # arch, btw
-alias yays='yay -S'
-alias yeet='yay -Rs'
-alias yolo='yay -Syu --noconfirm'
-alias orphanage='yay -Qtdq | yay -Rns -'
-alias whatpackage='s pacman -Fy'
+if command -v yay &>/dev/null; then 
+  alias yays='yay -S'
+  alias yeet='yay -Rs'
+  alias yolo='yay -Syu --noconfirm'
+  alias orphanage='yay -Qtdq | yay -Rns -'
+  alias whatpackage='s pacman -Fy'
+fi
 
 # nixos
-alias nrs='sudo nixos-rebuild switch --impure --flake "/home/user/.dotfiles#user"'
-alias nrsu='sudo nix-channel --update && sudo nix flake update "/home/user/.dotfiles" && sudo nixos-rebuild switch --impure --upgrade --flake "/home/user/.dotfiles#user"'
-alias ngc='nix-collect-garbage -d && sudo nix-collect-garbage -d'
-alias nsp='nix-shell -p'
-function nspc(){
-    nix-shell -p "$1" --command "$@"
-}
+if command -v nixos-rebuild &>/dev/null; then 
+  alias nrs='sudo nixos-rebuild switch --impure --flake "/home/user/.dotfiles#user"'
+  alias nrsu='sudo nix-channel --update && sudo nix flake update "/home/user/.dotfiles" && sudo nixos-rebuild switch --impure --upgrade --flake "/home/user/.dotfiles#user"'
+  alias ngc='nix-collect-garbage -d && sudo nix-collect-garbage -d'
+fi
+if command -v nix-shell &>/dev/null; then 
+  alias nsp='nix-shell -p'
+  function nspc(){
+      nix-shell -p "$1" --command "$@"
+  }
+fi
 
 # fedora
-alias d='dnf'
-alias ds='dnf search'
-alias di='sudo dnf install'
+if command -v dnf &>/dev/null; then 
+  alias d='dnf'
+  alias ds='dnf search'
+  alias di='sudo dnf install'
+fi
 
 # ansible
 alias a='ansible'
@@ -167,7 +198,7 @@ function aq(){
 # config editing
 alias cdd='cd ~/.dotfiles'
 alias edf='cdd && nvim'
-alias ea='nvim ~/.dotfiles/files/.aliases'
+alias ea='vim ~/.dotfiles/files/.aliases'
 alias srca='source ~/.aliases'
 
 # tools
@@ -182,8 +213,6 @@ alias crr='cargo r'
 alias tf='terraform'
 alias skpc='ssh-keygen -p -f'
 alias venva='source bin/activate'
-alias vim='nvim'
-alias v='nvim'
 alias tcompress='tar -czvf'
 alias tdecompress='tar -xvzf'
 alias nsl='nslookup'
@@ -193,7 +222,7 @@ function vimify(){
 
 # misc
 alias psa='ps aux | rg'
-alias startcapture='gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0'
+command -v gphoto2 &>/dev/null && alias startcapture='gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0'
 alias showlogs='sudo journalctl -p 3 -xb'
 alias fcheck='watch -n 1 grep \"cpu MHz\" /proc/cpuinfo'
 alias pcheck='cpupower frequency-info'

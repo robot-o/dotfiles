@@ -31,21 +31,23 @@ export PATH
 ### COMPLETIONS & BINDINGS
 
 # fzf bindings (for ^R fzf support for example)
-if [ -f /usr/share/fzf/key-bindings.bash ]; then # defaults
-  source /usr/share/fzf/key-bindings.bash
-elif [ -f /usr/share/doc/fzf/examples/key-bindings.bash ]; then # uuboontoo
-  source /usr/share/doc/fzf/examples/key-bindings.bash
-elif [ -f /usr/share/fzf/shell/key-bindings.bash ]; then # fedora
-  source /usr/share/fzf/shell/key-bindings.bash
+if command -v fzf &>/dev/null; then
+  if [ -f /usr/share/fzf/key-bindings.bash ]; then # defaults
+    source /usr/share/fzf/key-bindings.bash
+  elif [ -f /usr/share/doc/fzf/examples/key-bindings.bash ]; then # uuboontoo
+    source /usr/share/doc/fzf/examples/key-bindings.bash
+  elif [ -f /usr/share/fzf/shell/key-bindings.bash ]; then # fedora
+    source /usr/share/fzf/shell/key-bindings.bash
+  fi
 fi
 
 # hook direnv completion
-if direnv --version &>/dev/null; then
+if command -v direnv &>/dev/null; then
   eval "$(direnv hook bash)"
 fi
 
 # hook hcloud completion
-if hcloud completion bash &>/dev/null; then
+if command -v hcloud &>/dev/null; then
   source <(hcloud completion bash)
 fi
 
@@ -56,7 +58,7 @@ if [ -f ~/.bash_completions/typer.sh ]; then
 fi
 
 # kubectl completion
-if kubectl --version &>/dev/null; then
+if command -v kubectl &>/dev/null; then
   source <(kubectl completion bash)
   complete -F __start_kubectl kc
 fi

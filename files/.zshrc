@@ -72,7 +72,7 @@ preexec() {
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # ssh agent manager
-if keychain --version &>/dev/null; then
+if command -v keychain &>/dev/null; then
   eval $(keychain --eval --quiet id_ed25519 id_rsa)
 fi
 
@@ -82,19 +82,19 @@ export GPG_TTY=$(tty)
 ### COMPLETIONS & BINDINGS
 
 # hook direnv completion
-if direnv --version &>/dev/null; then
+if command -v direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
 # kubectl
-if kubectl --version &>/dev/null; then
+if command -v kubectl &>/dev/null; then
   source <(kubectl completion zsh)
   compdef kubecolor=kubectl
   compdef kc=kubecolor
 fi
 
 # fzf bindings (for ^R fzf support for example)
-if fzf --version &>/dev/null; then
+if command -v fzf &>/dev/null; then
   if [ -f ~/.fzf.zsh ];then
     source ~/.fzf.zsh
   elif [ -f /usr/share/fzf/key-bindings.zsh ]; then # defaults
@@ -115,7 +115,7 @@ include ~/.zshenv
 include ~/.aliases
 
 # setup prompt
-if starship --version &>/dev/null; then
+if command -v starship &>/dev/null; then
   eval "$(starship init zsh)"
   source <(starship completions zsh)
 fi
