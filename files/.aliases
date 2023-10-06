@@ -37,6 +37,9 @@ fi
 
 # tmux
 alias tm='tmux'
+alias tmsl='tmux list-session'
+alias tmsk='tmux kill-session'
+alias tmswk='tmux kill-window'
 alias tma='tmux a'
 alias tmat='tmux a -t '
 # tmuxp: general
@@ -138,12 +141,16 @@ alias dkml='docker-machine ls'
 
 # kubernetes
 command -v kubecolor &>/dev/null && alias kubectl='kubecolor'
-alias kn='k9s'
-alias kc='kubectl'
-alias kcn='kubectl --all-namespaces'
-alias kca='kubectl apply -f'
-alias kcgn='kubectl get nodes'
-alias kcgp='kubectl get pods --all-namespaces'
+command -v minikube &>/dev/null && alias mk='minikube'
+alias k='kubectl'
+alias kk='k9s'
+alias kn='kubens'
+alias kc='kubectx'
+alias kgn='kubectl get nodes'
+alias kgp='kubectl get pods --all-namespaces'
+function ka(){
+    kubectl "$@" --all-namespaces
+}
 
 # it just works 🍎
 if command -v brew &>/dev/null; then 
