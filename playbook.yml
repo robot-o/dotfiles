@@ -19,6 +19,13 @@
       clone: True
       update: True
       depth: 1
+  - name: 'dotfiles - tmux: ensure tpm is present'
+    git:
+      repo: 'https://github.com/tmux-plugins/tpm'
+      dest: '~/.tmux/plugins/tpm'
+      clone: True
+      update: True
+      depth: 1
 
   - name: 'symlink i3 configuration'
     when: 
