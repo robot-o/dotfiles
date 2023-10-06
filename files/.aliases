@@ -1,4 +1,5 @@
 # vim: ft=bash
+#
 
 # generic
 alias s='sudo'
@@ -19,7 +20,7 @@ alias rg='rg -uu'
 alias rf='rm -rf' # yolo
 
 if command -v pbcopy &>/dev/null; then # mac
-  alias yoink='pbcopy'
+  alias yoink='pbcopy <'
 elif command -v wl-copy &>/dev/null; then # wayland
   alias yoink='wl-copy <'
 elif command -v xclip &>/dev/null; then # ew, x11
