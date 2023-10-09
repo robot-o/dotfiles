@@ -2,4 +2,4 @@
 # zsh specific
 #
 
-[[ -f "$1" ]] && source "$HOME/.shell_env"
+[[ -f "$HOME/.shell_env" ]] && source "$HOME/.shell_env"

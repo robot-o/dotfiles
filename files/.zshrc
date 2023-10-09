@@ -1,7 +1,4 @@
 # vim: ft=bash
-#
-# set fpath to zsh specific thing
-#fpath=( "${ZDOTDIR:-$HOME}/.zfunctions" $fpath )
 
 # if not running interactively, don't do anythin
 [[ $- != *i* ]] && return
@@ -9,16 +6,22 @@
 # benchmarking
 #zmodload zsh/zprof
 
+# brew completions need to be done before compinit is called
+if command -v brew &>/dev/null; then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
 # completion
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' menu select
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion::complete:*' gain-privileges 1 # allow completion on aliases
+zstyle ':completion::complete:*' gain-privileges 1 # allow completion on sudo
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "~/.local/share/.zshcompcache"
 zstyle :compinstall filename '~/.zshrc'
 zmodload zsh/complist
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
 
 # colors
 autoload -U colors && colors 
@@ -33,7 +36,7 @@ SAVEHIST=10000
 # extendedglob: shell expansion
 # nomatch: error if glob has no match
 # notify: notify immediately on background job status change
-setopt autocd extendedglob nomatch notify COMPLETE_ALIASES
+setopt autocd extendedglob nomatch notify
 
 # sets keyboard binding modes: 
 # -e is emacs mode: standard stuff like ^a to beginning ^e to end etc
@@ -68,30 +71,8 @@ preexec() {
    echo -ne '\e[5 q'
 }
 
-# fzf customisation
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
-# ssh agent manager
-if command -v keychain &>/dev/null; then
-  eval $(keychain --eval --quiet id_ed25519 id_rsa)
-fi
-
-# gpg key
-export GPG_TTY=$(tty)
-
-### COMPLETIONS & BINDINGS
-
-# hook direnv completion
-if command -v direnv &>/dev/null; then
-  eval "$(direnv hook zsh)"
-fi
-
-# kubectl
-if command -v kubectl &>/dev/null; then
-  source <(kubectl completion zsh)
-  compdef kubecolor=kubectl
-  compdef kc=kubecolor
-fi
+### BINDINGS
 
 # fzf bindings (for ^R fzf support for example)
 if command -v fzf &>/dev/null; then
@@ -106,13 +87,17 @@ if command -v fzf &>/dev/null; then
   fi
 fi
 
+
+### INCLUDES
+#
 function include() {
   [[ -f "$1" ]] && source "$1"
 }
 
 include ~/.zshenv
-
 include ~/.aliases
+
+### COMPLETIONS
 
 # setup prompt
 if command -v starship &>/dev/null; then
@@ -120,6 +105,51 @@ if command -v starship &>/dev/null; then
   source <(starship completions zsh)
 fi
 
+
+# ssh agent manager
+if command -v keychain &>/dev/null; then
+  eval $(keychain --eval --quiet id_ed25519 id_rsa)
+fi
+
+
+# hook direnv completion
+if command -v direnv &>/dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
+# podman
+if command -v podman &>/dev/null; then
+  source <(podman completion zsh)
+  #compdef p='podman'
+fi
+
+# kubectl
+if command -v kubectl &>/dev/null; then
+  source <(kubectl completion zsh)
+  #compdef k='kubectl'
+fi
+
+# minikube
+if command -v minikube &>/dev/null; then
+  source <(minikube completion zsh)
+  #compdef mk='minikube'
+fi
+
+# kubecolor
+if command -v kubecolor &>/dev/null; then
+  #compdef kubecolor='kubectl'
+  alias kc='kubecolor'
+  #compdef kc='kubecolor'
+fi
+
+# terraform
+if command -v terraform &>/dev/null; then
+  autoload -U +X bashcompinit && bashcompinit
+  complete -o nospace -C /opt/homebrew/bin/terraform terraform
+fi
+
+
+
+# misc comp stuff
 # profiling trigger
 #zprof
-

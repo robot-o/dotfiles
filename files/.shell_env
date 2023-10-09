@@ -24,11 +24,17 @@ fi
 #    # export QT_QPA_PLATFORM=wayland
 #fi
 
-# use bat as a pager for man, enabling syntax highlighting
-#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
 # set bat theme
 export BAT_THEME="OneHalfLight"
+
+# use bat as a pager for man, enabling syntax highlighting
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# fzf customisation
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
+# gpg key
+export GPG_TTY=$(tty)
 
 # theming 
 # export GTK_THEME="Adwaita:dark"

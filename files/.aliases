@@ -8,8 +8,8 @@ alias wa='watch -c '
 command -v nvim &>/dev/null && alias vim='nvim'
 alias v='vim'
 alias sv='sudo nvim'
-alias b='bat -p'
 alias c='bat -pp'
+alias C='bat --color=always --style=auto'
 if command -v exa &>/dev/null; then
   alias tree='exa --tree'
   alias ls='exa'
@@ -36,25 +36,27 @@ elif command -v xdg-open &>/dev/null; then # linux
 fi
 
 # tmux
-alias tm='tmux'
-alias tmsl='tmux list-session'
-alias tmsk='tmux kill-session'
-alias tmswk='tmux kill-window'
-alias tma='tmux a'
-alias tmat='tmux a -t '
+alias t='tmux'
+alias tls='tmux list-session'
+alias tkw='tmux kill-window'
+alias tks='tmux kill-session'
+alias tkS='tmux kill-server'
+alias ta='tmux a'
+alias tat='tmux a -t '
 # tmuxp: general
-alias tml='tmuxp load -y'
-alias tmlh'tmuxp load -y ./'
-alias tmf='tmuxp freeze -f yaml -o'
-alias tmfh='tmuxp freeze -f yaml -o ./.tmuxp.yaml'
+alias tpl='tmuxp load -y'
+alias tplh'tmuxp load -y ./'
+alias tpf='tmuxp freeze -f yaml -o'
+alias tpfh='tmuxp freeze -f yaml -o ./.tmuxp.yaml'
 # tmuxp: personal
-alias tmd='tmuxp load -y ${HOME}/Projects/personal/.tmuxp/dotfiles.yml'
-alias tmp='tmuxp load -y ${HOME}/Projects/personal/.tmuxp/current.yml'
-alias tmlp='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/personal/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
+alias tpd='tmuxp load -y ${HOME}/Projects/personal/.tmuxp/dotfiles.yml'
+alias tpp='tmuxp load -y ${HOME}/Projects/personal/.tmuxp/current.yml'
+alias tplp='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/personal/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
+alias tpsp='ln -sf $(fd -u -t f . ${HOME}/Projects/personal/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'') ${HOME}/Projects/personal/.tmuxp/current.yml'
 # tmuxp: work
-alias tmw='tmuxp load -y ${HOME}/Projects/work/.tmuxp/current.yml'
-alias tmlw='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
-alias tmsw='ln -sf $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'') ${HOME}/Projects/work/.tmuxp/current.yml'
+alias tpw='tmuxp load -y ${HOME}/Projects/work/.tmuxp/current.yml'
+alias tplw='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
+alias tpsw='ln -sf $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'') ${HOME}/Projects/work/.tmuxp/current.yml'
 
 
 # usbguard
@@ -98,6 +100,11 @@ alias gb='git branch'
 alias gbd='git branch -D'
 alias gco='git checkout'
 alias gcob='git checkout -b'
+
+# podman
+alias p='podman'
+alias pms='podman machine start'
+alias pmst='podman machine stop'
 
 # docker
 alias dk='docker'
@@ -154,7 +161,9 @@ function ka(){
 
 # it just works 🍎
 if command -v brew &>/dev/null; then 
+  alias b='brew'
   alias bs='brew search'
+  alias binf='brew info'
   alias bi='brew install'
   alias bd='brew uninstall'
 fi
@@ -195,8 +204,8 @@ alias ag='ansible-galaxy'
 alias ap='ansible-playbook'
 
 # directories
-alias td='pushd $(mktemp -d)'
-alias pd='popd'
+alias tmd='pushd $(mktemp -d)'
+alias tmp='popd'
 
 # aliases
 function aq(){

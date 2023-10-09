@@ -51,6 +51,10 @@ if command -v hcloud &>/dev/null; then
   source <(hcloud completion bash)
 fi
 
+# hook terraform completion
+if command -v terraform &>/dev/null; then
+  complete -C /opt/homebrew/bin/terraform terraform
+fi
 
 # typer completion (python package cli for writing cli applications, trippy)
 if [ -f ~/.bash_completions/typer.sh ]; then 
