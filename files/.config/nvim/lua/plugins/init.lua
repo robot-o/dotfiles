@@ -55,4 +55,5 @@ return require('packer').startup(function(use)
   }
   use('lewis6991/gitsigns.nvim')
   use { 'romgrk/barbar.nvim', wants = { 'nvim-web-devicons', 'gitsigns.nvim' } }
+  use('f-person/auto-dark-mode.nvim')
 end)
