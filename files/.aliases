@@ -68,8 +68,8 @@ fi
 # git
 alias gs='git show'
 alias gst='git status'
-alias gl='git log --oneline --color --graph'
-alias gls='git log --oneline --color --graph | head'
+alias gl='git log --pretty --oneline --color --graph'
+alias gls='git log --pretty --oneline --color --graph | head'
 alias glv='git log --pretty --color --graph'
 alias ga='git add'
 alias gaa='git add -A'
