@@ -16,15 +16,11 @@ vicmd_symbol = "[\\$](bold blue)"
 show_always = true
 format = "[$user]($style)[@](fg:240)"
 style_user = "bold fg:235"
-#format = "[$user]($style)[@](fg:245)"
-#style_user = "bold fg:250"
 
 [hostname]
 ssh_only = false
 style = "bold fg:235"
 format = "[$hostname]($style) "
-#style = "bold fg:250"
-#format = "[$hostname]($style) [in](fg:245) "
 
 [directory]
 format = "[in](fg:240) [$path]($style)[$read_only]($read_only_style) "

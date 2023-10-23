@@ -1,27 +1,27 @@
 [user]
-	signingkey = BDBB771C6EE35DCA
-	name = robot-o
-	email = philp.dominik@gmail.com
+  signingkey = BDBB771C6EE35DCA
+  name = robot-o
+  email = philp.dominik@gmail.com
 [include]
   path = /home/user/.dotfiles/files/.gitconfig_delta_themes
 [core]
-    pager = delta
+  pager = delta
 
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 
 [delta]
-    syntax-theme = OneHalfLight
-    features = chameleon
-    navigate = true    # use n and N to move between diff sections
-    light = true      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
-    line-numbers = true
-    side-by-side = true
+	syntax-theme = OneHalfDark
+  features = chameleon
+  navigate = true    # use n and N to move between diff sections
+  light = true      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+  line-numbers = true
+  side-by-side = true
 
 [merge]
-    conflictstyle = diff3
+  conflictstyle = diff3
 
 [diff]
-    colorMoved = default
+  colorMoved = default
 [init]
-	defaultBranch = main
+  defaultBranch = main

@@ -153,3 +153,15 @@ fi
 # misc comp stuff
 # profiling trigger
 #zprof
+
+
+# dark mode toggle 
+if command -v defaults &>/dev/null; then
+    # this just fails if it's light mode /shrug
+    export MACOS_STYLE=${"$(defaults read -g AppleInterfaceStyle &>/dev/null | tr -d '[:space:]')":-"Light"}
+    export MACOS_STYLE_LOWER=$(echo ${MACOS_STYLE} | awk '{print tolower($0)}')
+    # do stuff based on mode
+    git config --global delta.syntax-theme OneHalf${MACOS_STYLE}
+    ln -sf $HOME/.config/starship-${MACOS_STYLE_LOWER}.toml ${HOME}/.config/starship.toml
+fi
+

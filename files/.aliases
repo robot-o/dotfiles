@@ -217,6 +217,7 @@ alias cdd='cd ~/.dotfiles'
 alias edf='cdd && nvim'
 alias ea='vim ~/.dotfiles/files/.aliases'
 alias srca='source ~/.aliases'
+alias srcz='source ~/.zshrc'
 
 # tools
 alias enc='gpg -a -e'
