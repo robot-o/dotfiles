@@ -18,7 +18,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion::complete:*' gain-privileges 1 # allow completion on sudo
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "${HOME}/local/share/.zshcompcache"
+zstyle ':completion:*' cache-path "${HOME}/.local/share/.zshcompcache"
 zstyle :compinstall filename "${HOME}/.zshrc"
 zmodload zsh/complist
 autoload -Uz compinit && compinit

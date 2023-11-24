@@ -166,6 +166,7 @@ if command -v brew &>/dev/null; then
   alias binf='brew info'
   alias bi='brew install'
   alias bd='brew uninstall'
+  alias bbun="brew bundle dump --brews --casks --taps --mas --force --file ~/.dotfiles/Brewfile"
 fi
 
 # arch, btw
