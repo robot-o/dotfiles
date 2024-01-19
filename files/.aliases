@@ -245,6 +245,7 @@ command -v gphoto2 &>/dev/null && alias startcapture='gphoto2 --stdout --capture
 alias showlogs='sudo journalctl -p 3 -xb'
 alias fcheck='watch -n 1 grep \"cpu MHz\" /proc/cpuinfo'
 alias pcheck='cpupower frequency-info'
+alias webserverherewifi='echo "url: https://$(ipconfig getifaddr en0):9000" && python3 -m http.server 9000'
 
 # source machine-specific aliases
 # included at the end in order to override any generic aliases defined here
