@@ -46,6 +46,8 @@ vim.keymap.set("n", "k", "gk")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, {})
+vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {})
+vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, {})
 
 -- tabs
 vim.keymap.set('n', '<A-w>', '<Cmd>BufferClose<CR>')
