@@ -1,5 +1,4 @@
 -- vim: ft=lua
-
 -- leader
 vim.g.mapleader = " "
 vim.g.maplocaleader = " "
@@ -29,7 +28,6 @@ vim.keymap.set("i", "<C-k>", "<esc>:m .-2<CR>==")
 vim.keymap.set("n", "<leader>j", ":m .+1<CR>==")
 vim.keymap.set("n", "<leader>k", ":m .-2<CR>==")
 
-
 -- keystroke reduction for saving quitting and savequitting
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 vim.keymap.set("n", "<A-q>", ":q<CR>")
@@ -44,6 +42,13 @@ vim.keymap.set("n", "<A-'>", ":sp<CR>")
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 
+-- indentation
+vim.keymap.set("n", "<Tab>", ">>_")
+vim.keymap.set("n", "<S-Tab>", "<<_")
+vim.keymap.set("v", "<Tab>", ">")
+vim.keymap.set("v", "<S-Tab>", "<")
+
+-- LSP
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, {})
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {})
@@ -77,3 +82,7 @@ vim.keymap.set('n', '<A-,>', '<Cmd>BufferPrevious<CR>')
 vim.keymap.set('n', '<A-.>', '<Cmd>BufferNext<CR>')
 vim.keymap.set('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>')
 vim.keymap.set('n', '<A->>', '<Cmd>BufferMoveNext<CR>')
+
+-- Gitsigns
+vim.keymap.set("n", "<leader>gd", '<Cmd>Gitsigns diffthis<CR>')
+vim.keymap.set("n", "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>')
