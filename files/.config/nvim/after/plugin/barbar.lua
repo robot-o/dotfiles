@@ -21,7 +21,7 @@ require 'barbar'.setup {
   -- Enables / disables diagnostic symbols
   icons = {
     diagnostics = {
-      [vim.diagnostic.severity.ERROR] = { enabled = true, icon = '🔺 ' },
+      [vim.diagnostic.severity.ERROR] = { enabled = true },
       [vim.diagnostic.severity.WARN] = { enabled = true },
       [vim.diagnostic.severity.INFO] = { enabled = false },
       [vim.diagnostic.severity.HINT] = { enabled = false },
@@ -33,7 +33,7 @@ require 'barbar'.setup {
     },
     filetype = {
       enabled = true,
-      custom_colors = false,
+      custom_colors = true,
     },
     button = 'X',
     separator = { left = '▎', right = '', },
