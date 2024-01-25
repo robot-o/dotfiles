@@ -25,7 +25,7 @@ fi
 #fi
 
 # set bat theme
-export BAT_THEME="OneHalfLight"
+export BAT_THEME="OneHalfDark"
 
 # use bat as a pager for man, enabling syntax highlighting
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"

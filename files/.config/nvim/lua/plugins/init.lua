@@ -23,7 +23,6 @@ return require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-  --use('navarasu/onedark.nvim')
   use { "catppuccin/nvim", as = "catppuccin" }
   use('mbbill/undotree')
   use {
@@ -34,6 +33,8 @@ return require('packer').startup(function(use)
       { 'neovim/nvim-lspconfig' },
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
+      -- null-ls replacement
+      { 'nvimtools/none-ls.nvim' },
       -- custom LSPs
       { 'jose-elias-alvarez/typescript.nvim' },
       -- Autocompletion

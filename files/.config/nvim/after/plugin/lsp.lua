@@ -11,18 +11,7 @@ end)
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
-    'snyk_ls',
-    'bashls',
-    'ansiblels',
-    'terraformls',
-    'helm_ls',
-    'cmake',
-    'arduino_language_server',
-    'clangd',
-    'tsserver',
-    'dockerls',
     'lua_ls',
-    'pylsp'
   },
   -- configure custom lsp settings here
   handlers = {
