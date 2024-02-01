@@ -1,104 +1,105 @@
+# vim: ft=yaml.ansible
 ---
-- name: 'manage dotfiles'
+- name: "manage dotfiles"
   hosts: localhost
   tasks:
-  # tasks file for dotfiles_user
-  - name: 'dotfiles - folder structure'
-    block:
-      - name: 'ensure ~/.config folder is present'
-        file:
-          dest: '~/.config'
-          state: directory
-    tags:
-      - dotfiles
-      - prereqs
-  - name: 'dotfiles - nvim: ensure packer is present'
-    git:
-      repo: 'https://github.com/wbthomason/packer.nvim'
-      dest: '~/.local/share/nvim/site/pack/packer/start/packer.nvim'
-      clone: True
-      update: True
-      depth: 1
-  - name: 'dotfiles - tmux: ensure tpm is present'
-    git:
-      repo: 'https://github.com/tmux-plugins/tpm'
-      dest: '~/.tmux/plugins/tpm'
-      clone: True
-      update: True
-      depth: 1
-
-  - name: 'symlink i3 configuration'
-    when: 
-      - dotfiles.using_i3 is defined
-      - dotfiles.using_i3 | bool
-    file:
-      src: '{{ playbook_dir }}/files/{{ item.src }}'
-      dest: '{{ item.dest }}'
-      state: '{{ item.state }}'
+    # tasks file for dotfiles_user
+    - name: "Dotfiles - folder structure"
+      tags:
+        - dotfiles
+        - prereqs
+      block:
+        - name: "Ensure ~/.config folder is present"
+          ansible.builtin.file:
+            dest: "~/.config"
+            state: directory
+            mode: "0777"
+    - name: "Dotfiles - nvim: ensure packer is present"
+      ansible.builtin.git:
+        repo: "https://github.com/wbthomason/packer.nvim"
+        dest: "~/.local/share/nvim/site/pack/packer/start/packer.nvim"
+        clone: true
+        update: true
+        depth: 1
+    - name: "Dotfiles - tmux: ensure tpm is present"
+      ansible.builtin.git:
+        repo: "https://github.com/tmux-plugins/tpm"
+        dest: "~/.tmux/plugins/tpm"
+        clone: true
+        update: true
+        depth: 1
+    - name: "Symlink i3 configuration"
+      when:
+        - dotfiles.using_i3 is defined
+        - dotfiles.using_i3 | bool
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/files/{{ item.src }}"
+        dest: "{{ item.dest }}"
+        state: "{{ item.state }}"
+        mode: "0777"
+        force: true
+      loop:
+        - {state: "link", src: ".config/i3", dest: "~/.config/i3"}
+        - {state: "link", src: ".config/avizo", dest: "~/.config/avizo"}
+        - {state: "link", src: ".config/fontconfig", dest: "~/.config/fontconfig"}
+        - {state: "link", src: ".config/rofi", dest: "~/.config/rofi"}
+        - {state: "link", src: ".config/fusuma", dest: "~/.config/fusuma"}
+        - {state: "link", src: ".config/tmuxp", dest: "~/.config/tmuxp"}
+        - {state: "link", src: ".config/dunst", dest: "~/.config/dunst"}
+        - {state: "link", src: ".config/conky", dest: "~/.config/conky"}
+        - {state: "link", src: ".config/picom.conf", dest: "~/.config/picom.conf"}
+      tags:
+        - dotfiles
+        - link
+    - name: "symlink sway configuration"
+      when:
+        - dotfiles.sway is defined
+        - dotfiles.sway | bool
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/files/{{ item.src }}"
+        dest: "{{ item.dest }}"
+        state: "{{ item.state }}"
+        mode: "0777"
+        force: true
+      loop:
+        - {state: "link", src: ".config/avizo", dest: "~/.config/avizo"}
+        - {state: "link", src: ".config/fontconfig", dest: "~/.config/fontconfig"}
+        - {state: "link", src: ".config/sway", dest: "~/.config/sway"}
+        - {state: "link", src: ".config/mako", dest: "~/.config/mako"}
+        - {state: "link", src: ".config/swayidle", dest: "~/.config/swayidle"}
+        - {state: "link", src: ".config/swaylock", dest: "~/.config/swaylock"}
+        - {state: "link", src: ".config/waybar", dest: "~/.config/waybar"}
+        - {state: "link", src: ".config/rofi", dest: "~/.config/rofi"}
+        - {state: "link", src: ".config/fusuma", dest: "~/.config/fusuma"}
+        - {state: "link", src: ".config/conky", dest: "~/.config/conky"}
+      tags:
+        - dotfiles
+        - link
+    - name: "symlink user dotfiles"
+      file:
+        src: "{{ playbook_dir }}/files/{{ item.src }}"
+        dest: "{{ item.dest }}"
+        state: "{{ item.state }}"
+      mode: "0777"
       force: true
-    loop:
-      - { state: 'link', src: '.config/i3', dest: '~/.config/i3' }
-      - { state: 'link', src: '.config/avizo', dest: '~/.config/avizo' }
-      - { state: 'link', src: '.config/fontconfig', dest: '~/.config/fontconfig' }
-      - { state: 'link', src: '.config/rofi', dest: '~/.config/rofi' }
-      - { state: 'link', src: '.config/fusuma', dest: '~/.config/fusuma' }
-      - { state: 'link', src: '.config/tmuxp', dest: '~/.config/tmuxp' }
-      - { state: 'link', src: '.config/dunst', dest: '~/.config/dunst' }
-      - { state: 'link', src: '.config/conky', dest: '~/.config/conky' }
-      - { state: 'link', src: '.config/picom.conf', dest: '~/.config/picom.conf' }
-    tags:
-      - dotfiles
-      - link
-
-  - name: 'symlink sway configuration'
-    when: 
-      - dotfiles.sway is defined
-      - dotfiles.sway | bool
-    file:
-      src: '{{ playbook_dir }}/files/{{ item.src }}'
-      dest: '{{ item.dest }}'
-      state: '{{ item.state }}'
-      force: true
-    loop:
-      - { state: 'link', src: '.config/avizo', dest: '~/.config/avizo' }
-      - { state: 'link', src: '.config/fontconfig', dest: '~/.config/fontconfig' }
-      - { state: 'link', src: '.config/sway', dest: '~/.config/sway' }
-      - { state: 'link', src: '.config/mako', dest: '~/.config/mako' }
-      - { state: 'link', src: '.config/swayidle', dest: '~/.config/swayidle' }
-      - { state: 'link', src: '.config/swaylock', dest: '~/.config/swaylock' }
-      - { state: 'link', src: '.config/waybar', dest: '~/.config/waybar' }
-      - { state: 'link', src: '.config/rofi', dest: '~/.config/rofi' }
-      - { state: 'link', src: '.config/fusuma', dest: '~/.config/fusuma' }
-      - { state: 'link', src: '.config/conky', dest: '~/.config/conky' }
-    tags:
-      - dotfiles
-      - link
-
-  - name: 'symlink user dotfiles'
-    file:
-      src: '{{ playbook_dir }}/files/{{ item.src }}'
-      dest: '{{ item.dest }}'
-      state: '{{ item.state }}'
-      force: true
-    loop:
-      - { state: 'link', src: '.shell_env', dest: '~/.shell_env' }
-      - { state: 'link', src: '.bash_profile', dest: '~/.bash_profile' }
-      - { state: 'link', src: '.bash_env', dest: '~/.bash_env' }
-      - { state: 'link', src: '.bashrc', dest: '~/.bashrc' }
-      - { state: 'link', src: '.zshenv', dest: '~/.zshenv' }
-      - { state: 'link', src: '.zshrc', dest: '~/.zshrc' }
-      - { state: 'link', src: '.aliases', dest: '~/.aliases' }
-      - { state: 'link', src: '.tmux.conf', dest: '~/.tmux.conf' }
-      - { state: 'link', src: '.vimrc', dest: '~/.vimrc' }
-      - { state: 'link', src: '.config/nvim', dest: '~/.config/nvim' }
-      - { state: 'link', src: '.config/starship-dark.toml', dest: '~/.config/starship-dark.toml' }
-      - { state: 'link', src: '.config/starship-light.toml', dest: '~/.config/starship-light.toml' }
-      - { state: 'link', src: '.config/tmuxp', dest: '~/.config/tmuxp' }
-      - { state: 'link', src: '.config/k9s', dest: '~/.config/k9s' }
-      - { state: 'link', src: '.config/alacritty', dest: '~/.config/alacritty' }
-      - { state: 'link', src: '.scripts', dest: '~/.scripts' }
-      - { state: 'link', src: '.gitconfig', dest: '~/.gitconfig' }
-    tags:
-      - dotfiles
-      - link
-
+      loop:
+        - {state: "link", src: ".shell_env", dest: "~/.shell_env"}
+        - {state: "link", src: ".bash_profile", dest: "~/.bash_profile"}
+        - {state: "link", src: ".bash_env", dest: "~/.bash_env"}
+        - {state: "link", src: ".bashrc", dest: "~/.bashrc"}
+        - {state: "link", src: ".zshenv", dest: "~/.zshenv"}
+        - {state: "link", src: ".zshrc", dest: "~/.zshrc"}
+        - {state: "link", src: ".aliases", dest: "~/.aliases"}
+        - {state: "link", src: ".tmux.conf", dest: "~/.tmux.conf"}
+        - {state: "link", src: ".vimrc", dest: "~/.vimrc"}
+        - {state: "link", src: ".config/nvim", dest: "~/.config/nvim"}
+        - {state: "link", src: ".config/starship-dark.toml", dest: "~/.config/starship-dark.toml"}
+        - {state: "link", src: ".config/starship-light.toml", dest: "~/.config/starship-light.toml"}
+        - {state: "link", src: ".config/tmuxp", dest: "~/.config/tmuxp"}
+        - {state: "link", src: ".config/k9s", dest: "~/.config/k9s"}
+        - {state: "link", src: ".config/alacritty", dest: "~/.config/alacritty"}
+        - {state: "link", src: ".scripts", dest: "~/.scripts"}
+        - {state: "link", src: ".gitconfig", dest: "~/.gitconfig"}
+      tags:
+        - dotfiles
+        - link

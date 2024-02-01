@@ -1,17 +1,28 @@
 local lsp_zero = require('lsp-zero').preset({})
+lsp_zero.extend_lspconfig()
 
--- load default keymaps
-lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  --lsp_zero.default_keymaps({ buffer = bufnr })
-end)
+-- null-ls setup
+local null_ls = require("null-ls")
+local null_ls_opts = lsp_zero.build_options('null-ls', {})
+null_ls.setup({
+  on_attach = function(client, bufnr)
+    null_ls_opts.on_attach(client, bufnr)
+  end,
+  sources = {
+    null_ls.builtins.completion.luasnip,
+    null_ls.builtins.code_actions.gitsigns,
+    null_ls.builtins.formatting.yq,
+    null_ls.builtins.formatting.jq,
+    null_ls.builtins.diagnostics.yamllint,
+  },
+})
 
 -- configure integration with mason
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
     'lua_ls',
+    'ansiblels',
   },
   -- configure custom lsp settings here
   handlers = {
