@@ -10,6 +10,8 @@ alias v='vim'
 alias sv='sudo nvim'
 alias c='bat -pp'
 alias C='bat --color=always --style=auto'
+alias f='fzf'
+alias F='fzf --preview='\''bat --color always -p {}'\'''
 if command -v exa &>/dev/null; then
   alias tree='exa --tree'
   alias ls='exa'

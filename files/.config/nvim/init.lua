@@ -46,6 +46,16 @@ vim.keymap.set("n", "<CR>", "o<Esc>")
 vim.keymap.set("n", "<A-CR>", "O<Esc>")
 -- make Y behave like the rest of the capital letters
 vim.keymap.set("n", "Y", "y$")
+-- copy to system clip
+vim.keymap.set("n", "<leader>y", "\"+y")
+vim.keymap.set("n", "<leader>Y", "\"+y$")
+vim.keymap.set("v", "<leader>y", "\"+y")
+vim.keymap.set("v", "<leader>Y", "\"+y$")
+-- paste from system clipboard
+vim.keymap.set("n", "<leader>p", "\"+p")
+vim.keymap.set("n", "<leader>P", "\"+P")
+vim.keymap.set("v", "<leader>p", "\"+p")
+vim.keymap.set("v", "<leader>P", "\"+P")
 -- keep buffer centered on search result browsing
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
@@ -75,6 +85,7 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, {})
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {})
 vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, {})
+vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, {})
 vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float, {})
 vim.keymap.set("n", "<leader>dd", vim.diagnostic.goto_next, {})
 vim.keymap.set("n", "<leader>du", vim.diagnostic.goto_prev, {})
@@ -171,6 +182,7 @@ return require('packer').startup(function(use)
   use('lewis6991/gitsigns.nvim')
   use { 'romgrk/barbar.nvim', wants = { 'nvim-web-devicons', 'gitsigns.nvim' } }
   use('f-person/auto-dark-mode.nvim')
+  use('lukas-reineke/indent-blankline.nvim')
   if packer_bootstrap then
     require('packer').sync()
   end
