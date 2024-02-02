@@ -3,7 +3,6 @@
 - name: "manage dotfiles"
   hosts: localhost
   tasks:
-    # tasks file for dotfiles_user
     - name: "Dotfiles - folder structure"
       tags:
         - dotfiles

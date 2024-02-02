@@ -8,5 +8,5 @@ vim.opt.termguicolors = true
 -- empty setup using defaults
 require("nvim-tree").setup()
 
-vim.keymap.set("n", "<A-e>", ":NvimTreeFocus<CR>")
-vim.keymap.set("n", "<A-E>", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<A-E>", ":NvimTreeFocus<CR>")
+vim.keymap.set("n", "<A-e>", ":NvimTreeFindFileToggle:<CR>")

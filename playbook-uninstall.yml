@@ -2,41 +2,40 @@
 - name: 'manage dotfiles'
   hosts: localhost
   tasks:
-  - name: 'symlink user dotfiles'
-    file:
-      path: '{{ item.path }}'
-      state: 'absent'
-      force: true
-    loop:
-      - { path: '~/.shell_env' }
-      - { path: '~/.bash_profile' }
-      - { path: '~/.bash_logout' }
-      - { path: '~/.bash_env' }
-      - { path: '~/.bashrc' }
-      - { path: '~/.zshenv' }
-      - { path: '~/.zshrc' }
-      - { path: '~/.aliases' }
-      - { path: '~/.tmux.conf' }
-      - { path: '~/.vimrc' }
-      - { path: '~/.config/nvim/init.vim' }
-      - { path: '~/.config/starship.toml' }
-      - { path: '~/.config/i3' }
-      - { path: '~/.config/avizo' }
-      - { path: '~/.config/fontconfig' }
-      - { path: '~/.config/sway' }
-      - { path: '~/.config/mako' }
-      - { path: '~/.config/swayidle' }
-      - { path: '~/.config/swaylock' }
-      - { path: '~/.config/waybar' }
-      - { path: '~/.config/rofi' }
-      - { path: '~/.config/fusuma' }
-      - { path: '~/.config/tmuxp' }
-      - { path: '~/.config/dunst' }
-      - { path: '~/.config/conky' }
-      - { path: '~/.config/alacritty' }
-      - { path: '~/.config/picom.conf' }
-      - { path: '~/.scripts' }
-    tags:
-      - dotfiles
-      - link
-
+    - name: 'symlink user dotfiles'
+      file:
+        path: '{{ item.path }}'
+        state: 'absent'
+        force: true
+      loop:
+        - {path: '~/.shell_env'}
+        - {path: '~/.bash_profile'}
+        - {path: '~/.bash_logout'}
+        - {path: '~/.bash_env'}
+        - {path: '~/.bashrc'}
+        - {path: '~/.zshenv'}
+        - {path: '~/.zshrc'}
+        - {path: '~/.aliases'}
+        - {path: '~/.tmux.conf'}
+        - {path: '~/.vimrc'}
+        - {path: '~/.config/nvim/init.vim'}
+        - {path: '~/.config/starship.toml'}
+        - {path: '~/.config/i3'}
+        - {path: '~/.config/avizo'}
+        - {path: '~/.config/fontconfig'}
+        - {path: '~/.config/sway'}
+        - {path: '~/.config/mako'}
+        - {path: '~/.config/swayidle'}
+        - {path: '~/.config/swaylock'}
+        - {path: '~/.config/waybar'}
+        - {path: '~/.config/rofi'}
+        - {path: '~/.config/fusuma'}
+        - {path: '~/.config/tmuxp'}
+        - {path: '~/.config/dunst'}
+        - {path: '~/.config/conky'}
+        - {path: '~/.config/alacritty'}
+        - {path: '~/.config/picom.conf'}
+        - {path: '~/.scripts'}
+      tags:
+        - dotfiles
+        - link
