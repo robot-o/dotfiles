@@ -1,9 +1,6 @@
-[user]
-  signingkey = BDBB771C6EE35DCA
-  name = robot-o
-  email = philp.dominik@gmail.com
 [include]
   path = /home/user/.dotfiles/files/.gitconfig_delta_themes
+  path = /home/user/.gitconfig-gpg
 [core]
   pager = delta
 
@@ -11,10 +8,10 @@
   diffFilter = delta --color-only
 
 [delta]
-  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+  light = false
 	syntax-theme = OneHalfDark
   features = chameleon
-  navigate = true    # use n and N to move between diff sections
+  navigate = true
   line-numbers = true
   side-by-side = false
 
