@@ -9,3 +9,4 @@
 /files/.config/nvim/plugin/*
 
 **/Brewfile.lock.json
+**/kickstart.lua

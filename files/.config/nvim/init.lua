@@ -6,7 +6,7 @@ HOME = os.getenv('HOME')
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.autoindent = true
-vim.opt.nu = true
+vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.showcmd = true
 vim.opt.cursorline = true
@@ -116,6 +116,15 @@ vim.keymap.set('n', '<A->>', '<Cmd>BufferMoveNext<CR>')
 -- Gitsigns
 vim.keymap.set("n", "<leader>gd", '<Cmd>Gitsigns diffthis<CR>')
 vim.keymap.set("n", "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>')
+-- Misc
+vim.keymap.set("n", "<A-t>", '<Cmd>ToggleTerm<CR>')
+vim.keymap.set("n", "<A-T>", '<Cmd>ToggleTerm direction=float<CR>')
+vim.keymap.set("t", "<A-h>", ":wincmd h<CR>")
+vim.keymap.set("t", "<A-j>", ":wincmd j<CR>")
+vim.keymap.set("t", "<A-k>", ":wincmd k<CR>")
+vim.keymap.set("t", "<A-l>", ":wincmd l<CR>")
+vim.keymap.set("t", "<esc>", [[<C-\><C-n>]])
+vim.keymap.set('t', '<A-w>', [[<C-\><C-n><A-w>]])
 
 -- plugins
 
@@ -183,6 +192,7 @@ return require('packer').startup(function(use)
   use { 'romgrk/barbar.nvim', wants = { 'nvim-web-devicons', 'gitsigns.nvim' } }
   use('f-person/auto-dark-mode.nvim')
   use('lukas-reineke/indent-blankline.nvim')
+  use('akinsho/toggleterm.nvim')
   if packer_bootstrap then
     require('packer').sync()
   end

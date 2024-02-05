@@ -41,7 +41,12 @@ setopt autocd extendedglob nomatch notify
 # sets keyboard binding modes: 
 # -e is emacs mode: standard stuff like ^a to beginning ^e to end etc
 # -v is vi mode: if you know what this does it's too late. hope you have a will
-bindkey -v
+if [[ $ZSH_KEYBIND_MODE == "e" ]]; then
+  bindkey -e
+else
+  bindkey -v
+fi
+
 # set shorter timeout for mode switching
 export KEYTIMEOUT=1
 # vimkeys in tab complete 
