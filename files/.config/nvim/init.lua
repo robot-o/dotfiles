@@ -47,25 +47,25 @@ vim.keymap.set("n", "<A-CR>", "O<Esc>")
 -- make Y behave like the rest of the capital letters
 vim.keymap.set("n", "Y", "y$")
 -- copy to system clip
-vim.keymap.set("n", "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>Y", "\"+y$")
-vim.keymap.set("v", "<leader>y", "\"+y")
-vim.keymap.set("v", "<leader>Y", "\"+y$")
+vim.keymap.set("n", "<leader>y", "\"+y", { desc = 'yank from system clipboard' })
+vim.keymap.set("n", "<leader>Y", "\"+y$", { desc = 'yank line from system clipboard' })
+vim.keymap.set("v", "<leader>y", "\"+y", { desc = 'yank from system clipboard' })
+vim.keymap.set("v", "<leader>Y", "\"+y$", { desc = 'yank line from system clipboard' })
 -- paste from system clipboard
-vim.keymap.set("n", "<leader>p", "\"+p")
-vim.keymap.set("n", "<leader>P", "\"+P")
-vim.keymap.set("v", "<leader>p", "\"+p")
-vim.keymap.set("v", "<leader>P", "\"+P")
+vim.keymap.set("n", "<leader>p", "\"+p", { desc = 'paste down from system clipboard' })
+vim.keymap.set("n", "<leader>P", "\"+P", { desc = 'paste up from system clipboard' })
+vim.keymap.set("v", "<leader>p", "\"+p", { desc = 'paste down from system clipboard' })
+vim.keymap.set("v", "<leader>P", "\"+P", { desc = 'paste up from system clipboard' })
 -- keep buffer centered on search result browsing
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 -- absolutely bananans text movement shennanigans holy guacamole
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("i", "<C-j>", "<esc>:m .+1<CR>==")
-vim.keymap.set("i", "<C-k>", "<esc>:m .-2<CR>==")
-vim.keymap.set("n", "<leader>j", ":m .+1<CR>==")
-vim.keymap.set("n", "<leader>k", ":m .-2<CR>==")
+vim.keymap.set("i", "<A-J>", "<esc>:m .+1<CR>==")
+vim.keymap.set("i", "<A-K>", "<esc>:m .-2<CR>==")
+vim.keymap.set("n", "<A-J>", ":m .+1<CR>==")
+vim.keymap.set("n", "<A-K>", ":m .-2<CR>==")
 -- keystroke reduction for saving quitting and savequitting
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 vim.keymap.set("n", "<A-q>", ":q<CR>")
@@ -80,21 +80,22 @@ vim.keymap.set("n", "<S-Tab>", "<<_")
 vim.keymap.set("v", "<Tab>", ">")
 vim.keymap.set("v", "<S-Tab>", "<")
 -- LSP
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, {})
-vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {})
-vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, {})
-vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, {})
-vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, {})
-vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float, {})
-vim.keymap.set("n", "<leader>dd", vim.diagnostic.goto_next, {})
-vim.keymap.set("n", "<leader>du", vim.diagnostic.goto_prev, {})
-vim.keymap.set("n", "<leader>sdf", vim.lsp.buf.definition, {})
-vim.keymap.set("n", "<leader>sdc", vim.lsp.buf.declaration, {})
-vim.keymap.set("n", "<leader>si", vim.lsp.buf.implementation, {})
-vim.keymap.set("n", "<leader>st", vim.lsp.buf.type_definition, {})
-vim.keymap.set("n", "<leader>sr", vim.lsp.buf.references, {})
-vim.keymap.set("n", "<leader>ss", vim.lsp.buf.signature_help, {})
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = 'Replace all under cursor' })
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = 'LSP: format' })
+vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = 'LSP: rename' })
+vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = 'LSP: hover' })
+vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = 'LSP: code action' })
+vim.keymap.set("n", "<leader>ldl", vim.diagnostic.setloclist, { desc = 'LSP/diag: open list' })
+vim.keymap.set("n", "<leader>lds", vim.diagnostic.open_float, { desc = 'LSP/diag: open float' })
+vim.keymap.set("n", "<leader>ldd", vim.diagnostic.goto_next, { desc = 'LSP/diag: goto next' })
+vim.keymap.set("n", "<leader>ldu", vim.diagnostic.goto_prev, { desc = 'LSP/diag: goto prev' })
+vim.keymap.set("n", "<leader>lsd", vim.lsp.buf.definition, { desc = 'LSP/symbol: goto definition' })
+vim.keymap.set("n", "<leader>lsD", vim.lsp.buf.declaration, { desc = 'LSP/symbol: goto declaration' })
+vim.keymap.set("n", "<leader>lsi", vim.lsp.buf.implementation, { desc = 'LSP/symbol: goto implementation' })
+vim.keymap.set("n", "<leader>lst", vim.lsp.buf.type_definition, { desc = 'LSP/symbol: goto type definition' })
+vim.keymap.set("n", "<leader>lsr", vim.lsp.buf.references, { desc = 'LSP/symbol: show references' })
+vim.keymap.set("n", "<leader>lss", vim.lsp.buf.signature_help, { desc = 'LSP/symbol: signature help' })
 -- tabs
 vim.keymap.set('n', '<A-w>', '<Cmd>BufferClose<CR>')
 vim.keymap.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>')
@@ -114,11 +115,13 @@ vim.keymap.set('n', '<A-.>', '<Cmd>BufferNext<CR>')
 vim.keymap.set('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>')
 vim.keymap.set('n', '<A->>', '<Cmd>BufferMoveNext<CR>')
 -- Gitsigns
-vim.keymap.set("n", "<leader>gd", '<Cmd>Gitsigns diffthis<CR>')
-vim.keymap.set("n", "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>')
+vim.keymap.set("n", "<leader>gd", '<Cmd>Gitsigns diffthis<CR>', { desc = 'Git: diff' })
+vim.keymap.set("n", "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>', { desc = 'Git: toggle line blame' })
 -- Misc
-vim.keymap.set("n", "<A-t>", '<Cmd>ToggleTerm<CR>')
-vim.keymap.set("n", "<A-T>", '<Cmd>ToggleTerm direction=float<CR>')
+vim.keymap.set("n", "<leader>tt", '<Cmd>ToggleTerm<CR>', { desc = 'Terminal: toggle' })
+vim.keymap.set("n", "<leader>tv", '<Cmd>ToggleTerm direction=vertical<CR>', { desc = 'Terminal: toggle vertical' })
+vim.keymap.set("n", "<leader>tf", '<Cmd>ToggleTerm direction=float<CR>', { desc = 'Terminal: toggle float' })
+vim.keymap.set("n", "<leader>tT", '<Cmd>ToggleTerm direction=tab<CR>', { desc = 'Terminal: toggle tab' })
 vim.keymap.set("t", "<A-h>", ":wincmd h<CR>")
 vim.keymap.set("t", "<A-j>", ":wincmd j<CR>")
 vim.keymap.set("t", "<A-k>", ":wincmd k<CR>")
@@ -196,4 +199,17 @@ return require('packer').startup(function(use)
   if packer_bootstrap then
     require('packer').sync()
   end
+  -- Lua
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup {
+        ignore_missing = true,
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+      }
+    end
+  }
 end)
