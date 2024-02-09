@@ -180,6 +180,8 @@ return require('packer').startup(function(use)
       { 'rafamadriz/friendly-snippets' },
     }
   }
+  -- status updates
+  use { 'j-hui/fidget.nvim', tag = 'v1.3.0' }
   use('nvim-tree/nvim-web-devicons')
   use {
     'nvim-lualine/lualine.nvim',
@@ -194,22 +196,12 @@ return require('packer').startup(function(use)
   use('lewis6991/gitsigns.nvim')
   use { 'romgrk/barbar.nvim', wants = { 'nvim-web-devicons', 'gitsigns.nvim' } }
   use('f-person/auto-dark-mode.nvim')
-  use('lukas-reineke/indent-blankline.nvim')
+  use { 'lukas-reineke/indent-blankline.nvim', requires = { 'nvim-treesitter/nvim-treesitter' } }
   use('akinsho/toggleterm.nvim')
+  use { "folke/which-key.nvim" }
+  -- language specific plugins
+  use('pearofducks/ansible-vim')
   if packer_bootstrap then
     require('packer').sync()
   end
-  -- Lua
-  use {
-    "folke/which-key.nvim",
-    config = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-      require("which-key").setup {
-        ignore_missing = true,
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-      }
-    end
-  }
 end)

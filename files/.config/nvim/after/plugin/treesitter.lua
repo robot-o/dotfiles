@@ -1,6 +1,6 @@
 -- vim: ft=lua
 
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   ensure_installed = { "arduino", "bash", "c_sharp", "cpp", "css", "diff", "dockerfile", "git_rebase", "gitattributes", "gitcommit", "gitignore", "glsl", "go", "gomod", "graphql", "hcl", "hlsl", "html", "json", "jsonc", "jsonnet", "latex", "make", "markdown", "nix", "perl", "php", "rasi", "regex", "rst", "scss", "sql", "toml", "vim", "yaml", "javascript", "python", "c", "lua", "rust" },
 
@@ -14,5 +14,6 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
+    disable = { "yaml" },
   },
 }

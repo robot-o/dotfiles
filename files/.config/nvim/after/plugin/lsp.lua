@@ -14,6 +14,7 @@ null_ls.setup({
     null_ls.builtins.formatting.yq,
     null_ls.builtins.formatting.jq,
     null_ls.builtins.diagnostics.yamllint,
+    null_ls.builtins.diagnostics.ansiblelint,
   },
 })
 
