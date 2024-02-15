@@ -20,7 +20,7 @@ vim.opt.smartcase = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
-vim.opt.scrolloff = 16
+vim.opt.scrolloff = 32
 vim.opt.conceallevel = 0
 vim.opt.tabstop = 8
 vim.opt.softtabstop = -1
@@ -118,6 +118,7 @@ vim.keymap.set('n', '<A->>', '<Cmd>BufferMoveNext<CR>')
 vim.keymap.set("n", "<leader>gd", '<Cmd>Gitsigns diffthis<CR>', { desc = 'Git: diff' })
 vim.keymap.set("n", "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>', { desc = 'Git: toggle line blame' })
 -- Misc
+vim.keymap.set("n", "<leader>z", '<Cmd>ZenMode<CR>', { desc = 'ZenMode: Toggle' })
 vim.keymap.set("n", "<leader>tt", '<Cmd>ToggleTerm<CR>', { desc = 'Terminal: toggle' })
 vim.keymap.set("n", "<leader>tv", '<Cmd>ToggleTerm direction=vertical<CR>', { desc = 'Terminal: toggle vertical' })
 vim.keymap.set("n", "<leader>tf", '<Cmd>ToggleTerm direction=float<CR>', { desc = 'Terminal: toggle float' })
@@ -199,6 +200,7 @@ return require('packer').startup(function(use)
   use { 'lukas-reineke/indent-blankline.nvim', requires = { 'nvim-treesitter/nvim-treesitter' } }
   use('akinsho/toggleterm.nvim')
   use { "folke/which-key.nvim" }
+  use { "folke/zen-mode.nvim" }
   -- language specific plugins
   use('pearofducks/ansible-vim')
   if packer_bootstrap then

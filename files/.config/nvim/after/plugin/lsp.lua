@@ -13,8 +13,8 @@ null_ls.setup({
     null_ls.builtins.code_actions.gitsigns,
     null_ls.builtins.formatting.yq,
     null_ls.builtins.formatting.jq,
-    null_ls.builtins.diagnostics.yamllint,
-    null_ls.builtins.diagnostics.ansiblelint,
+    null_ls.builtins.formatting.markdown_toc,
+    null_ls.builtins.diagnostics.markdownlint,
   },
 })
 
@@ -23,7 +23,6 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
     'lua_ls',
-    'ansiblels',
   },
   -- configure custom lsp settings here
   handlers = {
@@ -44,7 +43,7 @@ cmp.setup({
   formatting = cmp_format,
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'buffer',  keyword_length = 3 },
+--    { name = 'buffer',  keyword_length = 3 },
     { name = 'luasnip', keyword_length = 2 },
     { name = 'path' },
   },

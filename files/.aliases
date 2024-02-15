@@ -68,6 +68,7 @@ if command -v usbguard &>/dev/null; then # mac
 fi
 
 # git
+alias lg='lazygit'
 alias gs='git show'
 alias gst='git status'
 alias gl='git log --pretty --oneline --color --graph'
