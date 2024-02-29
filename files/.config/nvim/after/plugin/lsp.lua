@@ -14,13 +14,9 @@ null_ls.setup({
     -- actions
     null_ls.builtins.code_actions.gitsigns,
     -- fmt
-    null_ls.builtins.formatting.yq,
-    null_ls.builtins.formatting.jq,
-    null_ls.builtins.formatting.markdown_toc,
     null_ls.builtins.formatting.shellharden,
     -- diag
     null_ls.builtins.diagnostics.markdownlint,
-    null_ls.builtins.diagnostics.shellcheck,
   },
 })
 
@@ -49,7 +45,7 @@ cmp.setup({
   formatting = cmp_format,
   sources = {
     { name = 'nvim_lsp' },
---    { name = 'buffer',  keyword_length = 3 },
+    { name = 'buffer',  keyword_length = 3 },
     { name = 'luasnip', keyword_length = 2 },
     { name = 'path' },
   },
