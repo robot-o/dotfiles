@@ -53,10 +53,12 @@ alias tpfh='tmuxp freeze -f yaml -o ./.tmuxp.yaml'
 # tmuxp: personal
 alias tpd='tmuxp load -y ${HOME}/Projects/personal/.tmuxp/dotfiles.yml'
 alias tpp='tmuxp load -y ${HOME}/Projects/personal/.tmuxp/current.yml'
+alias etpp='nvim ${HOME}/Projects/personal/.tmuxp/current.yml'
 alias tplp='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/personal/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
 alias tpsp='ln -sf $(fd -u -t f . ${HOME}/Projects/personal/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'') ${HOME}/Projects/personal/.tmuxp/current.yml'
 # tmuxp: work
 alias tpw='tmuxp load -y ${HOME}/Projects/work/.tmuxp/current.yml'
+alias etpw='nvim ${HOME}/Projects/work/.tmuxp/current.yml'
 alias tplw='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
 alias tpsw='ln -sf $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'') ${HOME}/Projects/work/.tmuxp/current.yml'
 

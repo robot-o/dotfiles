@@ -9,12 +9,18 @@ null_ls.setup({
     null_ls_opts.on_attach(client, bufnr)
   end,
   sources = {
+    -- comp
     null_ls.builtins.completion.luasnip,
+    -- actions
     null_ls.builtins.code_actions.gitsigns,
+    -- fmt
     null_ls.builtins.formatting.yq,
     null_ls.builtins.formatting.jq,
     null_ls.builtins.formatting.markdown_toc,
+    null_ls.builtins.formatting.shellharden,
+    -- diag
     null_ls.builtins.diagnostics.markdownlint,
+    null_ls.builtins.diagnostics.shellcheck,
   },
 })
 
