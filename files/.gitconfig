@@ -1,6 +1,7 @@
 [include]
-  path = /home/user/.dotfiles/files/.gitconfig_delta_themes
-  path = /home/user/.gitconfig-gpg
+  path = ~/.dotfiles/files/.gitconfig_delta_themes
+  path = ~/.gitconfig-machine
+
 [core]
   pager = delta
 
