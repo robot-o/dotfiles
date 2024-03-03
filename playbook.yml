@@ -69,7 +69,7 @@
         src: "{{ playbook_dir }}/files/{{ item.src }}"
         dest: "{{ item.dest }}"
         state: "{{ item.state }}"
-      force: true
+        force: true
       loop:
         - {state: "link", src: ".shell_env", dest: "~/.shell_env"}
         - {state: "link", src: ".bash_profile", dest: "~/.bash_profile"}
