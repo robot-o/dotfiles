@@ -14,6 +14,7 @@ null_ls.setup({
     -- actions
     -- fmt
     null_ls.builtins.formatting.shellharden,
+    null_ls.builtins.formatting.hclfmt,
     -- diag
     null_ls.builtins.diagnostics.markdownlint,
   },
