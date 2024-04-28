@@ -99,7 +99,6 @@ function include() {
   [[ -f "$1" ]] && source "$1"
 }
 
-include ~/.zshenv
 include ~/.aliases
 
 ### COMPLETIONS
