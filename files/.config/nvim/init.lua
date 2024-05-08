@@ -119,9 +119,9 @@ vim.keymap.set("n", "<leader>gd", '<Cmd>Gitsigns diffthis<CR>', { desc = 'Git: d
 vim.keymap.set("n", "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>', { desc = 'Git: toggle line blame' })
 -- Misc
 vim.keymap.set("n", "<leader>z", '<Cmd>ZenMode<CR>', { desc = 'ZenMode: Toggle' })
-vim.keymap.set("n", "<A-t>", '<Cmd>ToggleTerm<CR>', { desc = 'Terminal: toggle' })
-vim.keymap.set("i", "<A-t>", '<Cmd>ToggleTerm<CR>', { desc = 'Terminal: toggle' })
-vim.keymap.set("t", "<A-t>", '<Cmd>ToggleTerm<CR>', { desc = 'Terminal: toggle' })
+vim.keymap.set("n", "<A-`>", '<Cmd>ToggleTerm<CR>', { desc = 'Terminal: toggle' })
+vim.keymap.set("i", "<A-`>", '<Cmd>ToggleTerm<CR>', { desc = 'Terminal: toggle' })
+vim.keymap.set("t", "<A-`>", '<Cmd>ToggleTerm<CR>', { desc = 'Terminal: toggle' })
 vim.keymap.set("n", "<leader>tt", '<Cmd>ToggleTerm<CR>', { desc = 'Terminal: toggle' })
 vim.keymap.set("n", "<leader>tv", '<Cmd>ToggleTerm direction=vertical<CR>', { desc = 'Terminal: toggle vertical' })
 vim.keymap.set("n", "<leader>tf", '<Cmd>ToggleTerm direction=float<CR>', { desc = 'Terminal: toggle float' })
