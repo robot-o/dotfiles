@@ -1,0 +1,47 @@
+syntax on
+filetype plugin on
+set conceallevel=0
+set clipboard+=unnamedplus
+set expandtab
+set tabstop=2
+set softtabstop=-1
+set shiftwidth=2
+set smartindent
+set autoindent
+set relativenumber
+set showcmd
+set cursorline
+set wildmenu
+set lazyredraw
+set showmatch
+set colorcolumn=80
+set signcolumn=yes
+set splitright
+set scrolloff=16
+set incsearch
+set nohlsearch
+set smartcase
+set mouse=a
+let mapleader = ' '
+nnoremap j gj
+nnoremap k gk
+nnoremap Y y$
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap <CR> o<Esc>
+nnoremap <A-CR> O<Esc>
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+nnoremap <A-h> :wincmd h<CR>
+nnoremap <A-j> :wincmd j<CR>
+nnoremap <A-k> :wincmd k<CR>
+nnoremap <A-l> :wincmd l<CR>
+nnoremap <silent> <C-s> :w<CR>
+nnoremap <silent> <A-q> :q<CR>
+nnoremap <silent> <A-Q> :qa<CR>
+nnoremap <silent> <A-x> :x<CR>
+nnoremap <silent> <A-t> :tabnew<CR>
+nnoremap <A-;> :vsp<CR>
+nnoremap <A-'> :sp<CR>
+nnoremap <A-o> :!
+nnoremap <A-O> :r!

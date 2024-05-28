@@ -3,14 +3,22 @@ require('toggleterm').setup {
   terminal_mappings = true,
   hide_numbers = false,
   winbar = {
-    enabled = true,
+    enabled = false,
   },
   env = {
-    ZSH_KEYBIND_MODE = "e",
+    ZSH_KEYBIND_MODE = "v",
   },
   size = function(term)
     if term.direction == "horizontal" then
-      return 20
+      return 25
+    end
+    if term.direction == "vertical" then
+      return 100
     end
   end,
+  float_opts = {
+    border = 'curved',
+    width = 160,
+    height = 40,
+  }
 }

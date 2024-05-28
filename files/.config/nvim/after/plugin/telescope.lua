@@ -4,8 +4,8 @@ local actions = require("telescope.actions")
 require('telescope').setup {
   pickers = {
     find_files = {
-      -- find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-      find_command = { "fd", "--hidden", "--type", "f", "--strip-cwd-prefix" },
+      find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+      -- find_command = { "fd", "--hidden", "--type", "f", "--strip-cwd-prefix" },
     },
 
     live_grep = {
@@ -35,3 +35,5 @@ require('telescope').setup {
 vim.keymap.set('n', '<A-d>', ts.find_files, {})
 vim.keymap.set('n', '<A-f>', ts.live_grep, {})
 vim.keymap.set('n', '<A-b>', ts.buffers, {})
+vim.keymap.set('n', '<A-o>', ts.commands, {})
+vim.keymap.set('n', '<A-p>', ts.command_history, {})
