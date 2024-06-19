@@ -118,6 +118,9 @@ vim.keymap.set('n', '<A-}>', '<Cmd>BufferMoveNext<CR>')
 -- Gitsigns
 vim.keymap.set("n", "<leader>gd", '<Cmd>Gitsigns diffthis<CR>', { desc = 'Git: diff' })
 vim.keymap.set("n", "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>', { desc = 'Git: toggle line blame' })
+-- oil
+vim.keymap.set("n", "<A-e>", ":Oil<CR>")
+vim.keymap.set("n", "<A-E>", ":Oil --float<CR>")
 -- Misc
 vim.keymap.set("n", "<leader>z", '<Cmd>ZenMode<CR>', { desc = 'ZenMode: Toggle' })
 vim.keymap.set("n", "<A-`>", '<Cmd>ToggleTerm<CR>', { desc = 'Terminal: toggle' })
@@ -204,15 +207,10 @@ return require('packer').startup(function(use)
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-  use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    }
-  }
   use('lewis6991/gitsigns.nvim')
   use { 'romgrk/barbar.nvim', wants = { 'nvim-web-devicons', 'gitsigns.nvim' } }
   use('f-person/auto-dark-mode.nvim')
+  use("stevearc/oil.nvim")
   use('akinsho/toggleterm.nvim')
   use { "folke/which-key.nvim" }
   use { "folke/zen-mode.nvim" }
