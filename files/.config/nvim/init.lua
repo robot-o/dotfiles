@@ -139,6 +139,7 @@ vim.keymap.set("t", "<esc>", [[<C-\><C-n>]])
 vim.keymap.set('t', '<A-w>', [[<C-\><C-n><A-w>]])
 
 vim.keymap.set("n", "<leader>f", '@f', { desc = 'Macro: run @f (format)' })
+vim.keymap.set("n", "<leader>b", '@b', { desc = 'Macro: run @b (build)' })
 vim.keymap.set("n", "<leader>r", '@r', { desc = 'Macro: run @r (run)' })
 
 -- neovide specific configuration (desktop gui client)
