@@ -33,32 +33,40 @@ vim.opt.undodir = vim.fn.expand('~/.cache/nvim_undodir')
 -- # keybinds
 vim.g.mapleader = " "
 vim.g.maplocaleader = " "
+
 -- splits
 vim.keymap.set("n", "<A-;>", ":vsp<CR>")
 vim.keymap.set("n", "<A-'>", ":sp<CR>")
+
 -- split/window movement
 vim.keymap.set("n", "<A-h>", ":wincmd h<CR>")
 vim.keymap.set("n", "<A-j>", ":wincmd j<CR>")
 vim.keymap.set("n", "<A-k>", ":wincmd k<CR>")
 vim.keymap.set("n", "<A-l>", ":wincmd l<CR>")
+
 -- insert newlines above or below without entering insert mode
 vim.keymap.set("n", "<CR>", "o<Esc>")
 vim.keymap.set("n", "<A-CR>", "O<Esc>")
+
 -- make Y behave like the rest of the capital letters
 vim.keymap.set("n", "Y", "y$")
+
 -- copy to system clip
 vim.keymap.set("n", "<leader>y", "\"+y", { desc = 'yank from system clipboard' })
 vim.keymap.set("n", "<leader>Y", "\"+y$", { desc = 'yank line from system clipboard' })
 vim.keymap.set("v", "<leader>y", "\"+y", { desc = 'yank from system clipboard' })
 vim.keymap.set("v", "<leader>Y", "\"+y$", { desc = 'yank line from system clipboard' })
+
 -- paste from system clipboard
 vim.keymap.set("n", "<leader>p", "\"+p", { desc = 'paste down from system clipboard' })
 vim.keymap.set("n", "<leader>P", "\"+P", { desc = 'paste up from system clipboard' })
 vim.keymap.set("v", "<leader>p", "\"+p", { desc = 'paste down from system clipboard' })
 vim.keymap.set("v", "<leader>P", "\"+P", { desc = 'paste up from system clipboard' })
+
 -- keep buffer centered on search result browsing
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
 -- absolutely bananans text movement shennanigans holy guacamole
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -66,19 +74,23 @@ vim.keymap.set("i", "<A-J>", "<esc>:m .+1<CR>==")
 vim.keymap.set("i", "<A-K>", "<esc>:m .-2<CR>==")
 vim.keymap.set("n", "<A-J>", ":m .+1<CR>==")
 vim.keymap.set("n", "<A-K>", ":m .-2<CR>==")
+
 -- keystroke reduction for saving quitting and savequitting
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 vim.keymap.set("n", "<A-q>", ":q<CR>")
 vim.keymap.set("n", "<A-Q>", ":qa<CR>")
 vim.keymap.set("n", "<A-x>", ":x<CR>")
+
 -- movement
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
+
 -- indentation
 vim.keymap.set("n", "<Tab>", ">>_")
 vim.keymap.set("n", "<S-Tab>", "<<_")
 vim.keymap.set("v", "<Tab>", ">")
 vim.keymap.set("v", "<S-Tab>", "<")
+
 -- LSP
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = 'Replace all under cursor' })
@@ -96,6 +108,7 @@ vim.keymap.set("n", "<leader>lsi", vim.lsp.buf.implementation, { desc = 'LSP/sym
 vim.keymap.set("n", "<leader>lst", vim.lsp.buf.type_definition, { desc = 'LSP/symbol: goto type definition' })
 vim.keymap.set("n", "<leader>lsr", vim.lsp.buf.references, { desc = 'LSP/symbol: show references' })
 vim.keymap.set("n", "<leader>lss", vim.lsp.buf.signature_help, { desc = 'LSP/symbol: signature help' })
+
 -- tabs
 vim.keymap.set('n', '<A-w>', '<Cmd>BufferClose<CR>')
 vim.keymap.set('n', '<A-W>', '<Cmd>BufferCloseAllButVisible<CR>')
@@ -115,12 +128,70 @@ vim.keymap.set('n', '<A-[>', '<Cmd>BufferPrevious<CR>')
 vim.keymap.set('n', '<A-]>', '<Cmd>BufferNext<CR>')
 vim.keymap.set('n', '<A-{>', '<Cmd>BufferMovePrevious<CR>')
 vim.keymap.set('n', '<A-}>', '<Cmd>BufferMoveNext<CR>')
+
 -- Gitsigns
 vim.keymap.set("n", "<leader>gd", '<Cmd>Gitsigns diffthis<CR>', { desc = 'Git: diff' })
 vim.keymap.set("n", "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>', { desc = 'Git: toggle line blame' })
+
 -- oil
 vim.keymap.set("n", "<A-e>", ":Oil<CR>")
 vim.keymap.set("n", "<A-E>", ":Oil --float<CR>")
+
+-- gp/ollama/ai
+vim.keymap.set("n", "<leader>a", '', { desc = 'AI...' })
+-- chat/toggle
+vim.keymap.set("n", "<leader>acf", '<Cmd>GpChatFinder<CR>', { desc = 'AI/Chat: finder' })
+vim.keymap.set("n", "<leader>ac", '', { desc = 'AI/Chat...' })
+vim.keymap.set("n", "<leader>acc", '<Cmd>GpChatToggle<CR>', { desc = 'AI/Chat: toggle' })
+vim.keymap.set("n", "<leader>ach", '<Cmd>GpChatToggle split<CR>', { desc = 'AI/Chat: toggle (hsplit)' })
+vim.keymap.set("n", "<leader>acv", '<Cmd>GpChatToggle vsplit<CR>', { desc = 'AI/Chat: toggle (vsplit)' })
+vim.keymap.set("n", "<leader>act", '<Cmd>GpChatToggle tabnew<CR>', { desc = 'AI/Chat: toggle (new tab)' })
+vim.keymap.set("n", "<leader>acp", '<Cmd>GpChatToggle popup<CR>', { desc = 'AI/Chat: toggle (popup)' })
+-- chat/toggle (visual)
+vim.keymap.set("v", "<leader>ac", '', { desc = 'AI/Chat (with selection context)...' })
+vim.keymap.set("v", "<leader>acc", '<Cmd>GpChatToggle<CR>', { desc = 'AI/Chat: toggle (with selection context)' })
+vim.keymap.set("v", "<leader>ach", '<Cmd>GpChatToggle split<CR>',
+  { desc = 'AI/Chat: toggle (hsplit) (with selection context)' })
+vim.keymap.set("v", "<leader>acv", '<Cmd>GpChatToggle vsplit<CR>',
+  { desc = 'AI/Chat: toggle (vsplit) (with selection context)' })
+vim.keymap.set("v", "<leader>act", '<Cmd>GpChatToggle tabnew<CR>',
+  { desc = 'AI/Chat: toggle (new tab) (with selection context)' })
+vim.keymap.set("v", "<leader>acp", '<Cmd>GpChatToggle popup<CR>',
+  { desc = 'AI/Chat: toggle (popup) (with selection context)' })
+-- chat/paste
+vim.keymap.set("n", "<leader>acp", '<Cmd>GpChatPaste<CR>', { desc = 'AI/Chat: paste selection' })
+vim.keymap.set("n", "<leader>acph", '<Cmd>GpChatPaste split<CR>', { desc = 'AI/Chat: paste selection (hsplit)' })
+vim.keymap.set("n", "<leader>acpv", '<Cmd>GpChatPaste vsplit<CR>', { desc = 'AI/Chat: paste selection (vsplit)' })
+vim.keymap.set("n", "<leader>acpt", '<Cmd>GpChatPaste tabnew<CR>', { desc = 'AI/Chat: paste selection (new tab)' })
+vim.keymap.set("n", "<leader>acpp", '<Cmd>GpChatPaste popup<CR>', { desc = 'AI/Chat: paste selection (popup)' })
+-- chat/paste (visual)
+vim.keymap.set("v", "<leader>acp", '<Cmd>GpChatPaste<CR>', { desc = 'AI/Chat: paste selection' })
+vim.keymap.set("v", "<leader>acph", '<Cmd>GpChatPaste split<CR>', { desc = 'AI/Chat: paste selection (hsplit)' })
+vim.keymap.set("v", "<leader>acpv", '<Cmd>GpChatPaste vsplit<CR>', { desc = 'AI/Chat: paste selection (vsplit)' })
+vim.keymap.set("v", "<leader>acpt", '<Cmd>GpChatPaste tabnew<CR>', { desc = 'AI/Chat: paste selection (new tab)' })
+vim.keymap.set("v", "<leader>acpp", '<Cmd>GpChatPaste popup<CR>', { desc = 'AI/Chat: paste selection (popup)' })
+-- text
+vim.keymap.set("n", "<leader>at", '', { desc = 'AI/text..' })
+vim.keymap.set("n", "<leader>atr", '<Cmd>GpRewrite<CR>', { desc = 'AI/text: Rewrite' })
+vim.keymap.set("n", "<leader>ata", '<Cmd>GpAppend<CR>', { desc = 'AI/text: Append' })
+vim.keymap.set("n", "<leader>atp", '<Cmd>GpPrepend<CR>', { desc = 'AI/text: Prepend' })
+vim.keymap.set("n", "<leader>atb", '<Cmd>GpEnew<CR>', { desc = 'AI/text: Rewrite (new buffer)' })
+vim.keymap.set("n", "<leader>att", '<Cmd>GpTabnew<CR>', { desc = 'AI/text: Rewrite (new tab)' })
+vim.keymap.set("n", "<leader>ath", '<Cmd>GpNew<CR>', { desc = 'AI/text: Rewrite (hsplit)' })
+vim.keymap.set("n", "<leader>atv", '<Cmd>GpVnew<CR>', { desc = 'AI/text: Rewrite (vsplit)' })
+vim.keymap.set("n", "<leader>ato", '<Cmd>GpPopup<CR>', { desc = 'AI/text: Rewrite (popup)' })
+vim.keymap.set("n", "<leader>atc", '<Cmd>GpContext<CR>', { desc = 'AI/text: Set Repository Context' })
+-- text (visual)
+vim.keymap.set("v", "<leader>atr", '<Cmd>GpRewrite<CR>', { desc = 'AI/text: Rewrite (selection)' })
+vim.keymap.set("v", "<leader>ata", '<Cmd>GpAppend<CR>', { desc = 'AI/text: Append (selection)' })
+vim.keymap.set("v", "<leader>atp", '<Cmd>GpPrepend<CR>', { desc = 'AI/text: Prepend (selection)' })
+vim.keymap.set("v", "<leader>atb", '<Cmd>GpEnew<CR>', { desc = 'AI/text: Rewrite (new buffer) (selection)' })
+vim.keymap.set("v", "<leader>att", '<Cmd>GpTabnew<CR>', { desc = 'AI/text: Rewrite (new tab) (selection)' })
+vim.keymap.set("v", "<leader>ath", '<Cmd>GpNew<CR>', { desc = 'AI/text: Rewrite (hsplit) (selection)' })
+vim.keymap.set("v", "<leader>atv", '<Cmd>GpVnew<CR>', { desc = 'AI/text: Rewrite (vsplit) (selection)' })
+vim.keymap.set("v", "<leader>ato", '<Cmd>GpPopup<CR>', { desc = 'AI/text: Rewrite (popup) (selection)' })
+vim.keymap.set("v", "<leader>atc", '<Cmd>GpContext<CR>', { desc = 'AI/text: Set Repository Context (selection)' })
+
 -- Misc
 vim.keymap.set("n", "<leader>z", '<Cmd>ZenMode<CR>', { desc = 'ZenMode: Toggle' })
 vim.keymap.set("n", "<A-`>", '<Cmd>ToggleTerm<CR>', { desc = 'Terminal: toggle' })
@@ -199,6 +270,8 @@ return require('packer').startup(function(use)
       -- Snippets
       { 'L3MON4D3/LuaSnip' },
       { 'rafamadriz/friendly-snippets' },
+      -- the future is now, old man!
+      { 'robitx/gp.nvim' }
     }
   }
   -- status updates
