@@ -38,6 +38,8 @@ fix-defaults-misc() {
   defaults write com.apple.safari ShowFullURLInSmartSearchField -bool "true" && killall Safari
   defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool "true"
   defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool "false" # key repeat 
+  defaults write com.apple.TextEdit NSShowAppCentricOpenPanelInsteadOfUntitledFile -bool false
+  defaults write -g NSWindowShouldDragOnGesture -bool false
   echo -e '\n..done.' 
 }
 
@@ -66,7 +68,7 @@ all() {
 
 command="${1}"
 shift
-${command} $@
+${command} "$@"
 
 echo -e '\n\n\nthink differently 🍎'
 

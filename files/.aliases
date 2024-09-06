@@ -248,7 +248,7 @@ alias crr='cargo r'
 alias tf='terraform'
 alias skpc='ssh-keygen -p -f'
 alias venva='source bin/activate'
-alias tcompress='tar -czvf'
+alias tcompress='tar --no-xattrs -czvf'
 alias tdecompress='tar -xvzf'
 alias nsl='nslookup'
 function vimify(){
