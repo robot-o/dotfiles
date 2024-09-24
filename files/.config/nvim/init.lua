@@ -108,6 +108,7 @@ vim.keymap.set("n", "<leader>lsi", vim.lsp.buf.implementation, { desc = 'LSP/sym
 vim.keymap.set("n", "<leader>lst", vim.lsp.buf.type_definition, { desc = 'LSP/symbol: goto type definition' })
 vim.keymap.set("n", "<leader>lsr", vim.lsp.buf.references, { desc = 'LSP/symbol: show references' })
 vim.keymap.set("n", "<leader>lss", vim.lsp.buf.signature_help, { desc = 'LSP/symbol: signature help' })
+vim.keymap.set("n", "<leader>lc", '<Cmd>ClangdSwitchSourceHeader<CR>', { desc = 'LSP(clangd): toggle source/header' })
 
 -- tabs
 vim.keymap.set('n', '<A-w>', '<Cmd>BufferClose<CR>')
