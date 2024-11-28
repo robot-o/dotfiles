@@ -135,8 +135,13 @@ vim.keymap.set("n", "<leader>gd", '<Cmd>Gitsigns diffthis<CR>', { desc = 'Git: d
 vim.keymap.set("n", "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>', { desc = 'Git: toggle line blame' })
 
 -- oil
-vim.keymap.set("n", "<A-e>", ":Oil<CR>")
-vim.keymap.set("n", "<A-E>", ":Oil --float<CR>")
+vim.keymap.set("n", "<A-E>", ":Oil<CR>")
+vim.keymap.set("n", "<A-e>", function ()
+  require('oil').open_float()
+  require('oil.util').run_after_load(0, function ()
+    require('oil').open_preview()
+  end)
+end)
 
 -- gp/ollama/ai
 vim.keymap.set("n", "<leader>a", '', { desc = 'AI...' })
@@ -183,6 +188,7 @@ vim.keymap.set("n", "<leader>atv", '<Cmd>GpVnew<CR>', { desc = 'AI/text: Rewrite
 vim.keymap.set("n", "<leader>ato", '<Cmd>GpPopup<CR>', { desc = 'AI/text: Rewrite (popup)' })
 vim.keymap.set("n", "<leader>atc", '<Cmd>GpContext<CR>', { desc = 'AI/text: Set Repository Context' })
 -- text (visual)
+vim.keymap.set("v", "<leader>at", '', { desc = 'AI/text..(selection)' })
 vim.keymap.set("v", "<leader>atr", '<Cmd>GpRewrite<CR>', { desc = 'AI/text: Rewrite (selection)' })
 vim.keymap.set("v", "<leader>ata", '<Cmd>GpAppend<CR>', { desc = 'AI/text: Append (selection)' })
 vim.keymap.set("v", "<leader>atp", '<Cmd>GpPrepend<CR>', { desc = 'AI/text: Prepend (selection)' })
@@ -216,11 +222,12 @@ vim.keymap.set("n", "<leader>r", '@r', { desc = 'Macro: run @r (run)' })
 
 -- neovide specific configuration (desktop gui client)
 if vim.g.neovide then
-  vim.g.neovide_transparency = 0.8
+  vim.o.guifont = "JetBrainsMonoNL Nerd Font:h13"
+  vim.g.neovide_transparency = 0.95
   vim.g.neovide_show_border = false
-  vim.g.neovide_input_macos_alt_is_meta = true
-  vim.g.neovide_cursor_animation_length = 0.05
-  vim.g.neovide_cursor_trail_size = 0.4
+  vim.g.neovide_input_macos_option_key_is_meta = 'both'
+  vim.g.neovide_cursor_animation_length = 0.02
+  vim.g.neovide_cursor_trail_size = 0.1
 end
 
 -- plugins

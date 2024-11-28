@@ -256,6 +256,7 @@ function vimify(){
 }
 
 # misc
+alias p1='ping 1.1.1.1'
 alias psa='ps aux | rg'
 command -v gphoto2 &>/dev/null && alias startcapture='gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0'
 alias showlogs='sudo journalctl -p 3 -xb'

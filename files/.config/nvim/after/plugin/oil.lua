@@ -18,7 +18,7 @@ require("oil").setup({
     ["<A-'>"] = { "actions.select", opts = { horizontal = true }, desc = "Open the entry in a horizontal split" },
     ["<A-t>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
     ["<A-p>"] = "actions.preview",
-    ["<A-c>"] = "actions.close",
+    ["<A-e>"] = "actions.close",
     ["<A-r>"] = "actions.refresh",
     ["-"] = "actions.parent",
     ["_"] = "actions.open_cwd",
