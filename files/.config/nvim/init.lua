@@ -138,9 +138,6 @@ vim.keymap.set("n", "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>'
 vim.keymap.set("n", "<A-E>", ":Oil<CR>")
 vim.keymap.set("n", "<A-e>", function ()
   require('oil').open_float()
-  require('oil.util').run_after_load(0, function ()
-    require('oil').open_preview()
-  end)
 end)
 
 -- gp/ollama/ai

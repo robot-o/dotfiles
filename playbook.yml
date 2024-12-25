@@ -80,6 +80,7 @@
         - {state: "link", src: ".aliases", dest: "~/.aliases"}
         - {state: "link", src: ".tmux.conf", dest: "~/.tmux.conf"}
         - {state: "link", src: ".vimrc", dest: "~/.vimrc"}
+        - {state: "link", src: ".config/hs", dest: "~/.config/hs"}
         - {state: "link", src: ".config/nvim", dest: "~/.config/nvim"}
         - {state: "link", src: ".config/starship-dark.toml", dest: "~/.config/starship-dark.toml"}
         - {state: "link", src: ".config/starship-light.toml", dest: "~/.config/starship-light.toml"}
