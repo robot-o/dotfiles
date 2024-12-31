@@ -219,7 +219,7 @@ vim.keymap.set("n", "<leader>r", '@r', { desc = 'Macro: run @r (run)' })
 
 -- neovide specific configuration (desktop gui client)
 if vim.g.neovide then
-  vim.o.guifont = "JetBrainsMonoNL Nerd Font:h13"
+  vim.o.guifont = "JetBrainsMonoNL Nerd Font:h11"
   vim.g.neovide_transparency = 0.95
   vim.g.neovide_show_border = false
   vim.g.neovide_input_macos_option_key_is_meta = 'both'

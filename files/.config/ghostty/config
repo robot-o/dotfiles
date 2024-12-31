@@ -1,0 +1,5 @@
+font-size = 11
+font-feature = -dlig
+font-feature = -liga
+font-feature = -calt
+theme = catppuccin-mocha
