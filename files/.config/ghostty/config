@@ -3,6 +3,7 @@ font-feature = -dlig
 font-feature = -liga
 font-feature = -calt
 theme = catppuccin-mocha
+background-opacity = 0.95
 keybind = cmd+;=new_split:right
 keybind = cmd+'=new_split:down
 keybind = cmd+h=goto_split:left

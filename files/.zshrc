@@ -152,6 +152,10 @@ if command -v terraform &>/dev/null; then
   complete -o nospace -C $(which terraform) terraform
 fi
 
+# autocompletions on macos
+if command -v brew &>/dev/null; then
+  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 
 # misc comp stuff
