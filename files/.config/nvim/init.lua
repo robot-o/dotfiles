@@ -92,8 +92,6 @@ vim.keymap.set("v", "<Tab>", ">")
 vim.keymap.set("v", "<S-Tab>", "<")
 
 -- LSP
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = 'Replace all under cursor' })
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = 'LSP: format' })
 vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = 'LSP: rename' })
 vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = 'LSP: hover' })
@@ -136,7 +134,7 @@ vim.keymap.set("n", "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>'
 
 -- oil
 vim.keymap.set("n", "<A-E>", ":Oil<CR>")
-vim.keymap.set("n", "<A-e>", function ()
+vim.keymap.set("n", "<A-e>", function()
   require('oil').open_float()
 end)
 
@@ -216,6 +214,10 @@ vim.keymap.set('t', '<A-w>', [[<C-\><C-n><A-w>]])
 vim.keymap.set("n", "<leader>f", '@f', { desc = 'Macro: run @f (format)' })
 vim.keymap.set("n", "<leader>b", '@b', { desc = 'Macro: run @b (build)' })
 vim.keymap.set("n", "<leader>r", '@r', { desc = 'Macro: run @r (run)' })
+
+vim.keymap.set("n", "<leader>v", '', { desc = 'Viewers..' })
+vim.keymap.set("n", "<leader>vg", ':Glow<CR>', { desc = 'View in Glow..' })
+
 
 -- neovide specific configuration (desktop gui client)
 if vim.g.neovide then

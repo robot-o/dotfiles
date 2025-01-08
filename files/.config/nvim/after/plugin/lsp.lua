@@ -12,6 +12,7 @@ null_ls.setup({
     -- comp
     null_ls.builtins.completion.luasnip,
     -- actions
+    null_ls.builtins.code_actions.gitsigns,
     -- fmt
     null_ls.builtins.formatting.shellharden,
     null_ls.builtins.formatting.hclfmt,

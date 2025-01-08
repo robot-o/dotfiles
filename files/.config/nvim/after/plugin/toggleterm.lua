@@ -6,7 +6,7 @@ require('toggleterm').setup {
     enabled = false,
   },
   env = {
-    ZSH_KEYBIND_MODE = "v",
+    ZSH_KEYBIND_MODE = "e",
   },
   size = function(term)
     if term.direction == "horizontal" then
