@@ -5,7 +5,7 @@ require 'barbar'.setup {
   animation = false,
 
   -- Enable/disable auto-hiding the tab bar when there is a single buffer
-  auto_hide = false,
+  auto_hide = true,
 
   -- Enable/disable current/total tabpages indicator (top right corner)
   tabpages = true,
@@ -63,7 +63,7 @@ require 'barbar'.setup {
   -- If true, new buffers will be inserted at the start/end of the list.
   -- Default is to insert after current buffer.
   insert_at_end = false,
-  insert_at_start = false,
+  insert_at_start = true,
 
   -- Sets the maximum padding width with which to surround each tab
   maximum_padding = 1,

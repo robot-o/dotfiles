@@ -138,6 +138,15 @@ vim.keymap.set("n", "<A-e>", function()
   require('oil').open_float()
 end)
 
+
+-- nvimtree
+vim.keymap.set("n", "<A-R>", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<A-r>", ":NvimTreeFocus<CR>")
+
+-- undotree
+vim.keymap.set("n", "<A-U>", ":UndotreeToggle<CR>")
+vim.keymap.set("n", "<A-u>", ":UndotreeFocus<CR>")
+
 -- gp/ollama/ai
 vim.keymap.set("n", "<leader>a", '', { desc = 'AI...' })
 -- chat/toggle
@@ -284,6 +293,12 @@ return require('packer').startup(function(use)
   -- status updates
   use { 'j-hui/fidget.nvim', tag = 'v1.3.0' }
   use('nvim-tree/nvim-web-devicons')
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
+  }
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }

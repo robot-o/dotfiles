@@ -2,11 +2,15 @@
 
 
 **/tmuxp/work
-**/k9s/config.yml
+files/.config/k9s/*
 /files/.config/starship.toml
 
 *.retry
 /files/.config/nvim/plugin/*
+
+/files/.config/hs/Spoons/*
+/files/.config/hs/urlfiles/*
+!/files/.config/hs/Spoons/SpoonInstall
 
 **/Brewfile.lock.json
 **/kickstart.lua
