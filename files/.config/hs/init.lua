@@ -14,7 +14,24 @@ end
 
 local function braveProfile(profile)
   return function(url)
-    hs.execute('/usr/bin/open -n -a "Brave Browser.app" --args --profile-directory="' .. profile .. '" ' .. url)
+    url = url or ""
+    hs.execute('open -n -a "Brave Browser.app" --args --profile-directory="' .. profile .. '" ' .. url)
+  end
+end
+
+local browserProfiles = {
+  personal = braveProfile('Default'),
+  work = braveProfile('Profile 1'),
+  customer = braveProfile('Profile 2')
+}
+
+local function braveProfileWindow(profile)
+  profile = profile or 'personal'
+  local win = hs.window.find('Brave %- ' .. profile)
+  if win then
+    win:focus()
+  else
+    browserProfiles[profile]()
   end
 end
 
@@ -30,12 +47,6 @@ local apps = {
   teams = getAppID('/Applications/Microsoft Teams.app'),
 }
 
-local browserProfiles = {
-  personal = braveProfile('Default'),
-  work = braveProfile('Profile 1'),
-  customer = braveProfile('Profile 2')
-}
-
 URLFiles = {
   work = 'urlfiles/work.txt',
   customer = 'urlfiles/customer.txt'
@@ -47,7 +58,7 @@ spoon.SpoonInstall:andUse('URLDispatcher',
       default_handler = browserProfiles.personal,
       url_patterns = {
         { URLFiles.work,     browserProfiles.work },
-        { URLFiles.customer, browsers.arc },
+        { URLFiles.customer, browserProfiles.customer },
       },
     },
     start = true,
@@ -55,9 +66,36 @@ spoon.SpoonInstall:andUse('URLDispatcher',
   }
 )
 
-hs.hotkey.showHotkeys({ "cmd", "shift" }, "1")
+local meh = { "alt", "shift", "ctrl" }
+local hyper = { "alt", "shift", "ctrl", "cmd" }
 
-hs.hotkey.bind({ "alt", "shift", "ctrl" }, "V", "type clipboard contents", function()
+hs.hotkey.showHotkeys(hyper, '-')
+
+hs.hotkey.bind(hyper, "e", "finder", function() hs.execute('open -a Finder') end)
+
+hs.hotkey.bind(hyper, "r", "reload config", function()
+  hs.alert.show("Reloading HS Config..")
+  hs.reload()
+end)
+
+hs.hotkey.bind(hyper, "1", "browser - personal", function()
+  braveProfileWindow('personal')
+end)
+
+hs.hotkey.bind(hyper, "2", "browser - work", function()
+  braveProfileWindow('work')
+end)
+
+hs.hotkey.bind(hyper, "3", "browser - customer", function()
+  braveProfileWindow('customer')
+end)
+
+hs.hotkey.bind(hyper, "Return", "terminal", function()
+  hs.execute('open -a "Ghostty"')
+end)
+
+
+hs.hotkey.bind(hyper, "V", "type clipboard contents", function()
   hs.alert.show("Typing Clipboard..")
   local inputString = hs.pasteboard.getContents()
   for i = 1, #inputString do
