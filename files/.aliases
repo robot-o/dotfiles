@@ -163,7 +163,6 @@ alias dkma='docker-machine active'
 alias dkml='docker-machine ls'
 
 # kubernetes
-command -v kubecolor &>/dev/null && alias kubectl='kubecolor'
 command -v minikube &>/dev/null && alias mk='minikube'
 alias k='kubectl'
 alias kk='k9s'

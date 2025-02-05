@@ -27,6 +27,7 @@ require('mason-lspconfig').setup({
   ensure_installed = {
     'lua_ls',
     'clangd',
+    'nil_ls',
   },
   -- configure custom lsp settings here
   handlers = {
@@ -36,7 +37,18 @@ require('mason-lspconfig').setup({
       require('lspconfig').lua_ls.setup(lua_opts)
     end,
     clangd = function()
-      require('lspconfig').clangd.setup{}
+      require('lspconfig').clangd.setup {}
+    end,
+    nil_ls = function()
+      require('lspconfig').nil_ls.setup ({
+        settings = {
+          ['nil'] = {
+            formatting = {
+              command = { "nixfmt" },
+            }
+          }
+        }
+      })
     end,
   },
 })

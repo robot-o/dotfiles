@@ -130,20 +130,18 @@ fi
 # kubectl
 if command -v kubectl &>/dev/null; then
   source <(kubectl completion zsh)
-  #compdef k='kubectl'
+  compdef k='kubectl'
+  # kubecolor
+  if command -v kubecolor &>/dev/null; then
+    alias kubectl='kubecolor'
+    compdef kubecolor='kubectl'
+  fi
 fi
 
 # minikube
 if command -v minikube &>/dev/null; then
   source <(minikube completion zsh)
   #compdef mk='minikube'
-fi
-
-# kubecolor
-if command -v kubecolor &>/dev/null; then
-  #compdef kubecolor='kubectl'
-  alias kc='kubecolor'
-  #compdef kc='kubecolor'
 fi
 
 # terraform
