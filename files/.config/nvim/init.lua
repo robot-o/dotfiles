@@ -1,8 +1,6 @@
 -- vim: ft=lua
-
 HOME = os.getenv('HOME')
 
--- # settings
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.autoindent = true
@@ -29,69 +27,46 @@ vim.opt.colorcolumn = "80"
 vim.opt.signcolumn = 'yes'
 vim.opt.mouse = 'a'
 vim.opt.undodir = vim.fn.expand('~/.cache/nvim_undodir')
+vim.o.timeout = true
+vim.o.timeoutlen = 300
 
--- # keybinds
 vim.g.mapleader = " "
 vim.g.maplocaleader = " "
-
--- splits
 vim.keymap.set("n", "<A-;>", ":vsp<CR>")
 vim.keymap.set("n", "<A-'>", ":sp<CR>")
-
--- split/window movement
 vim.keymap.set("n", "<A-h>", ":wincmd h<CR>")
 vim.keymap.set("n", "<A-j>", ":wincmd j<CR>")
 vim.keymap.set("n", "<A-k>", ":wincmd k<CR>")
 vim.keymap.set("n", "<A-l>", ":wincmd l<CR>")
-
--- insert newlines above or below without entering insert mode
 vim.keymap.set("n", "<CR>", "o<Esc>")
 vim.keymap.set("n", "<A-CR>", "O<Esc>")
-
--- make Y behave like the rest of the capital letters
 vim.keymap.set("n", "Y", "y$")
-
--- copy to system clip
 vim.keymap.set("n", "<leader>y", "\"+y", { desc = 'yank from system clipboard' })
 vim.keymap.set("n", "<leader>Y", "\"+y$", { desc = 'yank line from system clipboard' })
 vim.keymap.set("v", "<leader>y", "\"+y", { desc = 'yank from system clipboard' })
 vim.keymap.set("v", "<leader>Y", "\"+y$", { desc = 'yank line from system clipboard' })
-
--- paste from system clipboard
 vim.keymap.set("n", "<leader>p", "\"+p", { desc = 'paste down from system clipboard' })
 vim.keymap.set("n", "<leader>P", "\"+P", { desc = 'paste up from system clipboard' })
 vim.keymap.set("v", "<leader>p", "\"+p", { desc = 'paste down from system clipboard' })
 vim.keymap.set("v", "<leader>P", "\"+P", { desc = 'paste up from system clipboard' })
-
--- keep buffer centered on search result browsing
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
-
--- absolutely bananans text movement shennanigans holy guacamole
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("i", "<A-J>", "<esc>:m .+1<CR>==")
 vim.keymap.set("i", "<A-K>", "<esc>:m .-2<CR>==")
 vim.keymap.set("n", "<A-J>", ":m .+1<CR>==")
 vim.keymap.set("n", "<A-K>", ":m .-2<CR>==")
-
--- keystroke reduction for saving quitting and savequitting
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 vim.keymap.set("n", "<A-q>", ":q<CR>")
 vim.keymap.set("n", "<A-Q>", ":qa<CR>")
 vim.keymap.set("n", "<A-x>", ":x<CR>")
-
--- movement
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
-
--- indentation
 vim.keymap.set("n", "<Tab>", ">>_")
 vim.keymap.set("n", "<S-Tab>", "<<_")
 vim.keymap.set("v", "<Tab>", ">")
 vim.keymap.set("v", "<S-Tab>", "<")
-
--- LSP
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = 'LSP: format' })
 vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = 'LSP: rename' })
 vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = 'LSP: hover' })
@@ -107,8 +82,6 @@ vim.keymap.set("n", "<leader>lst", vim.lsp.buf.type_definition, { desc = 'LSP/sy
 vim.keymap.set("n", "<leader>lsr", vim.lsp.buf.references, { desc = 'LSP/symbol: show references' })
 vim.keymap.set("n", "<leader>lss", vim.lsp.buf.signature_help, { desc = 'LSP/symbol: signature help' })
 vim.keymap.set("n", "<leader>lc", '<Cmd>ClangdSwitchSourceHeader<CR>', { desc = 'LSP(clangd): toggle source/header' })
-
--- tabs
 vim.keymap.set('n', '<A-w>', '<Cmd>BufferClose<CR>')
 vim.keymap.set('n', '<A-W>', '<Cmd>BufferCloseAllButVisible<CR>')
 vim.keymap.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>')
@@ -127,29 +100,17 @@ vim.keymap.set('n', '<A-[>', '<Cmd>BufferPrevious<CR>')
 vim.keymap.set('n', '<A-]>', '<Cmd>BufferNext<CR>')
 vim.keymap.set('n', '<A-{>', '<Cmd>BufferMovePrevious<CR>')
 vim.keymap.set('n', '<A-}>', '<Cmd>BufferMoveNext<CR>')
-
--- Gitsigns
 vim.keymap.set("n", "<leader>gd", '<Cmd>Gitsigns diffthis<CR>', { desc = 'Git: diff' })
 vim.keymap.set("n", "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>', { desc = 'Git: toggle line blame' })
-
--- oil
 vim.keymap.set("n", "<A-E>", ":Oil<CR>")
 vim.keymap.set("n", "<A-e>", function()
   require('oil').open_float()
 end)
-
-
--- nvimtree
 vim.keymap.set("n", "<A-R>", ":NvimTreeToggle<CR>")
 vim.keymap.set("n", "<A-r>", ":NvimTreeFocus<CR>")
-
--- undotree
 vim.keymap.set("n", "<A-U>", ":UndotreeToggle<CR>")
 vim.keymap.set("n", "<A-u>", ":UndotreeFocus<CR>")
-
--- gp/ollama/ai
 vim.keymap.set("n", "<leader>a", '', { desc = 'AI...' })
--- chat/toggle
 vim.keymap.set("n", "<leader>acf", '<Cmd>GpChatFinder<CR>', { desc = 'AI/Chat: finder' })
 vim.keymap.set("n", "<leader>ac", '', { desc = 'AI/Chat...' })
 vim.keymap.set("n", "<leader>acc", '<Cmd>GpChatToggle<CR>', { desc = 'AI/Chat: toggle' })
@@ -157,7 +118,6 @@ vim.keymap.set("n", "<leader>ach", '<Cmd>GpChatToggle split<CR>', { desc = 'AI/C
 vim.keymap.set("n", "<leader>acv", '<Cmd>GpChatToggle vsplit<CR>', { desc = 'AI/Chat: toggle (vsplit)' })
 vim.keymap.set("n", "<leader>act", '<Cmd>GpChatToggle tabnew<CR>', { desc = 'AI/Chat: toggle (new tab)' })
 vim.keymap.set("n", "<leader>acp", '<Cmd>GpChatToggle popup<CR>', { desc = 'AI/Chat: toggle (popup)' })
--- chat/toggle (visual)
 vim.keymap.set("v", "<leader>ac", '', { desc = 'AI/Chat (with selection context)...' })
 vim.keymap.set("v", "<leader>acc", '<Cmd>GpChatToggle<CR>', { desc = 'AI/Chat: toggle (with selection context)' })
 vim.keymap.set("v", "<leader>ach", '<Cmd>GpChatToggle split<CR>',
@@ -168,19 +128,16 @@ vim.keymap.set("v", "<leader>act", '<Cmd>GpChatToggle tabnew<CR>',
   { desc = 'AI/Chat: toggle (new tab) (with selection context)' })
 vim.keymap.set("v", "<leader>acp", '<Cmd>GpChatToggle popup<CR>',
   { desc = 'AI/Chat: toggle (popup) (with selection context)' })
--- chat/paste
 vim.keymap.set("n", "<leader>acp", '<Cmd>GpChatPaste<CR>', { desc = 'AI/Chat: paste selection' })
 vim.keymap.set("n", "<leader>acph", '<Cmd>GpChatPaste split<CR>', { desc = 'AI/Chat: paste selection (hsplit)' })
 vim.keymap.set("n", "<leader>acpv", '<Cmd>GpChatPaste vsplit<CR>', { desc = 'AI/Chat: paste selection (vsplit)' })
 vim.keymap.set("n", "<leader>acpt", '<Cmd>GpChatPaste tabnew<CR>', { desc = 'AI/Chat: paste selection (new tab)' })
 vim.keymap.set("n", "<leader>acpp", '<Cmd>GpChatPaste popup<CR>', { desc = 'AI/Chat: paste selection (popup)' })
--- chat/paste (visual)
 vim.keymap.set("v", "<leader>acp", '<Cmd>GpChatPaste<CR>', { desc = 'AI/Chat: paste selection' })
 vim.keymap.set("v", "<leader>acph", '<Cmd>GpChatPaste split<CR>', { desc = 'AI/Chat: paste selection (hsplit)' })
 vim.keymap.set("v", "<leader>acpv", '<Cmd>GpChatPaste vsplit<CR>', { desc = 'AI/Chat: paste selection (vsplit)' })
 vim.keymap.set("v", "<leader>acpt", '<Cmd>GpChatPaste tabnew<CR>', { desc = 'AI/Chat: paste selection (new tab)' })
 vim.keymap.set("v", "<leader>acpp", '<Cmd>GpChatPaste popup<CR>', { desc = 'AI/Chat: paste selection (popup)' })
--- text
 vim.keymap.set("n", "<leader>at", '', { desc = 'AI/text..' })
 vim.keymap.set("n", "<leader>atr", '<Cmd>GpRewrite<CR>', { desc = 'AI/text: Rewrite' })
 vim.keymap.set("n", "<leader>ata", '<Cmd>GpAppend<CR>', { desc = 'AI/text: Append' })
@@ -191,7 +148,6 @@ vim.keymap.set("n", "<leader>ath", '<Cmd>GpNew<CR>', { desc = 'AI/text: Rewrite 
 vim.keymap.set("n", "<leader>atv", '<Cmd>GpVnew<CR>', { desc = 'AI/text: Rewrite (vsplit)' })
 vim.keymap.set("n", "<leader>ato", '<Cmd>GpPopup<CR>', { desc = 'AI/text: Rewrite (popup)' })
 vim.keymap.set("n", "<leader>atc", '<Cmd>GpContext<CR>', { desc = 'AI/text: Set Repository Context' })
--- text (visual)
 vim.keymap.set("v", "<leader>at", '', { desc = 'AI/text..(selection)' })
 vim.keymap.set("v", "<leader>atr", '<Cmd>GpRewrite<CR>', { desc = 'AI/text: Rewrite (selection)' })
 vim.keymap.set("v", "<leader>ata", '<Cmd>GpAppend<CR>', { desc = 'AI/text: Append (selection)' })
@@ -202,8 +158,6 @@ vim.keymap.set("v", "<leader>ath", '<Cmd>GpNew<CR>', { desc = 'AI/text: Rewrite 
 vim.keymap.set("v", "<leader>atv", '<Cmd>GpVnew<CR>', { desc = 'AI/text: Rewrite (vsplit) (selection)' })
 vim.keymap.set("v", "<leader>ato", '<Cmd>GpPopup<CR>', { desc = 'AI/text: Rewrite (popup) (selection)' })
 vim.keymap.set("v", "<leader>atc", '<Cmd>GpContext<CR>', { desc = 'AI/text: Set Repository Context (selection)' })
-
--- Misc
 vim.keymap.set("n", "<leader>z", '<Cmd>ZenMode<CR>', { desc = 'ZenMode: Toggle' })
 vim.keymap.set("n", "<A-`>", '<Cmd>ToggleTerm<CR>', { desc = 'Terminal: toggle' })
 vim.keymap.set("i", "<A-`>", '<Cmd>ToggleTerm<CR>', { desc = 'Terminal: toggle' })
@@ -219,16 +173,30 @@ vim.keymap.set("t", "<A-k>", ":wincmd k<CR>")
 vim.keymap.set("t", "<A-l>", ":wincmd l<CR>")
 vim.keymap.set("t", "<esc>", [[<C-\><C-n>]])
 vim.keymap.set('t', '<A-w>', [[<C-\><C-n><A-w>]])
-
 vim.keymap.set("n", "<leader>f", '@f', { desc = 'Macro: run @f (format)' })
 vim.keymap.set("n", "<leader>b", '@b', { desc = 'Macro: run @b (build)' })
 vim.keymap.set("n", "<leader>r", '@r', { desc = 'Macro: run @r (run)' })
-
 vim.keymap.set("n", "<leader>v", '', { desc = 'Viewers..' })
 vim.keymap.set("n", "<leader>vg", ':Glow<CR>', { desc = 'View in Glow..' })
+local ts = require('telescope.builtin')
+vim.keymap.set('n', '<A-/>', ts.current_buffer_fuzzy_find, {})
+vim.keymap.set('n', '<A-d>', ts.find_files, {})
+vim.keymap.set('n', '<A-f>', ts.live_grep, {})
+vim.keymap.set('n', '<A-F>', ts.grep_string, {})
+vim.keymap.set('n', '<A-b>', ts.buffers, {})
+vim.keymap.set('n', '<A-p>', ts.command_history, {})
+vim.keymap.set('n', '<A-P>', ts.builtin, {})
+vim.keymap.set("n", "<leader>s", '', { desc = 'Telescope..' })
+vim.keymap.set("n", "<leader>sg", '', { desc = 'Telescope/git..' })
+vim.keymap.set("n", "<leader>sgc", '', { desc = 'Commits' })
+vim.keymap.set("n", "<leader>sgb", '', { desc = 'Branches' })
+vim.keymap.set("n", "<leader>sl", '', { desc = 'Telescope/LSP..' })
+vim.keymap.set("n", "<leader>slr", '', { desc = 'References' })
+vim.keymap.set("n", "<leader>sld", '', { desc = 'Diagnostics' })
+vim.keymap.set("n", "<leader>slf", '', { desc = 'Definitions' })
+vim.keymap.set("n", "<leader>sli", '', { desc = 'Implementations' })
+vim.keymap.set("n", "<leader>sls", '', { desc = 'Symbols' })
 
-
--- neovide specific configuration (desktop gui client)
 if vim.g.neovide then
   vim.o.guifont = "JetBrainsMonoNL Nerd Font:h11"
   vim.g.neovide_transparency = 0.95
@@ -238,81 +206,481 @@ if vim.g.neovide then
   vim.g.neovide_cursor_trail_size = 0.1
 end
 
--- plugins
-
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-    vim.cmd [[packadd packer.nvim]]
-    return true
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out,                            "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
   end
-  return false
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
-
-vim.cmd [[packadd packer.nvim]]
-
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use('wbthomason/packer.nvim')
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.x',
-    requires = { { 'nvim-lua/plenary.nvim' } }
-  }
-  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-  use { "catppuccin/nvim", as = "catppuccin" }
-  use('mbbill/undotree')
-  use {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v3.x',
-    requires = {
-      -- LSP Support
-      { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim' },
-      { 'williamboman/mason-lspconfig.nvim' },
-      -- null-ls replacement
-      { 'nvimtools/none-ls.nvim' },
-      -- custom LSPs
-      { 'jose-elias-alvarez/typescript.nvim' },
-      -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      -- Snippets
-      { 'L3MON4D3/LuaSnip' },
-      { 'rafamadriz/friendly-snippets' },
-      -- the future is now, old man!
-      { 'robitx/gp.nvim' }
-    }
-  }
-  -- status updates
-  use { 'j-hui/fidget.nvim', tag = 'v1.3.0' }
-  use('nvim-tree/nvim-web-devicons')
-  use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional
+require("lazy").setup({
+  spec = {
+    {
+      "catppuccin/nvim",
+      name = "catppuccin",
+      priority = 1000,
+      opts = {
+        flavour = "mocha",
+        background = {
+          light = "latte",
+          dark = "mocha",
+        },
+        dim_inactive = {
+          enabled = true,
+          shade = "dark",
+          percentage = 0.1,
+        },
+        integrations = {
+          cmp = true,
+          gitsigns = true,
+          nvimtree = true,
+          treesitter = true,
+          notify = false,
+          barbar = true,
+          mini = false,
+          mason = true,
+          telescope = { enabled = true },
+        },
+      },
     },
-  }
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
-  use('lewis6991/gitsigns.nvim')
-  use { 'romgrk/barbar.nvim', wants = { 'nvim-web-devicons', 'gitsigns.nvim' } }
-  use('f-person/auto-dark-mode.nvim')
-  use("stevearc/oil.nvim")
-  use('akinsho/toggleterm.nvim')
-  use { "folke/which-key.nvim" }
-  use { "folke/zen-mode.nvim" }
-  -- language specific plugins
-  use('pearofducks/ansible-vim')
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+    {
+      'nvim-telescope/telescope.nvim',
+      version = '0.1.x',
+      dependencies = { { 'nvim-lua/plenary.nvim' } },
+      opts = function()
+        local actions = require("telescope.actions")
+        return {
+          pickers = {
+            find_files = {
+              find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+            },
+            live_grep = {
+              additional_args = function(opts)
+                return { "--hidden" }
+              end
+            }
+          },
+          defaults = {
+            mappings = {
+              i = {
+                ["<A-;>"] = actions.select_vertical,
+                ["<A-'>"] = actions.select_horizontal,
+                ["<A-t>"] = actions.select_tab
+              },
+              n = {
+                ["<A-;>"] = actions.select_vertical,
+                ["<A-'>"] = actions.select_horizontal,
+                ["<A-t>"] = actions.select_tab
+              }
+            }
+          }
+        }
+      end,
+    },
+    {
+      'nvim-treesitter/nvim-treesitter',
+      build = ':TSUpdate',
+      opts = {
+        ensure_installed = { "arduino", "bash", "c_sharp", "cpp", "css", "diff", "dockerfile", "git_rebase", "gitattributes", "gitcommit", "gitignore", "glsl", "go", "gomod", "graphql", "hcl", "hlsl", "html", "json", "jsonc", "jsonnet", "latex", "make", "markdown", "nix", "perl", "php", "rasi", "regex", "rst", "scss", "sql", "toml", "vim", "yaml", "javascript", "python", "c", "lua", "rust" },
+        sync_install = false,
+        auto_install = true,
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
+          disable = { "yaml" },
+        },
+      },
+    },
+    { 'mbbill/undotree' },
+    {
+      'VonHeikemen/lsp-zero.nvim',
+      version = 'v3.x',
+      dependencies = {
+        { 'neovim/nvim-lspconfig' },
+        { 'williamboman/mason.nvim',           config = false },
+        { 'williamboman/mason-lspconfig.nvim', config = false },
+        { 'nvimtools/none-ls.nvim',            config = false },
+        { 'hrsh7th/nvim-cmp',                  config = false },
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-path' },
+        { 'saadparwaiz1/cmp_luasnip' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'L3MON4D3/LuaSnip' },
+        { 'rafamadriz/friendly-snippets' },
+        {
+          'robitx/gp.nvim',
+          opts = {
+            providers = {
+              openai = {},
+              ollama = {
+                disable = false,
+                endpoint = "http://localhost:11434/v1/chat/completions",
+              },
+            },
+            agents = {
+              {
+                provider = "ollama",
+                name = "chat-deepseek-r1-14b",
+                chat = true,
+                command = false,
+                model = {
+                  model = "deepseek-r1:14b",
+                  temperature = 0.6,
+                  top_p = 1,
+                  min_p = 0.05,
+                },
+                system_prompt = "You are a general AI assistant serving as part of a code editor.",
+              },
+              {
+                provider = "ollama",
+                name = "code-deepseek-r1-14b",
+                chat = false,
+                command = true,
+                model = {
+                  model = "deepseek-r1:14b",
+                  temperature = 0.4,
+                  top_p = 1,
+                  min_p = 0.05,
+                },
+                system_prompt = require("gp.defaults").code_system_prompt,
+              },
+              {
+                provider = "ollama",
+                name = "chat-llama3.1",
+                chat = true,
+                command = false,
+                model = {
+                  model = "llama3.1:latest",
+                  temperature = 0.6,
+                  top_p = 1,
+                  min_p = 0.05,
+                },
+                system_prompt = "You are a general AI assistant.",
+              },
+              {
+                provider = "ollama",
+                name = "code-llama3.1",
+                chat = false,
+                command = true,
+                model = {
+                  model = "llama3.1:latest",
+                  temperature = 0.4,
+                  top_p = 1,
+                  min_p = 0.05,
+                },
+                system_prompt = require("gp.defaults").code_system_prompt,
+              },
+            },
+            whisper = { disable = true, },
+            image = { disable = true, },
+            default_chat_agent = "chat-deepseek-r1-14b",
+            default_command_agent = "code-deepseek-r1-14b",
+            chat_dir = vim.fn.expand('$HOME/Documents/ollama/nvim'),
+          }
+        },
+        { 'jose-elias-alvarez/typescript.nvim' },
+      },
+      config = function()
+        local lsp_zero = require('lsp-zero').preset({})
+        lsp_zero.extend_lspconfig()
+        local null_ls = require("null-ls")
+        local null_ls_opts = lsp_zero.build_options('null-ls', {})
+        null_ls.setup({
+          on_attach = function(client, bufnr)
+            null_ls_opts.on_attach(client, bufnr)
+          end,
+          sources = {
+            null_ls.builtins.completion.luasnip,
+            null_ls.builtins.formatting.shellharden,
+            null_ls.builtins.formatting.hclfmt,
+            null_ls.builtins.formatting.yamlfmt,
+            null_ls.builtins.diagnostics.markdownlint,
+          },
+        })
+        require('mason').setup({})
+        require('mason-lspconfig').setup({
+          ensure_installed = {
+            'lua_ls',
+            'clangd',
+            'nil_ls',
+          },
+          handlers = {
+            lsp_zero.default_setup,
+            lua_ls = function()
+              local lua_opts = lsp_zero.nvim_lua_ls()
+              require('lspconfig').lua_ls.setup(lua_opts)
+            end,
+            clangd = function()
+              require('lspconfig').clangd.setup {}
+            end,
+            nil_ls = function()
+              require('lspconfig').nil_ls.setup({
+                settings = {
+                  ['nil'] = {
+                    formatting = {
+                      command = { "nixfmt" },
+                    }
+                  }
+                }
+              })
+            end,
+          },
+        })
+        local cmp = require('cmp')
+        local cmp_action = require('lsp-zero').cmp_action()
+        local cmp_format = require('lsp-zero').cmp_format()
+        cmp.setup({
+          formatting = cmp_format,
+          sources = {
+            { name = 'nvim_lsp' },
+            { name = 'buffer',  keyword_length = 3 },
+            { name = 'luasnip', keyword_length = 2 },
+            { name = 'path' },
+          },
+          mapping = cmp.mapping.preset.insert({
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+            ['<CR>'] = cmp.mapping.confirm({ select = true }),
+            ['<C-d>'] = cmp.mapping.scroll_docs(4),
+            ['<Tab>'] = cmp_action.luasnip_supertab(),
+            ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+            ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+            ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+          }),
+        })
+      end
+    },
+    { "j-hui/fidget.nvim",          config = true, version = "v1.3.0" },
+    { 'nvim-tree/nvim-web-devicons' },
+    {
+      'nvim-tree/nvim-tree.lua',
+      dependencies = {
+        'nvim-tree/nvim-web-devicons',
+      },
+    },
+    {
+      'nvim-lualine/lualine.nvim',
+      opts = {
+        options = {
+          icons_enabled = true,
+          theme = 'catppuccin',
+          -- component_separators = { left = '', right = ''},
+          -- section_separators = { left = '', right = ''},
+          component_separators = { left = '', right = '' },
+          section_separators = { left = '', right = '' },
+          disabled_filetypes = {
+            statusline = {},
+            winbar = {},
+          },
+          ignore_focus = {},
+          always_divide_middle = true,
+          globalstatus = false,
+          refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+          }
+        },
+        sections = {
+          lualine_a = { 'mode' },
+          lualine_b = { 'branch', 'diff', 'diagnostics' },
+          lualine_c = { { 'filename', file_status = true, newfile_status = false, path = 1 } },
+          lualine_x = { 'encoding', 'fileformat', 'filetype' },
+          lualine_y = { 'progress' },
+          lualine_z = { 'location' }
+        },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { { 'filename', path = 1 } },
+          lualine_x = { 'location' },
+          lualine_y = {},
+          lualine_z = {}
+        },
+        tabline = {},
+        winbar = {},
+        inactive_winbar = {},
+        extensions = {}
+      },
+      dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true }
+    },
+    {
+      'lewis6991/gitsigns.nvim',
+      opts = {
+        signs                        = {
+          add          = { text = '│' },
+          change       = { text = '│' },
+          delete       = { text = '_' },
+          topdelete    = { text = '‾' },
+          changedelete = { text = '~' },
+          untracked    = { text = '┆' },
+        },
+        signcolumn                   = true,  -- Toggle with `:Gitsigns toggle_signs`
+        numhl                        = false, -- Toggle with `:Gitsigns toggle_numhl`
+        linehl                       = false, -- Toggle with `:Gitsigns toggle_linehl`
+        word_diff                    = false, -- Toggle with `:Gitsigns toggle_word_diff`
+        watch_gitdir                 = {
+          follow_files = true
+        },
+        attach_to_untracked          = true,
+        current_line_blame           = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+        current_line_blame_opts      = {
+          virt_text = true,
+          virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+          delay = 1000,
+          ignore_whitespace = false,
+        },
+        current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+        sign_priority                = 6,
+        update_debounce              = 100,
+        status_formatter             = nil,   -- Use default
+        max_file_length              = 40000, -- Disable if file is longer than this (in lines)
+        preview_config               = {
+          -- Options passed to nvim_open_win
+          border = 'single',
+          style = 'minimal',
+          relative = 'cursor',
+          row = 0,
+          col = 1
+        },
+      },
+    },
+    {
+      'romgrk/barbar.nvim',
+      dependencies = { 'nvim-web-devicons', 'gitsigns.nvim' },
+      opts = {
+        animation = false,
+        auto_hide = true,
+        tabpages = true,
+        closable = true,
+        clickable = true,
+        icons = {
+          diagnostics = {
+            [vim.diagnostic.severity.ERROR] = { enabled = false },
+            [vim.diagnostic.severity.WARN] = { enabled = false },
+            [vim.diagnostic.severity.INFO] = { enabled = false },
+            [vim.diagnostic.severity.HINT] = { enabled = false },
+          },
+          gitsigns = {
+            added = { enabled = false, icon = '+' },
+            changed = { enabled = false, icon = '~' },
+            deleted = { enabled = false, icon = '-' },
+          },
+          filetype = {
+            enabled = true,
+            custom_colors = true,
+          },
+          button = 'X',
+          separator = { left = '▎', right = '', },
+          inactive = { separator = { left = '▎', right = '', }, },
+          modified = { button = '●', },
+          pinned = { button = '📌', },
+        },
+        exclude_ft = { '' },
+        exclude_name = { '' },
+        hide = { extensions = false, inactive = false },
+        highlight_alternate = false,
+        highlight_visible = true,
+        insert_at_end = false,
+        insert_at_start = true,
+        maximum_padding = 1,
+        minimum_padding = 1,
+        maximum_length = 30,
+        semantic_letters = true,
+        letters = 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP',
+        no_name_title = nil,
+      },
+    },
+    {
+      'f-person/auto-dark-mode.nvim',
+      opts = {
+        update_interval = 3000,
+        set_dark_mode = function()
+          vim.api.nvim_set_option('background', 'dark')
+        end,
+        set_light_mode = function()
+          vim.api.nvim_set_option('background', 'light')
+        end,
+      },
+    },
+    {
+      "stevearc/oil.nvim",
+      opts = {
+        columns = {
+          "icon",
+          "permissions",
+          "size",
+          "mtime",
+        },
+        buf_options = {
+          buflisted = true,
+        },
+        view_options = {
+          show_hidden = true,
+        },
+        keymaps = {
+          ["g?"] = "actions.show_help",
+          ["<CR>"] = "actions.select",
+          ["<A-;>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
+          ["<A-'>"] = { "actions.select", opts = { horizontal = true }, desc = "Open the entry in a horizontal split" },
+          ["<A-t>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
+          ["<A-p>"] = "actions.preview",
+          ["<A-e>"] = "actions.close",
+          ["<A-r>"] = "actions.refresh",
+          ["-"] = "actions.parent",
+          ["_"] = "actions.open_cwd",
+          ["`"] = "actions.cd",
+          ["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory" },
+          ["gs"] = "actions.change_sort",
+          ["gx"] = "actions.open_external",
+          ["g."] = "actions.toggle_hidden",
+          ["g\\"] = "actions.toggle_trash",
+        },
+        use_default_keymaps = false,
+      },
+    },
+    {
+      'akinsho/toggleterm.nvim',
+      opts = {
+        insert_mappings = true,
+        terminal_mappings = true,
+        hide_numbers = false,
+        winbar = {
+          enabled = false,
+        },
+        env = {
+          ZSH_KEYBIND_MODE = "e",
+        },
+        size = function(term)
+          if term.direction == "horizontal" then
+            return 25
+          end
+          if term.direction == "vertical" then
+            return 100
+          end
+        end,
+        float_opts = {
+          border = 'curved',
+          width = 160,
+          height = 40,
+        }
+      },
+    },
+    { "folke/which-key.nvim",   config = true },
+    { "folke/zen-mode.nvim" },
+    { 'pearofducks/ansible-vim' },
+  },
+  install = { colorscheme = { "catppuccin" } },
+  checker = { enabled = true },
+})
+
+vim.cmd.colorscheme "catppuccin"
