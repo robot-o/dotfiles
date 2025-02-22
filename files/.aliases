@@ -61,6 +61,7 @@ alias tpf='tmuxp freeze -f yaml -o'
 alias tpfh='tmuxp freeze -f yaml -o ./.tmuxp.yaml'
 # tmuxp: personal
 alias tpd='tmuxp load -y ${HOME}/Projects/personal/.tmuxp/dotfiles.yml'
+alias tpi='tmuxp load -y ${HOME}/Projects/personal/.tmuxp/infra.yml'
 alias tpp='tmuxp load -y ${HOME}/Projects/personal/.tmuxp/current.yml'
 alias etpp='nvim ${HOME}/Projects/personal/.tmuxp/current.yml'
 alias etppd='nvim ${HOME}/Projects/personal/.tmuxp'

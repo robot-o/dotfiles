@@ -50,7 +50,7 @@ vim.g.mapleader = " "
 vim.g.maplocaleader = " "
 
 if vim.g.neovide then
-  vim.o.guifont = "JetBrainsMonoNL Nerd Font:h11"
+  vim.o.guifont = "JetBrainsMonoNL Nerd Font:h12"
   vim.g.neovide_transparency = 0.95
   vim.g.neovide_show_border = false
   vim.g.neovide_input_macos_option_key_is_meta = 'both'
@@ -423,7 +423,7 @@ require("lazy").setup({
       dependencies = { 'nvim-web-devicons', 'gitsigns.nvim' },
       opts = {
         animation = false,
-        auto_hide = true,
+        auto_hide = false,
         tabpages = true,
         closable = true,
         clickable = true,
@@ -529,12 +529,12 @@ require("lazy").setup({
         { mode = "n", "<leader>th", '<Cmd>ToggleTerm direction=horizontal<CR>', desc = 'Terminal: toggle horizontal' },
         { mode = "n", "<leader>tf", '<Cmd>ToggleTerm direction=float<CR>',      desc = 'Terminal: toggle float' },
         { mode = "n", "<leader>tT", '<Cmd>ToggleTerm direction=tab<CR>',        desc = 'Terminal: toggle tab' },
-        { mode = "t", "<A-h>",      ":wincmd h<CR>" },
-        { mode = "t", "<A-j>",      ":wincmd j<CR>" },
-        { mode = "t", "<A-k>",      ":wincmd k<CR>" },
-        { mode = "t", "<A-l>",      ":wincmd l<CR>" },
-        { mode = "t", "<esc>",      [[<C-\><C-n>]] },
-        { mode = 't', '<A-w>',      [[<C-\><C-n><A-w>]] },
+        { mode = "t", "<A-h>",      "<C-\\><C-n>:wincmd h<CR>" },
+        { mode = "t", "<A-j>",      "<C-\\><C-n>:wincmd j<CR>" },
+        { mode = "t", "<A-k>",      "<C-\\><C-n>:wincmd k<CR>" },
+        { mode = "t", "<A-l>",      "<C-\\><C-n>:wincmd l<CR>" },
+        { mode = "t", "<esc><esc>", "<C-\\><C-n>" },
+        { mode = 't', '<A-q>',      "<C-\\><C-n>:q<CR>" },
       },
       opts = {
         insert_mappings = true,
@@ -544,7 +544,7 @@ require("lazy").setup({
           enabled = false,
         },
         env = {
-          ZSH_KEYBIND_MODE = "e",
+          ZSH_KEYBIND_MODE = "v",
         },
         size = function(term)
           if term.direction == "horizontal" then
@@ -692,7 +692,10 @@ require("lazy").setup({
     },
   },
   install = { colorscheme = { "catppuccin" } },
-  checker = { enabled = true },
+  checker = {
+    enabled = true,
+    notify = false
+  },
 })
 
 vim.cmd.colorscheme "catppuccin"
@@ -756,14 +759,6 @@ vim.keymap.set("n", "<leader>lsi", vim.lsp.buf.implementation, { desc = 'LSP/sym
 vim.keymap.set("n", "<leader>lst", vim.lsp.buf.type_definition, { desc = 'LSP/symbol: goto type definition' })
 vim.keymap.set("n", "<leader>lsr", vim.lsp.buf.references, { desc = 'LSP/symbol: show references' })
 vim.keymap.set("n", "<leader>lss", vim.lsp.buf.signature_help, { desc = 'LSP/symbol: signature help' })
-
-
-vim.keymap.set("n", "<leader>f", '@f', { desc = 'Macro: run @f (format)' })
-vim.keymap.set("n", "<leader>b", '@b', { desc = 'Macro: run @b (build)' })
-vim.keymap.set("n", "<leader>r", '@r', { desc = 'Macro: run @r (run)' })
-
-vim.keymap.set("n", "<leader>v", '', { desc = 'Viewers..' })
-vim.keymap.set("n", "<leader>vg", ':Glow<CR>', { desc = 'View in Glow..' })
 
 local ts = require('telescope.builtin')
 vim.keymap.set('n', '<A-/>', ts.current_buffer_fuzzy_find, {})
