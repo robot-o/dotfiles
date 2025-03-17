@@ -6,6 +6,29 @@ spoon.SpoonInstall.use_syncinstall = true
 
 spoon.SpoonInstall:andUse("TimeMachineProgress", { start = true })
 
+local caffeine = hs.menubar.new()
+local iconOn = hs.image.imageFromPath("/users/User/.config/hs/icons/mug-white.png")
+local iconOff = hs.image.imageFromPath("/users/User/.config/hs/icons/bed.png")
+
+local function setCaffeineDisplay(state)
+  if state then
+    caffeine:setIcon(iconOn)
+    caffeine:setTooltip("AWAKE")
+  else
+    caffeine:setIcon(iconOff)
+    caffeine:setTooltip("EEPY")
+  end
+end
+
+local function caffeineClicked()
+  setCaffeineDisplay(hs.caffeinate.toggle("displayIdle"))
+end
+
+if caffeine then
+  caffeine:setClickCallback(caffeineClicked)
+  setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
+end
+
 local function getAppID(app)
   if hs.application.infoForBundlePath(app) then
     return hs.application.infoForBundlePath(app)['CFBundleIdentifier']
