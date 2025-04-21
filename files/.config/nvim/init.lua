@@ -89,6 +89,10 @@ require("lazy").setup({
       },
     },
     {
+      "jim-at-jibba/micropython.nvim",
+      dependencies = { "akinsho/toggleterm.nvim", "stevearc/dressing.nvim" },
+    },
+    {
       'nvim-telescope/telescope.nvim',
       version = '0.1.x',
       dependencies = { { 'nvim-lua/plenary.nvim' } },
@@ -213,6 +217,7 @@ require("lazy").setup({
             null_ls.builtins.formatting.shellharden,
             null_ls.builtins.formatting.hclfmt,
             null_ls.builtins.formatting.yamlfmt,
+            null_ls.builtins.formatting.prettierd,
             null_ls.builtins.diagnostics.markdownlint,
           }
         }
@@ -297,13 +302,17 @@ require("lazy").setup({
     },
     {
       'nvim-tree/nvim-tree.lua',
+      enabled = false,
       keys = {
         { "<A-R>", ":NvimTreeToggle<CR>" },
         { "<A-r>", ":NvimTreeFocus<CR>" },
         { "<A-U>", ":UndotreeToggle<CR>" },
         { "<A-u>", ":UndotreeFocus<CR>" },
       },
-      opts = {},
+      opts = {
+        disable_netrw = false,
+        hijack_netrw = true
+      },
       dependencies = {
         'nvim-tree/nvim-web-devicons',
       },

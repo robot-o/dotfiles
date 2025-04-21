@@ -13,10 +13,10 @@ local iconOff = hs.image.imageFromPath("/users/User/.config/hs/icons/bed.png")
 local function setCaffeineDisplay(state)
   if state then
     caffeine:setIcon(iconOn)
-    caffeine:setTooltip("AWAKE")
+    caffeine:setTooltip("COFE >:3")
   else
     caffeine:setIcon(iconOff)
-    caffeine:setTooltip("EEPY")
+    caffeine:setTooltip("EEPY zZzZ")
   end
 end
 
