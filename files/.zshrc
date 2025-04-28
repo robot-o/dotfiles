@@ -4,7 +4,9 @@
 [[ $- != *i* ]] && return
 
 # benchmarking
-#zmodload zsh/zprof
+if [[ "$ZSH_BENCHMARKING_ENABLED"  == "true" ]]; then
+  zmodload zsh/zprof
+fi
 
 # brew completions need to be done before compinit is called
 if command -v brew &>/dev/null; then
@@ -94,7 +96,7 @@ fi
 
 
 ### INCLUDES
-#
+
 function include() {
   [[ -f "$1" ]] && source "$1"
 }
@@ -156,24 +158,25 @@ if command -v brew &>/dev/null; then
 fi
 
 
-# misc comp stuff
-# profiling trigger
-#zprof
-
 # dark mode toggle
 STYLE_MODE=Dark
 STYLE_MODE_LOWER=dark
 
 # get from macos
+# TODO: add this for generic linux
 if command -v defaults &>/dev/null; then
     # this just fails if it's light mode /shrug
     STYLE_MODE=${"$(defaults read -g AppleInterfaceStyle &>/dev/null | tr -d '[:space:]')":-"Light"}
     STYLE_MODE_LOWER=$(echo ${STYLE_MODE} | awk '{print tolower($0)}')
 fi
-# TODO: add this for generic linux
 
+# TODO: fix this so it fails gracefully
 # do stuff based on mode
 git config --global delta.syntax-theme OneHalf${STYLE_MODE}
 ln -sf $HOME/.config/starship-${STYLE_MODE_LOWER}.toml ${HOME}/.config/starship.toml &>/dev/null
 export BAT_THEME="OneHalf${STYLE_MODE}"
+
+if [[ "$ZSH_BENCHMARKING_ENABLED"  == "true" ]]; then
+  zprof
+fi
 

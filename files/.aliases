@@ -1,5 +1,4 @@
 # vim: ft=bash
-#
 
 # generic
 alias s='sudo'
@@ -56,7 +55,7 @@ alias ta='tmux a'
 alias tat='tmux a -t '
 # tmuxp: general
 alias tpl='tmuxp load -y'
-alias tplh'tmuxp load -y ./'
+alias tplh='tmuxp load -y ./'
 alias tpf='tmuxp freeze -f yaml -o'
 alias tpfh='tmuxp freeze -f yaml -o ./.tmuxp.yaml'
 # tmuxp: personal

@@ -25,8 +25,11 @@ then
 fi
 export PATH
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
+function include() {
+  [[ -f "$1" ]] && source "$1"
+}
+
+include ~/.aliases
 
 ### COMPLETIONS & BINDINGS
 
@@ -40,6 +43,7 @@ if command -v fzf &>/dev/null; then
     source /usr/share/fzf/shell/key-bindings.bash
   fi
 fi
+
 
 # hook direnv completion
 if command -v direnv &>/dev/null; then
@@ -67,6 +71,11 @@ if command -v kubectl &>/dev/null; then
   complete -F __start_kubectl kc
 fi
 
-source ~/.aliases
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# setup prompt
+if command -v starship &>/dev/null; then
+  eval "$(starship init bash)"
+fi
+
+

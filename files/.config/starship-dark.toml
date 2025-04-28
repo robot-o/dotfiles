@@ -5,7 +5,7 @@
 add_newline = false
 right_format = """$time"""
 command_timeout = 1000
-format = "$all$kubernetes$line_break$character"
+format = "$all$kubernetes$shell$line_break$character"
 
 [character]
 success_symbol = "[\\$](bold green)"
@@ -21,6 +21,12 @@ style_user = "bold fg:250"
 ssh_only = false
 style = "bold fg:250"
 format = "[$hostname]($style) "
+
+[shell]
+disabled = false
+bash_indicator = '\(bash\) '
+zsh_indicator = ''
+format = '[$indicator](fg:245)'
 
 [directory]
 format = "[in](fg:245) [$path]($style)[$read_only]($read_only_style) "
