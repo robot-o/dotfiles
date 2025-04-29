@@ -94,22 +94,22 @@ local hyper = { "alt", "shift", "ctrl", "cmd" }
 
 hs.hotkey.showHotkeys(hyper, '-')
 
-hs.hotkey.bind(meh, "e", "finder", function() hs.execute('open -a Finder') end)
+hs.hotkey.bind(meh, "f", "finder", function() hs.execute('open -a Finder') end)
 
 hs.hotkey.bind(meh, "r", "reload config", function()
   hs.alert.show("Reloading HS Config..")
   hs.reload()
 end)
 
-hs.hotkey.bind(meh, "1", "browser - personal", function()
+hs.hotkey.bind(meh, "q", "browser - personal", function()
   braveProfileWindow('personal')
 end)
 
-hs.hotkey.bind(meh, "2", "browser - work", function()
+hs.hotkey.bind(meh, "w", "browser - work", function()
   braveProfileWindow('work')
 end)
 
-hs.hotkey.bind(meh, "3", "browser - customer", function()
+hs.hotkey.bind(meh, "e", "browser - customer", function()
   braveProfileWindow('customer')
 end)
 
