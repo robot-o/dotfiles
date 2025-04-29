@@ -94,31 +94,31 @@ local hyper = { "alt", "shift", "ctrl", "cmd" }
 
 hs.hotkey.showHotkeys(hyper, '-')
 
-hs.hotkey.bind(meh, "f", "finder", function() hs.execute('open -a Finder') end)
+hs.hotkey.bind(hyper, "f", "finder", function() hs.execute('open -a Finder') end)
 
-hs.hotkey.bind(meh, "r", "reload config", function()
+hs.hotkey.bind(hyper, "r", "reload config", function()
   hs.alert.show("Reloading HS Config..")
   hs.reload()
 end)
 
-hs.hotkey.bind(meh, "q", "browser - personal", function()
+hs.hotkey.bind(hyper, "q", "browser - personal", function()
   braveProfileWindow('personal')
 end)
 
-hs.hotkey.bind(meh, "w", "browser - work", function()
+hs.hotkey.bind(hyper, "w", "browser - work", function()
   braveProfileWindow('work')
 end)
 
-hs.hotkey.bind(meh, "e", "browser - customer", function()
+hs.hotkey.bind(hyper, "e", "browser - customer", function()
   braveProfileWindow('customer')
 end)
 
-hs.hotkey.bind(meh, "Return", "terminal", function()
+hs.hotkey.bind(hyper, "Return", "terminal", function()
   hs.execute('open -a "Ghostty"')
 end)
 
 
-hs.hotkey.bind(meh, "V", "type clipboard contents", function()
+hs.hotkey.bind(hyper, "V", "type clipboard contents", function()
   hs.alert.show("Typing Clipboard..")
   local inputString = hs.pasteboard.getContents()
   for i = 1, #inputString do
