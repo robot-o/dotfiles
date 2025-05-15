@@ -364,9 +364,10 @@ require("lazy").setup({
     {
       'lewis6991/gitsigns.nvim',
       keys = {
-        { "<leader>lc",  '<Cmd>ClangdSwitchSourceHeader<CR>',           desc = 'LSP(clangd): toggle source/header' },
-        { "<leader>gd",  '<Cmd>Gitsigns diffthis<CR>',                  desc = 'Git: diff' },
-        { "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>', desc = 'Git: toggle line blame' },
+        { "<leader>lc",  '<Cmd>ClangdSwitchSourceHeader<CR>',           desc = 'clangd: toggle source/header' },
+        { "<leader>g",   '',                                            desc = 'Git..' },
+        { "<leader>gd",  '<Cmd>Gitsigns diffthis<CR>',                  desc = 'diff' },
+        { "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>', desc = 'toggle line blame' },
       },
       opts = {
         signs                        = {
@@ -409,6 +410,7 @@ require("lazy").setup({
     },
     {
       'romgrk/barbar.nvim',
+      lazy = false,
       keys = {
         { '<A-w>', '<Cmd>BufferClose<CR>' },
         { '<A-W>', '<Cmd>BufferCloseAllButVisible<CR>' },
@@ -533,11 +535,12 @@ require("lazy").setup({
         { mode = "n", "<A-`>",      '<Cmd>ToggleTerm<CR>',                      desc = 'Terminal: toggle' },
         { mode = "i", "<A-`>",      '<Cmd>ToggleTerm<CR>',                      desc = 'Terminal: toggle' },
         { mode = "t", "<A-`>",      '<Cmd>ToggleTerm<CR>',                      desc = 'Terminal: toggle' },
-        { mode = "n", "<leader>tt", '<Cmd>ToggleTerm<CR>',                      desc = 'Terminal: toggle' },
-        { mode = "n", "<leader>tv", '<Cmd>ToggleTerm direction=vertical<CR>',   desc = 'Terminal: toggle vertical' },
-        { mode = "n", "<leader>th", '<Cmd>ToggleTerm direction=horizontal<CR>', desc = 'Terminal: toggle horizontal' },
-        { mode = "n", "<leader>tf", '<Cmd>ToggleTerm direction=float<CR>',      desc = 'Terminal: toggle float' },
-        { mode = "n", "<leader>tT", '<Cmd>ToggleTerm direction=tab<CR>',        desc = 'Terminal: toggle tab' },
+        { mode = "n", "<leader>t",  '',                                         desc = 'Terminal..' },
+        { mode = "n", "<leader>tt", '<Cmd>ToggleTerm<CR>',                      desc = 'toggle' },
+        { mode = "n", "<leader>tv", '<Cmd>ToggleTerm direction=vertical<CR>',   desc = 'toggle vertical' },
+        { mode = "n", "<leader>th", '<Cmd>ToggleTerm direction=horizontal<CR>', desc = 'toggle horizontal' },
+        { mode = "n", "<leader>tf", '<Cmd>ToggleTerm direction=float<CR>',      desc = 'toggle float' },
+        { mode = "n", "<leader>tT", '<Cmd>ToggleTerm direction=tab<CR>',        desc = 'toggle tab' },
         { mode = "t", "<A-h>",      "<C-\\><C-n>:wincmd h<CR>" },
         { mode = "t", "<A-j>",      "<C-\\><C-n>:wincmd j<CR>" },
         { mode = "t", "<A-k>",      "<C-\\><C-n>:wincmd k<CR>" },
@@ -586,116 +589,199 @@ require("lazy").setup({
       enabled = true,
       keys = {
         { mode = "n", "<leader>a",    '',                             desc = 'AI...' },
-        { mode = "n", "<leader>acf",  '<Cmd>GpChatFinder<CR>',        desc = 'AI/Chat: finder' },
-        { mode = "n", "<leader>ac",   '',                             desc = 'AI/Chat...' },
-        { mode = "n", "<leader>acc",  '<Cmd>GpChatToggle<CR>',        desc = 'AI/Chat: toggle' },
-        { mode = "n", "<leader>ach",  '<Cmd>GpChatToggle split<CR>',  desc = 'AI/Chat: toggle (hsplit)' },
-        { mode = "n", "<leader>acv",  '<Cmd>GpChatToggle vsplit<CR>', desc = 'AI/Chat: toggle (vsplit)' },
-        { mode = "n", "<leader>act",  '<Cmd>GpChatToggle tabnew<CR>', desc = 'AI/Chat: toggle (new tab)' },
-        { mode = "n", "<leader>acp",  '<Cmd>GpChatToggle popup<CR>',  desc = 'AI/Chat: toggle (popup)' },
-        { mode = "v", "<leader>ac",   '',                             desc = 'AI/Chat (with selection context)...' },
-        { mode = "v", "<leader>acc",  '<Cmd>GpChatToggle<CR>',        desc = 'AI/Chat: toggle (with selection context)' },
-        { mode = "v", "<leader>ach",  '<Cmd>GpChatToggle split<CR>',  desc = 'AI/Chat: toggle (hsplit) (with selection context)' },
-        { mode = "v", "<leader>acv",  '<Cmd>GpChatToggle vsplit<CR>', desc = 'AI/Chat: toggle (vsplit) (with selection context)' },
-        { mode = "v", "<leader>act",  '<Cmd>GpChatToggle tabnew<CR>', desc = 'AI/Chat: toggle (new tab) (with selection context)' },
-        { mode = "v", "<leader>acp",  '<Cmd>GpChatToggle popup<CR>',  desc = 'AI/Chat: toggle (popup) (with selection context)' },
-        { mode = "n", "<leader>acp",  '<Cmd>GpChatPaste<CR>',         desc = 'AI/Chat: paste selection' },
-        { mode = "n", "<leader>acph", '<Cmd>GpChatPaste split<CR>',   desc = 'AI/Chat: paste selection (hsplit)' },
-        { mode = "n", "<leader>acpv", '<Cmd>GpChatPaste vsplit<CR>',  desc = 'AI/Chat: paste selection (vsplit)' },
-        { mode = "n", "<leader>acpt", '<Cmd>GpChatPaste tabnew<CR>',  desc = 'AI/Chat: paste selection (new tab)' },
-        { mode = "n", "<leader>acpp", '<Cmd>GpChatPaste popup<CR>',   desc = 'AI/Chat: paste selection (popup)' },
-        { mode = "v", "<leader>acp",  '<Cmd>GpChatPaste<CR>',         desc = 'AI/Chat: paste selection' },
-        { mode = "v", "<leader>acph", '<Cmd>GpChatPaste split<CR>',   desc = 'AI/Chat: paste selection (hsplit)' },
-        { mode = "v", "<leader>acpv", '<Cmd>GpChatPaste vsplit<CR>',  desc = 'AI/Chat: paste selection (vsplit)' },
-        { mode = "v", "<leader>acpt", '<Cmd>GpChatPaste tabnew<CR>',  desc = 'AI/Chat: paste selection (new tab)' },
-        { mode = "v", "<leader>acpp", '<Cmd>GpChatPaste popup<CR>',   desc = 'AI/Chat: paste selection (popup)' },
-        { mode = "n", "<leader>at",   '',                             desc = 'AI/text..' },
-        { mode = "n", "<leader>atr",  '<Cmd>GpRewrite<CR>',           desc = 'AI/text: Rewrite' },
-        { mode = "n", "<leader>ata",  '<Cmd>GpAppend<CR>',            desc = 'AI/text: Append' },
-        { mode = "n", "<leader>atp",  '<Cmd>GpPrepend<CR>',           desc = 'AI/text: Prepend' },
-        { mode = "n", "<leader>atb",  '<Cmd>GpEnew<CR>',              desc = 'AI/text: Rewrite (new buffer)' },
-        { mode = "n", "<leader>att",  '<Cmd>GpTabnew<CR>',            desc = 'AI/text: Rewrite (new tab)' },
-        { mode = "n", "<leader>ath",  '<Cmd>GpNew<CR>',               desc = 'AI/text: Rewrite (hsplit)' },
-        { mode = "n", "<leader>atv",  '<Cmd>GpVnew<CR>',              desc = 'AI/text: Rewrite (vsplit)' },
-        { mode = "n", "<leader>ato",  '<Cmd>GpPopup<CR>',             desc = 'AI/text: Rewrite (popup)' },
-        { mode = "n", "<leader>atc",  '<Cmd>GpContext<CR>',           desc = 'AI/text: Set Repository Context' },
-        { mode = "v", "<leader>at",   '',                             desc = 'AI/text..(selection)' },
-        { mode = "v", "<leader>atr",  '<Cmd>GpRewrite<CR>',           desc = 'AI/text: Rewrite (selection)' },
-        { mode = "v", "<leader>ata",  '<Cmd>GpAppend<CR>',            desc = 'AI/text: Append (selection)' },
-        { mode = "v", "<leader>atp",  '<Cmd>GpPrepend<CR>',           desc = 'AI/text: Prepend (selection)' },
-        { mode = "v", "<leader>atb",  '<Cmd>GpEnew<CR>',              desc = 'AI/text: Rewrite (new buffer) (selection)' },
-        { mode = "v", "<leader>att",  '<Cmd>GpTabnew<CR>',            desc = 'AI/text: Rewrite (new tab) (selection)' },
-        { mode = "v", "<leader>ath",  '<Cmd>GpNew<CR>',               desc = 'AI/text: Rewrite (hsplit) (selection)' },
-        { mode = "v", "<leader>atv",  '<Cmd>GpVnew<CR>',              desc = 'AI/text: Rewrite (vsplit) (selection)' },
-        { mode = "v", "<leader>ato",  '<Cmd>GpPopup<CR>',             desc = 'AI/text: Rewrite (popup) (selection)' },
-        { mode = "v", "<leader>atc",  '<Cmd>GpContext<CR>',           desc = 'AI/text: Set Repository Context (selection)' },
+        { mode = "n", "<leader>ac",   '',                             desc = 'Chat...' },
+        { mode = "n", "<leader>acc",  '<Cmd>GpChatToggle<CR>',        desc = 'toggle' },
+        { mode = "n", "<leader>acd",  '<Cmd>GpChatDelete<CR>',        desc = 'delete' },
+        { mode = "n", "<leader>acf",  '<Cmd>GpChatFinder<CR>',        desc = 'finder' },
+        { mode = "n", "<leader>ach",  '<Cmd>GpChatToggle split<CR>',  desc = 'toggle (hsplit)' },
+        { mode = "n", "<leader>acv",  '<Cmd>GpChatToggle vsplit<CR>', desc = 'toggle (vsplit)' },
+        { mode = "n", "<leader>act",  '<Cmd>GpChatToggle tabnew<CR>', desc = 'toggle (new tab)' },
+        { mode = "n", "<leader>acP",  '<Cmd>GpChatToggle popup<CR>',  desc = 'toggle (popup)' },
+        { mode = "v", "<leader>ac",   '',                             desc = 'Chat (with selection context)...' },
+        { mode = "v", "<leader>acc",  '<Cmd>GpChatToggle<CR>',        desc = 'toggle (with selection context)' },
+        { mode = "v", "<leader>ach",  '<Cmd>GpChatToggle split<CR>',  desc = 'toggle (hsplit) (with selection context)' },
+        { mode = "v", "<leader>acv",  '<Cmd>GpChatToggle vsplit<CR>', desc = 'toggle (vsplit) (with selection context)' },
+        { mode = "v", "<leader>act",  '<Cmd>GpChatToggle tabnew<CR>', desc = 'toggle (new tab) (with selection context)' },
+        { mode = "v", "<leader>acp",  '<Cmd>GpChatToggle popup<CR>',  desc = 'toggle (popup) (with selection context)' },
+        { mode = "n", "<leader>acp",  '<Cmd>GpChatPaste<CR>',         desc = 'paste selection' },
+        { mode = "n", "<leader>acph", '<Cmd>GpChatPaste split<CR>',   desc = 'paste selection (hsplit)' },
+        { mode = "n", "<leader>acpv", '<Cmd>GpChatPaste vsplit<CR>',  desc = 'paste selection (vsplit)' },
+        { mode = "n", "<leader>acpt", '<Cmd>GpChatPaste tabnew<CR>',  desc = 'paste selection (new tab)' },
+        { mode = "n", "<leader>acpp", '<Cmd>GpChatPaste popup<CR>',   desc = 'paste selection (popup)' },
+        { mode = "v", "<leader>acp",  '<Cmd>GpChatPaste<CR>',         desc = 'paste selection' },
+        { mode = "v", "<leader>acph", '<Cmd>GpChatPaste split<CR>',   desc = 'paste selection (hsplit)' },
+        { mode = "v", "<leader>acpv", '<Cmd>GpChatPaste vsplit<CR>',  desc = 'paste selection (vsplit)' },
+        { mode = "v", "<leader>acpt", '<Cmd>GpChatPaste tabnew<CR>',  desc = 'paste selection (new tab)' },
+        { mode = "v", "<leader>acpp", '<Cmd>GpChatPaste popup<CR>',   desc = 'paste selection (popup)' },
+        { mode = "n", "<leader>at",   '',                             desc = 'Text..' },
+        { mode = "n", "<leader>atr",  '<Cmd>GpRewrite<CR>',           desc = 'Rewrite' },
+        { mode = "n", "<leader>ata",  '<Cmd>GpAppend<CR>',            desc = 'Append' },
+        { mode = "n", "<leader>atp",  '<Cmd>GpPrepend<CR>',           desc = 'Prepend' },
+        { mode = "n", "<leader>atb",  '<Cmd>GpEnew<CR>',              desc = 'Rewrite (new buffer)' },
+        { mode = "n", "<leader>att",  '<Cmd>GpTabnew<CR>',            desc = 'Rewrite (new tab)' },
+        { mode = "n", "<leader>ath",  '<Cmd>GpNew<CR>',               desc = 'Rewrite (hsplit)' },
+        { mode = "n", "<leader>atv",  '<Cmd>GpVnew<CR>',              desc = 'Rewrite (vsplit)' },
+        { mode = "n", "<leader>ato",  '<Cmd>GpPopup<CR>',             desc = 'Rewrite (popup)' },
+        { mode = "n", "<leader>atc",  '<Cmd>GpContext<CR>',           desc = 'Set Repository Context' },
+        { mode = "v", "<leader>at",   '',                             desc = 'Text..(selection)' },
+        { mode = "v", "<leader>atr",  [[:<C-u>GpRewrite<CR>]],        desc = 'Rewrite (selection)' },
+        { mode = "v", "<leader>ata",  [[:<C-u>GpAppend<CR>]],         desc = 'Append (selection)' },
+        { mode = "v", "<leader>atp",  [[:<C-u>GpPrepend<CR>]],        desc = 'Prepend (selection)' },
+        { mode = "v", "<leader>atb",  [[:<C-u>GpEnew<CR>]],           desc = 'Rewrite (new buffer) (selection)' },
+        { mode = "v", "<leader>att",  [[:<C-u>GpTabnew<CR>]],         desc = 'Rewrite (new tab) (selection)' },
+        { mode = "v", "<leader>ath",  [[:<C-u>GpNew<CR>]],            desc = 'Rewrite (hsplit) (selection)' },
+        { mode = "v", "<leader>atv",  [[:<C-u>GpVnew<CR>]],           desc = 'Rewrite (vsplit) (selection)' },
+        { mode = "v", "<leader>ato",  [[:<C-u>GpPopup<CR>]],          desc = 'Rewrite (popup) (selection)' },
+        { mode = "v", "<leader>atc",  [[:<C-u>GpContext<CR>]],        desc = 'Set Repository Context (selection)' },
       },
       opts = {
         providers = {
-          openai = {},
-          ollama = {
+          openai = {
             disable = false,
+            endpoint = "https://api.openai.com/v1/chat/completions",
+            secret = { "bw-get.sh", "OPENAI_API_KEY" },
+          },
+          ollama = {
+            disable = true,
             endpoint = "http://localhost:11434/v1/chat/completions",
           },
         },
         agents = {
           {
-            provider = "ollama",
-            name = "chat-deepseek-r1-14b",
+            provider = "openai",
+            name = "chat-4.1",
             chat = true,
             command = false,
             model = {
-              model = "deepseek-r1:14b",
-              temperature = 0.6,
+              model = "gpt-4.1",
+              temperature = 1.1,
               top_p = 1,
-              min_p = 0.05,
             },
-            system_prompt = "You are a general AI assistant serving as part of a code editor.",
+            system_prompt =
+            "You are a highly capable AI assistant specialized in software development, dev ops, cloud architecture, system architecture, and debugging. Answer concisely and practically. Ask clarifying questions if required to optimize answer quality.",
           },
           {
-            provider = "ollama",
-            name = "code-deepseek-r1-14b",
+            provider = "openai",
+            name = "code-4.1",
             chat = false,
             command = true,
             model = {
-              model = "deepseek-r1:14b",
-              temperature = 0.4,
+              model = "gpt-4.1",
+              temperature = 0.7,
               top_p = 1,
-              min_p = 0.05,
             },
-            --system_prompt = require("gp.defaults").code_system_prompt,
+            system_prompt =
+            "You are an AI working as a code editor. Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE. START AND END YOU ANSWER WITH THREE BACKTICKS.",
           },
           {
-            provider = "ollama",
-            name = "chat-llama3.1",
+            provider = "openai",
+            name = "chat-4.1-mini",
             chat = true,
             command = false,
             model = {
-              model = "llama3.1:latest",
-              temperature = 0.6,
+              model = "gpt-4.1-mini",
+              temperature = 1.1,
               top_p = 1,
-              min_p = 0.05,
             },
-            system_prompt = "You are a general AI assistant.",
+            system_prompt =
+            "You are a highly capable AI assistant specialized in software development, dev ops, cloud architecture, system architecture, and debugging. Answer concisely and practically. Ask clarifying questions if required to optimize answer quality.",
           },
           {
-            provider = "ollama",
-            name = "code-llama3.1",
+            provider = "openai",
+            name = "code-4.1-mini",
             chat = false,
             command = true,
             model = {
-              model = "llama3.1:latest",
-              temperature = 0.4,
+              model = "gpt-4.1-mini",
+              temperature = 0.7,
               top_p = 1,
-              min_p = 0.05,
             },
-            --system_prompt = require("gp.defaults").code_system_prompt,
+            system_prompt =
+            "You are an AI working as a code editor. Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE. START AND END YOU ANSWER WITH THREE BACKTICKS.",
+          },
+          {
+            provider = "openai",
+            name = "chat-o4-mini",
+            chat = true,
+            command = false,
+            model = {
+              model = "o4-mini",
+              temperature = 1.1,
+              top_p = 1,
+            },
+            system_prompt =
+            "You are a highly capable AI assistant specialized in software development, dev ops, cloud architecture, system architecture, and debugging. Answer concisely and practically. Ask clarifying questions if required to optimize answer quality.",
+          },
+          {
+            provider = "openai",
+            name = "code-o4-mini",
+            chat = false,
+            command = true,
+            model = {
+              model = "o4-mini",
+              temperature = 0.7,
+              top_p = 1,
+            },
+            system_prompt =
+            "You are an AI working as a code editor. Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE. START AND END YOU ANSWER WITH THREE BACKTICKS.",
+          },
+          {
+            provider = "openai",
+            name = "chat-o3-mini",
+            chat = true,
+            command = false,
+            model = {
+              model = "o3-mini",
+              temperature = 1.1,
+              top_p = 1,
+            },
+            system_prompt =
+            "You are a highly capable AI assistant specialized in software development, dev ops, cloud architecture, system architecture, and debugging. Answer concisely and practically. Ask clarifying questions if required to optimize answer quality.",
+          },
+          {
+            provider = "openai",
+            name = "code-o3-mini",
+            chat = false,
+            command = true,
+            model = {
+              model = "o3-mini",
+              temperature = 0.7,
+              top_p = 1,
+            },
+            system_prompt =
+            "You are an AI working as a code editor. Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE. START AND END YOU ANSWER WITH THREE BACKTICKS.",
+          },
+          {
+            provider = "openai",
+            name = "chat-o3",
+            chat = true,
+            command = false,
+            model = {
+              model = "o3",
+              temperature = 1.1,
+              top_p = 1,
+            },
+            system_prompt =
+            "You are a highly capable AI assistant specialized in software development, dev ops, cloud architecture, system architecture, and debugging. Answer concisely and practically. Ask clarifying questions if required to optimize answer quality.",
+          },
+          {
+            provider = "openai",
+            name = "code-o3",
+            chat = false,
+            command = true,
+            model = {
+              model = "o3",
+              temperature = 0.7,
+              top_p = 1,
+            },
+            system_prompt =
+            "You are an AI working as a code editor. Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE. START AND END YOU ANSWER WITH THREE BACKTICKS.",
           },
         },
         whisper = { disable = true, },
         image = { disable = true, },
-        default_chat_agent = "chat-deepseek-r1-14b",
-        default_command_agent = "code-deepseek-r1-14b",
+        default_chat_agent = "chat-4.1",
+        default_command_agent = "code-4.1",
         chat_dir = vim.fn.expand('$HOME/Documents/ollama/nvim'),
       },
     },
@@ -722,14 +808,14 @@ vim.keymap.set("n", "<A-CR>", "O<Esc>")
 
 vim.keymap.set("n", "Y", "y$")
 
-vim.keymap.set("n", "<leader>y", "\"+y", { desc = 'yank from system clipboard' })
-vim.keymap.set("n", "<leader>Y", "\"+y$", { desc = 'yank line from system clipboard' })
-vim.keymap.set("v", "<leader>y", "\"+y", { desc = 'yank from system clipboard' })
-vim.keymap.set("v", "<leader>Y", "\"+y$", { desc = 'yank line from system clipboard' })
-vim.keymap.set("n", "<leader>p", "\"+p", { desc = 'paste down from system clipboard' })
-vim.keymap.set("n", "<leader>P", "\"+P", { desc = 'paste up from system clipboard' })
-vim.keymap.set("v", "<leader>p", "\"+p", { desc = 'paste down from system clipboard' })
-vim.keymap.set("v", "<leader>P", "\"+P", { desc = 'paste up from system clipboard' })
+vim.keymap.set("n", "<leader>y", "\"+y", { desc = 'Text: yank from system clipboard' })
+vim.keymap.set("n", "<leader>Y", "\"+y$", { desc = 'Text: yank line from system clipboard' })
+vim.keymap.set("v", "<leader>y", "\"+y", { desc = 'Text: yank from system clipboard' })
+vim.keymap.set("v", "<leader>Y", "\"+y$", { desc = 'Text: yank line from system clipboard' })
+vim.keymap.set("n", "<leader>p", "\"+p", { desc = 'Text: paste down from system clipboard' })
+vim.keymap.set("n", "<leader>P", "\"+P", { desc = 'Text: paste up from system clipboard' })
+vim.keymap.set("v", "<leader>p", "\"+p", { desc = 'Text: paste down from system clipboard' })
+vim.keymap.set("v", "<leader>P", "\"+P", { desc = 'Text: paste up from system clipboard' })
 
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
@@ -740,6 +826,11 @@ vim.keymap.set("i", "<A-J>", "<esc>:m .+1<CR>==")
 vim.keymap.set("i", "<A-K>", "<esc>:m .-2<CR>==")
 vim.keymap.set("n", "<A-J>", ":m .+1<CR>==")
 vim.keymap.set("n", "<A-K>", ":m .-2<CR>==")
+
+vim.keymap.set("n", "<leader>s", ":w<CR>", { desc = 'VIM: save' })
+vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = 'VIM: close buffer' })
+vim.keymap.set("n", "<leader>Q", ":qa<CR>", { desc = 'VIM: quit' })
+vim.keymap.set("n", "<leader>x", ":x<CR>", { desc = 'VIM: save & close buffer' })
 
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 vim.keymap.set("n", "<A-q>", ":q<CR>")
@@ -754,36 +845,45 @@ vim.keymap.set("n", "<S-Tab>", "<<_")
 vim.keymap.set("v", "<Tab>", ">")
 vim.keymap.set("v", "<S-Tab>", "<")
 
-vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = 'LSP: format' })
-vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = 'LSP: rename' })
-vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = 'LSP: hover' })
-vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = 'LSP: code action' })
-vim.keymap.set("n", "<leader>ldl", vim.diagnostic.setloclist, { desc = 'LSP/diag: open list' })
-vim.keymap.set("n", "<leader>lds", vim.diagnostic.open_float, { desc = 'LSP/diag: open float' })
-vim.keymap.set("n", "<leader>ldd", vim.diagnostic.goto_next, { desc = 'LSP/diag: goto next' })
-vim.keymap.set("n", "<leader>ldu", vim.diagnostic.goto_prev, { desc = 'LSP/diag: goto prev' })
-vim.keymap.set("n", "<leader>lsd", vim.lsp.buf.definition, { desc = 'LSP/symbol: goto definition' })
-vim.keymap.set("n", "<leader>lsD", vim.lsp.buf.declaration, { desc = 'LSP/symbol: goto declaration' })
-vim.keymap.set("n", "<leader>lsi", vim.lsp.buf.implementation, { desc = 'LSP/symbol: goto implementation' })
-vim.keymap.set("n", "<leader>lst", vim.lsp.buf.type_definition, { desc = 'LSP/symbol: goto type definition' })
-vim.keymap.set("n", "<leader>lsr", vim.lsp.buf.references, { desc = 'LSP/symbol: show references' })
-vim.keymap.set("n", "<leader>lss", vim.lsp.buf.signature_help, { desc = 'LSP/symbol: signature help' })
+vim.keymap.set("n", "<leader>l", '', { desc = 'LSP...' })
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = 'format' })
+vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = 'rename' })
+vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = 'hover' })
+vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = 'code action' })
+vim.keymap.set("n", "<leader>ld", '', { desc = 'diagnostics..' })
+vim.keymap.set("n", "<leader>ldl", vim.diagnostic.setloclist, { desc = 'open list' })
+vim.keymap.set("n", "<leader>lds", vim.diagnostic.open_float, { desc = 'open float' })
+vim.keymap.set("n", "<leader>ldd", vim.diagnostic.goto_next, { desc = 'goto next' })
+vim.keymap.set("n", "<leader>ldu", vim.diagnostic.goto_prev, { desc = 'goto prev' })
+vim.keymap.set("n", "<leader>ls", '', { desc = 'symbols..' })
+vim.keymap.set("n", "<leader>lsd", vim.lsp.buf.definition, { desc = 'goto definition' })
+vim.keymap.set("n", "<leader>lsD", vim.lsp.buf.declaration, { desc = 'goto declaration' })
+vim.keymap.set("n", "<leader>lsi", vim.lsp.buf.implementation, { desc = 'goto implementation' })
+vim.keymap.set("n", "<leader>lst", vim.lsp.buf.type_definition, { desc = 'goto type definition' })
+vim.keymap.set("n", "<leader>lsr", vim.lsp.buf.references, { desc = 'show references' })
+vim.keymap.set("n", "<leader>lss", vim.lsp.buf.signature_help, { desc = 'signature help' })
 
 local ts = require('telescope.builtin')
-vim.keymap.set('n', '<A-/>', ts.current_buffer_fuzzy_find, {})
+vim.keymap.set('n', '<leader>/', ts.current_buffer_fuzzy_find, { desc = 'Telescope: fuzzy find current buffer' })
+vim.keymap.set('n', '<leader>d', ts.find_files, { desc = 'Telescope: find files' })
+vim.keymap.set('n', '<leader>f', ts.live_grep, { desc = 'Telescope: live grep' })
+vim.keymap.set('n', '<leader>F', ts.grep_string, { desc = 'Telescope: grep string' })
+vim.keymap.set('n', '<leader>b', ts.buffers, { desc = 'Telescope: buffers' })
+vim.keymap.set('n', '<leader>o', ts.command_history, { desc = 'Telescope: command history' })
+vim.keymap.set('n', '<A-/>', ts.current_buffer_fuzzy_find, { desc = 'Telescope: ' })
 vim.keymap.set('n', '<A-d>', ts.find_files, {})
 vim.keymap.set('n', '<A-f>', ts.live_grep, {})
 vim.keymap.set('n', '<A-F>', ts.grep_string, {})
 vim.keymap.set('n', '<A-b>', ts.buffers, {})
 vim.keymap.set('n', '<A-p>', ts.command_history, {})
 vim.keymap.set('n', '<A-P>', ts.builtin, {})
-vim.keymap.set("n", "<leader>s", '', { desc = 'Telescope..' })
-vim.keymap.set("n", "<leader>sg", '', { desc = 'Telescope/git..' })
-vim.keymap.set("n", "<leader>sgc", '', { desc = 'Commits' })
-vim.keymap.set("n", "<leader>sgb", '', { desc = 'Branches' })
-vim.keymap.set("n", "<leader>sl", '', { desc = 'Telescope/LSP..' })
-vim.keymap.set("n", "<leader>slr", '', { desc = 'References' })
-vim.keymap.set("n", "<leader>sld", '', { desc = 'Diagnostics' })
-vim.keymap.set("n", "<leader>slf", '', { desc = 'Definitions' })
-vim.keymap.set("n", "<leader>sli", '', { desc = 'Implementations' })
-vim.keymap.set("n", "<leader>sls", '', { desc = 'Symbols' })
+vim.keymap.set("n", "<leader>S", '', { desc = 'Telescope..' })
+vim.keymap.set("n", "<leader>Sg", '', { desc = 'Git..' })
+vim.keymap.set("n", "<leader>Sgc", '', { desc = 'Commits' })
+vim.keymap.set("n", "<leader>Sgb", '', { desc = 'Branches' })
+vim.keymap.set("n", "<leader>Sl", '', { desc = 'LSP..' })
+vim.keymap.set("n", "<leader>Slr", '', { desc = 'References' })
+vim.keymap.set("n", "<leader>Sld", '', { desc = 'Diagnostics' })
+vim.keymap.set("n", "<leader>Slf", '', { desc = 'Definitions' })
+vim.keymap.set("n", "<leader>Sli", '', { desc = 'Implementations' })
+vim.keymap.set("n", "<leader>Sls", '', { desc = 'Symbols' })
