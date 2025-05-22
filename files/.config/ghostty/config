@@ -13,3 +13,4 @@ keybind = cmd+l=goto_split:right
 keybind = cmd+l=goto_split:right
 keybind = cmd+t=new_window
 keybind = cmd+shift+equal=increase_font_size:1
+#custom-shader = ~/.config/ghostty-shaders/just-snow.glsl

@@ -68,7 +68,7 @@ alias tplp='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/personal/.tmuxp | fzf 
 alias tpsp='ln -sf $(fd -u -t f . ${HOME}/Projects/personal/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'') ${HOME}/Projects/personal/.tmuxp/current.yml'
 # tmuxp: work
 alias tpw='tmuxp load -y ${HOME}/Projects/work/.tmuxp/current.yml'
-alias etpwd='nvim ${HOME}/Projects/work/.tmuxp'
+alias etpwd='cd ${HOME}/Projects/work/.tmuxp && nvim .'
 alias etpw='nvim ${HOME}/Projects/work/.tmuxp/current.yml'
 alias tplw='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
 alias tpsw='ln -sf $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'') ${HOME}/Projects/work/.tmuxp/current.yml'

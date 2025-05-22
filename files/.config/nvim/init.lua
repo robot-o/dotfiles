@@ -183,27 +183,6 @@ require("lazy").setup({
       opts = {
         ensure_installed = {
           'lua_ls',
-          'rust_analyzer',
-          'nil_ls',
-        },
-        handlers = {
-          lua_ls = function()
-            require('lspconfig').lua_ls.setup {}
-          end,
-          rust_analyzer = function()
-            require('lspconfig').rust_analyzer.setup {}
-          end,
-          nil_ls = function()
-            require('lspconfig').nil_ls.setup({
-              settings = {
-                ['nil'] = {
-                  formatting = {
-                    command = { "nixfmt" },
-                  }
-                }
-              }
-            })
-          end,
         },
       }
     },
