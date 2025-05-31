@@ -89,8 +89,18 @@ require("lazy").setup({
       },
     },
     {
-      "jim-at-jibba/micropython.nvim",
-      dependencies = { "akinsho/toggleterm.nvim", "stevearc/dressing.nvim" },
+      "folke/flash.nvim",
+      event = "VeryLazy",
+      ---@type Flash.Config
+      opts = {},
+      -- stylua: ignore
+      keys = {
+        { "<leader>sj", mode = { "n", "x", "o", "t" }, function() require("flash").jump() end,              desc = "Flash: Jump" },
+        { "<leader>st", mode = { "n", "x", "o", "t" }, function() require("flash").treesitter() end,        desc = "Flash: Treesitter" },
+        { "<leader>sr", mode = { "o" },                function() require("flash").remote() end,            desc = "Flash: Remote" },
+        { "<leader>sR", mode = { "o", "x" },           function() require("flash").treesitter_search() end, desc = "Flash: Treesitter Search" },
+        { "<leader>sT", mode = { "c" },                function() require("flash").toggle() end,            desc = "Flash: Toggle" },
+      },
     },
     {
       'nvim-telescope/telescope.nvim',
@@ -203,6 +213,7 @@ require("lazy").setup({
       end
     },
     {
+      -- TODO: switch to blink.cmp
       'hrsh7th/nvim-cmp',
       dependencies = {
         { 'hrsh7th/cmp-nvim-lsp' },
@@ -273,7 +284,6 @@ require("lazy").setup({
         }
       end
     },
-    { 'jose-elias-alvarez/typescript.nvim' },
     {
       "j-hui/fidget.nvim",
       opts = {},
@@ -805,11 +815,6 @@ vim.keymap.set("i", "<A-J>", "<esc>:m .+1<CR>==")
 vim.keymap.set("i", "<A-K>", "<esc>:m .-2<CR>==")
 vim.keymap.set("n", "<A-J>", ":m .+1<CR>==")
 vim.keymap.set("n", "<A-K>", ":m .-2<CR>==")
-
-vim.keymap.set("n", "<leader>s", ":w<CR>", { desc = 'VIM: save' })
-vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = 'VIM: close buffer' })
-vim.keymap.set("n", "<leader>Q", ":qa<CR>", { desc = 'VIM: quit' })
-vim.keymap.set("n", "<leader>x", ":x<CR>", { desc = 'VIM: save & close buffer' })
 
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 vim.keymap.set("n", "<A-q>", ":q<CR>")
