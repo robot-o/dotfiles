@@ -2,7 +2,7 @@ font-feature = -dlig
 font-feature = -liga
 font-feature = -calt
 font-size = 13
-theme = catppuccin-mocha
+theme = tokyonight
 background-opacity = 1
 keybind = cmd+;=new_split:right
 keybind = cmd+'=new_split:down
