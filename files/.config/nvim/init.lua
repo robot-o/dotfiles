@@ -2,6 +2,7 @@
 HOME = os.getenv('HOME')
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+---@diagnostic disable-next-line: undefined-field
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
   local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
@@ -58,42 +59,88 @@ if vim.g.neovide then
   vim.g.neovide_cursor_trail_size = 0.1
 end
 
+-- TODO: add markview
 require("lazy").setup({
   spec = {
     {
-      "catppuccin/nvim",
-      name = "catppuccin",
+      "folke/tokyonight.nvim",
+      enabled = true,
+      lazy = false,
       priority = 1000,
+      opts = {},
+    },
+    {
+      "folke/snacks.nvim",
+      enabled = true,
+      priority = 1000,
+      lazy = false,
       opts = {
-        flavour = "mocha",
-        background = {
-          light = "latte",
-          dark = "mocha",
+        animate = {
+          enabled = false,
+          duration = 10,
+          easing = "linear",
+          fps = 120,
         },
-        dim_inactive = {
+        bigfile = {
           enabled = true,
-          shade = "dark",
-          percentage = 0.1,
+          notify = true,
+          size = 2 * (1024 * 1024) -- 2MB
         },
-        integrations = {
-          cmp = true,
-          gitsigns = true,
-          nvimtree = true,
-          treesitter = true,
-          notify = false,
-          barbar = true,
-          mini = false,
-          mason = true,
-          telescope = { enabled = true },
+        bufdelete = { enabled = false },
+        dashboard = { enabled = true },
+        debug = { enabled = true },
+        dim = { enabled = true },
+        explorer = {
+          enabled = true,
+          replace_netrw = true
         },
+        git = { enabled = false },
+        gitbrowse = { enabled = false },
+        image = { enabled = true },
+        indent = {
+          enabled = true,
+          animate = { enabled = false }
+        },
+        input = { enabled = true },
+        layout = { enabled = true },
+        lazygit = { enabled = true },
+        notifier = { enabled = true },
+        notify = { enabled = true },
+        picker = { enabled = true },
+        profiler = { enabled = false },
+        quickfile = { enabled = true },
+        rename = { enabled = false },
+        scope = { enabled = true },
+        scratch = { enabled = true },
+        scroll = { enabled = false },
+        statuscolumn = { enabled = false },
+        terminal = { enabled = true },
+        toggle = { enabled = true },
+        util = { enabled = true },
+        win = { enabled = true },
+        words = { enabled = true },
+        zen = { enabled = true },
+      },
+      keys = {
+        { "<A-e>",      mode = { "n" },           function() Snacks.explorer() end,        desc = "Picker/Explorer" },
+        { "<leader>z",  mode = { "n" },           function() Snacks.zen() end,             desc = "ZenMode Toggle" },
+        { "<A-g>",      mode = { "n" },           function() Snacks.lazygit.open() end,    desc = "Lazygit" },
+        { "<A-d>",      mode = { "n" },           function() Snacks.picker.files() end,    desc = "Picker/Files" },
+        { "<A-f>",      mode = { "n" },           function() Snacks.picker.grep() end,     desc = "Picker/Grep" },
+        { "<A-`>",      mode = { "n", "i", "t" }, function() Snacks.terminal.toggle() end, desc = "Terminal/Toggle" },
+        { "<leader>tt", mode = { "n", "i", "t" }, function() Snacks.terminal.toggle() end, desc = "Terminal/Toggle" },
+        { "<A-h>",      mode = { "t" },           "<C-\\><C-n>:wincmd h<CR>" },
+        { "<A-j>",      mode = { "t" },           "<C-\\><C-n>:wincmd j<CR>" },
+        { "<A-k>",      mode = { "t" },           "<C-\\><C-n>:wincmd k<CR>" },
+        { "<A-l>",      mode = { "t" },           "<C-\\><C-n>:wincmd l<CR>" },
+        { "<esc><esc>", mode = { "t" },           "<C-\\><C-n>" },
+        { '<A-q>',      mode = { 't' },           "<C-\\><C-n>:q<CR>" },
       },
     },
     {
       "folke/flash.nvim",
       event = "VeryLazy",
-      ---@type Flash.Config
       opts = {},
-      -- stylua: ignore
       keys = {
         { "<leader>sj", mode = { "n", "x", "o", "t" }, function() require("flash").jump() end,              desc = "Flash: Jump" },
         { "<leader>st", mode = { "n", "x", "o", "t" }, function() require("flash").treesitter() end,        desc = "Flash: Treesitter" },
@@ -103,79 +150,23 @@ require("lazy").setup({
       },
     },
     {
-      'nvim-telescope/telescope.nvim',
-      version = '0.1.x',
-      dependencies = { { 'nvim-lua/plenary.nvim' } },
-      opts = function()
-        local actions = require("telescope.actions")
-        return {
-          pickers = {
-            find_files = {
-              find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-            },
-            live_grep = {
-              additional_args = function()
-                return { "--hidden" }
-              end
-            }
-          },
-          defaults = {
-            mappings = {
-              i = {
-                ["<A-;>"] = actions.select_vertical,
-                ["<A-'>"] = actions.select_horizontal,
-                ["<A-t>"] = actions.select_tab
-              },
-              n = {
-                ["<A-;>"] = actions.select_vertical,
-                ["<A-'>"] = actions.select_horizontal,
-                ["<A-t>"] = actions.select_tab
-              }
-            }
-          }
-        }
-      end,
-    },
-    {
       'nvim-treesitter/nvim-treesitter',
+      enabled = true,
       build = ':TSUpdate',
       opts = {
         ensure_installed = {
-          "arduino",
-          "bash",
-          "c_sharp",
-          "cpp",
-          "css",
-          "diff",
-          "dockerfile",
-          "git_rebase",
-          "gitattributes",
-          "gitcommit",
-          "gitignore",
-          "glsl",
-          "go",
-          "gomod",
-          "graphql",
-          "hcl",
-          "html",
-          "json",
-          "jsonc",
-          "latex",
-          "make",
-          "markdown",
-          "nix",
           "regex",
-          "rst",
-          "scss",
-          "sql",
-          "toml",
-          "vim",
-          "yaml",
+          "css",
+          "html",
           "javascript",
-          "python",
-          "c",
-          "lua",
-          "rust" },
+          "latex",
+          "norg",
+          "scss",
+          "svelte",
+          "tsx",
+          "typst",
+          "vue"
+        },
         sync_install = false,
         auto_install = true,
         highlight = {
@@ -185,133 +176,50 @@ require("lazy").setup({
         },
       },
     },
-    { 'mbbill/undotree' },
-    { 'neovim/nvim-lspconfig' },
-    { 'williamboman/mason.nvim', opts = {}, },
     {
-      'williamboman/mason-lspconfig.nvim',
+      'mason-org/mason-lspconfig.nvim',
+      enabled = true,
+      lazy = true,
+      dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        "neovim/nvim-lspconfig",
+      },
       opts = {
-        ensure_installed = {
-          'lua_ls',
-        },
+        automatic_enable = true,
+        ensure_installed = { 'lua_ls' },
       }
     },
     {
-      'nvimtools/none-ls.nvim',
-      opts = function()
-        local null_ls = require('null-ls')
-        return {
-          sources = {
-            null_ls.builtins.completion.luasnip,
-            null_ls.builtins.formatting.shellharden,
-            null_ls.builtins.formatting.hclfmt,
-            null_ls.builtins.formatting.yamlfmt,
-            null_ls.builtins.formatting.prettierd,
-            null_ls.builtins.diagnostics.markdownlint,
-          }
-        }
-      end
-    },
-    {
-      -- TODO: switch to blink.cmp
-      'hrsh7th/nvim-cmp',
+      'saghen/blink.cmp',
+      enabled = true,
       dependencies = {
-        { 'hrsh7th/cmp-nvim-lsp' },
-        { 'hrsh7th/cmp-buffer' },
-        { 'hrsh7th/cmp-path' },
-        { 'L3MON4D3/LuaSnip' },
-        { 'rafamadriz/friendly-snippets' },
-        { 'saadparwaiz1/cmp_luasnip' },
+        'rafamadriz/friendly-snippets',
       },
-      opts = function()
-        local cmp = require('cmp')
-        local ls = require('luasnip')
-        return {
-          sources = {
-            { name = 'nvim_lsp' },
-            { name = 'buffer',  keyword_length = 3 },
-            { name = 'luasnip', keyword_length = 2 },
-            { name = 'path' },
-          },
-          mapping = cmp.mapping.preset.insert({
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-d>'] = cmp.mapping.scroll_docs(4),
-            ['<CR>'] = cmp.mapping(function(fallback)
-              if cmp.visible() then
-                if ls.expandable() then
-                  ls.expand()
-                else
-                  cmp.confirm({ select = true, })
-                end
-              else
-                fallback()
-              end
-            end),
-            ['<Tab>'] = cmp.mapping(function(fallback)
-              if cmp.visible() then
-                cmp.select_next_item()
-              elseif ls.locally_jumpable(1) then
-                ls.jump(1)
-              else
-                fallback()
-              end
-            end, { 'i', 's' }),
-            ['<S-Tab>'] = cmp.mapping(function(fallback)
-              if cmp.visible() then
-                cmp.select_prev_item()
-              elseif ls.locally_jumpable(-1) then
-                ls.jump(-1)
-              else
-                fallback()
-              end
-            end, { 'i', 's' }),
-            ['<C-f>'] = cmp.mapping(function(fallback)
-              if ls.locally_jumpable(1) then
-                ls.jump(1)
-              else
-                fallback()
-              end
-            end),
-            ['<C-b>'] = cmp.mapping(function(fallback)
-              if ls.locally_jumpable(-1) then
-                ls.jump(-1)
-              else
-                fallback()
-              end
-            end),
-          }),
-        }
-      end
+      version = '1.*',
+      opts = {
+        keymap = { preset = 'super-tab' },
+        appearance = { nerd_font_variant = 'mono' },
+        completion = { documentation = { auto_show = true } },
+        sources = {
+          default = { 'lsp', 'path', 'snippets', 'buffer' },
+        },
+        fuzzy = { implementation = "prefer_rust_with_warning" }
+      },
+      opts_extend = { "sources.default" }
     },
     {
       "j-hui/fidget.nvim",
+      enabled = true,
       opts = {},
-      version = "v1.3.0"
-    },
-    {
-      'nvim-tree/nvim-tree.lua',
-      enabled = false,
-      keys = {
-        { "<A-R>", ":NvimTreeToggle<CR>" },
-        { "<A-r>", ":NvimTreeFocus<CR>" },
-        { "<A-U>", ":UndotreeToggle<CR>" },
-        { "<A-u>", ":UndotreeFocus<CR>" },
-      },
-      opts = {
-        disable_netrw = false,
-        hijack_netrw = true
-      },
-      dependencies = {
-        'nvim-tree/nvim-web-devicons',
-      },
+      version = "v1.6.1"
     },
     {
       'nvim-lualine/lualine.nvim',
+      enabled = true,
       opts = {
         options = {
           icons_enabled = true,
-          theme = 'catppuccin',
+          theme = 'tokyonight',
           component_separators = { left = '', right = '' },
           section_separators = { left = '', right = '' },
           disabled_filetypes = {
@@ -351,54 +259,8 @@ require("lazy").setup({
       dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true }
     },
     {
-      'lewis6991/gitsigns.nvim',
-      keys = {
-        { "<leader>lc",  '<Cmd>ClangdSwitchSourceHeader<CR>',           desc = 'clangd: toggle source/header' },
-        { "<leader>g",   '',                                            desc = 'Git..' },
-        { "<leader>gd",  '<Cmd>Gitsigns diffthis<CR>',                  desc = 'diff' },
-        { "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>', desc = 'toggle line blame' },
-      },
-      opts = {
-        signs                        = {
-          add          = { text = '│' },
-          change       = { text = '│' },
-          delete       = { text = '_' },
-          topdelete    = { text = '‾' },
-          changedelete = { text = '~' },
-          untracked    = { text = '┆' },
-        },
-        signcolumn                   = true,  -- Toggle with `:Gitsigns toggle_signs`
-        numhl                        = false, -- Toggle with `:Gitsigns toggle_numhl`
-        linehl                       = false, -- Toggle with `:Gitsigns toggle_linehl`
-        word_diff                    = false, -- Toggle with `:Gitsigns toggle_word_diff`
-        watch_gitdir                 = {
-          follow_files = true
-        },
-        attach_to_untracked          = true,
-        current_line_blame           = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-        current_line_blame_opts      = {
-          virt_text = true,
-          virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
-          delay = 1000,
-          ignore_whitespace = false,
-        },
-        current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
-        sign_priority                = 6,
-        update_debounce              = 100,
-        status_formatter             = nil,   -- Use default
-        max_file_length              = 40000, -- Disable if file is longer than this (in lines)
-        preview_config               = {
-          -- Options passed to nvim_open_win
-          border = 'single',
-          style = 'minimal',
-          relative = 'cursor',
-          row = 0,
-          col = 1
-        },
-      },
-    },
-    {
       'romgrk/barbar.nvim',
+      enabled = true,
       lazy = false,
       keys = {
         { '<A-w>', '<Cmd>BufferClose<CR>' },
@@ -420,7 +282,55 @@ require("lazy").setup({
         { '<A-{>', '<Cmd>BufferMovePrevious<CR>' },
         { '<A-}>', '<Cmd>BufferMoveNext<CR>' },
       },
-      dependencies = { 'nvim-web-devicons', 'gitsigns.nvim' },
+      dependencies = {
+        { "nvim-tree/nvim-web-devicons", opts = {} },
+        {
+          'lewis6991/gitsigns.nvim',
+          keys = {
+            { "<leader>g",   '',                                            desc = 'Git..' },
+            { "<leader>gd",  '<Cmd>Gitsigns diffthis<CR>',                  desc = 'diff' },
+            { "<leader>gtb", '<Cmd>Gitsigns toggle_current_line_blame<CR>', desc = 'toggle line blame' },
+          },
+          opts = {
+            signs                        = {
+              add          = { text = '│' },
+              change       = { text = '│' },
+              delete       = { text = '_' },
+              topdelete    = { text = '‾' },
+              changedelete = { text = '~' },
+              untracked    = { text = '┆' },
+            },
+            signcolumn                   = true,  -- Toggle with `:Gitsigns toggle_signs`
+            numhl                        = false, -- Toggle with `:Gitsigns toggle_numhl`
+            linehl                       = false, -- Toggle with `:Gitsigns toggle_linehl`
+            word_diff                    = false, -- Toggle with `:Gitsigns toggle_word_diff`
+            watch_gitdir                 = {
+              follow_files = true
+            },
+            attach_to_untracked          = true,
+            current_line_blame           = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+            current_line_blame_opts      = {
+              virt_text = true,
+              virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+              delay = 1000,
+              ignore_whitespace = false,
+            },
+            current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+            sign_priority                = 6,
+            update_debounce              = 100,
+            status_formatter             = nil,   -- Use default
+            max_file_length              = 40000, -- Disable if file is longer than this (in lines)
+            preview_config               = {
+              -- Options passed to nvim_open_win
+              border = 'single',
+              style = 'minimal',
+              relative = 'cursor',
+              row = 0,
+              col = 1
+            },
+          },
+        }
+      },
       opts = {
         animation = false,
         auto_hide = false,
@@ -465,24 +375,11 @@ require("lazy").setup({
       },
     },
     {
-      'f-person/auto-dark-mode.nvim',
-      opts = {
-        update_interval = 3000,
-        set_dark_mode = function()
-          vim.api.nvim_set_option_value('background', 'dark', {})
-        end,
-        set_light_mode = function()
-          vim.api.nvim_set_option_value('background', 'light', {})
-        end,
-      },
-    },
-    {
       "stevearc/oil.nvim",
+      enabled = true,
       keys = {
-        { "<A-E>", ":Oil<CR>" },
-        { "<A-e>", function()
-          require('oil').open_float()
-        end },
+        { "<leader>e", function() require('oil').toggle_float() end },
+        { "<A-E>",     function() require('oil').toggle_float() end },
       },
       opts = {
         columns = {
@@ -519,60 +416,10 @@ require("lazy").setup({
       },
     },
     {
-      'akinsho/toggleterm.nvim',
-      keys = {
-        { mode = "n", "<A-`>",      '<Cmd>ToggleTerm<CR>',                      desc = 'Terminal: toggle' },
-        { mode = "i", "<A-`>",      '<Cmd>ToggleTerm<CR>',                      desc = 'Terminal: toggle' },
-        { mode = "t", "<A-`>",      '<Cmd>ToggleTerm<CR>',                      desc = 'Terminal: toggle' },
-        { mode = "n", "<leader>t",  '',                                         desc = 'Terminal..' },
-        { mode = "n", "<leader>tt", '<Cmd>ToggleTerm<CR>',                      desc = 'toggle' },
-        { mode = "n", "<leader>tv", '<Cmd>ToggleTerm direction=vertical<CR>',   desc = 'toggle vertical' },
-        { mode = "n", "<leader>th", '<Cmd>ToggleTerm direction=horizontal<CR>', desc = 'toggle horizontal' },
-        { mode = "n", "<leader>tf", '<Cmd>ToggleTerm direction=float<CR>',      desc = 'toggle float' },
-        { mode = "n", "<leader>tT", '<Cmd>ToggleTerm direction=tab<CR>',        desc = 'toggle tab' },
-        { mode = "t", "<A-h>",      "<C-\\><C-n>:wincmd h<CR>" },
-        { mode = "t", "<A-j>",      "<C-\\><C-n>:wincmd j<CR>" },
-        { mode = "t", "<A-k>",      "<C-\\><C-n>:wincmd k<CR>" },
-        { mode = "t", "<A-l>",      "<C-\\><C-n>:wincmd l<CR>" },
-        { mode = "t", "<esc><esc>", "<C-\\><C-n>" },
-        { mode = 't', '<A-q>',      "<C-\\><C-n>:q<CR>" },
-      },
-      opts = {
-        insert_mappings = true,
-        terminal_mappings = true,
-        hide_numbers = false,
-        winbar = {
-          enabled = false,
-        },
-        env = {
-          ZSH_KEYBIND_MODE = "v",
-        },
-        size = function(term)
-          if term.direction == "horizontal" then
-            return 25
-          end
-          if term.direction == "vertical" then
-            return 100
-          end
-        end,
-        float_opts = {
-          border = 'curved',
-          width = 160,
-          height = 40,
-        }
-      },
+      "folke/which-key.nvim",
+      enabled = true,
+      opts = {},
     },
-    { "folke/which-key.nvim",              opts = {}, },
-    {
-      "folke/zen-mode.nvim",
-      keys = {
-        { "<leader>z", '<Cmd>ZenMode<CR>', desc = 'ZenMode: Toggle' },
-      },
-      opts = {
-        width = 200,
-      },
-    },
-    { 'pearofducks/ansible-vim' },
     {
       'robitx/gp.nvim',
       enabled = true,
@@ -661,111 +508,7 @@ require("lazy").setup({
             },
             system_prompt =
             "You are an AI working as a code editor. Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE. START AND END YOU ANSWER WITH THREE BACKTICKS.",
-          },
-          {
-            provider = "openai",
-            name = "chat-4.1-mini",
-            chat = true,
-            command = false,
-            model = {
-              model = "gpt-4.1-mini",
-              temperature = 1.1,
-              top_p = 1,
-            },
-            system_prompt =
-            "You are a highly capable AI assistant specialized in software development, dev ops, cloud architecture, system architecture, and debugging. Answer concisely and practically. Ask clarifying questions if required to optimize answer quality.",
-          },
-          {
-            provider = "openai",
-            name = "code-4.1-mini",
-            chat = false,
-            command = true,
-            model = {
-              model = "gpt-4.1-mini",
-              temperature = 0.7,
-              top_p = 1,
-            },
-            system_prompt =
-            "You are an AI working as a code editor. Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE. START AND END YOU ANSWER WITH THREE BACKTICKS.",
-          },
-          {
-            provider = "openai",
-            name = "chat-o4-mini",
-            chat = true,
-            command = false,
-            model = {
-              model = "o4-mini",
-              temperature = 1.1,
-              top_p = 1,
-            },
-            system_prompt =
-            "You are a highly capable AI assistant specialized in software development, dev ops, cloud architecture, system architecture, and debugging. Answer concisely and practically. Ask clarifying questions if required to optimize answer quality.",
-          },
-          {
-            provider = "openai",
-            name = "code-o4-mini",
-            chat = false,
-            command = true,
-            model = {
-              model = "o4-mini",
-              temperature = 0.7,
-              top_p = 1,
-            },
-            system_prompt =
-            "You are an AI working as a code editor. Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE. START AND END YOU ANSWER WITH THREE BACKTICKS.",
-          },
-          {
-            provider = "openai",
-            name = "chat-o3-mini",
-            chat = true,
-            command = false,
-            model = {
-              model = "o3-mini",
-              temperature = 1.1,
-              top_p = 1,
-            },
-            system_prompt =
-            "You are a highly capable AI assistant specialized in software development, dev ops, cloud architecture, system architecture, and debugging. Answer concisely and practically. Ask clarifying questions if required to optimize answer quality.",
-          },
-          {
-            provider = "openai",
-            name = "code-o3-mini",
-            chat = false,
-            command = true,
-            model = {
-              model = "o3-mini",
-              temperature = 0.7,
-              top_p = 1,
-            },
-            system_prompt =
-            "You are an AI working as a code editor. Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE. START AND END YOU ANSWER WITH THREE BACKTICKS.",
-          },
-          {
-            provider = "openai",
-            name = "chat-o3",
-            chat = true,
-            command = false,
-            model = {
-              model = "o3",
-              temperature = 1.1,
-              top_p = 1,
-            },
-            system_prompt =
-            "You are a highly capable AI assistant specialized in software development, dev ops, cloud architecture, system architecture, and debugging. Answer concisely and practically. Ask clarifying questions if required to optimize answer quality.",
-          },
-          {
-            provider = "openai",
-            name = "code-o3",
-            chat = false,
-            command = true,
-            model = {
-              model = "o3",
-              temperature = 0.7,
-              top_p = 1,
-            },
-            system_prompt =
-            "You are an AI working as a code editor. Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE. START AND END YOU ANSWER WITH THREE BACKTICKS.",
-          },
+          }
         },
         whisper = { disable = true, },
         image = { disable = true, },
@@ -775,14 +518,14 @@ require("lazy").setup({
       },
     },
   },
-  install = { colorscheme = { "catppuccin" } },
+  install = { colorscheme = { "tokyonight" } },
   checker = {
     enabled = true,
     notify = false
   },
 })
 
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "tokyonight"
 
 vim.keymap.set("n", "<A-;>", ":vsp<CR>")
 vim.keymap.set("n", "<A-'>", ":sp<CR>")
@@ -837,8 +580,8 @@ vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = 'code action
 vim.keymap.set("n", "<leader>ld", '', { desc = 'diagnostics..' })
 vim.keymap.set("n", "<leader>ldl", vim.diagnostic.setloclist, { desc = 'open list' })
 vim.keymap.set("n", "<leader>lds", vim.diagnostic.open_float, { desc = 'open float' })
-vim.keymap.set("n", "<leader>ldd", vim.diagnostic.goto_next, { desc = 'goto next' })
-vim.keymap.set("n", "<leader>ldu", vim.diagnostic.goto_prev, { desc = 'goto prev' })
+vim.keymap.set("n", "<leader>ldd", function() vim.diagnostic.jump({ count = 1 }) end, { desc = 'goto next' })
+vim.keymap.set("n", "<leader>ldu", function() vim.diagnostic.jump({ count = -1 }) end, { desc = 'goto previous' })
 vim.keymap.set("n", "<leader>ls", '', { desc = 'symbols..' })
 vim.keymap.set("n", "<leader>lsd", vim.lsp.buf.definition, { desc = 'goto definition' })
 vim.keymap.set("n", "<leader>lsD", vim.lsp.buf.declaration, { desc = 'goto declaration' })
@@ -846,28 +589,3 @@ vim.keymap.set("n", "<leader>lsi", vim.lsp.buf.implementation, { desc = 'goto im
 vim.keymap.set("n", "<leader>lst", vim.lsp.buf.type_definition, { desc = 'goto type definition' })
 vim.keymap.set("n", "<leader>lsr", vim.lsp.buf.references, { desc = 'show references' })
 vim.keymap.set("n", "<leader>lss", vim.lsp.buf.signature_help, { desc = 'signature help' })
-
-local ts = require('telescope.builtin')
-vim.keymap.set('n', '<leader>/', ts.current_buffer_fuzzy_find, { desc = 'Telescope: fuzzy find current buffer' })
-vim.keymap.set('n', '<leader>d', ts.find_files, { desc = 'Telescope: find files' })
-vim.keymap.set('n', '<leader>f', ts.live_grep, { desc = 'Telescope: live grep' })
-vim.keymap.set('n', '<leader>F', ts.grep_string, { desc = 'Telescope: grep string' })
-vim.keymap.set('n', '<leader>b', ts.buffers, { desc = 'Telescope: buffers' })
-vim.keymap.set('n', '<leader>o', ts.command_history, { desc = 'Telescope: command history' })
-vim.keymap.set('n', '<A-/>', ts.current_buffer_fuzzy_find, { desc = 'Telescope: ' })
-vim.keymap.set('n', '<A-d>', ts.find_files, {})
-vim.keymap.set('n', '<A-f>', ts.live_grep, {})
-vim.keymap.set('n', '<A-F>', ts.grep_string, {})
-vim.keymap.set('n', '<A-b>', ts.buffers, {})
-vim.keymap.set('n', '<A-p>', ts.command_history, {})
-vim.keymap.set('n', '<A-P>', ts.builtin, {})
-vim.keymap.set("n", "<leader>S", '', { desc = 'Telescope..' })
-vim.keymap.set("n", "<leader>Sg", '', { desc = 'Git..' })
-vim.keymap.set("n", "<leader>Sgc", '', { desc = 'Commits' })
-vim.keymap.set("n", "<leader>Sgb", '', { desc = 'Branches' })
-vim.keymap.set("n", "<leader>Sl", '', { desc = 'LSP..' })
-vim.keymap.set("n", "<leader>Slr", '', { desc = 'References' })
-vim.keymap.set("n", "<leader>Sld", '', { desc = 'Diagnostics' })
-vim.keymap.set("n", "<leader>Slf", '', { desc = 'Definitions' })
-vim.keymap.set("n", "<leader>Sli", '', { desc = 'Implementations' })
-vim.keymap.set("n", "<leader>Sls", '', { desc = 'Symbols' })
