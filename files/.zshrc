@@ -49,6 +49,12 @@ else
   bindkey -v
 fi
 
+# commandline editor editing
+
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 # set shorter timeout for mode switching
 export KEYTIMEOUT=1
 # vimkeys in tab complete 
