@@ -44,16 +44,16 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 automatically-unhide-macos-hidden-apps = false
 
 [workspace-to-monitor-force-assignment]
-  1 = 'main'
-  2 = 'main'
-  3 = 'main'
-  4 = 'main'
-  5 = 'main'
-  6 = 'secondary'
-  7 = 'secondary'
-  8 = 'secondary'
-  9 = 'secondary'
-  10 = 'secondary'
+  1 = ['LG', 'main']
+  2 = ['LG', 'main']
+  3 = ['LG', 'main']
+  4 = ['LG', 'main']
+  5 = ['LG', 'main']
+  6 = ['DELL', 'secondary']
+  7 = ['DELL', 'secondary']
+  8 = ['DELL', 'secondary']
+  9 = ['DELL', 'secondary']
+  10 = ['Built-in', 'secondary']
 
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
