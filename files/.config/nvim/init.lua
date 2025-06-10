@@ -122,10 +122,10 @@ require("lazy").setup({
         zen = { enabled = true },
       },
       keys = {
-        { "<A-e>",      mode = { "n" },           function() Snacks.explorer() end,        desc = "Picker/Explorer" },
+        { "<A-e>",      mode = { "n" },           function() Snacks.explorer({hidden = true, exclude = { "**/.git" }}) end,        desc = "Picker/Explorer" },
         { "<leader>z",  mode = { "n" },           function() Snacks.zen() end,             desc = "ZenMode Toggle" },
         { "<A-g>",      mode = { "n" },           function() Snacks.lazygit.open() end,    desc = "Lazygit" },
-        { "<A-d>",      mode = { "n" },           function() Snacks.picker.files() end,    desc = "Picker/Files" },
+        { "<A-d>",      mode = { "n" },           function() Snacks.picker.files({hidden = true, exclude = { "**/.git" }}) end,    desc = "Picker/Files" },
         { "<A-f>",      mode = { "n" },           function() Snacks.picker.grep() end,     desc = "Picker/Grep" },
         { "<A-`>",      mode = { "n", "i", "t" }, function() Snacks.terminal.toggle() end, desc = "Terminal/Toggle" },
         { "<leader>tt", mode = { "n", "i", "t" }, function() Snacks.terminal.toggle() end, desc = "Terminal/Toggle" },
