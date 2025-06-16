@@ -178,9 +178,10 @@ fi
 
 # TODO: fix this so it fails gracefully
 # do stuff based on mode
-git config --global delta.syntax-theme OneHalf${STYLE_MODE}
+# git config --global delta.syntax-theme OneHalf${STYLE_MODE}
 ln -sf $HOME/.config/starship-${STYLE_MODE_LOWER}.toml ${HOME}/.config/starship.toml &>/dev/null
-export BAT_THEME="OneHalf${STYLE_MODE}"
+#export BAT_THEME="OneHalf${STYLE_MODE}"
+export BAT_THEME="tokyonight_night"
 
 if [[ "$ZSH_BENCHMARKING_ENABLED"  == "true" ]]; then
   zprof

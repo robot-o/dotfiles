@@ -10,7 +10,7 @@
 
 [delta]
   light = false
-	syntax-theme = OneHalfDark
+	syntax-theme = tokyonight_night
   features = chameleon
   navigate = true
   line-numbers = true

@@ -1,4 +1,5 @@
 -- vim: ft=lua
+-- install & init lazy
 HOME = os.getenv('HOME')
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -17,6 +18,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
+
+
+-- options
 
 vim.opt.expandtab = true
 vim.opt.smartindent = true
@@ -59,6 +63,7 @@ if vim.g.neovide then
   vim.g.neovide_cursor_trail_size = 0.1
 end
 
+-- plugins
 -- TODO: add markview
 require("lazy").setup({
   spec = {
@@ -122,13 +127,13 @@ require("lazy").setup({
         zen = { enabled = true },
       },
       keys = {
-        { "<A-e>",      mode = { "n" },           function() Snacks.explorer({hidden = true, exclude = { "**/.git" }}) end,        desc = "Picker/Explorer" },
-        { "<leader>z",  mode = { "n" },           function() Snacks.zen() end,             desc = "ZenMode Toggle" },
-        { "<A-g>",      mode = { "n" },           function() Snacks.lazygit.open() end,    desc = "Lazygit" },
-        { "<A-d>",      mode = { "n" },           function() Snacks.picker.files({hidden = true, exclude = { "**/.git" }}) end,    desc = "Picker/Files" },
-        { "<A-f>",      mode = { "n" },           function() Snacks.picker.grep() end,     desc = "Picker/Grep" },
-        { "<A-`>",      mode = { "n", "i", "t" }, function() Snacks.terminal.toggle() end, desc = "Terminal/Toggle" },
-        { "<leader>tt", mode = { "n", "i", "t" }, function() Snacks.terminal.toggle() end, desc = "Terminal/Toggle" },
+        { "<A-e>",      mode = { "n" },           function() Snacks.explorer({ hidden = true, exclude = { "**/.git" } }) end,     desc = "Picker/Explorer" },
+        { "<leader>z",  mode = { "n" },           function() Snacks.zen() end,                                                    desc = "ZenMode Toggle" },
+        { "<A-g>",      mode = { "n" },           function() Snacks.lazygit.open() end,                                           desc = "Lazygit" },
+        { "<A-d>",      mode = { "n" },           function() Snacks.picker.files({ hidden = true, exclude = { "**/.git" } }) end, desc = "Picker/Files" },
+        { "<A-f>",      mode = { "n" },           function() Snacks.picker.grep() end,                                            desc = "Picker/Grep" },
+        { "<A-`>",      mode = { "n", "i", "t" }, function() Snacks.terminal.toggle() end,                                        desc = "Terminal/Toggle" },
+        { "<leader>tt", mode = { "n", "i", "t" }, function() Snacks.terminal.toggle() end,                                        desc = "Terminal/Toggle" },
         { "<A-h>",      mode = { "t" },           "<C-\\><C-n>:wincmd h<CR>" },
         { "<A-j>",      mode = { "t" },           "<C-\\><C-n>:wincmd j<CR>" },
         { "<A-k>",      mode = { "t" },           "<C-\\><C-n>:wincmd k<CR>" },
@@ -175,11 +180,19 @@ require("lazy").setup({
           disable = { "yaml" },
         },
       },
+      dependencies = {
+        {
+          "OXY2DEV/markview.nvim",
+          lazy = false,
+          dependencies = {
+            "saghen/blink.cmp"
+          },
+        },
+      },
     },
     {
       'mason-org/mason-lspconfig.nvim',
       enabled = true,
-      lazy = true,
       dependencies = {
         { "mason-org/mason.nvim", opts = {} },
         "neovim/nvim-lspconfig",
@@ -526,6 +539,26 @@ require("lazy").setup({
 })
 
 vim.cmd.colorscheme "tokyonight"
+
+
+-- autocommands
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.yml", "*.yaml" },
+  callback = function(args)
+    local path = args.file
+    if path and path:match("[/\\]ansible[/\\]") then
+      vim.bo.filetype = "yaml.ansible"
+    end
+  end,
+})
+
+-- additional lsp magic
+
+-- enable inline diagnostics
+vim.diagnostic.config({ virtual_text = true })
+
+-- keymaps
 
 vim.keymap.set("n", "<A-;>", ":vsp<CR>")
 vim.keymap.set("n", "<A-'>", ":sp<CR>")
