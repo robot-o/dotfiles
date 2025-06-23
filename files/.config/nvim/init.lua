@@ -54,9 +54,16 @@ vim.o.timeoutlen = 300
 vim.g.mapleader = " "
 vim.g.maplocaleader = " "
 
+
 if vim.g.neovide then
   vim.o.guifont = "JetBrainsMonoNL Nerd Font:h12"
-  vim.g.neovide_transparency = 0.95
+  vim.g.neovide_scale_factor = 1.0
+  vim.g.neovide_padding_top = 0
+  vim.g.neovide_padding_bottom = 0
+  vim.g.neovide_padding_right = 0
+  vim.g.neovide_padding_left = 0
+  vim.g.neovide_opacity = 0.8
+  vim.g.neovide_window_blurred = true
   vim.g.neovide_show_border = false
   vim.g.neovide_input_macos_option_key_is_meta = 'both'
   vim.g.neovide_cursor_animation_length = 0.02
@@ -72,7 +79,9 @@ require("lazy").setup({
       enabled = true,
       lazy = false,
       priority = 1000,
-      opts = {},
+      opts = {
+        transparent = true,
+      },
     },
     {
       "folke/snacks.nvim",

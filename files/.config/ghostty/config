@@ -1,9 +1,10 @@
 font-feature = -dlig
 font-feature = -liga
 font-feature = -calt
-font-size = 13
+font-size = 12
 theme = tokyonight
-background-opacity = 1
+background-opacity = 0.8
+background-blur = 50
 keybind = cmd+;=new_split:right
 keybind = cmd+'=new_split:down
 keybind = cmd+h=goto_split:left
