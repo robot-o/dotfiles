@@ -38,6 +38,13 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 # gpg key
 export GPG_TTY=$(tty)
 
+
+if command -v brew &>/dev/null; then
+  if brew list secretive &>/dev/null; then
+    export SSH_AUTH_SOCK=/Users/user/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+  fi
+fi
+
 # theming 
 # export GTK_THEME="Adwaita:dark"
 # export QT_STYLE_OVERRIDE="Adwaita-dark"

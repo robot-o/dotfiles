@@ -24,6 +24,7 @@ alias l='ls -lah --color=auto'
 alias rg='rg -uu'
 alias rf='rm -rf' # yolo
 alias ss='ssh $(rg '\''Host '\'' -N ~/.ssh/config | sed -e '\''s/Host //'\'' | fzf)'
+alias es='nvim ~/.ssh/config'
 
 if command -v pbcopy &>/dev/null; then # mac
   alias yoink='pbcopy <'

@@ -140,6 +140,7 @@ require("lazy").setup({
         { "<leader>z",  mode = { "n" },           function() Snacks.zen() end,                                                    desc = "ZenMode Toggle" },
         { "<A-g>",      mode = { "n" },           function() Snacks.lazygit.open() end,                                           desc = "Lazygit" },
         { "<A-d>",      mode = { "n" },           function() Snacks.picker.files({ hidden = true, exclude = { "**/.git" } }) end, desc = "Picker/Files" },
+        { "<A-r>",      mode = { "n" },           function() Snacks.picker.recent() end,                                          desc = "Picker/Recent" },
         { "<A-f>",      mode = { "n" },           function() Snacks.picker.grep() end,                                            desc = "Picker/Grep" },
         { "<A-`>",      mode = { "n", "i", "t" }, function() Snacks.terminal.toggle() end,                                        desc = "Terminal/Toggle" },
         { "<leader>tt", mode = { "n", "i", "t" }, function() Snacks.terminal.toggle() end,                                        desc = "Terminal/Toggle" },
