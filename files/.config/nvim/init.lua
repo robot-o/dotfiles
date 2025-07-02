@@ -551,16 +551,23 @@ require("lazy").setup({
 vim.cmd.colorscheme "tokyonight"
 
 
--- autocommands
+-- custom filetypes
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.yml", "*.yaml" },
-  callback = function(args)
-    local path = args.file
-    if path and path:match("[/\\]ansible[/\\]") then
-      vim.bo.filetype = "yaml.ansible"
-    end
-  end,
+vim.filetype.add({
+  pattern = {
+    ['.*.ya?ml'] = function(path)
+      if path:match("[/\\]ansible[/\\]") then
+        return "yaml.ansible"
+      end
+    end,
+    ['.*.j2'] = function(ext)
+      if ext:match('ya?ml') then
+        return 'yaml.jinja'
+      else
+        return 'jinja'
+      end
+    end,
+  },
 })
 
 -- additional lsp magic
