@@ -233,7 +233,13 @@ require("lazy").setup({
     {
       "j-hui/fidget.nvim",
       enabled = true,
-      opts = {},
+      opts = {
+        notification = {
+          window = {
+            winblend = 0,
+          },
+        },
+      },
       version = "v1.6.1"
     },
     {
@@ -358,43 +364,36 @@ require("lazy").setup({
         animation = false,
         auto_hide = false,
         tabpages = true,
-        closable = true,
         clickable = true,
         icons = {
-          diagnostics = {
-            [vim.diagnostic.severity.ERROR] = { enabled = false },
-            [vim.diagnostic.severity.WARN] = { enabled = false },
-            [vim.diagnostic.severity.INFO] = { enabled = false },
-            [vim.diagnostic.severity.HINT] = { enabled = false },
-          },
-          gitsigns = {
-            added = { enabled = false, icon = '+' },
-            changed = { enabled = false, icon = '~' },
-            deleted = { enabled = false, icon = '-' },
-          },
+          diagnostics = { enabled = false, },
+          gitsigns = { enabled = false, },
           filetype = {
-            enabled = true,
+            enabled = false,
             custom_colors = true,
           },
-          button = 'X',
-          separator = { left = '▎', right = '', },
-          inactive = { separator = { left = '▎', right = '', }, },
+          button = '⛌',
+          buffer_index = true,
+          buffer_number = false,
+          separator = { left = '▏', right = '', },
+          inactive = { separator = { left = '▏', }, },
+          separator_at_end = false,
           modified = { button = '●', },
           pinned = { button = '📌', },
         },
-        exclude_ft = { '' },
-        exclude_name = { '' },
+        exclude_ft = nil,
+        exclude_name = nil,
         hide = { extensions = false, inactive = false },
         highlight_alternate = false,
         highlight_visible = true,
-        insert_at_end = false,
-        insert_at_start = true,
+        insert_at_end = true,
+        insert_at_start = false,
         maximum_padding = 1,
         minimum_padding = 1,
         maximum_length = 30,
         semantic_letters = true,
         letters = 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP',
-        no_name_title = nil,
+        no_name_title = '[new]',
       },
     },
     {
@@ -548,12 +547,29 @@ require("lazy").setup({
   },
 })
 
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = function()
+    vim.cmd.highlight { 'BufferVisibleIndex', 'guifg=#a9b1d6' }
+    vim.cmd.highlight { 'BufferCurrent', 'guifg=#2ac3de' }
+    vim.cmd.highlight { 'BufferCurrentSign', 'guifg=#565f89' }
+    vim.cmd.highlight { 'BufferCurrentSignRight', 'guifg=#565f89' }
+    vim.cmd.highlight { 'BufferVisibleSign', 'guifg=#565f89' }
+    vim.cmd.highlight { 'BufferVisibleSignRight', 'guifg=#565f89' }
+    vim.cmd.highlight { 'BufferInactiveSign', 'guifg=#565f89' }
+    vim.cmd.highlight { 'BufferInactiveSignRight', 'guifg=#565f89' }
+  end,
+})
+
 vim.cmd.colorscheme "tokyonight"
 
 
 -- custom filetypes
 
 vim.filetype.add({
+  extension = {
+    jinja = 'jinja',
+    jinja2 = 'jinja',
+  },
   pattern = {
     ['.*.ya?ml'] = function(path)
       if path:match("[/\\]ansible[/\\]") then
