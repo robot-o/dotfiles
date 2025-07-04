@@ -71,7 +71,6 @@ if vim.g.neovide then
 end
 
 -- plugins
--- TODO: add markview
 require("lazy").setup({
   spec = {
     {
@@ -167,6 +166,7 @@ require("lazy").setup({
     {
       'nvim-treesitter/nvim-treesitter',
       enabled = true,
+      lazy = false,
       build = ':TSUpdate',
       opts = {
         ensure_installed = {
@@ -191,18 +191,15 @@ require("lazy").setup({
         },
       },
       dependencies = {
-        {
-          "OXY2DEV/markview.nvim",
-          lazy = false,
-          dependencies = {
-            "saghen/blink.cmp"
-          },
-        },
+        { "OXY2DEV/markview.nvim", },
       },
     },
     {
       'mason-org/mason-lspconfig.nvim',
       enabled = true,
+      lazy = true,
+      event = { "BufReadPost", "BufNewFile" },
+      cmd = { "LspInfo", "LspInstall", "LspUninstall" },
       dependencies = {
         { "mason-org/mason.nvim", opts = {} },
         "neovim/nvim-lspconfig",
@@ -215,6 +212,8 @@ require("lazy").setup({
     {
       'saghen/blink.cmp',
       enabled = true,
+      lazy = true,
+      event = { "InsertEnter", },
       dependencies = {
         'rafamadriz/friendly-snippets',
       },
@@ -233,6 +232,7 @@ require("lazy").setup({
     {
       "j-hui/fidget.nvim",
       enabled = true,
+      event = { "BufReadPost", "BufNewFile" },
       opts = {
         notification = {
           window = {
@@ -245,6 +245,8 @@ require("lazy").setup({
     {
       'nvim-lualine/lualine.nvim',
       enabled = true,
+      lazy = true,
+      event = { "BufReadPost", "BufNewFile" },
       opts = {
         options = {
           icons_enabled = true,
@@ -285,12 +287,13 @@ require("lazy").setup({
         inactive_winbar = {},
         extensions = {}
       },
-      dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true }
+      dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true }
     },
     {
       'romgrk/barbar.nvim',
       enabled = true,
-      lazy = false,
+      lazy = true,
+      event = { "BufReadPost", "BufNewFile" },
       keys = {
         { '<A-w>', '<Cmd>BufferClose<CR>' },
         { '<A-W>', '<Cmd>BufferCloseAllButVisible<CR>' },
