@@ -197,7 +197,7 @@ require("lazy").setup({
     {
       'mason-org/mason-lspconfig.nvim',
       enabled = true,
-      lazy = true,
+      lazy = false,
       event = { "BufReadPost", "BufNewFile" },
       cmd = { "LspInfo", "LspInstall", "LspUninstall" },
       dependencies = {
@@ -212,7 +212,7 @@ require("lazy").setup({
     {
       'saghen/blink.cmp',
       enabled = true,
-      lazy = true,
+      lazy = false,
       event = { "InsertEnter", },
       dependencies = {
         'rafamadriz/friendly-snippets',
