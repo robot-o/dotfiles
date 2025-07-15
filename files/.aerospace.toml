@@ -49,9 +49,9 @@ automatically-unhide-macos-hidden-apps = false
   3 = ['LG', 'main']
   4 = ['LG', 'main']
   5 = ['LG', 'main']
-  6 = ['DELL', 'secondary']
-  7 = ['DELL', 'secondary']
-  8 = ['DELL', 'secondary']
+  6 = ['LG', 'main']
+  7 = ['LG', 'main']
+  8 = ['LG', 'main']
   9 = ['DELL', 'secondary']
   10 = ['Built-in', 'secondary']
 
