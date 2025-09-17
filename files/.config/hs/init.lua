@@ -29,6 +29,29 @@ if caffeine then
   setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
 end
 
+-- local function wifilocdSwitch(target)
+--   hs.execute("networksetup -switchtolocation " .. target)
+--   hs.notify.new({ title = "wifilocd", informativeText = "switched to: " .. target }):send()
+-- end
+
+-- local wifilocd = hs.wifi.watcher.new(
+--   function(_, message)
+--     if message == 'SSIDChange' then
+--       local net = hs.wifi.currentNetwork()
+--       local loc = hs.execute("networksetup -getcurrentlocation")
+--       if net == "work" then
+--         if loc ~= 'Work\n' then
+--           wifilocdSwitch("Work")
+--         end
+--       else
+--         if loc ~= "Automatic\n" then
+--           wifilocdSwitch("Automatic")
+--         end
+--       end
+--     end
+--   end
+-- ):watchingFor({ "SSIDChange" }):start()
+
 local function getAppID(app)
   if hs.application.infoForBundlePath(app) then
     return hs.application.infoForBundlePath(app)['CFBundleIdentifier']
