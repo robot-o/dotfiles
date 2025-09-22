@@ -477,6 +477,16 @@ vim.filetype.add({
     jinja2 = 'jinja',
   },
   pattern = {
+    ['.*.tfvars'] = function(path)
+      if path:match("[/\\]tofu[/\\]") then
+        return "opentofu-vars"
+      end
+    end,
+    ['.*.tf'] = function(path)
+      if path:match("[/\\]tofu[/\\]") then
+        return "opentofu"
+      end
+    end,
     ['.*.ya?ml'] = function(path)
       if path:match("[/\\]ansible[/\\]") then
         return "yaml.ansible"
