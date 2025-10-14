@@ -83,6 +83,10 @@ require("lazy").setup({
       },
     },
     {
+      "grafana/vim-alloy",
+      enabled = true,
+    },
+    {
       "folke/snacks.nvim",
       enabled = true,
       priority = 1000,

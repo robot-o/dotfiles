@@ -11,6 +11,10 @@ keybind = cmd+h=text:\x01h
 keybind = cmd+j=text:\x01j
 keybind = cmd+k=text:\x01k
 keybind = cmd+l=text:\x01l
+keybind = cmd+shift+h=text:\x01p
+keybind = cmd+shift+j=text:\x01sj
+keybind = cmd+shift+k=text:\x01sk
+keybind = cmd+shift+l=text:\x01n
 keybind = cmd+t=text:\x01c
 keybind = cmd+s=text:\x01s
 keybind = cmd+p=text:\x01:

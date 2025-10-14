@@ -120,7 +120,6 @@ hs.hotkey.showHotkeys(hyper, '-')
 hs.hotkey.bind(hyper, "f", "finder", function() hs.execute('open -a Finder') end)
 
 hs.hotkey.bind(hyper, "r", "reload config", function()
-  hs.alert.show("Reloading HS Config..")
   hs.reload()
 end)
 
@@ -140,6 +139,9 @@ hs.hotkey.bind(hyper, "Return", "terminal", function()
   hs.execute('open -a "Ghostty"')
 end)
 
+hs.hotkey.bind(meh , "`", "lock screen", function()
+  hs.shortcuts.run("Start Screen Saver")
+end)
 
 hs.hotkey.bind(hyper, "V", "type clipboard contents", function()
   hs.alert.show("Typing Clipboard..")
