@@ -1,5 +1,6 @@
 ---
 git:
+  autoFetch: false
   overrideGpg: true
   paging:
     colorArg: always
