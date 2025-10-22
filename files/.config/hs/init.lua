@@ -29,29 +29,6 @@ if caffeine then
   setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
 end
 
--- local function wifilocdSwitch(target)
---   hs.execute("networksetup -switchtolocation " .. target)
---   hs.notify.new({ title = "wifilocd", informativeText = "switched to: " .. target }):send()
--- end
-
--- local wifilocd = hs.wifi.watcher.new(
---   function(_, message)
---     if message == 'SSIDChange' then
---       local net = hs.wifi.currentNetwork()
---       local loc = hs.execute("networksetup -getcurrentlocation")
---       if net == "work" then
---         if loc ~= 'Work\n' then
---           wifilocdSwitch("Work")
---         end
---       else
---         if loc ~= "Automatic\n" then
---           wifilocdSwitch("Automatic")
---         end
---       end
---     end
---   end
--- ):watchingFor({ "SSIDChange" }):start()
-
 local function getAppID(app)
   if hs.application.infoForBundlePath(app) then
     return hs.application.infoForBundlePath(app)['CFBundleIdentifier']
@@ -68,7 +45,8 @@ end
 local browserProfiles = {
   personal = braveProfile('Default'),
   work = braveProfile('Profile 1'),
-  customer = braveProfile('Profile 2')
+  customer = braveProfile('Profile 2'),
+  p3 = braveProfile('Profile 3')
 }
 
 local function braveProfileWindow(profile)
@@ -123,23 +101,80 @@ hs.hotkey.bind(hyper, "r", "reload config", function()
   hs.reload()
 end)
 
-hs.hotkey.bind(hyper, "q", "browser - personal", function()
-  braveProfileWindow('personal')
-end)
+local c = hs.hotkey.modal.new(hyper, 'c')
+function c:entered() hs.alert('enter mode: social') end
 
-hs.hotkey.bind(hyper, "w", "browser - work", function()
-  braveProfileWindow('work')
-end)
+function c:exited() hs.alert('exit mode: social') end
 
-hs.hotkey.bind(hyper, "e", "browser - customer", function()
-  braveProfileWindow('customer')
-end)
+c:bind('', 'q', 'signal', hs.execute('open -a "Signal"'), c:exit())
+c:bind('', 'w', 'discord',
+  function() hs.execute('open -a "Discord"') end,
+  function() c:exit() end
+)
+c:bind('', 'e', 'slack',
+  function() hs.execute('open -a "Slack"') end,
+  function() c:exit() end
+)
+c:bind('', 'r', 'teams',
+  function() hs.execute('open -a "Microsoft Teams"') end,
+  function() c:exit() end
+)
 
-hs.hotkey.bind(hyper, "Return", "terminal", function()
+c:bind('shift', 'q', 'signal', function() hs.execute('open -a "Signal"') end)
+c:bind('shift', 'w', 'discord', function() hs.execute('open -a "Discord"') end)
+c:bind('shift', 'e', 'slack', function() hs.execute('open -a "Slack"') end)
+c:bind('shift', 'r', 'teams', function() hs.execute('open -a "Microsoft Teams"') end)
+
+c:bind('', 'escape', function() c:exit() end)
+
+
+
+local b = hs.hotkey.modal.new(hyper, 'b')
+
+
+function b:entered() hs.alert('enter mode: browser') end
+
+function b:exited() hs.alert('exit mode: browser') end
+
+b:bind('', "q", "browser - personal",
+  function() braveProfileWindow('personal') end,
+  function() b:exit() end
+)
+b:bind('', "w", "browser - work",
+  function() braveProfileWindow('work') end,
+  function() b:exit() end
+)
+b:bind('', "e", "browser - customer",
+  function() braveProfileWindow('customer') end,
+  function() b:exit() end
+)
+b:bind('', "r", "browser - p3",
+  function() braveProfileWindow('p3') end,
+  function() b:exit() end
+)
+b:bind('shift', "q", "browser - personal", function() braveProfileWindow('personal') end)
+b:bind('shift', "w", "browser - work", function() braveProfileWindow('work') end)
+b:bind('shift', "e", "browser - customer", function() braveProfileWindow('customer') end)
+b:bind('shift', "r", "browser - p3", function() braveProfileWindow('p3') end)
+b:bind('', 'escape', function() b:exit() end)
+
+-- hs.hotkey.bind(hyper, "q", "browser - personal", function()
+--   braveProfileWindow('personal')
+-- end)
+--
+-- hs.hotkey.bind(hyper, "w", "browser - work", function()
+--   braveProfileWindow('work')
+-- end)
+--
+-- hs.hotkey.bind(hyper, "e", "browser - customer", function()
+--   braveProfileWindow('customer')
+-- end)
+
+hs.hotkey.bind(hyper, "t", "terminal", function()
   hs.execute('open -a "Ghostty"')
 end)
 
-hs.hotkey.bind(meh , "`", "lock screen", function()
+hs.hotkey.bind(meh, "`", "lock screen", function()
   hs.shortcuts.run("Start Screen Saver")
 end)
 

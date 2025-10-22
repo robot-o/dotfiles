@@ -1,12 +1,21 @@
 start-at-login = true
+
+# Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-login-command = []
 after-startup-command = []
 
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
 accordion-padding = 30
-default-root-container-layout = 'accordion'
+ 
+# Possible values: tiles|accordion
+default-root-container-layout = 'tiles'
+# Possible values: horizontal|vertical|auto
+# 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
+#               tall monitor (anything higher than wide) gets vertical orientation
 default-root-container-orientation = 'auto'
 
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
@@ -25,6 +34,7 @@ automatically-unhide-macos-hidden-apps = true
 #   9 = ['secondary']
 #   10 = ['secondary']
 
+# See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
     preset = 'qwerty'
 
@@ -68,15 +78,20 @@ automatically-unhide-macos-hidden-apps = true
 
     alt-shift-ctrl-f = 'layout floating tiling'
 
+    alt-shift-ctrl-y = 'join-with left'
+    alt-shift-ctrl-u = 'join-with down'
+    alt-shift-ctrl-i = 'join-with up'
+    alt-shift-ctrl-o = 'join-with right'
+
     alt-shift-ctrl-h = 'focus --boundaries-action wrap-around-the-workspace left'
     alt-shift-ctrl-j = 'focus --boundaries-action wrap-around-the-workspace down'
     alt-shift-ctrl-k = 'focus --boundaries-action wrap-around-the-workspace up'
     alt-shift-ctrl-l = 'focus --boundaries-action wrap-around-the-workspace right'
 
-    alt-shift-ctrl-cmd-h = 'move left'
-    alt-shift-ctrl-cmd-j = 'move down'
-    alt-shift-ctrl-cmd-k = 'move up'
-    alt-shift-ctrl-cmd-l = 'move right'
+    alt-shift-ctrl-n = 'move left'
+    alt-shift-ctrl-m = 'move down'
+    alt-shift-ctrl-comma = 'move up'
+    alt-shift-ctrl-period = 'move right'
 
     alt-shift-ctrl-cmd-minus = 'resize smart -200'
     alt-shift-ctrl-cmd-equal = 'resize smart +200'
@@ -122,8 +137,3 @@ automatically-unhide-macos-hidden-apps = true
     r = ['reload-config', 'mode main']
     esc = ['flatten-workspace-tree', 'mode main'] # reset layout
     backspace = ['close-all-windows-but-current', 'mode main']
-
-    alt-shift-ctrl-h = ['join-with left', 'mode main']
-    alt-shift-ctrl-j = ['join-with down', 'mode main']
-    alt-shift-ctrl-k = ['join-with up', 'mode main']
-    alt-shift-ctrl-l = ['join-with right', 'mode main']

@@ -12,6 +12,9 @@ alias c='bat -pp'
 alias C='bat --color=always --style=auto'
 alias f='fzf'
 alias F='fzf --preview='\''bat --color always -p {}'\'''
+if command -v yazi &>/dev/null; then
+  alias y='yazi'
+fi
 if command -v fdfind &>/dev/null; then
   alias fd='fdfind'
 fi
@@ -48,10 +51,9 @@ alias cdp='cd ~/Projects/personal'
 
 # tmux
 alias t='tmux'
-alias tls='tmux list-session'
-alias tkw='tmux kill-window'
-alias tks='tmux kill-session'
-alias tkS='tmux kill-server'
+alias tl='tmux list-session'
+alias tk='tmux kill-session'
+alias tkk='tmux kill-server'
 alias ta='tmux a'
 alias tat='tmux a -t '
 # tmuxp: general
@@ -61,18 +63,17 @@ alias tpf='tmuxp freeze -f yaml -o'
 alias tpfh='tmuxp freeze -f yaml -o ./.tmuxp.yaml'
 # tmuxp: personal
 alias tpd='tmuxp load -y ${HOME}/Projects/personal/.tmuxp/dotfiles.yml'
-alias tpi='tmuxp load -y ${HOME}/Projects/personal/.tmuxp/infra.yml'
 alias tpp='tmuxp load -y ${HOME}/Projects/personal/.tmuxp/current.yml'
-alias etpp='nvim ${HOME}/Projects/personal/.tmuxp/current.yml'
-alias etppd='nvim ${HOME}/Projects/personal/.tmuxp'
-alias tplp='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/personal/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
-alias tpsp='ln -sf $(fd -u -t f . ${HOME}/Projects/personal/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'') ${HOME}/Projects/personal/.tmuxp/current.yml'
+alias tppl='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/personal/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
+alias tppe='nvim ${HOME}/Projects/personal/.tmuxp/current.yml'
+alias tppu='ln -sf $(fd -u -t f . ${HOME}/Projects/personal/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'') ${HOME}/Projects/personal/.tmuxp/current.yml'
+alias tppd='cd ${HOME}/Projects/personal/.tmuxp && nvim && cd -'
 # tmuxp: work
 alias tpw='tmuxp load -y ${HOME}/Projects/work/.tmuxp/current.yml'
-alias etpwd='cd ${HOME}/Projects/work/.tmuxp && nvim .'
-alias etpw='nvim ${HOME}/Projects/work/.tmuxp/current.yml'
-alias tplw='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
-alias tpsw='ln -sf $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'') ${HOME}/Projects/work/.tmuxp/current.yml'
+alias tpwe='nvim ${HOME}/Projects/work/.tmuxp/current.yml'
+alias tpwd='cd ${HOME}/Projects/work/.tmuxp && nvim && cd -'
+alias tpwl='tmuxp load -y $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'')'
+alias tpwu='ln -sf $(fd -u -t f . ${HOME}/Projects/work/.tmuxp | fzf --multi --preview='\''bat --color always -p {}'\'') ${HOME}/Projects/work/.tmuxp/current.yml'
 
 
 # usbguard
