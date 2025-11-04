@@ -101,36 +101,7 @@ hs.hotkey.bind(hyper, "r", "reload config", function()
   hs.reload()
 end)
 
-local c = hs.hotkey.modal.new(hyper, 'c')
-function c:entered() hs.alert('enter mode: social') end
-
-function c:exited() hs.alert('exit mode: social') end
-
-c:bind('', 'q', 'signal', hs.execute('open -a "Signal"'), c:exit())
-c:bind('', 'w', 'discord',
-  function() hs.execute('open -a "Discord"') end,
-  function() c:exit() end
-)
-c:bind('', 'e', 'slack',
-  function() hs.execute('open -a "Slack"') end,
-  function() c:exit() end
-)
-c:bind('', 'r', 'teams',
-  function() hs.execute('open -a "Microsoft Teams"') end,
-  function() c:exit() end
-)
-
-c:bind('shift', 'q', 'signal', function() hs.execute('open -a "Signal"') end)
-c:bind('shift', 'w', 'discord', function() hs.execute('open -a "Discord"') end)
-c:bind('shift', 'e', 'slack', function() hs.execute('open -a "Slack"') end)
-c:bind('shift', 'r', 'teams', function() hs.execute('open -a "Microsoft Teams"') end)
-
-c:bind('', 'escape', function() c:exit() end)
-
-
-
 local b = hs.hotkey.modal.new(hyper, 'b')
-
 
 function b:entered() hs.alert('enter mode: browser') end
 
@@ -157,18 +128,6 @@ b:bind('shift', "w", "browser - work", function() braveProfileWindow('work') end
 b:bind('shift', "e", "browser - customer", function() braveProfileWindow('customer') end)
 b:bind('shift', "r", "browser - p3", function() braveProfileWindow('p3') end)
 b:bind('', 'escape', function() b:exit() end)
-
--- hs.hotkey.bind(hyper, "q", "browser - personal", function()
---   braveProfileWindow('personal')
--- end)
---
--- hs.hotkey.bind(hyper, "w", "browser - work", function()
---   braveProfileWindow('work')
--- end)
---
--- hs.hotkey.bind(hyper, "e", "browser - customer", function()
---   braveProfileWindow('customer')
--- end)
 
 hs.hotkey.bind(hyper, "t", "terminal", function()
   hs.execute('open -a "Ghostty"')

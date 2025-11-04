@@ -40,3 +40,6 @@ keybind = cmd+ctrl+l=goto_split:right
 keybind = cmd+ctrl+t=new_window
 keybind = cmd+shift+equal=increase_font_size:1
 #custom-shader = ~/.config/ghostty-shaders/just-snow.glsl
+#window-decoration = false
+macos-titlebar-style = hidden
+

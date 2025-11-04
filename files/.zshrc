@@ -124,18 +124,15 @@ if command -v keychain &>/dev/null; then
 fi
 
 
-# hook direnv completion
 if command -v direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
-# podman
 if command -v podman &>/dev/null; then
   source <(podman completion zsh)
   #compdef p='podman'
 fi
 
-# kubectl
 if command -v kubectl &>/dev/null; then
   source <(kubectl completion zsh)
   compdef k='kubectl'
@@ -146,16 +143,18 @@ if command -v kubectl &>/dev/null; then
   fi
 fi
 
-# minikube
 if command -v minikube &>/dev/null; then
   source <(minikube completion zsh)
   #compdef mk='minikube'
 fi
 
-# terraform
 if command -v terraform &>/dev/null; then
   autoload -U +X bashcompinit && bashcompinit
   complete -o nospace -C $(which terraform) terraform
+fi
+
+if command -v sops &>/dev/null; then
+  source <(sops completion zsh)
 fi
 
 # autocompletions on macos

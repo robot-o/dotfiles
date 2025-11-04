@@ -1,10 +1,9 @@
----
 git:
   autoFetch: false
   overrideGpg: true
-  paging:
-    colorArg: always
-    pager: delta --dark --syntax-theme=tokyonight_night --paging=never
+  pagers:
+    - colorArg: always
+      pager: delta --dark --syntax-theme=tokyonight_night --paging=never
 gui:
   scrollHeight: 4
   scrollOffMargin: 8
