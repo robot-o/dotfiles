@@ -9,7 +9,7 @@ after-startup-command = []
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-accordion-padding = 30
+accordion-padding = 16
  
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
