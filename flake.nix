@@ -2,7 +2,7 @@
   description = "roboto's personal computing flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixos-hardware.url = "github:robot-o/nixos-hardware/lenovo-thinkpad-t14-intel-gen5";
     # lanzaboote = {
     #   url = "github:nix-community/lanzaboote/v1.0.0";
