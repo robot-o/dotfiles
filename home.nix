@@ -8,12 +8,23 @@
 {
   programs = {
     home-manager.enable = true;
+    alacritty.enable = true;
+    fuzzel.enable = true;
+    swaylock.enable = true;
+    waybar.enable = true;
+  };
+  services = {
+    mako.enable = true;
+    swayidle.enable = true;
+    polkit-gnome.enable = true;
   };
   home = {
     username = "user";
     homeDirectory = "/home/user";
     stateVersion = "25.05";
     packages = with pkgs; [
+      ## niri
+      swaybg
       ## cli
       tmux
       tmuxp
