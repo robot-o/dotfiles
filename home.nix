@@ -8,16 +8,17 @@
 {
   programs = {
     home-manager.enable = true;
-    alacritty.enable = true;
     fuzzel.enable = true;
     swaylock.enable = true;
     waybar.enable = true;
   };
+
   services = {
     mako.enable = true;
     swayidle.enable = true;
     polkit-gnome.enable = true;
   };
+
   home = {
     username = "user";
     homeDirectory = "/home/user";
@@ -25,6 +26,7 @@
     packages = with pkgs; [
       ## niri
       swaybg
+      xwayland-satellite
       ## cli
       tmux
       tmuxp
@@ -88,4 +90,6 @@
     file.".config/ghostty".source = ./files/.config/ghostty;
     file.".config/bat".source = ./files/.config/bat;
   };
+
+  xdg.configFile."niri/config.kdl".source = ./files/.config/niri/config.kdl;
 }

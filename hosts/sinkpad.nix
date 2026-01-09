@@ -1,4 +1,10 @@
-{ config, pkgs, lib, modulesPath, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  modulesPath,
+  ...
+}:
 
 {
   system.stateVersion = "25.05";
@@ -164,6 +170,10 @@
     ];
     shell = pkgs.zsh;
   };
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
 
   programs = {
     zsh.enable = true;
