@@ -74,6 +74,7 @@
     file.".zshrc".source = ./files/.zshrc;
     file.".aliases".source = ./files/.aliases;
     file.".tmux.conf".source = ./files/.tmux.conf;
+    file.".gitconfig".source = ./files/.gitconfig;
 
     file.".config/nvim".source = ./files/.config/nvim;
     file.".config/ghostty".source = ./files/.config/ghostty;
