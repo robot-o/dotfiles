@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, modulesPath, ... }:
 
 {
   system.stateVersion = "25.05";
 
-  # imports = [ ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/7dcdd692-326e-4aca-8873-81f48116aa7f";
@@ -105,6 +107,7 @@
 
   hardware = {
     keyboard.zsa.enable = true;
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
 
   time.timeZone = "Europe/Berlin";
