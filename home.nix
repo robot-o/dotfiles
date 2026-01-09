@@ -49,21 +49,18 @@
       obs-studio
       ## arts and crafts
       orca-slicer
-      # freecad
-      # kicad
-      # openscad
+      freecad
+      kicad
+      openscad
       audacity
       gimp
-      # blender
       inkscape
       kdePackages.kdenlive
-      # qFlipper
-      # unityhub
       ## social
       signal-desktop
       element-desktop
       discord
-      # slack
+      slack
     ];
 
     file.".scripts".source = ./files/.scripts;
