@@ -175,7 +175,7 @@
     nh = {
       enable = true;
       clean.enable = false;
-      flake = "/home/user/.dotfiles";
+      flake = "/home/user/.dotfiles#sinkpad";
     };
   };
 
