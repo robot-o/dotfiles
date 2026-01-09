@@ -265,6 +265,7 @@ alias fcheck='watch -n 1 grep \"cpu MHz\" /proc/cpuinfo'
 alias pcheck='cpupower frequency-info'
 alias webserverherewifi='echo "url: https://$(ipconfig getifaddr en0):9000" && python3 -m http.server 9000'
 alias flushdns_macos='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
+alias rad1o='sudo mbimcli -p -d /dev/cdc-wdm0 --quectel-set-radio-state=on'
 # source machine-specific aliases
 # included at the end in order to override any generic aliases defined here
 function include() {

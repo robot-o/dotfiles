@@ -1,10 +1,10 @@
 font-feature = -dlig
 font-feature = -liga
 font-feature = -calt
-font-size = 12
+font-size = 10
 theme = TokyoNight
-background-opacity = 0.9
-background-blur = 50
+background-opacity = 0.95
+background-blur = true
 keybind = cmd+;=text:\x01;
 keybind = cmd+'=text:\x01'
 keybind = cmd+h=text:\x01h
@@ -40,6 +40,6 @@ keybind = cmd+ctrl+l=goto_split:right
 keybind = cmd+ctrl+t=new_window
 keybind = cmd+shift+equal=increase_font_size:1
 #custom-shader = ~/.config/ghostty-shaders/just-snow.glsl
-window-decoration = false
+#window-decoration = false
 macos-titlebar-style = hidden
 

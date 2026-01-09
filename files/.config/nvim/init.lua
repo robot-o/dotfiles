@@ -508,6 +508,8 @@ vim.filetype.add({
 })
 
 -- additional lsp magic
+-- vim.lsp.config('nil_ls', { settings = { formatting = { command = { "alejandra" } } } })
+vim.lsp.enable('nil_ls')
 
 -- enable inline diagnostics
 vim.diagnostic.config({ virtual_text = true })
