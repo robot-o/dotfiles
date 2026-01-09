@@ -92,4 +92,5 @@
   };
 
   xdg.configFile."niri/config.kdl".source = ./files/.config/niri/config.kdl;
+  xdg.configFile."waybar/config.jsonc".source = ./files/.config/waybar/config.jsonc;
 }

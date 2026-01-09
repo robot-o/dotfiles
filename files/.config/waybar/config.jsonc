@@ -1,0 +1,26 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "modules-left": ["niri/workspaces", "niri/mode"],
+  "modules-center": ["niri/window"],
+  "modules-right": ["idle_inhibitor", "cpu", "memory", "disk", "clock"],
+  "niri/window": {
+    "max-length": 64
+  },
+  "clock": {
+    "format-alt": "{:%a, %d. %b  %H:%M}"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": ">:3",
+      "deactivated": "eepy"
+    }
+  }
+  // "custom/gpu": {
+  //   "exec": "nvidia-smi --query-gpu=utilization.gpu --format=noheader,nounits",
+  //   "format": "GPU: {}%",
+  //   "return-type": "",
+  //   "interval": 1
+  // }
+}
