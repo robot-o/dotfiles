@@ -17,8 +17,9 @@ gestures {
 output "eDP-1" {
   mode "2880x1800@120.000"
   scale 1.5
-  focus-at-startup
+  transform "normal"
   position x=0 y=0
+  focus-at-startup
 }
 
 output "LG Electronics LG ULTRAGEAR 202NTQDER692" {
