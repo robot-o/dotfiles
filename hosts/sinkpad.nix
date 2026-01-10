@@ -147,6 +147,7 @@
       curl
       brave
       bitwarden-desktop
+      xdg-desktop-portal-gnome
     ];
 
     sessionVariables = {

@@ -27,6 +27,9 @@
       ## niri
       swaybg
       xwayland-satellite
+      brightnessctl
+      libnotify
+      playerctl
       ## cli
       tmux
       tmuxp
@@ -93,4 +96,5 @@
 
   xdg.configFile."niri/config.kdl".source = ./files/.config/niri/config.kdl;
   xdg.configFile."waybar/config.jsonc".source = ./files/.config/waybar/config.jsonc;
+  xdg.configFile."swayidle/config".source = ./files/.config/swayidle/config;
 }
