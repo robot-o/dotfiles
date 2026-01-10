@@ -66,10 +66,11 @@ layout {
 }
 
 spawn-at-startup "waybar"
+spawn-at-startup "swaybg" "-i" "~/.bg-wp" "-m" "fill"
 
 hotkey-overlay {}
 
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/Pictures/Screenshots/niri-%Y-%m-%d %H-%M-%S.png"
 
 animations {}
 

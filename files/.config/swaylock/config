@@ -1,6 +1,6 @@
 ignore-empty-password
 show-failed-attempts
-image=~/.lockscreen
+image=~/.bg-lock
 clock
 text-color=ffffff
 ring-color=ffffff
