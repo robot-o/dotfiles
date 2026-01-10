@@ -27,7 +27,7 @@
         sinkpad = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            # lanzaboote.nixosModules.lanzaboote
+            # inputs.lanzaboote.nixosModules.lanzaboote
             ./hosts/sinkpad.nix
             nixos-hardware.nixosModules.lenovo-thinkpad-t14-intel-gen5
             home-manager.nixosModules.home-manager

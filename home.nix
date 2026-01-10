@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
   ...
 }:
 
@@ -10,7 +8,6 @@
     home-manager.enable = true;
     fuzzel.enable = true;
     swaylock.enable = true;
-    waybar.enable = true;
   };
 
   services = {
@@ -30,6 +27,7 @@
       brightnessctl
       libnotify
       playerctl
+      noctalia-shell
       ## cli
       tmux
       tmuxp
@@ -95,7 +93,6 @@
   };
 
   xdg.configFile."niri/config.kdl".source = ./files/.config/niri/config.kdl;
-  xdg.configFile."waybar/config.jsonc".source = ./files/.config/waybar/config.jsonc;
   xdg.configFile."swayidle/config".source = ./files/.config/swayidle/config;
   xdg.configFile."swaylock/config".source = ./files/.config/swaylock/config;
 }
