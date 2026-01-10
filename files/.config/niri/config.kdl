@@ -38,7 +38,7 @@ output "Dell Inc. DELL U2515H 9X2VY72I0YWL" {
 }
 
 layout {
-  background-color "black"
+  background-color "transparent"
   gaps 8
   center-focused-column "never"
   preset-column-widths {
