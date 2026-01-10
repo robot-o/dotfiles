@@ -72,16 +72,20 @@
     networkmanager.enable = true;
   };
 
+  powerManagement.enable = true;
+  powerManagement.powertop.enable = true;
+
   services = {
-    mullvad-vpn = {
-      enable = true;
-      package = pkgs.mullvad-vpn;
-    };
+    system76-scheduler.enable = true;
+    system76-scheduler.settings.cfsProfiles.enable = true;
+    thermald.enable = true;
+    power-profiles-daemon.enable = true;
+    upower.enable = true;
 
     fprintd.enable = true;
 
     xserver = {
-      enable = true;
+      enable = false;
       xkb = {
         layout = "de";
         variant = "us";
@@ -98,6 +102,7 @@
     };
 
     printing.enable = false;
+
     pulseaudio.enable = false;
     pipewire = {
       enable = true;
@@ -105,6 +110,12 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+
+    mullvad-vpn = {
+      enable = true;
+      package = pkgs.mullvad-vpn;
+    };
+
   };
 
   security = {
@@ -114,6 +125,8 @@
   };
 
   hardware = {
+    bluetooth.enable = true;
+    system76.power-daemon.enable = true;
     keyboard.zsa.enable = true;
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
@@ -198,6 +211,25 @@
     "nix-command"
     "flakes"
   ];
+
+  # Alternate solution using tlp: (disable ppd and thermald if using this)
+  # services.tlp = {
+  #   enable = lib.mkDefault true;
+  #   settings = lib.mkDefault {
+  #     CPU_BOOST_ON_AC = 1;
+  #     CPU_BOOST_ON_BAT = 1;
+  #     CPU_HWP_DYN_BOOST_ON_AC = 1;
+  #     CPU_HWP_DYN_BOOST_ON_BAT = 1;
+  #     CPU_SCALING_GOVERNOR_ON_AC = "performance";
+  #     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  #     CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+  #     CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
+  #     PLATFORM_PROFILE_ON_AC = "performance";
+  #     PLATFORM_PROFILE_ON_BAT = "balanced";
+  #     START_CHARGE_TRESH_BAT0 = 65;
+  #     STOP_CHARGE_TRESH_BAT0 = 71;
+  #   };
+  # };
 }
 
 # networking.networkmanager.ensureProfiles.profiles = {
