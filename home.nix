@@ -6,13 +6,9 @@
 {
   programs = {
     home-manager.enable = true;
-    fuzzel.enable = true;
-    swaylock.enable = true;
   };
 
   services = {
-    mako.enable = true;
-    swayidle.enable = true;
     polkit-gnome.enable = true;
   };
 
@@ -22,9 +18,7 @@
     stateVersion = "25.05";
     packages = with pkgs; [
       ## niri
-      swaybg
       xwayland-satellite
-      brightnessctl
       libnotify
       playerctl
       noctalia-shell

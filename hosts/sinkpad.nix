@@ -92,14 +92,7 @@
       };
     };
 
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    gnome = {
-      core-apps.enable = true;
-      games.enable = false;
-      core-developer-tools.enable = false;
-      gnome-keyring.enable = true;
-    };
+    gnome.gnome-keyring.enable = true;
 
     printing.enable = false;
 

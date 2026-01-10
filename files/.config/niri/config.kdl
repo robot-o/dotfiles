@@ -66,7 +66,6 @@ layout {
 }
 
 spawn-at-startup "noctalia-shell"
-spawn-at-startup "swaybg" "-i" "/home/user/.bg-wp" "-m" "fill"
 
 hotkey-overlay {}
 
@@ -121,17 +120,19 @@ recent-windows {
 binds {
   Mod+Shift+Slash { show-hotkey-overlay; }
 
-  Mod+T hotkey-overlay-title="Open Terminal" { spawn "ghostty"; }
-  Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-  Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+  Mod+T hotkey-overlay-title="Terminal" { spawn "ghostty"; }
+  Mod+Space hotkey-overlay-title="Launcher" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
+  Super+Alt+L hotkey-overlay-title="Lock" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
+  Mod+I hotkey-overlay-title="Settings" { spawn-sh "noctalia-shell ipc call settings toggle"; }
+  Mod+Period hotkey-overlay-title="Emoji" { spawn-sh "noctalia-shell ipc call launcher emoji"; }
 
-  XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
-  XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
-  XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-  XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+  XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume increase"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume decrease"; }
+  XF86AudioMute        allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume muteOutput"; }
+  XF86AudioMicMute     allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume muteInput"; }
 
-  XF86MonBrightnessUp allow-when-locked=true { spawn-sh "brightnessctl --class=backlight set +10%"; }
-  XF86MonBrightnessDown allow-when-locked=true { spawn-sh "brightnessctl --class=backlight set 10%-"; }
+  XF86MonBrightnessUp allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness increase"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness decrease"; }
 
   Mod+O repeat=false { toggle-overview; }
 
@@ -178,20 +179,6 @@ binds {
   Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
   Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
-  Mod+Page_Down      { focus-workspace-down; }
-  Mod+Page_Up        { focus-workspace-up; }
-  Mod+U              { focus-workspace-down; }
-  Mod+I              { focus-workspace-up; }
-  Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
-  Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
-  Mod+Ctrl+U         { move-column-to-workspace-down; }
-  Mod+Ctrl+I         { move-column-to-workspace-up; }
-
-  Mod+Shift+Page_Down { move-workspace-down; }
-  Mod+Shift+Page_Up   { move-workspace-up; }
-  Mod+Shift+U         { move-workspace-down; }
-  Mod+Shift+I         { move-workspace-up; }
-
   Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
   Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
   Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
@@ -230,7 +217,7 @@ binds {
   Mod+BracketRight { consume-or-expel-window-right; }
 
   Mod+Comma  { consume-window-into-column; }
-  Mod+Period { expel-window-from-column; }
+  Mod+Shift+Comma { expel-window-from-column; }
 
   Mod+R { switch-preset-column-width; }
   Mod+Shift+R { switch-preset-window-height; }
