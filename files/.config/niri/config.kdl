@@ -66,13 +66,18 @@ layout {
 }
 
 spawn-at-startup "waybar"
-spawn-at-startup "swaybg" "-i" "~/.bg-wp" "-m" "fill"
+spawn-at-startup "swaybg" "-i" "/home/user/.bg-wp" "-m" "fill"
 
 hotkey-overlay {}
 
 screenshot-path "~/Pictures/Screenshots/niri-%Y-%m-%d %H-%M-%S.png"
 
 animations {}
+
+layer-rule {
+  match namespace="^wallpaper$"
+  place-within-backdrop true
+}
 
 window-rule {
   match app-id=r#"firefox$"# title="^Picture-in-Picture$"
@@ -137,8 +142,8 @@ binds {
   // Example brightness key mappings for brightnessctl.
   // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
   // but you need to manually put each argument in separate "" quotes.
-  XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10% && notify-send -e -t 500 $(brightnessctl --class=backlight get)"; }
-  XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%- && notify-send -e -t 500 $(brightnessctl --class=backlight get)"; }
+  XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl --class=backlight set +10% && notify-send -e -t 500 $(brightnessctl --class=backlight get)"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl --class=backlight set 10%- && notify-send -e -t 500 $(brightnessctl --class=backlight get)"; }
 
   // Open/close the Overview: a zoomed-out view of workspaces and windows.
   // You can also move the mouse into the top-left hot corner,
