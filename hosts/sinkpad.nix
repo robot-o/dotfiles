@@ -82,6 +82,7 @@
     power-profiles-daemon.enable = true;
     upower.enable = true;
 
+    hardware.bolt.enable = true;
     fprintd.enable = true;
 
     xserver = {
@@ -89,6 +90,17 @@
       xkb = {
         layout = "de";
         variant = "us";
+      };
+    };
+
+    greetd = {
+      enable = true;
+      settings = rec {
+        default_session = {
+          command = "niri-session";
+          user = "user";
+        };
+        initial_session = default_session;
       };
     };
 
@@ -113,6 +125,7 @@
 
   security = {
     rtkit.enable = true;
+    polkit.enable = true;
     sudo.wheelNeedsPassword = false;
     pam.services.login.enableGnomeKeyring = true;
   };
@@ -148,7 +161,6 @@
       cacert
       libmbim
       usbutils
-      gnome-tweaks
       ghostty
       neovim
       git
@@ -162,11 +174,6 @@
       NIXOS_OZONE_WL = "1";
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/.steam/root/compatibilitytools.d";
     };
-
-    gnome.excludePackages = with pkgs; [
-      gnome-tour
-      gnome-user-docs
-    ];
   };
 
   users.users.user = {
