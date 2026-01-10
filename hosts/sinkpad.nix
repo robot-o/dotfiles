@@ -105,6 +105,7 @@
     };
 
     gnome.gnome-keyring.enable = true;
+    dbus.packages = [ pkgs.gnome-keyring pkgs.gcr ];
 
     printing.enable = false;
 
@@ -127,7 +128,10 @@
     rtkit.enable = true;
     polkit.enable = true;
     sudo.wheelNeedsPassword = false;
-    pam.services.login.enableGnomeKeyring = true;
+    pam.services = {
+      login.enableGnomeKeyring = true;
+      greetd.enableGnomeKeyring = true;
+    };
   };
 
   hardware = {
@@ -198,6 +202,7 @@
     chromium.enable = true;
     thunderbird.enable = true;
     firefox.enable = true;
+    seahorse.enable = true;
     nh = {
       enable = true;
       clean.enable = false;
