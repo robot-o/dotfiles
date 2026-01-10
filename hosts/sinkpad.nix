@@ -94,6 +94,7 @@
       core-apps.enable = true;
       games.enable = false;
       core-developer-tools.enable = false;
+      gnome-keyring.enable = true;
     };
 
     printing.enable = false;
@@ -109,6 +110,7 @@
   security = {
     rtkit.enable = true;
     sudo.wheelNeedsPassword = false;
+    pam.services.login.enableGnomeKeyring = true;
   };
 
   hardware = {
