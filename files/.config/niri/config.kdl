@@ -1,11 +1,24 @@
 input {
   keyboard {
-    xkb {}
+    xkb {
+      layout "de"
+      variant "us"
+      options "caps:swapescape"
+    }
     numlock
   }
+  touchpad {
+    tap
+    dwt
+    natural-scroll
+    tap-button-map "left-right-middle"
+    accel-profile "adaptive"
+  }
   mouse {}
-  touchpad {}
-  trackpoint {}
+  trackpoint {
+    accel-profile "flat"
+    scroll-method "on-button-down"
+  }
 }
 
 gestures {
@@ -16,7 +29,7 @@ gestures {
 
 output "eDP-1" {
   mode "2880x1800@120.000"
-  scale 1.5
+  scale 1.25
   transform "normal"
   position x=0 y=0
   focus-at-startup
@@ -26,7 +39,7 @@ output "LG Electronics LG ULTRAGEAR 202NTQDER692" {
   mode "3440x1440@143.923"
   scale 1
   transform "normal"
-  position x=2880 y=0
+  position x=3600 y=0
   variable-refresh-rate
 }
 
@@ -34,12 +47,12 @@ output "Dell Inc. DELL U2515H 9X2VY72I0YWL" {
   mode "2560x1440@59.951"
   scale 1
   transform "270"
-  position x=6320 y=-600
+  position x=7040 y=-600
 }
 
 layout {
   background-color "transparent"
-  gaps 8
+  gaps 4
   center-focused-column "never"
   preset-column-widths {
     proportion 0.33333
