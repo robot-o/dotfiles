@@ -21,6 +21,11 @@ input {
   }
 }
 
+cursor {
+  xcursor-theme "Posy_Cursor"
+  xcursor-size 32
+}
+
 gestures {
   hot-corners {
     off
@@ -80,7 +85,9 @@ layout {
 
 spawn-at-startup "noctalia-shell"
 
-hotkey-overlay {}
+hotkey-overlay {
+  skip-at-startup
+}
 
 screenshot-path "~/Pictures/Screenshots/niri-%Y-%m-%d %H-%M-%S.png"
 

@@ -22,6 +22,7 @@
       libnotify
       playerctl
       noctalia-shell
+      kdePackages.breeze
       ## cli
       tmux
       tmuxp
@@ -70,6 +71,14 @@
       discord
       slack
     ];
+
+    pointerCursor = {
+      enable = true;
+      gtk.enable = true;
+      x11.enable = true;
+      package = pkgs.posy-cursors;
+      name = "Posy_Cursor";
+    };
 
     file.".scripts".source = ./files/.scripts;
 
