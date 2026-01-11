@@ -1,3 +1,7 @@
+spawn-at-startup "noctalia-shell"
+
+prefer-no-csd
+
 input {
   keyboard {
     xkb {
@@ -83,13 +87,9 @@ layout {
   struts {}
 }
 
-spawn-at-startup "noctalia-shell"
-
 hotkey-overlay {
   skip-at-startup
 }
-
-screenshot-path "~/Pictures/Screenshots/niri-%Y-%m-%d %H-%M-%S.png"
 
 animations {}
 
@@ -129,6 +129,8 @@ window-rule {
     inactive-color "#7d0d2d"
   }
 }
+
+screenshot-path "~/Pictures/Screenshots/niri-%Y-%m-%d %H-%M-%S.png"
 
 recent-windows {
   binds {
@@ -252,9 +254,6 @@ binds {
 
   Mod+Minus { set-column-width "-10%"; }
   Mod+Shift+Equal{ set-column-width "+10%"; }
-
-  // Mod+Shift+Minus { set-window-height "-10%"; }
-  // Mod+Shift+Equal { set-window-height "+10%"; }
 
   Mod+V       { toggle-window-floating; }
   Mod+Shift+V { switch-focus-between-floating-and-tiling; }
