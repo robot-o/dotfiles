@@ -22,7 +22,6 @@
       libnotify
       playerctl
       noctalia-shell
-      kdePackages.breeze
       ## cli
       tmux
       tmuxp
