@@ -10,6 +10,55 @@
 
   services = {
     polkit-gnome.enable = true;
+    kanshi = {
+      enable = true;
+      profiles = {
+        home = {
+          outputs = [
+            {
+              criteria = "eDP-1";
+              status = "disable";
+            }
+            {
+              criteria = "LG Electronics LG ULTRAGEAR 202NTQDER692";
+              mode = "3440x1440@143.923";
+              position = "2304,0";
+              transform = "normal";
+              scale = 1.0;
+              adaptiveSync = true;
+            }
+            {
+              criteria = "Dell Inc. DELL U2515H 9X2VY72I0YWL";
+              mode = "2560x1440@59.951";
+              position = "5744,-600";
+              transform = "270";
+              scale = 1.0;
+              adaptiveSync = false;
+            }
+          ];
+        };
+        office = {
+          outputs = [
+            {
+              criteria = "eDP-1";
+              mode = "2880x1800@120.000";
+              position = "768,1600";
+              scale = 1.25;
+              transform = "normal";
+              adaptiveSync = false;
+            }
+            {
+              criteria = "LG Electronics LG HDR WQHD+ 208NTYT1S818";
+              mode = "3840x1600@143.998";
+              position = "0,0";
+              scale = 1.0;
+              transform = "normal";
+              adaptiveSync = false;
+            }
+          ];
+        };
+      };
+    };
   };
 
   home = {

@@ -37,26 +37,11 @@ gestures {
 }
 
 output "eDP-1" {
-  mode "2880x1800@120.000"
+  mode "2880x1800@120.000" // logical size: 2304x1440
   scale 1.25
   transform "normal"
   position x=0 y=0
   focus-at-startup
-}
-
-output "LG Electronics LG ULTRAGEAR 202NTQDER692" {
-  mode "3440x1440@143.923"
-  scale 1
-  transform "normal"
-  position x=3600 y=0
-  variable-refresh-rate
-}
-
-output "Dell Inc. DELL U2515H 9X2VY72I0YWL" {
-  mode "2560x1440@59.951"
-  scale 1
-  transform "270"
-  position x=7040 y=-600
 }
 
 layout {
