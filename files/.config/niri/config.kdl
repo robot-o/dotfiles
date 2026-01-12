@@ -118,6 +118,11 @@ window-rule {
 
 screenshot-path "~/Pictures/Screenshots/niri-%Y-%m-%d %H-%M-%S.png"
 
+workspace "main" {}
+workspace "alt" {}
+workspace "social" {}
+workspace "media" {}
+workspace "mgmt" {}
 workspace "stash" {}
 
 recent-windows {
@@ -144,7 +149,7 @@ binds {
   XF86MonBrightnessUp allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness increase"; }
   XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness decrease"; }
 
-  Mod+S { spawn "niri-scratchpad" "create" "1"; }
+  Mod+S { spawn "niri-scratchpad" "create" "1" "--as-float"; }
   Mod+Ctrl+S { spawn "niri-scratchpad" "delete" "1"; }
 
   Mod+O repeat=false { toggle-overview; }
