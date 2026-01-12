@@ -37,6 +37,7 @@
       timeout = 0;
       systemd-boot.enable = false;
       limine.enable = true;
+      limine.secureBoot.enable = true;
       efi.canTouchEfiVariables = true;
     };
     kernelPackages = pkgs.linuxPackages_latest;
