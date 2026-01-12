@@ -99,6 +99,7 @@
       remmina
       freerdp
       super-productivity
+      obsidian
       ## media
       mpv
       mixxx
