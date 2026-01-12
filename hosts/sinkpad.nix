@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -172,6 +173,7 @@
       brave
       bitwarden-desktop
       xdg-desktop-portal-gnome
+      inputs.niri-scratchpad.packages.${pkgs.system}.default
     ];
 
     sessionVariables = {

@@ -12,20 +12,25 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri-scratchpad.url = "github:argosnothing/niri-scratchpad";
   };
 
   outputs =
-    {
+    inputs@{
       self,
       nixpkgs,
       nixos-hardware,
       home-manager,
+      ...
     # lanzaboote,
     }:
     {
       nixosConfigurations = {
         sinkpad = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
             # inputs.lanzaboote.nixosModules.lanzaboote
             ./hosts/sinkpad.nix

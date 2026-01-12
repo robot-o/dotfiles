@@ -1,4 +1,5 @@
 spawn-at-startup "noctalia-shell"
+spawn-sh-at-startup "niri-scratchpad daemon"
 
 prefer-no-csd
 
@@ -117,6 +118,8 @@ window-rule {
 
 screenshot-path "~/Pictures/Screenshots/niri-%Y-%m-%d %H-%M-%S.png"
 
+workspace "stash" {}
+
 recent-windows {
   binds {
     Alt+Tab { next-window; }
@@ -140,6 +143,9 @@ binds {
 
   XF86MonBrightnessUp allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness increase"; }
   XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness decrease"; }
+
+  Mod+S { spawn "niri-scratchpad" "create" "1"; }
+  Mod+Ctrl+S { spawn "niri-scratchpad" "delete" "1"; }
 
   Mod+O repeat=false { toggle-overview; }
 
