@@ -157,6 +157,10 @@ if command -v sops &>/dev/null; then
   source <(sops completion zsh)
 fi
 
+if command -v niri &>/dev/null; then
+  source <(niri completions zsh)
+fi
+
 # autocompletions on macos
 if command -v brew &>/dev/null; then
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh

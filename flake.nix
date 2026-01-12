@@ -13,6 +13,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri-scratchpad.url = "github:argosnothing/niri-scratchpad";
+    # stylix = {
+    #   url = "github:nix-community/stylix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs =
@@ -21,6 +25,7 @@
       nixpkgs,
       nixos-hardware,
       home-manager,
+      # stylix,
       ...
     # lanzaboote,
     }:
@@ -33,6 +38,7 @@
           };
           modules = [
             # inputs.lanzaboote.nixosModules.lanzaboote
+            # stylix.nixosModules.stylix
             ./hosts/sinkpad.nix
             nixos-hardware.nixosModules.lenovo-thinkpad-t14-intel-gen5
             home-manager.nixosModules.home-manager
