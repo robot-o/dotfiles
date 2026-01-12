@@ -101,8 +101,8 @@
       super-productivity
       ## media
       mpv
-      # mixxx
-      # bitwig-studio
+      mixxx
+      bitwig-studio
       obs-studio
       ## arts and crafts
       orca-slicer
