@@ -31,14 +31,6 @@
               scale = 1.0;
               adaptiveSync = true;
             }
-            {
-              criteria = "Dell Inc. DELL U2515H 9X2VY72I0YWL";
-              mode = "2560x1440@59.951";
-              position = "5744,-600";
-              transform = "270";
-              scale = 1.0;
-              adaptiveSync = false;
-            }
           ];
         };
         office = {
@@ -116,6 +108,7 @@
       gimp
       inkscape
       kdePackages.kdenlive
+      orca-slicer
       ## social
       signal-desktop
       element-desktop
