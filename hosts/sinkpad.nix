@@ -108,7 +108,10 @@
     };
 
     gnome.gnome-keyring.enable = true;
-    dbus.packages = [ pkgs.gnome-keyring pkgs.gcr ];
+    dbus.packages = [
+      pkgs.gnome-keyring
+      pkgs.gcr
+    ];
 
     printing.enable = false;
 
@@ -123,6 +126,17 @@
     mullvad-vpn = {
       enable = true;
       package = pkgs.mullvad-vpn;
+    };
+
+    avahi = {
+      enable = true;
+      publish = {
+        enable = true;
+        addresses = true;
+        domain = true;
+        hinfo = false;
+        userServices = false;
+      };
     };
 
   };
