@@ -107,10 +107,8 @@
       ## media
       mpv
       mixxx
-      bitwig-studio
       obs-studio
       ## arts and crafts
-      orca-slicer
       freecad
       kicad
       openscad
