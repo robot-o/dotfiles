@@ -17,7 +17,11 @@
           outputs = [
             {
               criteria = "eDP-1";
-              status = "disable";
+              mode = "2880x1800@120.000";
+              position = "0,0";
+              scale = 1.25;
+              transform = "normal";
+              adaptiveSync = false;
             }
             {
               criteria = "LG Electronics LG ULTRAGEAR 202NTQDER692";
