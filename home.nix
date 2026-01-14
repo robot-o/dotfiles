@@ -6,6 +6,7 @@
 {
   programs = {
     home-manager.enable = true;
+    zathura.enable = true;
   };
 
   services = {
@@ -100,12 +101,12 @@
       mpv
       mixxx
       obs-studio
+      steam-run
       ## arts and crafts
       freecad
       kicad
       openscad
       audacity
-      gimp
       inkscape
       kdePackages.kdenlive
       orca-slicer
