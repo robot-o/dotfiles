@@ -191,6 +191,8 @@
       bitwarden-desktop
       xdg-desktop-portal-gnome
       inputs.niri-scratchpad.packages.${pkgs.system}.default
+      distrobox
+      dnsmasq
     ];
 
     sessionVariables = {
@@ -206,6 +208,8 @@
       "networkmanager"
       "wheel"
       "dialout"
+      "podman"
+      "libvirtd"
     ];
     shell = pkgs.zsh;
   };
@@ -227,6 +231,20 @@
       clean.enable = false;
       flake = "/home/user/.dotfiles";
     };
+    virt-manager.enable = true;
+  };
+
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+    libvirtd = {
+      enable = true;
+      qemu.swtpm.enable = true;
+    };
   };
 
   nixpkgs.hostPlatform = "x86_64-linux";
@@ -235,59 +253,4 @@
     "nix-command"
     "flakes"
   ];
-
-  # Alternate solution using tlp: (disable ppd and thermald if using this)
-  # services.tlp = {
-  #   enable = lib.mkDefault true;
-  #   settings = lib.mkDefault {
-  #     CPU_BOOST_ON_AC = 1;
-  #     CPU_BOOST_ON_BAT = 1;
-  #     CPU_HWP_DYN_BOOST_ON_AC = 1;
-  #     CPU_HWP_DYN_BOOST_ON_BAT = 1;
-  #     CPU_SCALING_GOVERNOR_ON_AC = "performance";
-  #     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-  #     CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-  #     CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
-  #     PLATFORM_PROFILE_ON_AC = "performance";
-  #     PLATFORM_PROFILE_ON_BAT = "balanced";
-  #     START_CHARGE_TRESH_BAT0 = 65;
-  #     STOP_CHARGE_TRESH_BAT0 = 71;
-  #   };
-  # };
 }
-
-# networking.networkmanager.ensureProfiles.profiles = {
-#   "39C3" = {
-#     connection = {
-#       id = "39C3";
-#       type = "wifi";
-#     };
-#     wifi = {
-#       mode = "infrastructure";
-#       ssid = "39C3";
-#     };
-#     wifi-security = {
-#       auth-alg = "open";
-#       key-mgmt = "wpa-eap";
-#     };
-#     "802-1x" = {
-#       anonymous-identity = "39C3";
-#       eap = "ttls;";
-#       identity = "39C3";
-#       password = "39C3";
-#       phase2-auth = "pap";
-#       altsubject-matches = "DNS:radius.c3noc.net";
-#       ca-cert = "${builtins.fetchurl {
-#         url = "https://letsencrypt.org/certs/isrgrootx1.pem";
-#         sha256 = "sha256:1la36n2f31j9s03v847ig6ny9lr875q3g7smnq33dcsmf2i5gd92";
-#       }}";
-#     };
-#     ipv4 = {
-#       method = "auto";
-#     };
-#     ipv6 = {
-#       addr-gen-mode = "default";
-#       method = "auto";
-#     };
-#   };
-# };
