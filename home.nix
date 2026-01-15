@@ -14,9 +14,23 @@
     kanshi = {
       enable = true;
       profiles = {
+        mobile = {
+          outputs = [
+            {
+              status = "enable";
+              criteria = "eDP-1";
+              mode = "2880x1800@120.000";
+              position = "0,0";
+              scale = 1.25;
+              transform = "normal";
+              adaptiveSync = false;
+            }
+          ];
+        };
         home = {
           outputs = [
             {
+              status = "disable";
               criteria = "eDP-1";
               mode = "2880x1800@120.000";
               position = "0,0";
@@ -25,6 +39,7 @@
               adaptiveSync = false;
             }
             {
+              status = "enable";
               criteria = "LG Electronics LG ULTRAGEAR 202NTQDER692";
               mode = "3440x1440@143.923";
               position = "2304,0";
@@ -37,6 +52,7 @@
         office = {
           outputs = [
             {
+              status = "enable";
               criteria = "eDP-1";
               mode = "2880x1800@120.000";
               position = "768,1600";
@@ -45,6 +61,7 @@
               adaptiveSync = false;
             }
             {
+              status = "enable";
               criteria = "LG Electronics LG HDR WQHD+ 208NTYT1S818";
               mode = "3840x1600@143.998";
               position = "0,0";
