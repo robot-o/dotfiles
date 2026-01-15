@@ -13,9 +13,10 @@
     polkit-gnome.enable = true;
     kanshi = {
       enable = true;
-      profiles = {
-        mobile = {
-          outputs = [
+      settings = [
+        {
+          profile.name = "mobile";
+          profile.outputs = [
             {
               status = "enable";
               criteria = "eDP-1";
@@ -26,9 +27,10 @@
               adaptiveSync = false;
             }
           ];
-        };
-        home = {
-          outputs = [
+        }
+        {
+          profile.name = "home";
+          profile.outputs = [
             {
               status = "disable";
               criteria = "eDP-1";
@@ -48,9 +50,10 @@
               adaptiveSync = true;
             }
           ];
-        };
-        office = {
-          outputs = [
+        }
+        {
+          profile.name = "office";
+          profile.outputs = [
             {
               status = "enable";
               criteria = "eDP-1";
@@ -70,8 +73,8 @@
               adaptiveSync = false;
             }
           ];
-        };
-      };
+        }
+      ];
     };
   };
 
