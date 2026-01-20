@@ -139,6 +139,12 @@
       };
     };
 
+    openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+      settings.PermitRootLogin = "no";
+    };
+
   };
 
   security = {
@@ -210,8 +216,13 @@
       "dialout"
       "podman"
       "libvirtd"
+      "kvm"
+      "ydotool"
     ];
     shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJwUUDAyJB7RS9Pjb55cBrBoTJj6pb4YY3YymKnfgGr+"
+    ];
   };
 
   fonts.packages = with pkgs; [
@@ -232,6 +243,7 @@
       flake = "/home/user/.dotfiles";
     };
     virt-manager.enable = true;
+    ydotool.enable = true;
   };
 
   virtualisation = {

@@ -121,6 +121,8 @@
       mpv
       mixxx
       obs-studio
+      ## gaymen
+      osu-lazer-bin
       steam-run
       ## arts and crafts
       freecad

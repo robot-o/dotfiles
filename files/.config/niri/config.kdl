@@ -123,6 +123,10 @@ workspace "alt" {}
 workspace "social" {}
 workspace "media" {}
 workspace "mgmt" {}
+workspace "misc6" {}
+workspace "misc7" {}
+workspace "misc8" {}
+workspace "misc9" {}
 workspace "stash" {}
 
 recent-windows {
@@ -141,6 +145,7 @@ binds {
   Super+Alt+L hotkey-overlay-title="Lock" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
   Mod+I hotkey-overlay-title="Settings" { spawn-sh "noctalia-shell ipc call settings toggle"; }
   Mod+Period hotkey-overlay-title="Emoji" { spawn-sh "noctalia-shell ipc call launcher emoji"; }
+  Mod+Ctrl+C hotkey-overlay-title="Clipboard" { spawn-sh "noctalia-shell ipc call launcher clipboard"; }
 
   XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume increase"; }
   XF86AudioLowerVolume allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume decrease"; }
@@ -152,6 +157,12 @@ binds {
 
   Mod+S { spawn "niri-scratchpad" "create" "1" "--as-float"; }
   Mod+Ctrl+S { spawn "niri-scratchpad" "delete" "1"; }
+
+  Mod+P { spawn "niri-scratchpad" "create" "2" "--as-float"; }
+  Mod+Ctrl+P { spawn "niri-scratchpad" "delete" "2"; }
+
+  Mod+N { spawn "niri-scratchpad" "create" "3" "--as-float"; }
+  Mod+Ctrl+N { spawn "niri-scratchpad" "delete" "3"; }
 
   Mod+O repeat=false { toggle-overview; }
 
@@ -206,6 +217,7 @@ binds {
   Mod+7 { focus-workspace 7; }
   Mod+8 { focus-workspace 8; }
   Mod+9 { focus-workspace 9; }
+  Mod+0 { focus-workspace "stash"; }
   Mod+Ctrl+1 { move-column-to-workspace 1; }
   Mod+Ctrl+2 { move-column-to-workspace 2; }
   Mod+Ctrl+3 { move-column-to-workspace 3; }
@@ -215,6 +227,7 @@ binds {
   Mod+Ctrl+7 { move-column-to-workspace 7; }
   Mod+Ctrl+8 { move-column-to-workspace 8; }
   Mod+Ctrl+9 { move-column-to-workspace 9; }
+  Mod+Ctrl+0 { move-column-to-workspace "stash"; }
 
   Mod+BracketLeft  { consume-or-expel-window-left; }
   Mod+BracketRight { consume-or-expel-window-right; }
@@ -231,7 +244,7 @@ binds {
   Mod+Ctrl+F { expand-column-to-available-width; }
 
   Mod+C { center-column; }
-  Mod+Ctrl+C { center-visible-columns; }
+  //Mod+Ctrl+C { center-visible-columns; }
 
   Mod+Minus { set-column-width "-10%"; }
   Mod+Equal{ set-column-width "+10%"; }
