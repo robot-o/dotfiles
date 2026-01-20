@@ -88,6 +88,7 @@
       libnotify
       playerctl
       noctalia-shell
+      nautilus
       ## cli
       tmux
       tmuxp

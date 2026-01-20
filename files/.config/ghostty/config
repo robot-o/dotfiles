@@ -4,7 +4,7 @@ font-feature = -calt
 font-size = 10
 theme = TokyoNight
 background-opacity = 0.95
-background-blur = true
+background-blur = false
 window-decoration = false
 macos-titlebar-style = hidden
 keybind = ctrl+;=text:\x01;
