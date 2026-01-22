@@ -138,7 +138,6 @@
       element-desktop
       discord
       slack
-      teams-for-linux
     ];
 
     pointerCursor = {
