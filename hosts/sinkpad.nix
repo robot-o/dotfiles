@@ -199,6 +199,7 @@
       inputs.niri-scratchpad.packages.${pkgs.system}.default
       distrobox
       dnsmasq
+      unzip
     ];
 
     sessionVariables = {
