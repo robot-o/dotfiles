@@ -139,13 +139,42 @@ require("lazy").setup({
         zen = { enabled = true },
       },
       keys = {
-        { "<A-e>",            mode = { "n" },           function() Snacks.explorer({ hidden = true, exclude = { "**/.git" } }) end,     desc = "Picker/Explorer" },
-        { "<leader>z",        mode = { "n" },           function() Snacks.zen() end,                                                    desc = "ZenMode Toggle" },
-        { "<A-g>",            mode = { "n" },           function() Snacks.lazygit.open() end,                                           desc = "Lazygit" },
+        { "<A-e>",            mode = { "n" }, function() Snacks.explorer({ hidden = true, exclude = { "**/.git" } }) end,     desc = "Picker/Explorer" },
+        { "<leader>z",        mode = { "n" }, function() Snacks.zen() end,                                                    desc = "ZenMode Toggle" },
+        { "<A-g>",            mode = { "n" }, function() Snacks.lazygit.open() end,                                           desc = "Lazygit" },
+        { "<leader><leader>", mode = { "n" }, function() Snacks.picker.files({ hidden = true, exclude = { "**/.git" } }) end, desc = "Picker/Files" },
+        { "<A-d>",            mode = { "n" }, function() Snacks.picker.files({ hidden = true, exclude = { "**/.git" } }) end, desc = "Picker/Files" },
+        { "<A-r>",            mode = { "n" }, function() Snacks.picker.recent() end,                                          desc = "Picker/Recent" },
+        { "<A-f>",            mode = { "n" }, function() Snacks.picker.grep() end,                                            desc = "Picker/Grep" },
+        { "<A-n>",            mode = { "n" }, function() Snacks.picker.notifications() end,                                   desc = "Picker/Notifications" },
+        { "<A-p>",            mode = { "n" }, function() Snacks.picker.command_history() end,                                 desc = "Picker/CommandHistory" },
+        { "<A-P>",            mode = { "n" }, function() Snacks.picker.commands() end,                                        desc = "Picker/Commands" },
+        { "<leader>lD",       mode = { "n" }, function() Snacks.picker.diagnostics() end,                                     desc = "Picker/Diagnostics" },
+        {
+          "<A-o>",
+          mode = { "n" },
+          function()
+            Snacks.input.input({ prompt = "command: " }, function(input)
+              if input then
+                vim.cmd("!" .. input)
+              end
+            end)
+          end,
+          desc = "Input/Command"
+        },
+        {
+          "<A-O>",
+          mode = { "n" },
+          function()
+            Snacks.input.input({ prompt = "command into buffer: " }, function(input)
+              if input then
+                vim.cmd("r!" .. input)
+              end
+            end)
+          end,
+          desc = "Input/CommandIntoBuffer"
+        },
         { "<leader><leader>", mode = { "n" },           function() Snacks.picker.files({ hidden = true, exclude = { "**/.git" } }) end, desc = "Picker/Files" },
-        { "<A-d>",            mode = { "n" },           function() Snacks.picker.files({ hidden = true, exclude = { "**/.git" } }) end, desc = "Picker/Files" },
-        { "<A-r>",            mode = { "n" },           function() Snacks.picker.recent() end,                                          desc = "Picker/Recent" },
-        { "<A-f>",            mode = { "n" },           function() Snacks.picker.grep() end,                                            desc = "Picker/Grep" },
         { "<A-`>",            mode = { "n", "i", "t" }, function() Snacks.terminal.toggle() end,                                        desc = "Terminal/Toggle" },
         { "<leader>tt",       mode = { "n", "i", "t" }, function() Snacks.terminal.toggle() end,                                        desc = "Terminal/Toggle" },
         { "<A-h>",            mode = { "t" },           "<C-\\><C-n>:wincmd h<CR>" },
@@ -158,6 +187,7 @@ require("lazy").setup({
     },
     {
       "folke/flash.nvim",
+      enabled = false,
       event = "VeryLazy",
       opts = {},
       keys = {
@@ -242,7 +272,7 @@ require("lazy").setup({
     },
     {
       'saghen/blink.cmp',
-      enabled = false,
+      enabled = true,
       lazy = false,
       event = { "InsertEnter", },
       dependencies = {
@@ -601,8 +631,7 @@ vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = 'rename' })
 vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = 'hover' })
 vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = 'code action' })
 vim.keymap.set("n", "<leader>ld", '', { desc = 'diagnostics..' })
-vim.keymap.set("n", "<leader>ldl", vim.diagnostic.setloclist, { desc = 'open list' })
-vim.keymap.set("n", "<leader>lds", vim.diagnostic.open_float, { desc = 'open float' })
+vim.keymap.set("n", "<leader>ldf", vim.diagnostic.open_float, { desc = 'open float' })
 vim.keymap.set("n", "<leader>ldd", function() vim.diagnostic.jump({ count = 1 }) end, { desc = 'goto next' })
 vim.keymap.set("n", "<leader>ldu", function() vim.diagnostic.jump({ count = -1 }) end, { desc = 'goto previous' })
 vim.keymap.set("n", "<leader>ls", '', { desc = 'symbols..' })
