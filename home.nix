@@ -112,6 +112,9 @@
       tree-sitter
       nil
       nixfmt
+      shellcheck
+      shellharden
+      bash-language-server
       drawio
       bind
       remmina
