@@ -104,17 +104,18 @@
       fzf
       ffmpeg
       yt-dlp
+      ## dev/lsp/editor
+      tree-sitter
+      nil
+      nixfmt
+      shellcheck
+      bash-language-server
+      yaml-language-server
       ## dev
       lazygit
       delta
       jq
       yq
-      tree-sitter
-      nil
-      nixfmt
-      shellcheck
-      shellharden
-      bash-language-server
       drawio
       bind
       remmina

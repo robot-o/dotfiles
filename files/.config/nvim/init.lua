@@ -215,8 +215,34 @@ require("lazy").setup({
       }
     },
     {
-      'saghen/blink.cmp',
+      'stevearc/conform.nvim',
       enabled = true,
+      lazy = true,
+      event = { "BufWritePre" },
+      cmd = { "ConformInfo" },
+      keys = {
+        { "<leader>f", function() require("conform").format({ async = true }) end, desc = "Format buffer" },
+      },
+      opts = {
+        formatters_by_ft = {
+          kdl = { "kdlfmt" },
+        },
+      },
+    },
+    {
+      'mfussenegger/nvim-lint',
+      enabled = true,
+      lazy = true,
+      event = { "BufWritePre" },
+      opts = {
+        linters_by_ft = {
+          sh = { 'shellcheck' },
+        },
+      },
+    },
+    {
+      'saghen/blink.cmp',
+      enabled = false,
       lazy = false,
       event = { "InsertEnter", },
       dependencies = {
@@ -458,6 +484,12 @@ require("lazy").setup({
   },
 })
 
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+    require("lint").try_lint()
+  end,
+})
+
 vim.api.nvim_create_autocmd('ColorScheme', {
   callback = function()
     vim.cmd.highlight { 'BufferVisibleIndex', 'guifg=#a9b1d6' }
@@ -510,6 +542,8 @@ vim.filetype.add({
 -- additional lsp magic
 -- vim.lsp.config('nil_ls', { settings = { formatting = { command = { "alejandra" } } } })
 vim.lsp.enable('nil_ls')
+vim.lsp.enable('bashls')
+vim.lsp.enable('yamlls')
 
 -- enable inline diagnostics
 vim.diagnostic.config({ virtual_text = true })
