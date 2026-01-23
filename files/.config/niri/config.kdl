@@ -1,279 +1,457 @@
 spawn-at-startup "noctalia-shell"
 spawn-sh-at-startup "niri-scratchpad daemon"
-
 prefer-no-csd
-
 input {
-  keyboard {
-    xkb {
-      layout "de"
-      variant "us"
-      options "caps:swapescape"
+    keyboard {
+        xkb {
+            layout "de"
+            variant "us"
+            options "caps:swapescape"
+        }
+        numlock
     }
-    numlock
-  }
-  touchpad {
-    tap
-    dwt
-    natural-scroll
-    tap-button-map "left-right-middle"
-    accel-profile "adaptive"
-  }
-  mouse {}
-  trackpoint {
-    accel-profile "flat"
-    scroll-method "on-button-down"
-  }
-}
+    touchpad {
+        tap
+        dwt
+        natural-scroll
+        tap-button-map "left-right-middle"
+        accel-profile "adaptive"
+    }
+    mouse {
 
+    }
+    trackpoint {
+        accel-profile "flat"
+        scroll-method "on-button-down"
+    }
+}
 cursor {
-  xcursor-theme "Posy_Cursor"
-  xcursor-size 32
+    xcursor-theme "Posy_Cursor"
+    xcursor-size 32
 }
-
 gestures {
-  hot-corners {
-    off
-  }
+    hot-corners {
+        off
+    }
 }
-
-output "eDP-1" {
-  mode "2880x1800@120.000" // logical size: 2304x1440
-  scale 1.25
-  transform "normal"
-  position x=0 y=0
-  focus-at-startup
-}
-
 layout {
-  background-color "transparent"
-  gaps 4
-  center-focused-column "never"
-  always-center-single-column
-  preset-column-widths {
-    proportion 0.33333
-    proportion 0.5
-    proportion 0.66667
-  }
-  default-column-width { proportion 0.5; }
-  focus-ring {
-    width 1
-    active-color "#505050"
-    inactive-color "#505050"
-  }
-  border {
-    off
-  }
-  shadow {
-    on
-    softness 30
-    spread 5
-    offset x=0 y=5
-    color "#0007"
-  }
-  struts {}
-}
+    background-color "transparent"
+    gaps 4
+    center-focused-column "never"
+    always-center-single-column
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+    default-column-width {
+        proportion 0.5
+    }
+    focus-ring {
+        width 1
+        active-color "#505050"
+        inactive-color "#505050"
+    }
+    border {
+        off
+    }
+    shadow {
+        on
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+    struts {
 
+    }
+}
 hotkey-overlay {
-  skip-at-startup
+    skip-at-startup
 }
+animations {
 
-animations {}
-
+}
 layer-rule {
-  match namespace="^wallpaper$"
-  place-within-backdrop true
+    match namespace="^wallpaper$"
+    place-within-backdrop true
 }
-
 window-rule {
-  match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-  match app-id=r#"brave$"# title="^Picture-in-Picture$"
-  open-floating true
+    match app-id="firefox$" title="^Picture-in-Picture$"
+    match app-id="brave$" title="^Picture-in-Picture$"
+    open-floating true
 }
-
 window-rule {
-  match app-id="Bitwarden"
-  match app-id=r#"^org\.gnome\.World\.Secrets$"#
-  block-out-from "screen-capture"
+    match app-id="Bitwarden"
+    match app-id="^org\\.gnome\\.World\\.Secrets$"
+    block-out-from "screen-capture"
 }
-
 window-rule {
-  geometry-corner-radius 6
-  clip-to-geometry true
+    geometry-corner-radius 6
+    clip-to-geometry true
 }
-
 window-rule {
-  match is-window-cast-target=true
-  focus-ring {
-    active-color "#f38ba8"
-    inactive-color "#7d0d2d"
-  }
-  border {
-    inactive-color "#7d0d2d"
-  }
-  tab-indicator {
-    active-color "#f38ba8"
-    inactive-color "#7d0d2d"
-  }
+    match is-window-cast-target=true
+    focus-ring {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+    border {
+        inactive-color "#7d0d2d"
+    }
+    tab-indicator {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
 }
-
 screenshot-path "~/Pictures/Screenshots/niri-%Y-%m-%d %H-%M-%S.png"
+workspace "main" {
 
-workspace "main" {}
-workspace "alt" {}
-workspace "social" {}
-workspace "media" {}
-workspace "mgmt" {}
-workspace "misc6" {}
-workspace "misc7" {}
-workspace "misc8" {}
-workspace "misc9" {}
-workspace "stash" {}
+}
+workspace "alt" {
 
+}
+workspace "social" {
+
+}
+workspace "media" {
+
+}
+workspace "mgmt" {
+
+}
+workspace "misc6" {
+
+}
+workspace "misc7" {
+
+}
+workspace "misc8" {
+
+}
+workspace "misc9" {
+
+}
+workspace "stash" {
+
+}
 recent-windows {
-  binds {
-    Alt+Tab { next-window; }
-    Alt+Shift+Tab { previous-window; }
-  }
+    binds {
+        Alt+Tab {
+            next-window
+        }
+        Alt+Shift+Tab {
+            previous-window
+        }
+    }
 }
-
 binds {
-  Mod+Shift+Slash { show-hotkey-overlay; }
-
-  Mod+T hotkey-overlay-title="Terminal" { spawn "ghostty"; }
-  Mod+Space hotkey-overlay-title="Launcher" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
-  Mod+D hotkey-overlay-title="Launcher" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
-  Super+Alt+L hotkey-overlay-title="Lock" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
-  Mod+I hotkey-overlay-title="Settings" { spawn-sh "noctalia-shell ipc call settings toggle"; }
-  Mod+Period hotkey-overlay-title="Emoji" { spawn-sh "noctalia-shell ipc call launcher emoji"; }
-  Mod+Ctrl+C hotkey-overlay-title="Clipboard" { spawn-sh "noctalia-shell ipc call launcher clipboard"; }
-
-  XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume increase"; }
-  XF86AudioLowerVolume allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume decrease"; }
-  XF86AudioMute        allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume muteOutput"; }
-  XF86AudioMicMute     allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume muteInput"; }
-
-  XF86MonBrightnessUp allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness increase"; }
-  XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness decrease"; }
-
-  Mod+S { spawn "niri-scratchpad" "create" "1" "--as-float"; }
-  Mod+Ctrl+S { spawn "niri-scratchpad" "delete" "1"; }
-
-  Mod+P { spawn "niri-scratchpad" "create" "2" "--as-float"; }
-  Mod+Ctrl+P { spawn "niri-scratchpad" "delete" "2"; }
-
-  Mod+N { spawn "niri-scratchpad" "create" "3" "--as-float"; }
-  Mod+Ctrl+N { spawn "niri-scratchpad" "delete" "3"; }
-
-  Mod+O repeat=false { toggle-overview; }
-
-  Mod+Q repeat=false { close-window; }
-
-  Mod+H     { focus-column-left; }
-  Mod+J     { focus-window-down; }
-  Mod+K     { focus-window-up; }
-  Mod+L     { focus-column-right; }
-
-  Mod+Ctrl+H     { move-column-left; }
-  Mod+Ctrl+J     { move-window-down; }
-  Mod+Ctrl+K     { move-window-up; }
-  Mod+Ctrl+L     { move-column-right; }
-
-  Mod+Home { focus-column-first; }
-  Mod+End  { focus-column-last; }
-  Mod+Ctrl+Home { move-column-to-first; }
-  Mod+Ctrl+End  { move-column-to-last; }
-
-  Mod+Shift+H     { focus-monitor-left; }
-  Mod+Shift+J     { focus-monitor-down; }
-  Mod+Shift+K     { focus-monitor-up; }
-  Mod+Shift+L     { focus-monitor-right; }
-
-  Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-  Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-  Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
-  Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
-
-  Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
-  Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
-  Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-  Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
-
-  Mod+WheelScrollRight      { focus-column-right; }
-  Mod+WheelScrollLeft       { focus-column-left; }
-  Mod+Ctrl+WheelScrollRight { move-column-right; }
-  Mod+Ctrl+WheelScrollLeft  { move-column-left; }
-
-  Mod+Shift+WheelScrollDown      { focus-column-right; }
-  Mod+Shift+WheelScrollUp        { focus-column-left; }
-  Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-  Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
-
-  Mod+1 { focus-workspace 1; }
-  Mod+2 { focus-workspace 2; }
-  Mod+3 { focus-workspace 3; }
-  Mod+4 { focus-workspace 4; }
-  Mod+5 { focus-workspace 5; }
-  Mod+6 { focus-workspace 6; }
-  Mod+7 { focus-workspace 7; }
-  Mod+8 { focus-workspace 8; }
-  Mod+9 { focus-workspace 9; }
-  Mod+0 { focus-workspace "stash"; }
-  Mod+Ctrl+1 { move-column-to-workspace 1; }
-  Mod+Ctrl+2 { move-column-to-workspace 2; }
-  Mod+Ctrl+3 { move-column-to-workspace 3; }
-  Mod+Ctrl+4 { move-column-to-workspace 4; }
-  Mod+Ctrl+5 { move-column-to-workspace 5; }
-  Mod+Ctrl+6 { move-column-to-workspace 6; }
-  Mod+Ctrl+7 { move-column-to-workspace 7; }
-  Mod+Ctrl+8 { move-column-to-workspace 8; }
-  Mod+Ctrl+9 { move-column-to-workspace 9; }
-  Mod+Ctrl+0 { move-column-to-workspace "stash"; }
-
-  Mod+BracketLeft  { consume-or-expel-window-left; }
-  Mod+BracketRight { consume-or-expel-window-right; }
-
-  Mod+Comma  { consume-window-into-column; }
-  Mod+Shift+Comma { expel-window-from-column; }
-
-  Mod+R { switch-preset-column-width; }
-  Mod+Shift+R { switch-preset-window-height; }
-  Mod+Ctrl+R { reset-window-height; }
-  Mod+F { maximize-column; }
-  Mod+Shift+F { fullscreen-window; }
-
-  Mod+Ctrl+F { expand-column-to-available-width; }
-
-  Mod+C { center-column; }
-  //Mod+Ctrl+C { center-visible-columns; }
-
-  Mod+Minus { set-column-width "-10%"; }
-  Mod+Equal{ set-column-width "+10%"; }
-  Mod+Shift+Equal{ set-column-width "+10%"; }
-
-  Mod+V       { toggle-window-floating; }
-  Mod+Shift+V { switch-focus-between-floating-and-tiling; }
-
-  Mod+W { toggle-column-tabbed-display; }
-
-  Print { screenshot; }
-  Ctrl+Print { screenshot-screen; }
-  Alt+Print { screenshot-window; }
-
-  Mod+Shift+C { set-dynamic-cast-window; }
-  Mod+Alt+Shift+C { clear-dynamic-cast-target; }
-
-  // Applications such as remote-desktop clients and software KVM switches may
-  // request that niri stops processing the keyboard shortcuts defined here
-  // so they may, for example, forward the key presses as-is to a remote machine.
-  // It's a good idea to bind an escape hatch to toggle the inhibitor,
-  // so a buggy application can't hold your session hostage.
-  //
-  // The allow-inhibiting=false property can be applied to other binds as well,
-  // which ensures niri always processes them, even when an inhibitor is active.
-  Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-
-  // The quit action will show a confirmation dialog to avoid accidental exits.
-  Mod+Shift+E { quit; }
-  Ctrl+Alt+Delete { quit; }
+    Mod+Shift+Slash {
+        show-hotkey-overlay
+    }
+    Mod+T hotkey-overlay-title="Terminal" {
+        spawn "ghostty"
+    }
+    Mod+Space hotkey-overlay-title="Launcher" {
+        spawn-sh "noctalia-shell ipc call launcher toggle"
+    }
+    Mod+D hotkey-overlay-title="Launcher" {
+        spawn-sh "noctalia-shell ipc call launcher toggle"
+    }
+    Super+Alt+L hotkey-overlay-title="Lock" {
+        spawn-sh "noctalia-shell ipc call lockScreen lock"
+    }
+    Mod+I hotkey-overlay-title="Settings" {
+        spawn-sh "noctalia-shell ipc call settings toggle"
+    }
+    Mod+Period hotkey-overlay-title="Emoji" {
+        spawn-sh "noctalia-shell ipc call launcher emoji"
+    }
+    Mod+Ctrl+C hotkey-overlay-title="Clipboard" {
+        spawn-sh "noctalia-shell ipc call launcher clipboard"
+    }
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn-sh "noctalia-shell ipc call volume increase"
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn-sh "noctalia-shell ipc call volume decrease"
+    }
+    XF86AudioMute allow-when-locked=true {
+        spawn-sh "noctalia-shell ipc call volume muteOutput"
+    }
+    XF86AudioMicMute allow-when-locked=true {
+        spawn-sh "noctalia-shell ipc call volume muteInput"
+    }
+    XF86MonBrightnessUp allow-when-locked=true {
+        spawn-sh "noctalia-shell ipc call brightness increase"
+    }
+    XF86MonBrightnessDown allow-when-locked=true {
+        spawn-sh "noctalia-shell ipc call brightness decrease"
+    }
+    Mod+S {
+        spawn "niri-scratchpad" "create" "1" "--as-float"
+    }
+    Mod+Ctrl+S {
+        spawn "niri-scratchpad" "delete" "1"
+    }
+    Mod+P {
+        spawn "niri-scratchpad" "create" "2" "--as-float"
+    }
+    Mod+Ctrl+P {
+        spawn "niri-scratchpad" "delete" "2"
+    }
+    Mod+N {
+        spawn "niri-scratchpad" "create" "3" "--as-float"
+    }
+    Mod+Ctrl+N {
+        spawn "niri-scratchpad" "delete" "3"
+    }
+    Mod+O repeat=false {
+        toggle-overview
+    }
+    Mod+Q repeat=false {
+        close-window
+    }
+    Mod+H {
+        focus-column-left
+    }
+    Mod+J {
+        focus-window-down
+    }
+    Mod+K {
+        focus-window-up
+    }
+    Mod+L {
+        focus-column-right
+    }
+    Mod+Ctrl+H {
+        move-column-left
+    }
+    Mod+Ctrl+J {
+        move-window-down
+    }
+    Mod+Ctrl+K {
+        move-window-up
+    }
+    Mod+Ctrl+L {
+        move-column-right
+    }
+    Mod+Home {
+        focus-column-first
+    }
+    Mod+End {
+        focus-column-last
+    }
+    Mod+Ctrl+Home {
+        move-column-to-first
+    }
+    Mod+Ctrl+End {
+        move-column-to-last
+    }
+    Mod+Shift+H {
+        focus-monitor-left
+    }
+    Mod+Shift+J {
+        focus-monitor-down
+    }
+    Mod+Shift+K {
+        focus-monitor-up
+    }
+    Mod+Shift+L {
+        focus-monitor-right
+    }
+    Mod+Shift+Ctrl+H {
+        move-column-to-monitor-left
+    }
+    Mod+Shift+Ctrl+J {
+        move-column-to-monitor-down
+    }
+    Mod+Shift+Ctrl+K {
+        move-column-to-monitor-up
+    }
+    Mod+Shift+Ctrl+L {
+        move-column-to-monitor-right
+    }
+    Mod+WheelScrollDown cooldown-ms=150 {
+        focus-workspace-down
+    }
+    Mod+WheelScrollUp cooldown-ms=150 {
+        focus-workspace-up
+    }
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 {
+        move-column-to-workspace-down
+    }
+    Mod+Ctrl+WheelScrollUp cooldown-ms=150 {
+        move-column-to-workspace-up
+    }
+    Mod+WheelScrollRight {
+        focus-column-right
+    }
+    Mod+WheelScrollLeft {
+        focus-column-left
+    }
+    Mod+Ctrl+WheelScrollRight {
+        move-column-right
+    }
+    Mod+Ctrl+WheelScrollLeft {
+        move-column-left
+    }
+    Mod+Shift+WheelScrollDown {
+        focus-column-right
+    }
+    Mod+Shift+WheelScrollUp {
+        focus-column-left
+    }
+    Mod+Ctrl+Shift+WheelScrollDown {
+        move-column-right
+    }
+    Mod+Ctrl+Shift+WheelScrollUp {
+        move-column-left
+    }
+    Mod+1 {
+        focus-workspace 1
+    }
+    Mod+2 {
+        focus-workspace 2
+    }
+    Mod+3 {
+        focus-workspace 3
+    }
+    Mod+4 {
+        focus-workspace 4
+    }
+    Mod+5 {
+        focus-workspace 5
+    }
+    Mod+6 {
+        focus-workspace 6
+    }
+    Mod+7 {
+        focus-workspace 7
+    }
+    Mod+8 {
+        focus-workspace 8
+    }
+    Mod+9 {
+        focus-workspace 9
+    }
+    Mod+0 {
+        focus-workspace "stash"
+    }
+    Mod+Ctrl+1 {
+        move-column-to-workspace 1
+    }
+    Mod+Ctrl+2 {
+        move-column-to-workspace 2
+    }
+    Mod+Ctrl+3 {
+        move-column-to-workspace 3
+    }
+    Mod+Ctrl+4 {
+        move-column-to-workspace 4
+    }
+    Mod+Ctrl+5 {
+        move-column-to-workspace 5
+    }
+    Mod+Ctrl+6 {
+        move-column-to-workspace 6
+    }
+    Mod+Ctrl+7 {
+        move-column-to-workspace 7
+    }
+    Mod+Ctrl+8 {
+        move-column-to-workspace 8
+    }
+    Mod+Ctrl+9 {
+        move-column-to-workspace 9
+    }
+    Mod+Ctrl+0 {
+        move-column-to-workspace "stash"
+    }
+    Mod+BracketLeft {
+        consume-or-expel-window-left
+    }
+    Mod+BracketRight {
+        consume-or-expel-window-right
+    }
+    Mod+Comma {
+        consume-window-into-column
+    }
+    Mod+Shift+Comma {
+        expel-window-from-column
+    }
+    Mod+R {
+        switch-preset-column-width
+    }
+    Mod+Shift+R {
+        switch-preset-window-height
+    }
+    Mod+Ctrl+R {
+        reset-window-height
+    }
+    Mod+F {
+        maximize-column
+    }
+    Mod+Shift+F {
+        fullscreen-window
+    }
+    Mod+Ctrl+F {
+        expand-column-to-available-width
+    }
+    Mod+C {
+        center-column
+    }
+    //Mod+Ctrl+C { center-visible-columns; }
+    Mod+Minus {
+        set-column-width "-10%"
+    }
+    Mod+Equal {
+        set-column-width "+10%"
+    }
+    Mod+Shift+Equal {
+        set-column-width "+10%"
+    }
+    Mod+V {
+        toggle-window-floating
+    }
+    Mod+Shift+V {
+        switch-focus-between-floating-and-tiling
+    }
+    Mod+W {
+        toggle-column-tabbed-display
+    }
+    Print {
+        screenshot
+    }
+    Ctrl+Print {
+        screenshot-screen
+    }
+    Alt+Print {
+        screenshot-window
+    }
+    Mod+Shift+C {
+        set-dynamic-cast-window
+    }
+    Mod+Alt+Shift+C {
+        clear-dynamic-cast-target
+    }
+    // Applications such as remote-desktop clients and software KVM switches may
+    // request that niri stops processing the keyboard shortcuts defined here
+    // so they may, for example, forward the key presses as-is to a remote machine.
+    // It's a good idea to bind an escape hatch to toggle the inhibitor,
+    // so a buggy application can't hold your session hostage.
+    //
+    // The allow-inhibiting=false property can be applied to other binds as well,
+    // which ensures niri always processes them, even when an inhibitor is active.
+    Mod+Escape allow-inhibiting=false {
+        toggle-keyboard-shortcuts-inhibit
+    }
+    // The quit action will show a confirmation dialog to avoid accidental exits.
+    Mod+Shift+E {
+        quit
+    }
+    Ctrl+Alt+Delete {
+        quit
+    }
 }
+
