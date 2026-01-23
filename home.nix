@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }:
 
@@ -152,22 +153,20 @@
       name = "Posy_Cursor";
     };
 
-    file.".scripts".source = ./files/.scripts;
-
     file.".shell_env".source = ./files/.shell_env;
     file.".zsh_env".source = ./files/.zsh_env;
     file.".zshenv".source = ./files/.zshenv;
     file.".zshrc".source = ./files/.zshrc;
-    file.".aliases".source = ./files/.aliases;
     file.".tmux.conf".source = ./files/.tmux.conf;
     file.".gitconfig".source = ./files/.gitconfig;
-
-    file.".config/nvim".source = ./files/.config/nvim;
     file.".config/ghostty".source = ./files/.config/ghostty;
     file.".config/bat".source = ./files/.config/bat;
+
+    file.".aliases".source = config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.aliases;
+    file.".scripts".source = config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.scripts;
+    file.".config/niri/config.kdl".source =
+      config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.config/niri/config.kdl;
+    file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.config/nvim;
   };
 
-  xdg.configFile."niri/config.kdl".source = ./files/.config/niri/config.kdl;
-  xdg.configFile."swayidle/config".source = ./files/.config/swayidle/config;
-  xdg.configFile."swaylock/config".source = ./files/.config/swaylock/config;
 }
