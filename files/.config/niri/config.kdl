@@ -88,10 +88,6 @@ window-rule {
     draw-border-with-background false
 }
 window-rule {
-    match app-id="^com\\.mitchellh\\.ghostty$"
-    draw-border-with-background false
-}
-window-rule {
     match title="^Picture in Picture$"
     match app-id="^brave-browser$" title="^Picture in Picture$"
     open-floating true
