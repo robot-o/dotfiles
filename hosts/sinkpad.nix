@@ -183,6 +183,19 @@
 
   console.keyMap = "us";
 
+  xdg = {
+    terminal-exec = {
+      enable = true;
+      settings.default = [ "com.mitchellh.ghostty.desktop" ];
+    };
+    mime = {
+      enable = true;
+      defaultApplications = {
+        "application/pdf" = "org.pwmt.zathura.desktop";
+        "text/*" = "nvim.desktop";
+      };
+    };
+  };
   environment = {
     systemPackages = with pkgs; [
       sbctl
