@@ -569,9 +569,30 @@ vim.filetype.add({
   },
 })
 
+-- custom magic
+-- godot
+local gd_paths    = { '/', '/../' }
+local gd_is_prj   = false
+local gd_prj_path = ''
+local gd_cwd      = vim.fn.getcwd()
+
+for _, v in pairs(gd_paths) do
+  if vim.uv.fs_stat(gd_cwd .. v .. 'project.godot') then
+    gd_is_prj = true
+    gd_prj_path = gd_cwd .. v
+    break
+  end
+end
+
+local gd_srv_run = vim.uv.fs_stat(gd_prj_path .. '/server.pipe')
+if gd_is_prj and not gd_srv_run then
+  vim.fn.serverstart(gd_prj_path .. '/server.pipe')
+end
+
+
 -- additional lsp magic
 -- vim.lsp.config('nil_ls', { settings = { formatting = { command = { "alejandra" } } } })
-vim.lsp.enable({ 'nil_ls', 'bashls', 'yamlls' })
+vim.lsp.enable({ 'nil_ls', 'bashls', 'yamlls', 'gdscript' })
 
 -- enable inline diagnostics
 vim.diagnostic.config({ virtual_text = true })

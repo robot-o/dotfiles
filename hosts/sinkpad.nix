@@ -196,7 +196,7 @@
       brave
       bitwarden-desktop
       xdg-desktop-portal-gnome
-      inputs.niri-scratchpad.packages.${pkgs.system}.default
+      inputs.niri-scratchpad.packages.${pkgs.stdenv.hostPlatform.system}.default
       distrobox
       dnsmasq
       unzip

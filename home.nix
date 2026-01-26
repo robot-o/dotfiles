@@ -138,6 +138,7 @@
       inkscape
       kdePackages.kdenlive
       orca-slicer
+      godot
       ## social
       signal-desktop
       element-desktop
