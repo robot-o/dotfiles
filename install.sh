@@ -1,13 +1,8 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 set -v -o pipefail
 
 echo "ensuring $HOME/.config exists.."
 [[ -d "$HOME/.config" ]] && mkdir "$HOME/.config" 
-
-echo "ensuring Packer is installed for nvim.."
-if [[ ! -d "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim" ]]; then
-  git clone 'https://github.com/wbthomason/packer.nvim' "${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim"
-fi
 
 echo "symlinking dotfiles.."
 ln -sf ~/.dotfiles/files/.shell_env ~/.shell_env

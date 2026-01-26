@@ -245,6 +245,7 @@
     };
     virt-manager.enable = true;
     ydotool.enable = true;
+    nm-applet.enable = true;
   };
 
   virtualisation = {

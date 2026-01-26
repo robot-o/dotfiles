@@ -36,7 +36,7 @@ gestures {
 }
 layout {
     background-color "transparent"
-    gaps 4
+    gaps 0
     center-focused-column "never"
     always-center-single-column
     preset-column-widths {
@@ -49,8 +49,7 @@ layout {
     }
     focus-ring {
         width 1
-        active-color "#505050"
-        inactive-color "#505050"
+        active-color "#545454"
     }
     border {
         off
@@ -73,12 +72,16 @@ animations {
 
 }
 layer-rule {
-    match namespace="^wallpaper$"
+    match namespace="^noctalia-wallpaper*"
     place-within-backdrop true
 }
 window-rule {
-    match app-id="firefox$" title="^Picture-in-Picture$"
-    match app-id="brave$" title="^Picture-in-Picture$"
+    match app-id="^com\\.mitchellh\\.ghostty$"
+    draw-border-with-background false
+}
+window-rule {
+    match title="^Picture in Picture$"
+    match app-id="^brave-browser$" title="^Picture in Picture$"
     open-floating true
 }
 window-rule {
