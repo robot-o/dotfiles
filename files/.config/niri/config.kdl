@@ -166,7 +166,7 @@ binds {
         spawn-sh "noctalia-shell ipc call launcher toggle"
     }
     Super+Alt+L hotkey-overlay-title="Lock" {
-        spawn-sh "noctalia-shell ipc call lockScreen lock"
+        spawn "swaylock-plugin"
     }
     Mod+I hotkey-overlay-title="Settings" {
         spawn-sh "noctalia-shell ipc call settings toggle"

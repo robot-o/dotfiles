@@ -76,6 +76,7 @@
     power-profiles-daemon.enable = true;
     upower.enable = true;
 
+    fwupd.enable = true;
     hardware.bolt.enable = true;
     fprintd.enable = true;
 
@@ -146,6 +147,8 @@
     pam.services = {
       login.enableGnomeKeyring = true;
       greetd.enableGnomeKeyring = true;
+      swaylock = { };
+      swaylock-plugin = { };
     };
   };
 

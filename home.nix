@@ -8,9 +8,50 @@
   programs = {
     home-manager.enable = true;
     zathura.enable = true;
+    swaylock = {
+      enable = true;
+      package = pkgs.swaylock-plugin;
+      settings = {
+        command-each = "windowtolayer -- ghostty --theme=\"Builtin Dark\" -e neo -aDF -f 60 -G 5.0 -S 16";
+        daemonize = true;
+      };
+    };
   };
 
   services = {
+    swayidle =
+      let
+        lock = "${pkgs.swaylock-plugin}/bin/swaylock-plugin";
+        display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
+      in
+      {
+        enable = true;
+        timeouts = [
+          {
+            timeout = 300;
+            command = "${pkgs.libnotify}/bin/notify-send 'locking in 10 seconds' -t 10000";
+          }
+          {
+            timeout = 310;
+            command = lock;
+          }
+          {
+            timeout = 420;
+            command = display "off";
+            resumeCommand = display "on";
+          }
+          {
+            timeout = 900;
+            command = "${pkgs.systemd}/bin/systemctl suspend";
+          }
+        ];
+        events = {
+          before-sleep = (display "off") + "; " + lock;
+          after-resume = display "on";
+          lock = (display "off") + "; " + lock;
+          unlock = display "on";
+        };
+      };
     polkit-gnome.enable = true;
     kanshi = {
       enable = true;
@@ -90,6 +131,9 @@
       playerctl
       noctalia-shell
       nautilus
+      neo
+      fastfetch
+      windowtolayer
       ## cli
       tmux
       tmuxp
@@ -167,7 +211,8 @@
     file.".scripts".source = config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.scripts;
     file.".config/niri/config.kdl".source =
       config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.config/niri/config.kdl;
-    file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.config/nvim;
+    file.".config/nvim".source =
+      config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.config/nvim;
   };
 
 }
