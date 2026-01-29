@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, config, ... }:
+{ inputs, pkgs, ... }:
 
 {
   system.stateVersion = "25.05";
@@ -23,7 +23,7 @@
 
   boot = {
     loader = {
-      timeout = 2;
+      timeout = 1;
       systemd-boot.enable = false;
       limine.enable = true;
       limine.secureBoot.enable = true;
@@ -49,7 +49,7 @@
         "/dev/disk/by-uuid/83c103bc-c5f8-4c0a-9e64-c6fd906bf280";
     };
     kernelParams = [
-      # "quiet"
+      "quiet"
       "splash"
       "boot.shell_on_fail"
       "udev.log_priority=3"
@@ -153,7 +153,8 @@
     bluetooth.enable = true;
     system76.power-daemon.enable = true;
     keyboard.zsa.enable = true;
-    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    enableRedistributableFirmware = true;
+    cpu.intel.updateMicrocode = true;
   };
 
   time.timeZone = "Europe/Berlin";
