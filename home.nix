@@ -183,6 +183,7 @@
       # kdePackages.kdenlive
       orca-slicer
       godot
+      gdtoolkit_4
       ## social
       signal-desktop
       element-desktop

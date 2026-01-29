@@ -195,17 +195,21 @@ if command -v yay &>/dev/null; then
   alias whatpackage='s pacman -Fy'
 fi
 
-# nixos
-if command -v nixos-rebuild &>/dev/null; then 
-  alias nrs='sudo nixos-rebuild switch --impure --flake "/home/user/.dotfiles#user"'
-  alias nrsu='sudo nix-channel --update && sudo nix flake update "/home/user/.dotfiles" && sudo nixos-rebuild switch --impure --upgrade --flake "/home/user/.dotfiles#user"'
-  alias ngc='nix-collect-garbage -d && sudo nix-collect-garbage -d'
-fi
-if command -v nix-shell &>/dev/null; then 
-  alias nsp='nix-shell -p'
-  function nspc(){
-      nix-shell -p "$1" --command "$@"
+# nix
+if command -v nix &>/dev/null; then 
+  alias nd='nix develop'
+  function nsh(){
+      nix shell "nixpkgs#$1" --command "$@"
   }
+fi
+# nixos
+if command -v nh &>/dev/null; then 
+  alias nsw='nh os switch'
+  alias nsb='nh os boot'
+  alias nswu='nh os switch --update'
+  alias nsbu='nh os boot --update'
+  alias nca='nh clean all'
+  alias ns='nh search'
 fi
 
 # fedora
