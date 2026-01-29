@@ -132,11 +132,11 @@
       steam-run
       ## arts and crafts
       # freecad
-      kicad
+      # kicad
       openscad
       audacity
       inkscape
-      kdePackages.kdenlive
+      # kdePackages.kdenlive
       orca-slicer
       godot
       ## social

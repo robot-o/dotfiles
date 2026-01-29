@@ -1,18 +1,7 @@
-{
-  inputs,
-  config,
-  pkgs,
-  lib,
-  modulesPath,
-  ...
-}:
+{ inputs, pkgs, lib, config, ... }:
 
 {
   system.stateVersion = "25.05";
-
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/7dcdd692-326e-4aca-8873-81f48116aa7f";
@@ -34,7 +23,7 @@
 
   boot = {
     loader = {
-      timeout = 0;
+      timeout = 2;
       systemd-boot.enable = false;
       limine.enable = true;
       limine.secureBoot.enable = true;
@@ -60,7 +49,7 @@
         "/dev/disk/by-uuid/83c103bc-c5f8-4c0a-9e64-c6fd906bf280";
     };
     kernelParams = [
-      "quiet"
+      # "quiet"
       "splash"
       "boot.shell_on_fail"
       "udev.log_priority=3"
@@ -75,8 +64,10 @@
     networkmanager.enable = true;
   };
 
-  powerManagement.enable = true;
-  powerManagement.powertop.enable = true;
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
 
   services = {
     system76-scheduler.enable = true;
@@ -107,6 +98,7 @@
       };
     };
 
+    gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
     dbus.packages = [
       pkgs.gnome-keyring

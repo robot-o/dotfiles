@@ -60,6 +60,22 @@
               }
             ];
           };
+          # kepler = inputs.nixpkgs.lib.nixosSystem {
+          #   specialArgs = {
+          #     inherit inputs;
+          #   };
+          #   modules = [
+          #     ./hosts/kepler.nix
+          #     inputs.nixos-hardware.nixosModules.lenovo-legion-16iax10h
+          #     inputs.home-manager.nixosModules.home-manager
+          #     {
+          #       home-manager.useGlobalPkgs = true;
+          #       home-manager.useUserPackages = true;
+          #       home-manager.backupFileExtension = "hmbkp";
+          #       home-manager.users.user = import ./home.nix;
+          #     }
+          #   ];
+          # };
         };
       };
       systems = [
