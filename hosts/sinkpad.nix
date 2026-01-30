@@ -201,6 +201,7 @@
       ghostty
       neovim
       git
+      git-lfs
       curl
       brave
       bitwarden-desktop
