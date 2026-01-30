@@ -263,7 +263,7 @@ require("lazy").setup({
     {
       'mfussenegger/nvim-lint',
       enabled = true,
-      lazy = true,
+      lazy = false,
       event = { "BufWritePre" },
       opts = {
         linters_by_ft = {
