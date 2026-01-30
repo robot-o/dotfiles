@@ -21,7 +21,7 @@
   services = {
     swayidle =
       let
-        lock = "${pkgs.swaylock-plugin}/bin/swaylock-plugin";
+        lock = "${pkgs.swaylock-plugin}/bin/swaylock-plugin -e -f -c 000000";
         display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
       in
       {

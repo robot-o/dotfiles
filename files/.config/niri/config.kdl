@@ -153,6 +153,9 @@ recent-windows {
     }
 }
 binds {
+    Mod+Shift+Q hotkey-overlay-title="BYE BYE" {
+        spawn-sh "noctalia-shell ipc call sessionMenu toggle"
+    }
     Mod+Shift+Slash {
         show-hotkey-overlay
     }
