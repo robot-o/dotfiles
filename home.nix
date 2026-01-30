@@ -176,6 +176,7 @@
       osu-lazer-bin
       steam-run
       ## arts and crafts
+      blender
       # freecad
       # kicad
       openscad
