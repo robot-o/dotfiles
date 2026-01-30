@@ -156,6 +156,7 @@
       shellcheck
       bash-language-server
       yaml-language-server
+      opencode
       ## dev
       lazygit
       delta
