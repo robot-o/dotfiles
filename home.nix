@@ -205,7 +205,6 @@
     file.".zshenv".source = ./files/.zshenv;
     file.".zshrc".source = ./files/.zshrc;
     file.".tmux.conf".source = ./files/.tmux.conf;
-    file.".gitconfig".source = ./files/.gitconfig;
     file.".config/ghostty".source = ./files/.config/ghostty;
     file.".config/bat".source = ./files/.config/bat;
 
@@ -215,6 +214,7 @@
       config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.config/niri/config.kdl;
     file.".config/nvim".source =
       config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.config/nvim;
+    file.".gitconfig".source = config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.gitconfig;
   };
 
 }
