@@ -134,6 +134,7 @@
       neo
       fastfetch
       windowtolayer
+      pwvucontrol
       ## cli
       tmux
       tmuxp
