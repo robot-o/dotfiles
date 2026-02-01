@@ -126,6 +126,7 @@
     stateVersion = "25.05";
     packages = with pkgs; [
       ## niri
+      wl-mirror
       xwayland-satellite
       libnotify
       playerctl
