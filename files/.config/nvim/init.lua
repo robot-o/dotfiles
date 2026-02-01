@@ -263,13 +263,14 @@ require("lazy").setup({
     {
       'mfussenegger/nvim-lint',
       enabled = true,
-      lazy = false,
-      event = { "BufWritePre" },
-      opts = {
-        linters_by_ft = {
+      lazy = true,
+      event = { "BufWritePost", "BufReadPost", "InsertLeave" },
+      config = function()
+        local lint = require('lint')
+        lint.linters_by_ft = {
           sh = { 'shellcheck' },
-        },
-      },
+        }
+      end,
     },
     {
       'saghen/blink.cmp',
