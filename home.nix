@@ -120,6 +120,14 @@
     };
   };
 
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+  };
+
   home = {
     username = "user";
     homeDirectory = "/home/user";
@@ -132,6 +140,7 @@
       playerctl
       noctalia-shell
       nautilus
+      sushi
       neo
       fastfetch
       windowtolayer
@@ -218,7 +227,8 @@
       config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.config/niri/config.kdl;
     file.".config/nvim".source =
       config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.config/nvim;
-    file.".gitconfig".source = config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.gitconfig;
+    file.".gitconfig".source =
+      config.lib.file.mkOutOfStoreSymlink /home/user/.dotfiles/files/.gitconfig;
   };
 
 }
