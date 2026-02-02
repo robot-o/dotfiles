@@ -187,6 +187,7 @@
       # kdePackages.kdenlive
       orca-slicer
       godot
+      godot-export-templates-bin
       gdtoolkit_4
       ## social
       signal-desktop
