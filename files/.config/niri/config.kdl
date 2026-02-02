@@ -79,17 +79,15 @@ window-rule {
     geometry-corner-radius 6
     clip-to-geometry true
 }
-// window-rule {
-//     match is-active=false
-//     opacity 0.95
-// }
 window-rule {
-    match app-id="^com\\.mitchellh\\.ghostty$"
+    match app-id="com.mitchellh.ghostty"
     draw-border-with-background false
 }
 window-rule {
     match title="^Picture in Picture$"
     match app-id="^brave-browser$" title="^Picture in Picture$"
+    match app-id="superProductivity"
+    match app-id="org.gnome.NautilusPreviewer"
     open-floating true
 }
 window-rule {
