@@ -97,7 +97,7 @@
           profile.name = "office";
           profile.outputs = [
             {
-              status = "enable";
+              status = "disable";
               criteria = "eDP-1";
               mode = "2880x1800@120.000";
               position = "768,1600";
