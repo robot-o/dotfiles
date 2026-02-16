@@ -160,6 +160,8 @@
       fzf
       ffmpeg
       yt-dlp
+      sops
+      age
       ## dev/lsp/editor
       tree-sitter
       nil
