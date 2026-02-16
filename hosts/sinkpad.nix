@@ -197,6 +197,7 @@
       sbctl
       cacert
       libmbim
+      modem-manager-gui
       usbutils
       ghostty
       neovim

@@ -11,6 +11,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    niri-scratchpad.url = "github:argosnothing/niri-scratchpad";
+
+    # stylix = {
+    #   url = "github:nix-community/stylix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     # disko = {
     #   url = "github:nix-community/disko";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -30,21 +37,14 @@
     #   };
     # };
 
-    niri-scratchpad.url = "github:argosnothing/niri-scratchpad";
-
-    # stylix = {
-    #   url = "github:nix-community/stylix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
   };
 
   outputs =
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        ./hosts
-      ];
+      # imports = [
+      #   ./hosts
+      # ];
       flake = {
         nixosConfigurations = {
           sinkpad = inputs.nixpkgs.lib.nixosSystem {
