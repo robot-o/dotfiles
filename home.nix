@@ -89,7 +89,7 @@
               position = "2304,0";
               transform = "normal";
               scale = 1.0;
-              adaptiveSync = true;
+              adaptiveSync = false;
             }
           ];
         }
