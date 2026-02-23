@@ -145,6 +145,7 @@
       fastfetch
       windowtolayer
       pwvucontrol
+      wayscriber
       ## cli
       tmux
       tmuxp
@@ -188,6 +189,7 @@
       ## gaymen
       osu-lazer-bin
       steam-run
+      sidequest
       ## arts and crafts
       blender
       # freecad
