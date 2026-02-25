@@ -211,6 +211,7 @@
       distrobox
       dnsmasq
       unzip
+      podman-compose
     ];
 
     sessionVariables = {
@@ -263,7 +264,7 @@
     containers.enable = true;
     podman = {
       enable = true;
-      dockerCompat = true;
+      dockerCompat = false;
       defaultNetwork.settings.dns_enabled = true;
     };
     libvirtd = {

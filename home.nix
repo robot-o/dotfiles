@@ -71,6 +71,29 @@
           ];
         }
         {
+          profile.name = "home-ng";
+          profile.outputs = [
+            {
+              status = "disable";
+              criteria = "eDP-1";
+              mode = "2880x1800@120.000";
+              position = "0,0";
+              scale = 1.25;
+              transform = "normal";
+              adaptiveSync = false;
+            }
+            {
+              status = "enable";
+              criteria = "ASUSTek COMPUTER INC XG32UCWMG T9LMQS078629";
+              mode = "3840x2160@240.016";
+              position = "2304,0";
+              transform = "normal";
+              scale = 1.0;
+              adaptiveSync = true;
+            }
+          ];
+        }
+        {
           profile.name = "home";
           profile.outputs = [
             {
