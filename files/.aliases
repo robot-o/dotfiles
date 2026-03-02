@@ -270,6 +270,9 @@ alias pcheck='cpupower frequency-info'
 alias webserverherewifi='echo "url: https://$(ipconfig getifaddr en0):9000" && python3 -m http.server 9000'
 alias flushdns_macos='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 alias rad1o='sudo mbimcli -p -d /dev/cdc-wdm0 --quectel-set-radio-state=on'
+function webcampreview() {
+  mpv "av://v4l2:/dev/video${1-4}" --profile=low-latency --untimed
+}
 # source machine-specific aliases
 # included at the end in order to override any generic aliases defined here
 function include() {

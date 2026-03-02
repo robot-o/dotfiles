@@ -88,13 +88,13 @@
               mode = "3840x2160@240.016";
               position = "2304,0";
               transform = "normal";
-              scale = 1.0;
+              scale = 1.00;
               adaptiveSync = true;
             }
           ];
         }
         {
-          profile.name = "home";
+          profile.name = "home-legacy";
           profile.outputs = [
             {
               status = "disable";
