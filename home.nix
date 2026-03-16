@@ -219,6 +219,8 @@
       sidequest
       ## arts and crafts
       blender
+      f3d
+      exhibit
       # freecad
       # kicad
       openscad
