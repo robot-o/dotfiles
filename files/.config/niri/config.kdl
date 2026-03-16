@@ -16,6 +16,8 @@ input {
         natural-scroll
         tap-button-map "left-right-middle"
         accel-profile "adaptive"
+        accel-speed 0.2
+
     }
     mouse {
 

@@ -17,7 +17,7 @@
         daemonize = true;
         color = "000000";
         font-size = 32;
-        indicator-radius = 128;
+        # indicator-radius = 128;
       };
     };
   };
