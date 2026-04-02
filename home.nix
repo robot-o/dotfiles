@@ -162,6 +162,7 @@
     packages = with pkgs; [
       ## niri
       wl-mirror
+      wdisplays
       xwayland-satellite
       libnotify
       playerctl
