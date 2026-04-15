@@ -602,7 +602,7 @@ end
 
 -- additional lsp magic
 -- vim.lsp.config('nil_ls', { settings = { formatting = { command = { "alejandra" } } } })
-vim.lsp.enable({ 'nil_ls', 'bashls', 'yamlls', 'gdscript' })
+vim.lsp.enable({ 'nil_ls', 'bashls', 'yamlls', 'gdscript', 'omnisharp' })
 
 -- enable inline diagnostics
 vim.diagnostic.config({ virtual_text = true })

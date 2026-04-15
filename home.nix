@@ -12,7 +12,7 @@
       enable = true;
       package = pkgs.swaylock-plugin;
       settings = {
-        # command-each = "windowtolayer -- ghostty --theme=\"Builtin Dark\" -e neo -aDF -f 60 -G 5.0 -S 16";
+        command-each = "windowtolayer -- ghostty --theme=\"Builtin Dark\" -e neo -aDF -f 60 -G 5.0 -S 16";
         # command-each = "-e -f -c 000000";
         daemonize = true;
         color = "000000";
@@ -29,7 +29,7 @@
         display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
       in
       {
-        enable = true;
+        enable = false;
         timeouts = [
           {
             timeout = 300;
