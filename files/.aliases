@@ -273,6 +273,7 @@ alias rad1o='sudo mbimcli -p -d /dev/cdc-wdm0 --quectel-set-radio-state=on'
 function webcampreview() {
   mpv "av://v4l2:/dev/video${1-4}" --profile=low-latency --untimed
 }
+alias fixnoctalia='pkill quickshell && niri msg action spawn -- noctalia-shell'
 # source machine-specific aliases
 # included at the end in order to override any generic aliases defined here
 function include() {
