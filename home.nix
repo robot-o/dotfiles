@@ -228,7 +228,9 @@
       audacity
       inkscape
       # kdePackages.kdenlive
+      kdePackages.skanlite
       orca-slicer
+      bambu-studio
       godot
       godot-export-templates-bin
       gdtoolkit_4

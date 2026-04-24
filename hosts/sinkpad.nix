@@ -106,7 +106,10 @@
       pkgs.gcr
     ];
 
-    printing.enable = false;
+    printing = {
+      enable = true;
+      drivers = [ pkgs.cnijfilter2 ];
+    };
 
     pulseaudio.enable = false;
     pipewire = {
@@ -121,15 +124,16 @@
       package = pkgs.mullvad-vpn;
     };
 
+    udev = {
+      packages = [
+        pkgs.cnijfilter2
+        pkgs.sane-airscan
+      ];
+    };
+
     avahi = {
       enable = true;
-      publish = {
-        enable = true;
-        addresses = true;
-        domain = true;
-        hinfo = false;
-        userServices = false;
-      };
+      nssmdns4 = true;
     };
 
     openssh = {
@@ -158,6 +162,11 @@
     keyboard.zsa.enable = true;
     enableRedistributableFirmware = true;
     cpu.intel.updateMicrocode = true;
+    sane = {
+      enable = true;
+      extraBackends = [ pkgs.sane-airscan ];
+      disabledDefaultBackends = [ "escl" ];
+    };
   };
 
   time.timeZone = "Europe/Berlin";
@@ -212,6 +221,7 @@
       dnsmasq
       unzip
       podman-compose
+      cnijfilter2
     ];
 
     sessionVariables = {
@@ -231,6 +241,8 @@
       "libvirtd"
       "kvm"
       "ydotool"
+      "lp"
+      "scanner"
     ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
