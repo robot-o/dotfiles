@@ -142,6 +142,7 @@
       settings.PermitRootLogin = "no";
     };
 
+    flatpak.enable = true;
   };
 
   security = {
