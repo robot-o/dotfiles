@@ -168,6 +168,14 @@
       extraBackends = [ pkgs.sane-airscan ];
       disabledDefaultBackends = [ "escl" ];
     };
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        intel-media-driver
+        vpl-gpu-rt
+        intel-compute-runtime
+      ];
+    };
   };
 
   time.timeZone = "Europe/Berlin";
@@ -228,6 +236,7 @@
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/.steam/root/compatibilitytools.d";
+      LIBVA_DRIVER_NAME = "iHD";
     };
   };
 
