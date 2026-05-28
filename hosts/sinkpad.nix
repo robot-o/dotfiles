@@ -223,6 +223,7 @@
       git-lfs
       curl
       brave
+      chromium
       bitwarden-desktop
       xdg-desktop-portal-gnome
       inputs.niri-scratchpad.packages.${pkgs.stdenv.hostPlatform.system}.default

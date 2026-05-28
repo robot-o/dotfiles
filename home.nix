@@ -217,6 +217,7 @@
       ## gaymen
       osu-lazer-bin
       steam-run
+      appimage-run
       sidequest
       ## arts and crafts
       blender
@@ -227,6 +228,8 @@
       openscad
       audacity
       inkscape
+      krita
+      gimp
       # kdePackages.kdenlive
       kdePackages.skanlite
       orca-slicer
@@ -238,6 +241,7 @@
       element-desktop
       discord
       slack
+      wireguard-tools
     ];
 
     pointerCursor = {
