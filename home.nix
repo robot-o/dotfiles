@@ -225,7 +225,7 @@
       exhibit
       # freecad
       # kicad
-      openscad
+      # openscad
       audacity
       inkscape
       krita
